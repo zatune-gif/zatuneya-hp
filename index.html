@@ -8,238 +8,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --teal:       #5BBDC8;
-      --teal-dk:    #46A6B1;
-      --teal-bg:    rgba(91,189,200,0.12);
-      --orange:     #F8981D;
-      --orange-dk:  #E28511;
-      --orange-bg:  rgba(248,152,29,0.10);
-      --bluegray:   #839CAA;
-      --bg:         #EFF4F5;
-      --card:       #ffffff;
-      --heading:    #3C3C3C;
-      --text:       #575757;
-      --text-muted: #999999;
-      --border:     #e2e9eb;
-      --radius:     12px;
-      --shadow:     0 4px 18px rgba(60,90,100,0.10);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Roboto', 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
-      background: var(--bg); color: var(--text); line-height: 1.9; font-size: 15px;
-    }
-
-    /* ── ナビ ── */
-    .site-nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 24px; height: 58px;
-      display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    }
-    .nav-brand { font-size: 17px; font-weight: 900; color: var(--heading); text-decoration: none; letter-spacing: 0.06em; }
-    .nav-brand span { color: var(--orange); }
-    .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
-    .nav-links a { font-size: 13px; font-weight: 700; color: #606060; text-decoration: none; letter-spacing: 0.08em; transition: color 0.15s; }
-    .nav-links a:hover { color: var(--teal-dk); }
-    @media (max-width: 640px) { .nav-links { display: none; } }
-
-    /* ── ヒーロー ── */
-    .hero {
-      background: linear-gradient(160deg, #dfeaec 0%, #EFF4F5 55%, #fdf3e3 100%);
-      padding: 76px 24px 64px; position: relative; overflow: hidden;
-      border-bottom: 1px solid var(--border); text-align: center;
-    }
-    .hero::before {
-      content: ''; position: absolute; top: -140px; right: -140px;
-      width: 460px; height: 460px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(91,189,200,0.20) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero::after {
-      content: ''; position: absolute; bottom: -160px; left: -100px;
-      width: 420px; height: 420px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(248,152,29,0.14) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-inner { max-width: 780px; margin: 0 auto; position: relative; }
-    .hero-eyebrow { font-size: 12px; font-weight: 700; color: var(--teal-dk); letter-spacing: 0.22em; margin-bottom: 18px; }
-    .hero h1 { font-size: 34px; font-weight: 900; line-height: 1.5; color: var(--heading); margin-bottom: 18px; letter-spacing: 0.02em; }
-    @media (max-width: 640px) { .hero h1 { font-size: 25px; } }
-    .hero h1 em { font-style: normal; color: var(--orange); }
-    .hero-sub { font-size: 15px; color: var(--text); max-width: 620px; margin: 0 auto 32px; line-height: 2.0; }
-    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 14px; font-weight: 800; text-decoration: none; letter-spacing: 0.04em;
-      padding: 14px 28px; border-radius: 999px; transition: background 0.15s, transform 0.15s;
-    }
-    .btn:hover { transform: translateY(-1px); }
-    .btn-fill { background: var(--orange); color: #fff; box-shadow: 0 4px 14px rgba(248,152,29,0.35); }
-    .btn-fill:hover { background: var(--orange-dk); }
-    .btn-teal { background: var(--teal); color: #fff; box-shadow: 0 4px 14px rgba(91,189,200,0.35); }
-    .btn-teal:hover { background: var(--teal-dk); }
-    .btn-line { border: 2px solid var(--bluegray); color: #5c7482; background: #fff; }
-    .btn-line:hover { background: #f4f8f9; }
-    .hero-note { font-size: 12px; color: var(--text-muted); margin-top: 16px; }
-
-    /* ── 共通セクション ── */
-    .main { max-width: 880px; margin: 0 auto; padding: 0 24px 88px; }
-    .section { padding-top: 72px; text-align: center; }
-    .section-eyebrow { font-size: 11px; font-weight: 900; font-family: 'Roboto', sans-serif; color: var(--teal); letter-spacing: 0.3em; margin-bottom: 10px; }
-    .section-title { font-size: 25px; font-weight: 900; color: var(--heading); line-height: 1.6; margin-bottom: 12px; }
-    @media (max-width: 640px) { .section-title { font-size: 20px; } }
-    .section-lead { font-size: 14px; color: var(--text); margin: 0 auto 32px; max-width: 640px; }
-
-    /* ── お悩み ── */
-    .worry-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; text-align: left; }
-    @media (max-width: 640px) { .worry-grid { grid-template-columns: 1fr; } }
-    .worry-item {
-      background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
-      padding: 18px 20px; font-size: 14px; font-weight: 600; color: var(--heading);
-      display: flex; gap: 12px; align-items: flex-start;
-    }
-    .worry-item::before { content: '💬'; flex-shrink: 0; }
-    .worry-answer {
-      margin-top: 22px; background: var(--orange); border-radius: var(--radius);
-      box-shadow: 0 6px 20px rgba(248,152,29,0.30);
-      padding: 26px 28px; font-size: 16px; font-weight: 900; color: #fff; line-height: 1.9;
-    }
-    .worry-answer small { display: block; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.92); margin-top: 8px; }
-
-    /* ── 3本柱 ── */
-    .pillar-list { display: flex; flex-direction: column; gap: 16px; text-align: left; }
-    .pillar {
-      background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
-      padding: 28px 30px; position: relative; overflow: hidden;
-      border-top: 4px solid var(--teal);
-    }
-    .pillar.pillar-accent { border-top-color: var(--orange); }
-    .pillar-step { font-size: 11px; font-weight: 900; font-family: 'Roboto', sans-serif; color: var(--teal-dk); letter-spacing: 0.2em; margin-bottom: 8px; }
-    .pillar.pillar-accent .pillar-step { color: var(--orange-dk); }
-    .pillar-name { font-size: 20px; font-weight: 900; color: var(--heading); margin-bottom: 4px; }
-    .pillar-essence { font-size: 13px; font-weight: 700; color: var(--teal-dk); margin-bottom: 14px; }
-    .pillar.pillar-accent .pillar-essence { color: var(--orange-dk); }
-    .pillar-desc { font-size: 14px; color: var(--text); line-height: 1.95; margin-bottom: 14px; }
-    .pillar-points { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-    .pillar-points li { font-size: 13px; color: var(--text); padding-left: 18px; position: relative; }
-    .pillar-points li::before { content: '✓'; position: absolute; left: 0; color: var(--teal); font-weight: 900; }
-    .pillar-price {
-      margin-top: 16px; display: inline-block;
-      background: var(--teal-bg); border-radius: 999px;
-      font-size: 13px; font-weight: 700; color: var(--heading); padding: 7px 18px;
-    }
-    .pillar.pillar-accent .pillar-price { background: var(--orange-bg); }
-    .pillar-price strong { color: var(--orange-dk); font-size: 15px; }
-    .flow-arrow { text-align: center; color: var(--bluegray); font-size: 20px; font-weight: 900; }
-
-    /* ── 料金 ── */
-    .price-note-box {
-      background: var(--card); border: 2px solid var(--orange); border-radius: var(--radius);
-      box-shadow: var(--shadow); padding: 24px 26px; margin-bottom: 20px; text-align: center;
-    }
-    .price-note-box p { font-size: 14px; color: var(--text); }
-    .price-note-box strong { color: var(--heading); }
-    .price-note-box .big { font-size: 18px; font-weight: 900; color: var(--orange-dk); margin-top: 8px; }
-    .price-cautions { list-style: none; display: flex; flex-direction: column; gap: 6px; margin: 0 auto 26px; max-width: 620px; text-align: left; }
-    .price-cautions li { font-size: 13px; color: var(--text-muted); padding-left: 18px; position: relative; }
-    .price-cautions li::before { content: '※'; position: absolute; left: 0; color: var(--bluegray); }
-    .btn-row { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
-
-    /* ── 無料ツール ── */
-    .tool-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; text-align: left; }
-    @media (max-width: 640px) { .tool-grid { grid-template-columns: 1fr; } }
-    .tool-card {
-      display: block; text-decoration: none;
-      background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
-      padding: 24px 24px; transition: transform 0.2s, box-shadow 0.2s;
-      border-top: 4px solid var(--teal);
-    }
-    .tool-card:hover { transform: translateY(-3px); box-shadow: 0 8px 26px rgba(60,90,100,0.16); }
-    .tool-card-badge {
-      display: inline-block; font-size: 10px; font-weight: 900; letter-spacing: 0.12em;
-      background: var(--teal-bg); color: var(--teal-dk);
-      border-radius: 999px; padding: 3px 12px; margin-bottom: 12px;
-    }
-    .tool-card-name { font-size: 16px; font-weight: 900; color: var(--heading); margin-bottom: 8px; }
-    .tool-card-desc { font-size: 13px; color: var(--text); line-height: 1.8; margin-bottom: 14px; }
-    .tool-card-arrow { font-size: 13px; font-weight: 900; color: var(--orange-dk); }
-
-    /* ── 選ばれる理由 ── */
-    .diff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 26px; text-align: left; }
-    @media (max-width: 640px) { .diff-grid { grid-template-columns: 1fr; } }
-    .diff-card {
-      background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
-      padding: 22px 20px; text-align: center;
-    }
-    .diff-icon {
-      width: 58px; height: 58px; border-radius: 50%; border: 2.5px solid var(--teal);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 25px; margin: 0 auto 14px; background: #fafeff;
-    }
-    .diff-title { font-size: 15px; font-weight: 900; color: var(--heading); margin-bottom: 8px; }
-    .diff-desc { font-size: 13px; color: var(--text); line-height: 1.85; text-align: left; }
-    .table-wrap { overflow-x: auto; border-radius: var(--radius); box-shadow: var(--shadow); text-align: left; }
-    table { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--card); }
-    thead th {
-      background: var(--bluegray); color: #fff; font-weight: 700;
-      padding: 12px 16px; text-align: left; font-size: 12px; letter-spacing: 0.06em;
-    }
-    tbody tr:nth-child(even) { background: #f6f9fa; }
-    td { padding: 11px 16px; border-bottom: 1px solid var(--border); color: var(--text); }
-    tbody tr:last-child td { border-bottom: none; }
-    td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
-
-    /* ── ご相談の流れ ── */
-    .step-list { display: flex; flex-direction: column; gap: 12px; text-align: left; }
-    .step-item {
-      background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
-      padding: 18px 22px; display: flex; gap: 18px; align-items: flex-start;
-    }
-    .step-num {
-      flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
-      background: var(--teal); color: #fff; font-weight: 900; font-size: 15px; font-family: 'Roboto', sans-serif;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .step-item:first-child .step-num { background: var(--orange); }
-    .step-body strong { display: block; font-size: 15px; color: var(--heading); font-weight: 900; margin-bottom: 2px; }
-    .step-body span { font-size: 13px; color: var(--text); }
-
-    /* ── 問い合わせ ── */
-    .contact-box {
-      background: linear-gradient(150deg, #fdf3e3 0%, #ffffff 60%, #eaf7f8 100%);
-      border: 2px solid var(--orange); border-radius: var(--radius); box-shadow: var(--shadow);
-      padding: 40px 28px; text-align: center;
-    }
-    .contact-box h3 { font-size: 21px; font-weight: 900; color: var(--heading); margin-bottom: 10px; }
-    .contact-box p { font-size: 14px; color: var(--text); margin-bottom: 24px; }
-    .contact-mail { font-size: 13px; color: var(--text-muted); margin-top: 18px; }
-    .contact-mail a { color: var(--teal-dk); font-weight: 700; text-decoration: none; }
-
-    /* ── フッター ── */
-    .footer {
-      text-align: center; font-size: 12px; color: var(--text-muted);
-      padding: 34px 24px; border-top: 1px solid var(--border); background: #fff;
-    }
-    .footer a { color: #7b8f9b; text-decoration: none; font-weight: 700; }
-    .footer a:hover { color: var(--teal-dk); }
-    .footer-links { margin-bottom: 12px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <nav class="site-nav">
-  <a href="#" class="nav-brand">ざつね<span>屋</span></a>
+  <a href="./" class="nav-brand">ざつね<span>屋</span></a>
   <div class="nav-links">
     <a href="#services">サービス</a>
     <a href="#price">料金</a>
     <a href="#tools">無料診断</a>
     <a href="#about">ざつね屋について</a>
     <a href="#contact">お問い合わせ</a>
+    <a href="#cv" class="nav-cv">資料請求・お見積り</a>
   </div>
 </nav>
 
@@ -248,15 +29,15 @@
   <div class="hero-inner">
     <p class="hero-eyebrow">広島近郊の中小企業・小規模事業者向け AI活用支援</p>
     <h1>教えて、作って、一緒に走る。<br>AIを<em>「実際に使える」</em>会社にする。</h1>
-    <p class="hero-sub">
+    <p class="hero-lead">
       ざつね屋は、生成AIを「知っている」から「業務で実際に使える」状態になるまでを伴走する、AI活用支援の専門家です。
       研修で使える人を作り、オーダーメイドで自社専用の仕組みを作り、伴走支援で組織ごと深化させます。
     </p>
     <div class="hero-cta">
-      <a class="btn btn-fill" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/" target="_blank" rel="noopener">🩺 無料AI診断を受ける（約3分）</a>
-      <a class="btn btn-line" href="#services">サービスを見る</a>
+      <a class="btn btn-fill" href="#cv">資料請求・お見積りはこちら</a>
+      <a class="btn btn-line" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/" target="_blank" rel="noopener">無料AI診断を受ける（約3分）</a>
     </div>
-    <p class="hero-note">診断は12問・無料・登録不要です。</p>
+    <p class="hero-note">診断は12問・無料・登録不要。資料請求・お見積りも無料です。</p>
   </div>
 </div>
 
@@ -278,64 +59,37 @@
     </div>
   </div>
 
-  <!-- ══ 3本柱サービス ══ -->
+  <!-- ══ サービス（要点のみ） ══ -->
   <div class="section" id="services">
     <p class="section-eyebrow">SERVICES</p>
-    <h2 class="section-title">「使える人」「使える仕組み」「深化する組織」<br>を作る3つのサービス</h2>
-    <p class="section-lead">どのサービスからでも始められますが、研修が最も自然な入口です。研修 → オーダーメイド → 伴走と段階的に深められます。</p>
+    <h2 class="section-title">3つのサービス</h2>
+    <p class="section-lead">研修が最も自然な入口です。研修 → オーダーメイド → 伴走と段階的に深められます。</p>
 
-    <div class="pillar-list">
-      <div class="pillar pillar-accent">
-        <p class="pillar-step">SERVICE 01 ─ 入口におすすめ</p>
-        <p class="pillar-name">AI研修ワークショップ</p>
-        <p class="pillar-essence">自分でAIを使えるようになる ──「使える人」を作る</p>
-        <p class="pillar-desc">
-          商工会議所・業界団体・社内勉強会向け。①AI活用知識編（90分）、②文書・③画像・④動画の実践編（各120分）、⑤Claude Code特化（120分）の5コース体系。
-          研修当日から、受講者が自分の業務でAIを使い始められる構成です。
-        </p>
-        <ul class="pillar-points">
-          <li>スライドのプロンプト例は [ ] を書き換えるだけでそのまま業務で使えます</li>
-          <li>実践編は全て無料ツールで完結（コース⑤のみClaude Proプランが必要）</li>
-          <li>業種に合わせたカスタマイズも可能です</li>
-        </ul>
-        <p class="pillar-price">1回 <strong>60,000円〜</strong>（税別）／ 助成金活用で企業様の手出しは25%</p>
-      </div>
-
-      <p class="flow-arrow">↓</p>
-
-      <div class="pillar">
-        <p class="pillar-step">SERVICE 02 ─ 課題解決</p>
-        <p class="pillar-name">AI業務改善オーダーメイドサービス</p>
-        <p class="pillar-essence">使える仕組みを手元に残す ── 自社専用の仕組みを作る</p>
-        <p class="pillar-desc">
-          ヒアリングで業務の困りごとを特定し、「貴社の・その業務の」専用AI指示書と手順書を制作・納品する有期完結型サービスです。
-          どのAIを使うか・どう設計するかは全てざつね屋が考えます。貴社は業務の話をするだけです。
-        </p>
-        <ul class="pillar-points">
-          <li>成果物：業務専用AI指示書テンプレート・スタッフ向け操作手順書・業務仕様書</li>
-          <li>担当者が変わっても使い続けられる形でお渡しします</li>
-          <li>定額・有期完結型。「いつ終わるかわからない」がありません</li>
-        </ul>
-        <p class="pillar-price">Sプラン <strong>50,000円〜</strong>／Mプラン <strong>90,000円〜</strong>（税別・運用サポート付きは＋20,000円）</p>
-      </div>
-
-      <p class="flow-arrow">↓</p>
-
-      <div class="pillar">
-        <p class="pillar-step">SERVICE 03 ─ 継続支援</p>
-        <p class="pillar-name">AI開発伴走サービス</p>
-        <p class="pillar-essence">使い続けられる組織にする ── 両者で継続的に深める</p>
-        <p class="pillar-desc">
-          伴走先とざつね屋がそれぞれAI活用を模索し、月次ミーティングで知見を統合しながら共同開発を続ける契約です。
-          3か月区切りで成果を確認しながら更新できます。一時のブームで終わらせず、毎月新しい業務課題にAIで取り組める組織を作ります。
-        </p>
-        <ul class="pillar-points">
-          <li>月1回ミーティングプラン：60,000円/月（税別）</li>
-          <li>月2回ミーティングプラン：100,000円/月（税別）</li>
-          <li>相談だけでなく、ざつね屋も手を動かして一緒に開発します</li>
-        </ul>
-        <p class="pillar-price">月額 <strong>60,000円〜</strong>（税別）・3か月区切り</p>
-      </div>
+    <div class="service-grid">
+      <a class="service-card sc-accent" href="./services.html#training">
+        <p class="sc-step">SERVICE 01 ─ 入口におすすめ</p>
+        <p class="sc-name">AI研修ワークショップ</p>
+        <p class="sc-essence">「使える人」を作る</p>
+        <p class="sc-desc">知識編＋文書・画像・動画・Claude Code実践の5コース体系。研修当日から受講者が自分の業務でAIを使い始められます。</p>
+        <p class="sc-price">1回 <strong>60,000円〜</strong>（税別）<br>助成金活用で手出し25%</p>
+        <span class="sc-more">詳しく見る →</span>
+      </a>
+      <a class="service-card" href="./services.html#order">
+        <p class="sc-step">SERVICE 02 ─ 課題解決</p>
+        <p class="sc-name">AI業務改善オーダーメイド</p>
+        <p class="sc-essence">「使える仕組み」を手元に残す</p>
+        <p class="sc-desc">貴社の業務専用のAI指示書・手順書を制作して納品する有期完結型。担当者が変わっても使い続けられます。</p>
+        <p class="sc-price">1件 <strong>50,000円〜</strong>（税別）<br>定額・有期完結型</p>
+        <span class="sc-more">詳しく見る →</span>
+      </a>
+      <a class="service-card" href="./services.html#banso">
+        <p class="sc-step">SERVICE 03 ─ 継続支援</p>
+        <p class="sc-name">AI開発伴走サービス</p>
+        <p class="sc-essence">「使い続けられる組織」にする</p>
+        <p class="sc-desc">月次ミーティングで知見を統合しながら共同開発を続ける3か月区切りの契約。ざつね屋も手を動かします。</p>
+        <p class="sc-price">月額 <strong>60,000円〜</strong>（税別）<br>3か月区切りで更新</p>
+        <span class="sc-more">詳しく見る →</span>
+      </a>
     </div>
   </div>
 
@@ -353,9 +107,29 @@
       <li>お支払い条件・修正回数・対象外業務などの詳細条件は料金ページに記載しています</li>
     </ul>
     <div class="btn-row">
-      <a class="btn btn-fill" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html" target="_blank" rel="noopener">💴 料金の詳細を見る</a>
-      <a class="btn btn-teal" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/curriculum.html" target="_blank" rel="noopener">📖 研修カリキュラムを見る</a>
+      <a class="btn btn-teal" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html" target="_blank" rel="noopener">料金の詳細を見る</a>
+      <a class="btn btn-line" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/curriculum.html" target="_blank" rel="noopener">研修カリキュラムを見る</a>
     </div>
+  </div>
+
+  <!-- ══ 資料請求・見積請求（CV） ══ -->
+  <div class="section" id="cv">
+    <p class="section-eyebrow">REQUEST</p>
+    <h2 class="section-title">資料請求・お見積りはこちらから</h2>
+    <p class="section-lead">どちらも無料です。詳細診断（23問・約7分）にお答えいただくと、貴社の状況に合わせた内容でお届けできます。</p>
+    <div class="cv-grid">
+      <div class="cv-card cv-main">
+        <p class="cv-name">資料請求</p>
+        <p class="cv-desc">サービス紹介資料と、詳細診断の結果レポート（貴社の現状・優先課題・おすすめの進め方）をメールでお送りします。「まず社内で検討したい」方はこちら。</p>
+        <a class="btn btn-fill" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/request.html" target="_blank" rel="noopener">資料請求へ進む</a>
+      </div>
+      <div class="cv-card cv-sub">
+        <p class="cv-name">お見積り</p>
+        <p class="cv-desc">詳細診断の結果をもとに、貴社に合うプランの概算見積を3パターンご提示します。「費用感を先に知りたい」方はこちら。</p>
+        <a class="btn btn-teal" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/estimate.html" target="_blank" rel="noopener">お見積りへ進む</a>
+      </div>
+    </div>
+    <p class="cv-note">返信は2営業日以内です。しつこい営業連絡はいたしません。</p>
   </div>
 
   <!-- ══ 無料ツール ══ -->
@@ -365,13 +139,13 @@
     <div class="tool-grid">
       <a class="tool-card" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/" target="_blank" rel="noopener">
         <span class="tool-card-badge">無料・登録不要</span>
-        <p class="tool-card-name">🩺 AI活用準備度診断（12問・約3分）</p>
+        <p class="tool-card-name">AI活用準備度診断（12問・約3分）</p>
         <p class="tool-card-desc">貴社のAI活用が「準備期・導入期・活用期・推進期」のどの段階かを100点満点で診断。強み・優先課題・次のアクションまで表示します。</p>
         <span class="tool-card-arrow">診断を受ける →</span>
       </a>
       <a class="tool-card" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/ai-literacy-test/" target="_blank" rel="noopener">
         <span class="tool-card-badge">無料・登録不要</span>
-        <p class="tool-card-name">🧠 AIツール理解度テスト（20問・約3分）</p>
+        <p class="tool-card-name">AIツール理解度テスト（20問・約3分）</p>
         <p class="tool-card-desc">AI基礎知識・ツール操作・指示文の書き方・セキュリティ・業務応用の5軸をレーダーチャートで可視化。おすすめの研修コースもわかります。</p>
         <span class="tool-card-arrow">テストを受ける →</span>
       </a>
@@ -384,17 +158,23 @@
     <h2 class="section-title">「教えられる実装者」が、業務整理から伴走します</h2>
     <div class="diff-grid">
       <div class="diff-card">
-        <div class="diff-icon">🎓</div>
+        <div class="diff-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 8l10 5 10-5-10-5z"/><path d="M6 10.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5"/><path d="M22 8v5"/></svg>
+        </div>
         <p class="diff-title">教えられる実装者</p>
         <p class="diff-desc">多くのAIコンサルは「提案だけ」か「実装だけ」。ざつね屋は作れるだけでなく、現場に合わせて説明し、定着するまで支援できます。</p>
       </div>
       <div class="diff-card">
-        <div class="diff-icon">🤝</div>
+        <div class="diff-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20c0-3 2.2-5 5-5s5 2 5 5"/><path d="M14 20c.2-2.4 1.6-4 3.5-4 1.8 0 3.2 1.5 3.5 4"/></svg>
+        </div>
         <p class="diff-title">現場目線の伴走</p>
         <p class="diff-desc">管理職・教育機関の担任として「人が動く仕組み」を作ってきた経験。導入して終わりではなく、結果が出るまで付き合います。</p>
       </div>
       <div class="diff-card">
-        <div class="diff-icon">🛠</div>
+        <div class="diff-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="5" rx="1"/><rect x="13" y="16" width="8" height="5" rx="1"/><path d="M7 8v5h10v3"/></svg>
+        </div>
         <p class="diff-title">業務整理から入れる</p>
         <p class="diff-desc">AI以前に業務が整理できていない会社が大半です。業務フローの整理・要件定義から対応できるので、遠回りしません。</p>
       </div>
@@ -422,7 +202,7 @@
     <div class="step-list">
       <div class="step-item">
         <div class="step-num">1</div>
-        <div class="step-body"><strong>お問い合わせ</strong><span>メールで気軽にご連絡ください。無料診断の結果を添えていただくと話が早く進みます。返信は2営業日以内です。</span></div>
+        <div class="step-body"><strong>資料請求・お見積り・お問い合わせ</strong><span>上の資料請求・お見積りフォーム、またはメールでご連絡ください。返信は2営業日以内です。</span></div>
       </div>
       <div class="step-item">
         <div class="step-num">2</div>
@@ -430,7 +210,7 @@
       </div>
       <div class="step-item">
         <div class="step-num">3</div>
-        <div class="step-body"><strong>ご提案・お見積り</strong><span>最適なサービスとプランをご提案します。この時点まで費用はかかりません。</span></div>
+        <div class="step-body"><strong>ご提案・正式お見積り</strong><span>最適なサービスとプランをご提案します。この時点まで費用はかかりません。</span></div>
       </div>
       <div class="step-item">
         <div class="step-num">4</div>
@@ -444,7 +224,7 @@
     <div class="contact-box">
       <h3>お問い合わせ</h3>
       <p>「うちの業務でも使えるか？」の段階で大丈夫です。まずはお気軽にご相談ください。</p>
-      <a class="btn btn-fill" href="mailto:zatuneya@gmail.com?subject=AI活用支援について問い合わせ">✉ メールで相談する</a>
+      <a class="btn btn-fill" href="mailto:zatuneya@gmail.com?subject=AI活用支援について問い合わせ">メールで相談する</a>
       <p class="contact-mail">メールアドレス：<a href="mailto:zatuneya@gmail.com">zatuneya@gmail.com</a>（返信2営業日以内）</p>
     </div>
   </div>
@@ -453,10 +233,10 @@
 
 <div class="footer">
   <div class="footer-links">
+    <a href="./services.html">サービス詳細</a>
     <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html" target="_blank" rel="noopener">料金案内</a>
-    <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/curriculum.html" target="_blank" rel="noopener">研修カリキュラム</a>
-    <a href="https://zatuneya.work/" target="_blank" rel="noopener">ホームページ制作のざつね屋</a>
-    <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/" target="_blank" rel="noopener">暮らしのログプロジェクト</a>
+    <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/request.html" target="_blank" rel="noopener">資料請求</a>
+    <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/estimate.html" target="_blank" rel="noopener">お見積り</a>
   </div>
   © 2026 ざつね屋
 </div>
