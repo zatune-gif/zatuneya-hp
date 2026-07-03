@@ -274,6 +274,19 @@ img,svg{display:block;max-width:100%}
 .why-band .bcontent .eyebrow{color:rgba(255,255,255,.82)}
 .why-band .bcontent h3{color:#fff;font-size:clamp(20px,3vw,26px);line-height:1.5;margin:12px 0 0}
 .why-band .bcontent p{font-family:'Noto Sans JP',sans-serif;font-size:14.5px;line-height:1.9;color:rgba(255,255,255,.92);margin:14px 0 0}
+/* standalone band + flipped variant (rhythm) */
+.pt-0{padding-top:0}
+.band-wrap{padding:0}
+.band{position:relative;border-radius:28px;overflow:hidden;box-shadow:var(--sh-2);min-height:300px;display:flex;align-items:center}
+.band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.band .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(52,90,98,.92) 0%,rgba(70,166,177,.72) 48%,rgba(70,166,177,.28) 100%)}
+.band.flip .veil{background:linear-gradient(270deg,rgba(52,90,98,.92) 0%,rgba(70,166,177,.72) 48%,rgba(70,166,177,.28) 100%)}
+.band .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.12) 1.1px,transparent 1.1px);background-size:20px 20px}
+.band .bcontent{position:relative;color:#fff;padding:46px 50px;max-width:600px}
+.band.flip .bcontent{margin-left:auto;text-align:right}
+.band .bcontent .eyebrow{color:rgba(255,255,255,.82)}
+.band .bcontent h3{color:#fff;font-size:clamp(21px,3vw,28px);line-height:1.5;margin:12px 0 0}
+.band .bcontent p{font-family:'Noto Sans JP',sans-serif;font-size:14.5px;line-height:1.9;color:rgba(255,255,255,.92);margin:14px 0 0}
 
 /* ============ 8. FLOW ============ */
 .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
@@ -507,6 +520,21 @@ img,svg{display:block;max-width:100%}
   </div>
 </section>
 
+<!-- ================= 3b. WORKSHOP BAND ================= -->
+<section class="section sm bg-tint pt-0">
+  <div class="container band-wrap">
+    <div class="band">
+      <img src="./assets/band-training.jpg" alt="研修を行うミーティングルーム" loading="lazy">
+      <span class="veil"></span><span class="dots"></span>
+      <div class="bcontent">
+        <span class="eyebrow">Workshop</span>
+        <h3>研修は「聞いて終わり」にしません。</h3>
+        <p>受講者が自分の業務データを持ち寄り、その場で手を動かす実践型。研修当日から、翌日の仕事でAIを使い始められる状態を目指します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= 4. PRICE / SUBSIDY ================= -->
 <section class="section price-band" id="price">
   <span class="blob p1"></span><span class="blob p2"></span><span class="dots"></span>
@@ -629,7 +657,7 @@ img,svg{display:block;max-width:100%}
 
     <!-- photo band -->
     <div class="why-band">
-      <img src="./assets/why-photo.jpg" alt="打ち合わせで業務を整理する様子" loading="lazy">
+      <img src="./assets/band-office.jpg" alt="業務を進めるオフィス空間" loading="lazy">
       <span class="veil"></span><span class="dots"></span>
       <div class="bcontent">
         <span class="eyebrow">On Site</span>
@@ -686,6 +714,21 @@ img,svg{display:block;max-width:100%}
         <div class="step-num">4</div>
         <h4>実施開始</h4>
         <p>研修・制作・伴走支援を開始します。研修は最短で受注の翌週から実施できます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 8b. TOGETHER BAND ================= -->
+<section class="section sm bg-white pt-0">
+  <div class="container band-wrap">
+    <div class="band flip">
+      <img src="./assets/band-together.jpg" alt="落ち着いて相談できる打ち合わせスペース" loading="lazy">
+      <span class="veil"></span><span class="dots"></span>
+      <div class="bcontent">
+        <span class="eyebrow">Together</span>
+        <h3>「一緒に走る」が、いちばんの強みです。</h3>
+        <p>導入して終わりではなく、現場で使いこなせるようになるまで並走します。小さな困りごとも、気軽に相談できる相手でいます。</p>
       </div>
     </div>
   </div>
