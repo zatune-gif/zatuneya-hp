@@ -1,149 +1,362 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>サービス詳細｜ざつね屋 AI活用支援</title>
-  <meta name="description" content="ざつね屋の3つのサービス詳細。AI研修ワークショップ（5コース）・AI業務改善オーダーメイドサービス・AI開発伴走サービス。">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サービス詳細｜ざつね屋 AI活用支援</title>
+<meta name="description" content="ざつね屋の3つのサービス詳細。AI研修ワークショップ・AI業務改善オーダーメイド・AI開発伴走サービス。広島近郊の中小企業・小規模事業者向け。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   ざつね屋 — services.html  (design system shared with index.html)
+   ============================================================ */
+:root{
+  --bg:#EFF4F5; --card:#fff;
+  --teal:#5BBDC8; --teal-d:#46A6B1; --teal-pale:#EAF6F8; --teal-pale2:#DCF0F2; --teal-line:#D3E7EA;
+  --orange:#F8981D; --orange-d:#E28511; --orange-pale:#FFF8EF; --orange-line:#F6E4C8;
+  --sub:#839CAA; --head:#3C3C3C; --body:#575757;
+  --line:#E1EAEC;
+  --sh-1:0 1px 3px rgba(40,60,70,.05), 0 4px 12px rgba(40,60,70,.05);
+  --sh-2:0 2px 6px rgba(40,60,70,.06), 0 14px 30px rgba(40,60,70,.10);
+  --sh-3:0 6px 14px rgba(40,60,70,.10), 0 30px 60px rgba(40,60,70,.18);
+  --sh-orange:0 10px 24px rgba(248,152,29,.34);
+  --sh-orange-h:0 16px 32px rgba(248,152,29,.44);
+  --s2:8px; --s3:12px; --s4:16px; --s6:24px; --s8:32px; --s10:40px; --s12:48px; --s16:64px; --s20:80px; --s24:100px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--body);font-family:'Roboto','Noto Sans JP',system-ui,sans-serif;font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--head);margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:6px}
+.container{max-width:1120px;margin:0 auto;padding:0 32px}
+.section{padding:var(--s24) 0}
+.bg-white{background:#fff}
+.bg-tint{background:var(--bg)}
+.eyebrow{display:inline-block;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.22em;color:var(--teal-d);text-transform:uppercase}
+.ic{display:inline-flex;align-items:center;justify-content:center}
+.ic svg{width:100%;height:100%;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
+
+/* BUTTONS */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:17px 34px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease);cursor:pointer;white-space:nowrap}
+.btn svg{width:20px;height:20px;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
+.btn-primary{background:var(--orange);color:#fff;box-shadow:var(--sh-orange)}
+.btn-primary:hover{background:var(--orange-d);transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
+.btn-primary:active{transform:translateY(0);box-shadow:0 4px 12px rgba(248,152,29,.4)}
+.btn-outline{background:transparent;color:var(--teal-d);border-color:var(--teal)}
+.btn-outline:hover{background:var(--teal-pale);transform:translateY(-2px)}
+.btn-outline:active{transform:translateY(0)}
+.btn-ghost{background:#fff;color:var(--teal-d);box-shadow:var(--sh-1)}
+.btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
+.btn-white{background:#fff;color:var(--teal-d);box-shadow:var(--sh-2)}
+.btn-white:hover{transform:translateY(-2px);box-shadow:var(--sh-3)}
+.btn-block{display:flex;width:100%}
+
+/* HEADER */
+.site-header{position:sticky;top:0;z-index:60;background:rgba(239,244,245,.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(90,140,150,.12)}
+.hdr-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:21px;color:var(--head);text-decoration:none;letter-spacing:.02em}
+.brand .mark{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--teal),var(--teal-d));display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(70,166,177,.34)}
+.brand .mark svg{width:21px;height:21px;stroke:#fff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.nav-desktop{display:flex;align-items:center;gap:28px}
+.nav-desktop a{font:700 14px 'Noto Sans JP',sans-serif;color:var(--body);text-decoration:none;transition:color .15s}
+.nav-desktop a:hover{color:var(--teal-d)}
+.nav-desktop .btn{padding:11px 22px;font-size:14px}
+.mnav{display:none}
+
+/* PAGE HERO */
+.page-hero{position:relative;background:var(--bg);overflow:hidden;background-image:radial-gradient(rgba(131,156,170,.16) 1.1px,transparent 1.1px);background-size:22px 22px}
+.page-hero .blob{position:absolute;pointer-events:none}
+.page-hero .b1{top:-150px;right:-90px;width:500px;height:440px;background:rgba(91,189,200,.16);border-radius:60% 40% 55% 45%/55% 50% 50% 45%;filter:blur(3px)}
+.page-hero .b2{top:-20px;right:120px;width:320px;height:300px;background:rgba(91,189,200,.10);border-radius:52% 48% 60% 40%/50% 55% 45% 50%}
+.page-hero .b3{bottom:-130px;left:-110px;width:360px;height:360px;background:rgba(248,152,29,.07);border-radius:50%}
+.ph-inner{position:relative;text-align:center;max-width:800px;margin:0 auto;padding:var(--s20) 0 var(--s16)}
+.badge{display:inline-flex;align-items:center;gap:9px;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-d);background:#fff;padding:10px 18px;border-radius:999px;box-shadow:var(--sh-1)}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
+.ph-inner h1{font-size:clamp(30px,4.8vw,44px);line-height:1.34;margin:24px 0 0;letter-spacing:.01em}
+.ph-inner .lead{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);max-width:600px;margin:20px auto 0}
+/* quick jump chips */
+.jump{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:32px}
+.jump a{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:10px 18px;font:700 13.5px 'Noto Sans JP',sans-serif;color:var(--head);text-decoration:none;box-shadow:var(--sh-1);transition:transform .18s var(--ease),box-shadow .18s var(--ease),border-color .18s}
+.jump a:hover{transform:translateY(-2px);box-shadow:var(--sh-2);border-color:var(--teal)}
+.jump a .n{font:900 13px 'Roboto',sans-serif;color:var(--teal-d)}
+.wave{display:block;width:100%;height:64px;margin-top:-1px}
+
+/* SERVICE DETAIL */
+.svc-detail{scroll-margin-top:80px}
+.svc-grid{display:grid;grid-template-columns:360px 1fr;gap:52px;align-items:start}
+/* aside card */
+.svc-aside{position:relative;background:#fff;border:1px solid var(--line);border-radius:26px;padding:34px 32px;box-shadow:var(--sh-1);overflow:hidden}
+.svc-aside::after{content:"";position:absolute;top:-50px;right:-50px;width:150px;height:150px;border-radius:50%;background:var(--teal-pale);opacity:.5}
+.svc-aside .num{position:relative;font:900 15px/1 'Roboto',sans-serif;letter-spacing:.06em;color:var(--sub)}
+.svc-aside .icon{position:relative;width:74px;height:74px;border-radius:22px;background:linear-gradient(135deg,var(--teal-pale),var(--teal-pale2));display:flex;align-items:center;justify-content:center;margin-top:18px}
+.svc-aside .icon svg{width:38px;height:38px;stroke:var(--teal-d)}
+.svc-aside h2{position:relative;font-size:24px;line-height:1.35;margin:20px 0 0;letter-spacing:.01em}
+.svc-aside .catch{position:relative;font:700 14px/1.6 'Noto Sans JP',sans-serif;color:var(--teal-d);margin-top:10px}
+.pricebox{position:relative;margin-top:24px;padding:20px;border-radius:18px;background:var(--bg)}
+.pricebox .plabel{font:700 11px/1 'Noto Sans JP',sans-serif;letter-spacing:.08em;color:var(--sub)}
+.pricebox .amt{display:block;font:900 22px/1.35 'Roboto','Noto Sans JP',sans-serif;color:var(--head);margin-top:8px}
+.pricebox .sub{display:block;font:400 12.5px/1.7 'Noto Sans JP',sans-serif;color:var(--body);margin-top:6px}
+.pricebox .hl-note{display:inline-block;font:700 12px 'Noto Sans JP',sans-serif;color:var(--orange-d);margin-top:8px}
+/* main column */
+.svc-main .body{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body)}
+.points-title{display:flex;align-items:center;gap:10px;margin:30px 0 0}
+.points-title .bar{width:22px;height:3px;border-radius:99px;background:var(--teal)}
+.points-title span{font:700 13px 'Noto Sans JP',sans-serif;letter-spacing:.06em;color:var(--head)}
+.pointlist{list-style:none;padding:0;margin:16px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:12px 24px}
+.pointlist li{position:relative;display:flex;gap:11px;align-items:flex-start;font-family:'Noto Sans JP',sans-serif;font-size:13.5px;line-height:1.7;color:var(--body)}
+.pointlist .chk{flex:none;width:22px;height:22px;border-radius:50%;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;margin-top:2px}
+.pointlist .chk svg{width:13px;height:13px;stroke:var(--teal-d);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.pointlist li.accent .chk{background:var(--orange-pale)}
+.pointlist li.accent .chk svg{stroke:var(--orange-d)}
+.pointlist li.accent{font-weight:700;color:var(--head)}
+.sd-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+
+/* CV (迷ったら) — most prominent */
+.cv-section{background:var(--bg)}
+.cv-card{position:relative;max-width:820px;margin:0 auto;background:#fff;border-radius:34px;padding:14px 14px 0;box-shadow:var(--sh-3);overflow:hidden}
+.cv-topbar{height:6px;border-radius:99px;background:linear-gradient(90deg,var(--orange),var(--orange-d))}
+.cv-inner{position:relative;padding:48px 46px 50px;text-align:center}
+.cv-card .glow{position:absolute;top:-120px;right:-80px;width:360px;height:360px;background:radial-gradient(circle,rgba(248,152,29,.16),rgba(248,152,29,0) 70%);border-radius:50%;pointer-events:none}
+.cv-tag{position:relative;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font:700 12.5px/1 'Roboto',sans-serif;letter-spacing:.16em;color:var(--orange-d);background:var(--orange-pale);border:1px solid var(--orange-line);padding:9px 17px;border-radius:999px}
+.cv-tag svg{width:15px;height:15px;stroke:var(--orange-d);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.cv-inner h2{position:relative;font-size:clamp(25px,3.6vw,32px);margin:18px 0 0}
+.cv-inner .lead{position:relative;font-family:'Noto Sans JP',sans-serif;font-size:15px;line-height:1.9;color:var(--body);max-width:560px;margin:16px auto 0}
+.cv-cta{position:relative;display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:30px}
+.cv-note{position:relative;font:400 13px/1.6 'Noto Sans JP',sans-serif;color:var(--sub);margin-top:22px}
+
+/* FOOTER */
+.site-footer{background:#334A52;color:#cdd9dd}
+.footer-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:22px;padding:44px 0}
+.footer-brand{display:flex;align-items:center;gap:11px;font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:19px;color:#fff}
+.footer-brand .mark{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--teal-d));display:flex;align-items:center;justify-content:center}
+.footer-brand .mark svg{width:18px;height:18px;stroke:#fff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.footer-nav{display:flex;flex-wrap:wrap;gap:22px}
+.footer-nav a{font:700 13px 'Noto Sans JP',sans-serif;color:#b7c6cb;text-decoration:none;transition:color .15s}
+.footer-nav a:hover{color:#fff}
+.copy{text-align:center;font:400 12.5px 'Noto Sans JP',sans-serif;color:#8ba1a8;padding:18px 0 30px;border-top:1px solid rgba(255,255,255,.1)}
+
+/* RESPONSIVE */
+@media (max-width:960px){
+  .nav-desktop{display:none}
+  .mnav{display:block;position:relative}
+  .mnav>summary{list-style:none;cursor:pointer;width:46px;height:46px;border-radius:13px;background:#fff;box-shadow:var(--sh-1);display:flex;align-items:center;justify-content:center}
+  .mnav>summary::-webkit-details-marker{display:none}
+  .mnav>summary svg{width:24px;height:24px;stroke:var(--head);stroke-width:1.8;stroke-linecap:round;fill:none}
+  .mnav[open]>summary{background:var(--teal-pale)}
+  .mnav-panel{position:absolute;right:0;top:54px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-3);padding:14px;min-width:220px;display:flex;flex-direction:column;gap:2px}
+  .mnav-panel a{font:700 15px 'Noto Sans JP',sans-serif;color:var(--body);text-decoration:none;padding:12px 14px;border-radius:12px}
+  .mnav-panel a:hover{background:var(--teal-pale);color:var(--teal-d)}
+  .mnav-panel .btn{margin-top:6px;font-size:15px;padding:14px}
+  .svc-grid{grid-template-columns:1fr;gap:32px}
+  .svc-aside{max-width:560px}
+}
+@media (max-width:680px){
+  :root{--s24:64px;--s20:52px;--s16:44px;--s12:36px}
+  .container{padding:0 20px}
+  .pointlist{grid-template-columns:1fr}
+  .cv-inner{padding:36px 24px}
+  .svc-aside{padding:28px 24px}
+}
+@media (max-width:400px){
+  body{font-size:15px}
+  .btn{padding:15px 24px;font-size:15px}
+  .sd-cta .btn,.cv-cta .btn{width:100%}
+  .brand{font-size:19px}
+}
+</style>
 </head>
 <body>
 
-<nav class="site-nav">
-  <a href="./" class="nav-brand">ざつね<span>屋</span></a>
-  <div class="nav-links">
-    <a href="./">トップへ戻る</a>
-    <a href="./#price">料金</a>
-    <a href="./#contact">お問い合わせ</a>
-    <a href="./#cv" class="nav-cv">資料請求・お見積り</a>
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <div class="container hdr-inner">
+    <a class="brand" href="index.html">
+      <span class="mark"><svg viewBox="0 0 24 24"><path d="M4 18c3-8 7-11 10-11"/><circle cx="4" cy="18" r="1.6"/><path d="M14 5v9M14 5l5 1.6-5 1.6"/></svg></span>
+      ざつね屋
+    </a>
+    <nav class="nav-desktop">
+      <a href="index.html">トップへ戻る</a>
+      <a href="index.html#price">料金</a>
+      <a href="index.html#contact">お問い合わせ</a>
+      <a class="btn btn-primary" href="index.html#cv">資料請求・お見積り</a>
+    </nav>
+    <details class="mnav">
+      <summary aria-label="メニューを開く"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+      <div class="mnav-panel">
+        <a href="index.html">トップへ戻る</a>
+        <a href="index.html#price">料金</a>
+        <a href="index.html#contact">お問い合わせ</a>
+        <a class="btn btn-primary" href="index.html#cv">資料請求・お見積り</a>
+      </div>
+    </details>
   </div>
-</nav>
+</header>
 
-<!-- ══ ページヘッダー ══ -->
-<div class="hero hero-sub-page">
-  <div class="blob blob-teal"></div>
-  <div class="blob blob-gray"></div>
-  <div class="hero-inner">
-    <p class="hero-badge">SERVICES ─ サービス詳細</p>
-    <h1>「使える人」「使える仕組み」<br>「深化する組織」を作る3つのサービス</h1>
-    <p class="hero-lead">どのサービスからでも始められますが、研修が最も自然な入口です。研修 → オーダーメイド → 伴走と段階的に深められます。</p>
-    <p class="hero-note"></p>
+<main>
+
+<!-- ================= PAGE HERO ================= -->
+<section class="page-hero">
+  <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+  <div class="container ph-inner">
+    <span class="badge"><span class="dot"></span>SERVICES ─ サービス詳細</span>
+    <h1>研修で使える人を作り、仕組みを作り、<br>組織ごと伴走する。</h1>
+    <p class="lead">ざつね屋のサービスは3つ。「研修 → オーダーメイド → 伴走」と段階的に深められます。研修が最も自然な入口です。それぞれの内容・進め方・料金をご案内します。</p>
+    <div class="jump">
+      <a href="#training"><span class="n">01</span>AI研修ワークショップ</a>
+      <a href="#order"><span class="n">02</span>AI業務改善オーダーメイド</a>
+      <a href="#banso"><span class="n">03</span>AI開発伴走サービス</a>
+    </div>
   </div>
-  <div class="hero-wave"><svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0 40 C 283 10 489 68 797 40 C 1080 14 1260 62 1440 34 L1440 70 L0 70 Z" fill="#fff"/></svg></div>
-</div>
+  <svg class="wave" viewBox="0 0 1440 64" preserveAspectRatio="none"><path d="M0 38 C 280 6 480 62 720 38 C 960 10 1180 58 1440 30 L1440 64 L0 64 Z" fill="#fff"/></svg>
+</section>
 
-<section class="band band-white band-tight">
+<!-- ================= SERVICE 01 ================= -->
+<section class="section svc-detail bg-white" id="training">
   <div class="container">
-    <div class="pillar-list">
-
-      <!-- ══ SERVICE 01 研修 ══ -->
-      <div class="pillar" id="training">
-        <p class="pillar-step">SERVICE 01 ─ 入口におすすめ</p>
-        <p class="pillar-name">AI研修ワークショップ</p>
-        <p class="pillar-essence">自分でAIを使えるようになる ──「使える人」を作る</p>
-        <p class="pillar-desc">
-          商工会議所・業界団体・社内勉強会向けの実践型研修です。
-          ①AI活用知識編（90分）、②文書・③画像・④動画の実践編（各120分）、⑤Claude Code特化（120分）の5コース体系。
-          座学ではなく、受講者が実際に手を動かして、研修当日から自分の業務でAIを使い始められる構成です。
-        </p>
-        <ul class="pillar-points">
-          <li>スライドのプロンプト例は [ ] を書き換えるだけでそのまま業務で使えます</li>
-          <li>実践編は全て無料ツールで完結（コース⑤のみClaude Proプランが必要）</li>
-          <li>受講対象に合わせた業種カスタマイズも可能です</li>
-          <li>5名・10名の定員設定（コース⑤は個別1名またはグループ3名まで）</li>
-          <li>人材開発支援助成金の活用で企業様の手出しは請求額の25%（期限：2027年3月末）</li>
+    <div class="svc-grid">
+      <aside class="svc-aside">
+        <div class="num">SERVICE 01 ─ 入口におすすめ</div>
+        <div class="icon ic"><svg viewBox="0 0 24 24"><path d="M12 4 22 9 12 14 2 9 12 4Z"/><path d="M6 11v5c0 1 2.7 2.4 6 2.4s6-1.4 6-2.4v-5"/></svg></div>
+        <h2>AI研修ワークショップ</h2>
+        <div class="catch">自分でAIを使えるようになる ──「使える人」を作る</div>
+        <div class="pricebox">
+          <span class="plabel">PRICE</span>
+          <span class="amt">1回 60,000円〜180,000円（税別）</span>
+          <span class="sub">モニター価格（先着3社・30%引き）あり</span>
+          <span class="hl-note">助成金活用で企業様の手出しは25%</span>
+        </div>
+      </aside>
+      <div class="svc-main">
+        <p class="body">商工会議所・業界団体・社内勉強会向けの実践型研修です。①AI活用知識編（90分）、②文書・③画像・④動画の実践編（各120分）、⑤Claude Code特化（120分）の5コース体系。座学ではなく、受講者が実際に手を動かして、研修当日から自分の業務でAIを使い始められる構成です。</p>
+        <div class="points-title"><span class="bar"></span><span>この研修のポイント</span></div>
+        <ul class="pointlist">
+          <li><span class="chk ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span>スライドのプロンプト例は [ ] を書き換えるだけでそのまま業務で使えます</li>
+          <li><span class="chk ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span>実践編は全て無料ツールで完結（コース⑤のみClaude Proプランが必要）</li>
+          <li><span class="chk ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span>受講対象に合わせた業種カスタマイズも可能です</li>
+          <li><span class="chk ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span>5名・10名の定員設定（コース⑤は個別1名またはグループ3名まで）</li>
+          <li class="accent"><span class="chk ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span>人材開発支援助成金の活用で企業様の手出しは請求額の25%（期限：2027年3月末）</li>
         </ul>
-        <p class="pillar-price">1回 <strong>60,000円〜180,000円</strong>（税別）／ モニター価格（先着3社・30%引き）あり</p>
-        <div class="pillar-cta">
-          <a class="btn btn-teal" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/curriculum.html" target="_blank" rel="noopener">カリキュラムを見る</a>
-          <a class="btn btn-white" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html" target="_blank" rel="noopener">コース別の料金を見る</a>
+        <div class="sd-cta">
+          <a class="btn btn-primary" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/curriculum.html"><svg viewBox="0 0 24 24"><path d="M4 6h9M4 12h13M4 18h7"/><path d="M17 6l2.5 2.5L23 4"/></svg>カリキュラムを見る</a>
+          <a class="btn btn-outline" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html"><svg viewBox="0 0 24 24"><path d="M12 3v18M8 7h6a2.5 2.5 0 0 1 0 5H8m0 0h8"/></svg>コース別の料金を見る</a>
         </div>
       </div>
-
-      <p class="flow-arrow">↓</p>
-
-      <!-- ══ SERVICE 02 オーダーメイド ══ -->
-      <div class="pillar" id="order">
-        <p class="pillar-step">SERVICE 02 ─ 課題解決</p>
-        <p class="pillar-name">AI業務改善オーダーメイドサービス</p>
-        <p class="pillar-essence">使える仕組みを手元に残す ── 自社専用の仕組みを作る</p>
-        <p class="pillar-desc">
-          ヒアリングで業務の困りごとを特定し、「貴社の・その業務の」専用AI指示書と手順書を制作・納品する有期完結型サービスです。
-          汎用のAI活用法ではなく「うちのクレーム対応」「うちの報告書」専用に設計するので、現場でそのまま使えます。
-          どのAIを使うか・どう設計するかは全てざつね屋が考えます。貴社は業務の話をするだけです。
-        </p>
-        <ul class="pillar-points">
-          <li>成果物：業務専用AI指示書テンプレート・スタッフ向け操作手順書（図解付き）・業務仕様書</li>
-          <li>担当者が変わっても使い続けられる形でお渡しします</li>
-          <li>定額・有期完結型。「いつ終わるかわからない」がありません</li>
-          <li>運用サポート付きプラン：納品後2か月・月1ミーティング×2回・軽微な改修1回まで含む</li>
-          <li>対象外業務：システム連携・API開発・保守（ご希望の場合はAI開発伴走サービスで対応）</li>
-        </ul>
-        <p class="pillar-price">Sプラン（1つの困りごと）<strong>50,000円</strong>／Mプラン（複数・複雑な困りごと）<strong>90,000円</strong>（税別・運用サポート付きは各＋20,000円）</p>
-        <div class="pillar-cta">
-          <a class="btn btn-fill" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/estimate.html" target="_blank" rel="noopener">お見積りへ進む</a>
-          <a class="btn btn-white" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html" target="_blank" rel="noopener">料金の詳細を見る</a>
-        </div>
-      </div>
-
-      <p class="flow-arrow">↓</p>
-
-      <!-- ══ SERVICE 03 伴走 ══ -->
-      <div class="pillar" id="banso">
-        <p class="pillar-step">SERVICE 03 ─ 継続支援</p>
-        <p class="pillar-name">AI開発伴走サービス</p>
-        <p class="pillar-essence">使い続けられる組織にする ── 両者で継続的に深める</p>
-        <p class="pillar-desc">
-          伴走先とざつね屋がそれぞれAI活用を模索し、月次ミーティングで知見を統合しながら共同開発を続ける契約です。
-          ミーティングは「各自がやってみた結果を持ち寄り、次の方向を決める場」。一方的なアドバイスではなく、ざつね屋も手を動かして一緒に走ります。
-          一時のブームで終わらせず、毎月新しい業務課題にAIで取り組める組織を作ります。
-        </p>
-        <ul class="pillar-points">
-          <li>月1回ミーティングプラン（60〜90分）：60,000円/月（税別）</li>
-          <li>月2回ミーティングプラン（各60〜90分）：100,000円/月（税別）</li>
-          <li>期間は3か月区切り。成果を確認して更新または完了（大きな開発は最初から6か月契約も可）</li>
-          <li>システム連携・アプリ組み込みなどの開発的なテーマもこのサービスで対応します</li>
-          <li>一人事業だから担当者交代がなく、「相談だけ」で終わりません</li>
-        </ul>
-        <p class="pillar-price">月額 <strong>60,000円〜</strong>（税別）・3か月区切り</p>
-        <div class="pillar-cta">
-          <a class="btn btn-fill" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/request.html" target="_blank" rel="noopener">資料請求へ進む</a>
-          <a class="btn btn-white" href="./#contact">メールで相談する</a>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
-<!-- ══ CVリマインド ══ -->
-<section class="band band-tint">
+<!-- ================= SERVICE 02 ================= -->
+<section class="section svc-detail bg-tint" id="order">
   <div class="container">
-    <div class="cv-panel">
-      <span class="cv-eyebrow">REQUEST</span>
-      <h2 class="section-title">どのサービスが合うか迷ったら</h2>
-      <p class="section-lead">詳細診断（23問・約7分）にお答えいただくと、貴社に合うサービスと概算費用をご案内できます。</p>
-      <div class="btn-row">
-        <a class="btn btn-fill" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/request.html" target="_blank" rel="noopener">資料請求へ進む</a>
-        <a class="btn btn-teal" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/estimate.html" target="_blank" rel="noopener">お見積りへ進む</a>
+    <div class="svc-grid">
+      <aside class="svc-aside">
+        <div class="num">SERVICE 02 ─ 課題解決</div>
+        <div class="icon ic"><svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6Z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg></div>
+        <h2>AI業務改善<br>オーダーメイドサービス</h2>
+        <div class="catch">使える仕組みを手元に残す ── 自社専用の仕組みを作る</div>
+        <div class="pricebox">
+          <span class="plabel">PRICE</span>
+          <span class="amt">Sプラン 50,000円／Mプラン 90,000円</span>
+          <span class="sub">Sプラン＝1つの困りごと／Mプラン＝複数・複雑な困りごと（税別）</span>
+          <span class="hl-note">運用サポート付きは各＋20,000円</span>
+        </div>
+      </aside>
+      <div class="svc-main">
+        <p class="body">ヒアリングで業務の困りごとを特定し、「貴社の・その業務の」専用AI指示書と手順書を制作・納品する有期完結型サービスです。汎用のAI活用法ではなく「うちのクレーム対応」「うちの報告書」専用に設計するので、現場でそのまま使えます。どのAIを使うか・どう設計するかは全てざつね屋が考えます。貴社は業務の話をするだけです。</p>
+        <div class="points-title"><span class="bar"></span><span>このサービスのポイント</span></div>
+        <ul class="pointlist">
+          <li><span class="chk ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span>成果物：業務専用AI指示書テンプレート・スタッフ向け操作手順書（図解付き）・業務仕様書</li>
+          <li><span class="chk ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span>担当者が変わっても使い続けられる形でお渡しします</li>
+          <li><span class="chk ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span>定額・有期完結型。「いつ終わるかわからない」がありません</li>
+          <li><span class="chk ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span>運用サポート付きプラン：納品後2か月・月1ミーティング×2回・軽微な改修1回まで含む</li>
+          <li><span class="chk ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span>対象外業務：システム連携・API開発・保守（ご希望の場合はAI開発伴走サービスで対応）</li>
+        </ul>
+        <div class="sd-cta">
+          <a class="btn btn-primary" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/estimate.html"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h3"/></svg>お見積りへ進む</a>
+          <a class="btn btn-outline" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html"><svg viewBox="0 0 24 24"><path d="M12 3v18M8 7h6a2.5 2.5 0 0 1 0 5H8m0 0h8"/></svg>料金の詳細を見る</a>
+        </div>
       </div>
-      <p class="cv-note">メールでのご相談：<a href="mailto:zatuneya@gmail.com">zatuneya@gmail.com</a>（返信2営業日以内）</p>
     </div>
   </div>
 </section>
 
-<div class="footer">
-  <div class="footer-links">
-    <a href="./">トップページ</a>
-    <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html" target="_blank" rel="noopener">料金案内</a>
-    <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/request.html" target="_blank" rel="noopener">資料請求</a>
-    <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/estimate.html" target="_blank" rel="noopener">お見積り</a>
+<!-- ================= SERVICE 03 ================= -->
+<section class="section svc-detail bg-white" id="banso">
+  <div class="container">
+    <div class="svc-grid">
+      <aside class="svc-aside">
+        <div class="num">SERVICE 03 ─ 継続支援</div>
+        <div class="icon ic"><svg viewBox="0 0 24 24"><path d="M4 19c3-7 7-9 10-9"/><circle cx="4" cy="19" r="1.5"/><path d="M14 4v9M14 4l5 1.6-5 1.6"/></svg></div>
+        <h2>AI開発伴走サービス</h2>
+        <div class="catch">使い続けられる組織にする ── 両者で継続的に深める</div>
+        <div class="pricebox">
+          <span class="plabel">PRICE</span>
+          <span class="amt">月額 60,000円〜（税別）</span>
+          <span class="sub">月1回プラン 60,000円／月2回プラン 100,000円（各60〜90分・税別）</span>
+          <span class="hl-note">3か月区切りで更新</span>
+        </div>
+      </aside>
+      <div class="svc-main">
+        <p class="body">伴走先とざつね屋がそれぞれAI活用を模索し、月次ミーティングで知見を統合しながら共同開発を続ける契約です。ミーティングは「各自がやってみた結果を持ち寄り、次の方向を決める場」。一方的なアドバイスではなく、ざつね屋も手を動かして一緒に走ります。一時のブームで終わらせず、毎月新しい業務課題にAIで取り組める組織を作ります。</p>
+        <div class="points-title"><span class="bar"></span><span>このサービスのポイント</span></div>
+        <ul class="pointlist">
+          <li><span class="chk ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span>月1回ミーティングプラン（60〜90分）：60,000円/月（税別）</li>
+          <li><span class="chk ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span>月2回ミーティングプラン（各60〜90分）：100,000円/月（税別）</li>
+          <li><span class="chk ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span>期間は3か月区切り。成果を確認して更新または完了（大きな開発は最初から6か月契約も可）</li>
+          <li><span class="chk ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span>システム連携・アプリ組み込みなどの開発的なテーマもこのサービスで対応します</li>
+          <li class="accent"><span class="chk ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span>一人事業だから担当者交代がなく、「相談だけ」で終わりません</li>
+        </ul>
+        <div class="sd-cta">
+          <a class="btn btn-primary" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/request.html"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>資料請求へ進む</a>
+          <a class="btn btn-outline" href="index.html#contact"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>メールで相談する</a>
+        </div>
+      </div>
+    </div>
   </div>
-  © 2026 ざつね屋
-</div>
+</section>
+
+<!-- ================= CV: 迷ったら ================= -->
+<section class="section cv-section">
+  <div class="container">
+    <div class="cv-card">
+      <div class="cv-topbar"></div>
+      <div class="cv-inner">
+        <span class="glow"></span>
+        <span class="cv-tag"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg>REQUEST ─ 無料</span>
+        <h2>どのサービスが合うか迷ったら</h2>
+        <p class="lead">詳細診断（23問・約7分）にお答えいただくと、貴社に合うサービスと概算費用をご案内できます。</p>
+        <div class="cv-cta">
+          <a class="btn btn-primary" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/request.html">資料請求へ進む <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-outline" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/estimate.html">お見積りへ進む <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <p class="cv-note">返信は2営業日以内です。しつこい営業連絡はいたしません。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand"><span class="mark"><svg viewBox="0 0 24 24"><path d="M4 18c3-8 7-11 10-11"/><circle cx="4" cy="18" r="1.6"/><path d="M14 5v9M14 5l5 1.6-5 1.6"/></svg></span>ざつね屋</div>
+    <nav class="footer-nav">
+      <a href="index.html#services">サービス</a>
+      <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html">料金案内</a>
+      <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/request.html">資料請求</a>
+      <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/estimate.html">お見積り</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+    </nav>
+  </div>
+  <div class="copy">© 2026 ざつね屋</div>
+</footer>
 
 </body>
 </html>
