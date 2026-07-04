@@ -68,14 +68,16 @@ img,svg{display:block;max-width:100%}
 .page-hero .b1{top:-150px;right:-90px;width:500px;height:440px;background:rgba(91,189,200,.16);border-radius:60% 40% 55% 45%/55% 50% 50% 45%;filter:blur(3px)}
 .page-hero .b2{top:-20px;right:120px;width:320px;height:300px;background:rgba(91,189,200,.10);border-radius:52% 48% 60% 40%/50% 55% 45% 50%}
 .page-hero .b3{bottom:-130px;left:-110px;width:360px;height:360px;background:rgba(248,152,29,.07);border-radius:50%}
-.ph-grid{position:relative;display:grid;grid-template-columns:1.15fr .75fr;gap:52px;align-items:center;max-width:1000px;margin:0 auto;padding:var(--s20) 0 var(--s16);text-align:left}
 .badge{display:inline-flex;align-items:center;gap:9px;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-d);background:#fff;padding:10px 18px;border-radius:999px;box-shadow:var(--sh-1)}
 .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
-.ph-copy h1{font-size:clamp(28px,4.4vw,40px);line-height:1.4;margin:24px 0 0;letter-spacing:.01em}
-.ph-copy .lead{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);max-width:520px;margin:20px 0 0}
-.ph-portrait{position:relative;max-width:300px;margin:0 auto;border-radius:32px;overflow:hidden;box-shadow:var(--sh-3)}
-.ph-portrait img{display:block;width:100%;height:100%;object-fit:cover}
 .wave{display:block;width:100%;height:64px;margin-top:-1px;position:relative;z-index:1}
+
+/* PATTERN C — 左に素材丸ごと、右にテキスト（Claude Design案・services.htmlと同一トークン） */
+.heroC .ph-inner{position:relative;display:grid;grid-template-columns:.82fr 1fr;gap:52px;align-items:center;padding:var(--s20) 0 var(--s16)}
+.heroC .artcard{padding:0;background:transparent;box-shadow:none;border-radius:0}
+.heroC .artcard img{width:100%;height:auto;border-radius:24px;box-shadow:var(--sh-3)}
+.heroC .txt h1{font-size:clamp(28px,3.6vw,40px);line-height:1.36;margin:24px 0 0;letter-spacing:.01em}
+.heroC .txt .lead{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);max-width:500px;margin:16px 0 0}
 
 /* ROLE CARDS (経歴 → 強み) */
 .role-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:920px;margin:0 auto}
@@ -126,9 +128,10 @@ img,svg{display:block;max-width:100%}
   .mnav-panel a:hover{background:var(--teal-pale);color:var(--teal-d)}
   .mnav-panel .btn{margin-top:6px;font-size:15px;padding:14px}
   .why-grid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}
-  .ph-grid{grid-template-columns:1fr;text-align:center;gap:32px}
-  .ph-copy .lead{margin-left:auto;margin-right:auto}
-  .ph-portrait{order:-1;max-width:220px}
+  .heroC .ph-inner{grid-template-columns:1fr;gap:32px;padding:48px 0}
+  .heroC .artcard{max-width:380px;margin:0 auto}
+  .heroC .txt{text-align:center}
+  .heroC .txt .lead{margin-left:auto;margin-right:auto}
 }
 @media (max-width:680px){
   :root{--s24:64px;--s20:52px;--s16:44px;--s12:36px}
@@ -169,16 +172,16 @@ img,svg{display:block;max-width:100%}
 <main>
 
 <!-- ================= PAGE HERO ================= -->
-<section class="page-hero">
-  <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
-  <div class="container ph-grid">
-    <div class="ph-copy">
+<section class="page-hero heroC">
+  <span class="blob b1"></span><span class="blob b3"></span>
+  <div class="container ph-inner">
+    <div class="artcard">
+      <img src="./assets/profile-portrait-2.jpg" alt="ざつね屋 代表者のイラスト" width="900" height="1349" loading="eager">
+    </div>
+    <div class="txt">
       <span class="badge"><span class="dot"></span>PROFILE ─ 代表者プロフィール</span>
       <h1>多様な経歴を、AI活用支援という<br>一つの力にしています。</h1>
       <p class="lead">パソコン講師・NPO法人代表・Webディレクター・企業の課長職・DX推進担当・専門学校の担任——立場も業界も異なる7つの経歴を経て、AIプロダクト開発に至りました。それぞれの経験が、ざつね屋の「教えられる実装者」「現場目線の伴走」という強みにつながっています。</p>
-    </div>
-    <div class="ph-portrait">
-      <img src="./assets/profile-portrait.jpg" alt="ざつね屋 代表者" width="600" height="899" loading="eager">
     </div>
   </div>
   <svg class="wave" viewBox="0 0 1440 64" preserveAspectRatio="none"><path d="M0 38 C 280 6 480 62 720 38 C 960 10 1180 58 1440 30 L1440 64 L0 64 Z" fill="#fff"/></svg>
