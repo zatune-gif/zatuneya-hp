@@ -247,7 +247,7 @@ img,svg{display:block;max-width:100%}
 .tool-card p{font:400 13.5px/1.8 'Noto Sans JP',sans-serif;color:var(--body);margin:10px 0 0}
 .tool-card .arrowlink{margin-top:16px}
 
-/* ============ 7. WHY (+ photo band + career) ============ */
+/* ============ 7. WHY (+ photo band + profile teaser) ============ */
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .why-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:36px 30px;box-shadow:var(--sh-1);text-align:center;transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
 .why-card:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
@@ -255,18 +255,8 @@ img,svg{display:block;max-width:100%}
 .why-ic svg{width:34px;height:34px;stroke:var(--teal-d)}
 .why-card h3{font-size:19px;margin:18px 0 0;letter-spacing:.01em}
 .why-card p{font:400 13.5px/1.85 'Noto Sans JP',sans-serif;color:var(--body);margin:12px 0 0}
-.career{max-width:900px;margin:var(--s12) auto 0;background:#fff;border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:var(--sh-1)}
-.career-head{display:flex;align-items:center;gap:16px;padding:26px 30px;background:linear-gradient(120deg,var(--teal-pale),#fff)}
-.career-head .ic{width:46px;height:46px;border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh-1);flex:none}
-.career-head .ic svg{width:24px;height:24px;stroke:var(--teal-d)}
-.career-head h3{font-size:18px}
-.career table{width:100%;border-collapse:collapse}
-.career th{font:700 12.5px 'Noto Sans JP',sans-serif;color:#fff;background:var(--teal-d);padding:14px 24px;text-align:left;letter-spacing:.02em}
-.career td{font:400 13.5px/1.6 'Noto Sans JP',sans-serif;padding:15px 24px;border-top:1px solid var(--line);vertical-align:top}
-.career tr td:first-child{font-weight:700;color:var(--head);width:38%;background:#F6FBFC}
-.career tr td:last-child{color:var(--body)}
-.career tr:hover td{background:var(--teal-pale)}
-.career tr:hover td:first-child{background:var(--teal-pale2)}
+.profile-teaser{max-width:640px;margin:var(--s12) auto 0;text-align:center}
+.profile-teaser p{font:400 13.5px/1.9 'Noto Sans JP',sans-serif;color:var(--body);margin:0 0 16px}
 
 /* WHY photo band */
 .why-band{position:relative;margin-top:var(--s12);border-radius:28px;overflow:hidden;box-shadow:var(--sh-2);min-height:280px;display:flex;align-items:center}
@@ -367,10 +357,6 @@ img,svg{display:block;max-width:100%}
   .chip.c-chart{left:-6px;bottom:6%;width:236px;padding:18px 20px;box-shadow:var(--sh-3),0 0 0 4px rgba(255,255,255,.55)}
   .chip.c-chart .lbl{font-size:16px}
   .chip.c-chart .bars{height:60px;gap:9px;margin-top:16px}
-  .career-head{padding:22px}
-  .career th,.career td{padding:12px 16px}
-  .career td{font-size:12.5px}
-  .career tr td:first-child{width:42%}
 }
 @media (max-width:400px){
   body{font-size:15px}
@@ -689,23 +675,9 @@ img,svg{display:block;max-width:100%}
       </div>
     </div>
 
-    <div class="career">
-      <div class="career-head">
-        <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h16v12H4z"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M4 12h16"/></svg></span>
-        <h3>これまでの経歴と、この事業で活きる強み</h3>
-      </div>
-      <table>
-        <thead><tr><th>これまでの経歴</th><th>この事業で活きる強み</th></tr></thead>
-        <tbody>
-          <tr><td>パソコン講師</td><td>教育・導入支援・わかりやすく伝える技術</td></tr>
-          <tr><td>NPO法人代表</td><td>企画運営・プロジェクト設計</td></tr>
-          <tr><td>Webディレクター</td><td>業務整理・要件定義・フロー可視化</td></tr>
-          <tr><td>企業の課長職</td><td>人材育成・業務手順書の作成・業務改善</td></tr>
-          <tr><td>DX推進担当</td><td>IT導入・仕組み化・補助金活用</td></tr>
-          <tr><td>専門学校の担任</td><td>伴走支援・継続サポート・学習の定着化</td></tr>
-          <tr><td>AIプロダクト開発</td><td>生成AI活用・実装・プロンプト設計</td></tr>
-        </tbody>
-      </table>
+    <div class="profile-teaser">
+      <p>パソコン講師・NPO法人代表・Webディレクター・企業の課長職・DX推進担当・専門学校の担任——多様な経歴を経て、AIプロダクト開発に至った代表者の歩みと、この事業で活きる強みをご紹介します。</p>
+      <a class="arrowlink" href="./profile.html">代表者プロフィールを見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
 </section>
@@ -779,6 +751,7 @@ img,svg{display:block;max-width:100%}
     <div class="footer-brand">ざつね屋</div>
     <nav class="footer-nav">
       <a href="./services.html">サービス詳細</a>
+      <a href="./profile.html">代表者プロフィール</a>
       <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html">料金案内</a>
       <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/request.html">資料請求</a>
       <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/estimate.html">お見積り</a>

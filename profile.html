@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>代表者プロフィール｜ざつね屋 AI活用支援</title>
+<meta name="description" content="ざつね屋 代表者のプロフィール。パソコン講師・NPO法人代表・Webディレクター・企業の課長職・DX推進担当・専門学校の担任という多様な経歴と、AI活用支援事業で活きる強みをご紹介します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   ざつね屋 — profile.html  (design system shared with index.html)
+   ============================================================ */
+:root{
+  --bg:#EFF4F5; --card:#fff;
+  --teal:#5BBDC8; --teal-d:#46A6B1; --teal-pale:#EAF6F8; --teal-pale2:#DCF0F2; --teal-line:#D3E7EA;
+  --orange:#F8981D; --orange-d:#E28511; --orange-pale:#FFF8EF; --orange-line:#F6E4C8;
+  --sub:#839CAA; --head:#3C3C3C; --body:#575757;
+  --line:#E1EAEC;
+  --sh-1:0 1px 3px rgba(40,60,70,.05), 0 4px 12px rgba(40,60,70,.05);
+  --sh-2:0 2px 6px rgba(40,60,70,.06), 0 14px 30px rgba(40,60,70,.10);
+  --sh-3:0 6px 14px rgba(40,60,70,.10), 0 30px 60px rgba(40,60,70,.18);
+  --sh-orange:0 10px 24px rgba(248,152,29,.34);
+  --sh-orange-h:0 16px 32px rgba(248,152,29,.44);
+  --s2:8px; --s3:12px; --s4:16px; --s6:24px; --s8:32px; --s10:40px; --s12:48px; --s16:64px; --s20:80px; --s24:100px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--body);font-family:'Roboto','Noto Sans JP',system-ui,sans-serif;font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--head);margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:6px}
+.container{max-width:1120px;margin:0 auto;padding:0 32px}
+.section{padding:var(--s24) 0}
+.eyebrow{display:inline-block;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.22em;color:var(--teal-d);text-transform:uppercase}
+.ic{display:inline-flex;align-items:center;justify-content:center}
+.ic svg{width:100%;height:100%;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.sec-head{text-align:center;max-width:640px;margin:0 auto var(--s12)}
+.sec-head h2{font-size:clamp(22px,3vw,30px);line-height:1.4;margin-top:14px}
+
+/* BUTTONS */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:17px 34px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease);cursor:pointer;white-space:nowrap}
+.btn svg{width:20px;height:20px;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
+.btn-primary{background:var(--orange);color:#fff;box-shadow:var(--sh-orange)}
+.btn-primary:hover{background:var(--orange-d);transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
+.btn-primary:active{transform:translateY(0);box-shadow:0 4px 12px rgba(248,152,29,.4)}
+.btn-outline{background:transparent;color:var(--teal-d);border-color:var(--teal)}
+.btn-outline:hover{background:var(--teal-pale);transform:translateY(-2px)}
+.btn-outline:active{transform:translateY(0)}
+
+/* HEADER */
+.site-header{position:sticky;top:0;z-index:60;background:rgba(239,244,245,.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(90,140,150,.12)}
+.hdr-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:21px;color:var(--head);text-decoration:none;letter-spacing:.02em}
+.nav-desktop{display:flex;align-items:center;gap:28px}
+.nav-desktop a{font:700 14px 'Noto Sans JP',sans-serif;color:var(--body);text-decoration:none;transition:color .15s}
+.nav-desktop a:hover{color:var(--teal-d)}
+.nav-desktop .btn{padding:11px 22px;font-size:14px}
+.mnav{display:none}
+
+/* PAGE HERO */
+.page-hero{position:relative;background:var(--bg);overflow:hidden;background-image:radial-gradient(rgba(131,156,170,.16) 1.1px,transparent 1.1px);background-size:22px 22px}
+.page-hero .blob{position:absolute;pointer-events:none}
+.page-hero .b1{top:-150px;right:-90px;width:500px;height:440px;background:rgba(91,189,200,.16);border-radius:60% 40% 55% 45%/55% 50% 50% 45%;filter:blur(3px)}
+.page-hero .b2{top:-20px;right:120px;width:320px;height:300px;background:rgba(91,189,200,.10);border-radius:52% 48% 60% 40%/50% 55% 45% 50%}
+.page-hero .b3{bottom:-130px;left:-110px;width:360px;height:360px;background:rgba(248,152,29,.07);border-radius:50%}
+.ph-inner{position:relative;text-align:center;max-width:720px;margin:0 auto;padding:var(--s20) 0 var(--s16)}
+.badge{display:inline-flex;align-items:center;gap:9px;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-d);background:#fff;padding:10px 18px;border-radius:999px;box-shadow:var(--sh-1)}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
+.ph-inner h1{font-size:clamp(28px,4.4vw,40px);line-height:1.4;margin:24px 0 0;letter-spacing:.01em}
+.ph-inner .lead{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);max-width:600px;margin:20px auto 0}
+.wave{display:block;width:100%;height:64px;margin-top:-1px}
+
+/* ROLE CARDS (経歴 → 強み) */
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:920px;margin:0 auto}
+.role-card{display:flex;gap:18px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px 26px;box-shadow:var(--sh-1);transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+.role-card:hover{transform:translateY(-3px);box-shadow:var(--sh-2)}
+.role-num{flex:none;width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;display:flex;align-items:center;justify-content:center;font:900 15px 'Roboto',sans-serif}
+.role-card h3{font-size:16.5px;letter-spacing:.01em}
+.role-card p{font-family:'Noto Sans JP',sans-serif;font-size:13.5px;line-height:1.75;color:var(--body);margin-top:8px}
+.role-card p .arrow{color:var(--teal-d);font-weight:700;margin-right:4px}
+.role-card.accent .role-num{background:linear-gradient(135deg,var(--orange),var(--orange-d))}
+
+/* WHY (再掲・簡略) */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.why-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:32px 28px;box-shadow:var(--sh-1);text-align:center}
+.why-ic{width:58px;height:58px;border-radius:18px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;margin:0 auto}
+.why-ic svg{width:30px;height:30px;stroke:var(--teal-d)}
+.why-card h3{font-size:17px;margin:16px 0 0}
+.why-card p{font:400 13px/1.8 'Noto Sans JP',sans-serif;color:var(--body);margin:10px 0 0}
+
+/* CV */
+.cv-section{background:#fff}
+.cv-card{position:relative;max-width:820px;margin:0 auto;background:var(--bg);border-radius:34px;padding:14px 14px 0;box-shadow:var(--sh-2);overflow:hidden}
+.cv-topbar{height:6px;border-radius:99px;background:linear-gradient(90deg,var(--orange),var(--orange-d))}
+.cv-inner{position:relative;padding:44px 40px 46px;text-align:center}
+.cv-inner h2{position:relative;font-size:clamp(23px,3.2vw,28px);margin:0}
+.cv-inner .lead{position:relative;font-family:'Noto Sans JP',sans-serif;font-size:14.5px;line-height:1.9;color:var(--body);max-width:520px;margin:14px auto 0}
+.cv-cta{position:relative;display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:26px}
+
+/* FOOTER */
+.site-footer{background:#334A52;color:#cdd9dd}
+.footer-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:22px;padding:44px 0}
+.footer-brand{display:flex;align-items:center;gap:11px;font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:19px;color:#fff}
+.footer-nav{display:flex;flex-wrap:wrap;gap:22px}
+.footer-nav a{font:700 13px 'Noto Sans JP',sans-serif;color:#b7c6cb;text-decoration:none;transition:color .15s}
+.footer-nav a:hover{color:#fff}
+.copy{text-align:center;font:400 12.5px 'Noto Sans JP',sans-serif;color:#8ba1a8;padding:18px 0 30px;border-top:1px solid rgba(255,255,255,.1)}
+
+/* RESPONSIVE */
+@media (max-width:960px){
+  .nav-desktop{display:none}
+  .mnav{display:block;position:relative}
+  .mnav>summary{list-style:none;cursor:pointer;width:46px;height:46px;border-radius:13px;background:#fff;box-shadow:var(--sh-1);display:flex;align-items:center;justify-content:center}
+  .mnav>summary::-webkit-details-marker{display:none}
+  .mnav>summary svg{width:24px;height:24px;stroke:var(--head);stroke-width:1.8;stroke-linecap:round;fill:none}
+  .mnav[open]>summary{background:var(--teal-pale)}
+  .mnav-panel{position:absolute;right:0;top:54px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-3);padding:14px;min-width:220px;display:flex;flex-direction:column;gap:2px}
+  .mnav-panel a{font:700 15px 'Noto Sans JP',sans-serif;color:var(--body);text-decoration:none;padding:12px 14px;border-radius:12px}
+  .mnav-panel a:hover{background:var(--teal-pale);color:var(--teal-d)}
+  .mnav-panel .btn{margin-top:6px;font-size:15px;padding:14px}
+  .why-grid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}
+}
+@media (max-width:680px){
+  :root{--s24:64px;--s20:52px;--s16:44px;--s12:36px}
+  .container{padding:0 20px}
+  .role-grid{grid-template-columns:1fr}
+  .cv-inner{padding:32px 22px}
+}
+@media (max-width:400px){
+  body{font-size:15px}
+  .btn{padding:15px 24px;font-size:15px}
+  .cv-cta .btn{width:100%}
+  .brand{font-size:19px}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <div class="container hdr-inner">
+    <a class="brand" href="index.html">ざつね屋</a>
+    <nav class="nav-desktop">
+      <a href="index.html#price">料金</a>
+      <a href="index.html#contact">お問い合わせ</a>
+      <a class="btn btn-primary" href="index.html#cv">資料請求・お見積り</a>
+    </nav>
+    <details class="mnav">
+      <summary aria-label="メニューを開く"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+      <div class="mnav-panel">
+        <a href="index.html#price">料金</a>
+        <a href="index.html#contact">お問い合わせ</a>
+        <a class="btn btn-primary" href="index.html#cv">資料請求・お見積り</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= PAGE HERO ================= -->
+<section class="page-hero">
+  <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+  <div class="container ph-inner">
+    <span class="badge"><span class="dot"></span>PROFILE ─ 代表者プロフィール</span>
+    <h1>多様な経歴を、AI活用支援という<br>一つの力にしています。</h1>
+    <p class="lead">パソコン講師・NPO法人代表・Webディレクター・企業の課長職・DX推進担当・専門学校の担任——立場も業界も異なる7つの経歴を経て、AIプロダクト開発に至りました。それぞれの経験が、ざつね屋の「教えられる実装者」「現場目線の伴走」という強みにつながっています。</p>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 64" preserveAspectRatio="none"><path d="M0 38 C 280 6 480 62 720 38 C 960 10 1180 58 1440 30 L1440 64 L0 64 Z" fill="#fff"/></svg>
+</section>
+
+<!-- ================= 経歴 → 強み ================= -->
+<section class="section" style="background:#fff;padding-top:0">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Career</span>
+      <h2>これまでの経歴と、この事業で活きる強み</h2>
+    </div>
+    <div class="role-grid">
+      <div class="role-card">
+        <div class="role-num">1</div>
+        <div>
+          <h3>パソコン講師</h3>
+          <p><span class="arrow">→</span>教育・導入支援・わかりやすく伝える技術</p>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-num">2</div>
+        <div>
+          <h3>NPO法人代表</h3>
+          <p><span class="arrow">→</span>企画運営・プロジェクト設計</p>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-num">3</div>
+        <div>
+          <h3>Webディレクター</h3>
+          <p><span class="arrow">→</span>業務整理・要件定義・フロー可視化</p>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-num">4</div>
+        <div>
+          <h3>企業の課長職</h3>
+          <p><span class="arrow">→</span>人材育成・業務手順書の作成・業務改善</p>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-num">5</div>
+        <div>
+          <h3>DX推進担当</h3>
+          <p><span class="arrow">→</span>IT導入・仕組み化・補助金活用</p>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-num">6</div>
+        <div>
+          <h3>専門学校の担任</h3>
+          <p><span class="arrow">→</span>伴走支援・継続サポート・学習の定着化</p>
+        </div>
+      </div>
+      <div class="role-card accent">
+        <div class="role-num">7</div>
+        <div>
+          <h3>AIプロダクト開発</h3>
+          <p><span class="arrow">→</span>生成AI活用・実装・プロンプト設計</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY（差別化ポイント） ================= -->
+<section class="section" style="background:var(--bg)" id="about">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Why</span>
+      <h2>「教えられる実装者」が、業務整理から伴走します</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H12l-4 3v-3H4Z"/><path d="M8.5 10.5l2 2 4-4"/></svg></span>
+        <h3>教えられる実装者</h3>
+        <p>多くのAIコンサルは「提案だけ」か「実装だけ」。ざつね屋は作れるだけでなく、現場に合わせて説明し、定着するまで支援できます。</p>
+      </div>
+      <div class="why-card">
+        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M15.5 20v-1.2a3.7 3.7 0 0 0-3.7-3.7H6.2A3.7 3.7 0 0 0 2.5 18.8V20"/><circle cx="9" cy="7" r="3.3"/><path d="M21.5 20v-1.2a3.7 3.7 0 0 0-2.8-3.6"/><path d="M15.5 3.9a3.3 3.3 0 0 1 0 6.4"/></svg></span>
+        <h3>現場目線の伴走</h3>
+        <p>管理職・教育機関の担任として「人が動く仕組み」を作ってきた経験。導入して終わりではなく、結果が出るまで付き合います。</p>
+      </div>
+      <div class="why-card">
+        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M4 6h9M4 12h13M4 18h7"/><path d="M17 6l2.5 2.5L23 4"/></svg></span>
+        <h3>業務整理から入れる</h3>
+        <p>AI以前に業務が整理できていない会社が大半です。業務フローの整理・要件定義から対応できるので、遠回りしません。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CV ================= -->
+<section class="section cv-section">
+  <div class="container">
+    <div class="cv-card">
+      <div class="cv-topbar"></div>
+      <div class="cv-inner">
+        <h2>サービス詳細もご覧ください</h2>
+        <p class="lead">研修・オーダーメイド・伴走の3サービスの内容と料金は、サービス詳細ページでご案内しています。</p>
+        <div class="cv-cta">
+          <a class="btn btn-primary" href="./services.html">サービス詳細を見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-outline" href="index.html#cv">資料請求・お見積り</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">ざつね屋</div>
+    <nav class="footer-nav">
+      <a href="./services.html">サービス詳細</a>
+      <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html">料金案内</a>
+      <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/request.html">資料請求</a>
+      <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/estimate.html">お見積り</a>
+      <a href="./privacy.html">プライバシーポリシー</a>
+      <a href="./tokusyou.html">特定商取引法に基づく表記</a>
+    </nav>
+  </div>
+  <div class="copy">© 2026 ざつね屋</div>
+</footer>
+
+</body>
+</html>
