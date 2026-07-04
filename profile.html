@@ -77,7 +77,9 @@ img,svg{display:block;max-width:100%}
 .heroC .artcard{padding:0;background:transparent;box-shadow:none;border-radius:0}
 .heroC .artcard img{width:100%;height:auto;border-radius:24px;box-shadow:var(--sh-3)}
 .heroC .txt h1{font-size:clamp(28px,3.6vw,40px);line-height:1.36;margin:24px 0 0;letter-spacing:.01em}
+.heroC .txt .role-tag{display:block;font:700 14px/1.6 'Noto Sans JP',sans-serif;color:var(--teal-d);margin-top:10px}
 .heroC .txt .lead{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);max-width:500px;margin:16px 0 0}
+.heroC .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
 
 /* ROLE CARDS (経歴 → 強み) */
 .role-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:920px;margin:0 auto}
@@ -132,6 +134,7 @@ img,svg{display:block;max-width:100%}
   .heroC .artcard{max-width:380px;margin:0 auto}
   .heroC .txt{text-align:center}
   .heroC .txt .lead{margin-left:auto;margin-right:auto}
+  .heroC .hero-cta{justify-content:center}
 }
 @media (max-width:680px){
   :root{--s24:64px;--s20:52px;--s16:44px;--s12:36px}
@@ -152,7 +155,7 @@ img,svg{display:block;max-width:100%}
 <!-- ================= HEADER ================= -->
 <header class="site-header">
   <div class="container hdr-inner">
-    <a class="brand" href="index.html">ざつね屋</a>
+    <a class="brand" href="index.html">生成AI活用支援のざつね屋</a>
     <nav class="nav-desktop">
       <a href="index.html#price">料金</a>
       <a href="index.html#contact">お問い合わせ</a>
@@ -181,14 +184,19 @@ img,svg{display:block;max-width:100%}
     <div class="txt">
       <span class="badge"><span class="dot"></span>PROFILE ─ 代表者プロフィール</span>
       <h1>「難しそう」を、<br>いっしょに越えていく。</h1>
+      <span class="role-tag">ざつね屋 代表</span>
       <p class="lead">立場も業界も異なる7つの経歴が、ざつね屋の「教えられる実装者」「現場目線の伴走」という強みにつながりました。そして現在、技術と人の“あいだ”に立ち続けてきた経験を、広島県福山市近郊の中小企業のAI活用に還元しています。</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="index.html#contact">無料相談を予約する</a>
+        <a class="btn btn-outline" href="#career">経歴を見る</a>
+      </div>
     </div>
   </div>
   <svg class="wave" viewBox="0 0 1440 64" preserveAspectRatio="none"><path d="M0 38 C 280 6 480 62 720 38 C 960 10 1180 58 1440 30 L1440 64 L0 64 Z" fill="#fff"/></svg>
 </section>
 
 <!-- ================= 経歴 → 強み ================= -->
-<section class="section" style="background:#fff;padding-top:0">
+<section class="section" id="career" style="background:#fff;padding-top:0">
   <div class="container">
     <div class="sec-head">
       <span class="eyebrow">Career</span>
@@ -297,7 +305,7 @@ img,svg{display:block;max-width:100%}
 <!-- ================= FOOTER ================= -->
 <footer class="site-footer">
   <div class="container footer-inner">
-    <div class="footer-brand">ざつね屋</div>
+    <div class="footer-brand">生成AI活用支援のざつね屋</div>
     <nav class="footer-nav">
       <a href="./services.html">サービス詳細</a>
       <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html">料金案内</a>
