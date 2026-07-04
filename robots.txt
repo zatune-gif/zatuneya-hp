@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zatune-gif.github.io/zatuneya-hp/sitemap.xml
