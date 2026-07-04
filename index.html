@@ -90,8 +90,10 @@ img,svg{display:block;max-width:100%}
 .hdr-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
 .brand{display:flex;align-items:center;gap:11px;font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:21px;color:var(--head);text-decoration:none;letter-spacing:.02em}
 .nav-desktop{display:flex;align-items:center;gap:28px}
-.nav-desktop a{font:700 14px 'Noto Sans JP',sans-serif;color:var(--body);text-decoration:none;transition:color .15s}
+.nav-desktop a{font:700 14px 'Noto Sans JP',sans-serif;color:var(--body);text-decoration:none;transition:color .15s;padding-bottom:4px;border-bottom:2px solid transparent}
 .nav-desktop a:hover{color:var(--teal-d)}
+.nav-desktop a.active,.mnav-panel a.active{color:var(--teal-d)}
+.nav-desktop a.active{border-bottom-color:var(--teal)}
 .nav-desktop .btn{padding:11px 22px;font-size:14px}
 .mnav{display:none}
 
@@ -378,7 +380,7 @@ img,svg{display:block;max-width:100%}
 <header class="site-header">
   <div class="container hdr-inner">
     <a class="brand" href="#top">生成AI活用支援のざつね屋</a>
-    <nav class="nav-desktop">
+    <nav class="nav-desktop" aria-label="グローバルナビゲーション">
       <a href="./services.html">サービス</a>
       <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html">料金</a>
       <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/diagnosis-simple.html">無料診断</a>
@@ -750,7 +752,7 @@ img,svg{display:block;max-width:100%}
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-brand">生成AI活用支援のざつね屋</div>
-    <nav class="footer-nav">
+    <nav class="footer-nav" aria-label="フッターナビゲーション">
       <a href="./services.html">サービス詳細</a>
       <a href="./profile.html">代表者プロフィール</a>
       <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html">料金案内</a>
@@ -763,5 +765,14 @@ img,svg{display:block;max-width:100%}
   <div class="copy">© 2026 ざつね屋</div>
 </footer>
 
+<script>
+(function(){
+  var here = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-desktop a, .mnav-panel a').forEach(function(a){
+    var file = (a.getAttribute('href') || '').split('#')[0].split('/').pop();
+    if (file === here) a.classList.add('active');
+  });
+})();
+</script>
 </body>
 </html>
