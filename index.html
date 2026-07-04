@@ -104,43 +104,47 @@ img,svg{display:block;max-width:100%}
 .hero .b1{top:-160px;right:-110px;width:560px;height:500px;background:rgba(91,189,200,.15);border-radius:60% 40% 55% 45%/55% 50% 50% 45%;filter:blur(3px)}
 .hero .b2{top:-30px;right:80px;width:380px;height:360px;background:rgba(91,189,200,.10);border-radius:52% 48% 60% 40%/50% 55% 45% 50%}
 .hero .b3{bottom:-140px;left:-120px;width:420px;height:420px;background:rgba(248,152,29,.07);border-radius:50%}
-.hero-grid{position:relative;display:grid;grid-template-columns:.78fr 1.22fr;gap:48px;align-items:center;padding-top:var(--s20);padding-bottom:var(--s24)}
+.hero-grid{position:relative;display:grid;grid-template-columns:.78fr 1.22fr;gap:56px;align-items:center;padding-top:var(--s20);padding-bottom:var(--s24)}
 .badge{display:inline-flex;align-items:center;gap:9px;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-d);background:#fff;padding:10px 18px;border-radius:999px;box-shadow:var(--sh-1)}
 .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
-.hero h1{font-size:clamp(31px,4.6vw,46px);line-height:1.34;letter-spacing:.005em;margin:24px 0 0}
+.hero h1{font-size:clamp(31px,4.7vw,47px);line-height:1.32;letter-spacing:.005em;margin:26px 0 0}
 .hl{position:relative;color:var(--teal-d);white-space:nowrap}
 .hl::after{content:"";position:absolute;left:-2px;right:-2px;bottom:3px;height:12px;background:rgba(91,189,200,.26);border-radius:6px;z-index:-1}
-.hero-sub{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);max-width:440px;margin:22px 0 0}
-.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
-.hero-note{font:400 13px/1.6 'Noto Sans JP',sans-serif;color:var(--sub);margin-top:16px}
-/* hero visual */
+.hero-sub{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);max-width:430px;margin:24px 0 0}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.hero-note{font:400 13px/1.6 'Noto Sans JP',sans-serif;color:var(--sub);margin-top:18px}
+/* hero visual — 600px frame, chips scaled up and overhanging for depth */
 .hero-visual{position:relative;height:600px}
-.hero-photo{position:absolute;inset:0;border-radius:44px 44px 130px 44px;overflow:hidden;box-shadow:var(--sh-3)}
+.hero-photo{position:absolute;inset:0;border-radius:48px 48px 150px 48px;overflow:hidden;box-shadow:var(--sh-3)}
 .hero-photo img{width:100%;height:100%;object-fit:cover}
-.hero-photo .tint{position:absolute;inset:0;background:linear-gradient(155deg,rgba(70,166,177,.30),rgba(91,189,200,.05) 55%,rgba(248,152,29,.04))}
-.hero-photo .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.16) 1.1px,transparent 1.1px);background-size:18px 18px;mix-blend-mode:overlay}
+.hero-photo .tint{position:absolute;inset:0;background:linear-gradient(150deg,rgba(70,166,177,.34),rgba(91,189,200,.06) 48%,rgba(248,152,29,.05)),radial-gradient(120% 92% at 6% 100%,rgba(34,68,76,.44),rgba(34,68,76,0) 46%)}
+.hero-photo .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.10) 1.1px,transparent 1.1px);background-size:20px 20px;mix-blend-mode:overlay}
 /* チップ3枚の序列: c-chart=主役（左下角・白ハロー）/ c-sum=準主役（右上）/ c-ai=タグピル（左上）。全て枠からはみ出させて奥行きを出す */
-.chip{position:absolute;background:#fff;border-radius:18px;box-shadow:var(--sh-2);animation:float 6s var(--ease) infinite}
-.chip.c-ai{left:-12px;top:18px;display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 6px;border-radius:999px;animation-delay:.2s}
-.chip.c-ai .av{width:27px;height:27px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-d));display:flex;align-items:center;justify-content:center;font:900 11.5px 'Roboto',sans-serif;color:#fff}
-.chip.c-ai span{font:700 11.5px 'Noto Sans JP',sans-serif;color:var(--head);white-space:nowrap}
-.chip.c-sum{right:-24px;top:9%;width:206px;padding:17px 18px;border-radius:20px;animation-delay:1.4s;box-shadow:0 0 0 5px rgba(255,255,255,.65),var(--sh-2)}
-.chip.c-sum .row{display:flex;align-items:center;gap:11px}
-.chip.c-sum .ic{width:36px;height:36px;border-radius:11px;background:var(--teal-pale)}
-.chip.c-sum .ic svg{stroke:var(--teal-d);width:20px;height:20px}
-.chip.c-sum b{display:block;font:700 13.5px 'Noto Sans JP',sans-serif;color:var(--head);line-height:1.3}
-.chip.c-sum em{font:700 11px 'Roboto',sans-serif;color:var(--teal-d);font-style:normal}
-.chip.c-chart{left:-28px;bottom:-24px;width:264px;padding:22px 22px 20px;border-radius:22px;animation-delay:2.6s;box-shadow:0 0 0 8px rgba(255,255,255,.9),0 4px 12px rgba(40,60,70,.10),0 26px 48px rgba(40,60,70,.20)}
-.chip.c-chart .row{display:flex;align-items:center;gap:10px}
-.chip.c-chart .ic{width:34px;height:34px;border-radius:10px;background:var(--teal-pale)}
-.chip.c-chart .ic svg{stroke:var(--teal-d);width:19px;height:19px}
-.chip.c-chart .lbl{font:700 14.5px 'Noto Sans JP',sans-serif;color:var(--head)}
-.chip.c-chart .bars{display:flex;align-items:flex-end;gap:7px;height:56px;margin-top:14px}
-.chip.c-chart .bars span{flex:1;border-radius:4px}
-.chip.c-chart .bars .b1{height:38%;background:#DCEBEE}
-.chip.c-chart .bars .b2{height:56%;background:#9BD6DD}
-.chip.c-chart .bars .b3{height:78%;background:#5BBDC8}
-.chip.c-chart .bars .b4{height:100%;background:#F8981D}
+.chip{position:absolute;background:#fff;box-shadow:var(--sh-3);animation:float 6.5s var(--ease) infinite;z-index:2}
+.chip.c-ai{left:-18px;top:30px;display:inline-flex;align-items:center;gap:12px;padding:10px 22px 10px 10px;border-radius:999px;animation-delay:.2s}
+.chip.c-ai .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-d));display:flex;align-items:center;justify-content:center}
+.chip.c-ai .av svg{width:22px;height:22px;fill:#fff;stroke:none}
+.chip.c-ai span{font:700 15px 'Noto Sans JP',sans-serif;color:var(--head);white-space:nowrap}
+.chip.c-sum{right:-30px;top:14%;width:250px;padding:19px 21px;border-radius:20px;animation-delay:1.5s}
+.chip.c-sum .row{display:flex;align-items:center;gap:14px}
+.chip.c-sum .ic{flex:none;width:48px;height:48px;border-radius:14px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center}
+.chip.c-sum .ic svg{stroke:var(--teal-d);width:25px;height:25px;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.chip.c-sum b{display:block;font:700 15.5px 'Noto Sans JP',sans-serif;color:var(--head);line-height:1.3}
+.chip.c-sum em{display:block;font:700 12px 'Roboto',sans-serif;color:var(--teal-d);font-style:normal;margin-top:3px}
+.chip.c-chart{left:-46px;bottom:8%;width:288px;padding:24px 26px;border-radius:26px;box-shadow:var(--sh-3),0 0 0 5px rgba(255,255,255,.55);animation-delay:2.8s}
+.chip.c-chart .top{display:flex;align-items:center;gap:12px}
+.chip.c-chart .ic{flex:none;width:40px;height:40px;border-radius:13px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center}
+.chip.c-chart .ic svg{stroke:var(--teal-d);width:23px;height:23px;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.chip.c-chart .lbl{font:900 18px 'Noto Sans JP',sans-serif;color:var(--head);letter-spacing:.01em}
+.chip.c-chart .trend{margin-left:auto;flex:none;width:30px;height:30px;border-radius:9px;background:var(--orange-pale);display:flex;align-items:center;justify-content:center}
+.chip.c-chart .trend svg{width:16px;height:16px;stroke:var(--orange-d);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.chip.c-chart .bars{display:flex;align-items:flex-end;gap:11px;height:80px;margin-top:20px}
+.chip.c-chart .bars span{flex:1;border-radius:6px}
+.chip.c-chart .bars .b1{height:34%;background:#E4EFF1}
+.chip.c-chart .bars .b2{height:50%;background:#BFE3E8}
+.chip.c-chart .bars .b3{height:68%;background:#8DD2DA}
+.chip.c-chart .bars .b4{height:84%;background:#5BBDC8}
+.chip.c-chart .bars .b5{height:100%;background:#F8981D}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 @media (prefers-reduced-motion:reduce){.chip{animation:none}}
 .wave{display:block;width:100%;height:70px;margin-top:-1px}
@@ -334,15 +338,16 @@ img,svg{display:block;max-width:100%}
   .mnav-panel a:hover{background:var(--teal-pale);color:var(--teal-d)}
   .mnav-panel .btn{margin-top:6px;font-size:15px;padding:14px}
   .hero-grid{grid-template-columns:1fr;gap:40px;padding-top:var(--s16)}
-  .hero-visual{height:480px;max-width:560px;margin:0 auto;width:100%}
-  .chip.c-ai{left:10px;top:-16px}
-  .chip.c-chart{left:-6px;bottom:-20px;width:236px}
-  .chip.c-sum{right:-6px;top:14%;width:190px}
+  .hero-visual{height:440px;max-width:540px;margin:0 auto;width:100%}
+  .chip.c-chart{left:-8px}
+  .chip.c-sum{right:-14px}
   .hero-sub{max-width:none}
   .svc-grid,.why-grid{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}
   .flow{grid-template-columns:1fr 1fr;gap:40px 0}
   .step:not(:last-child)::after{display:none}
   .why-band .veil{background:linear-gradient(160deg,rgba(52,90,98,.94),rgba(70,166,177,.7))}
+  .band .veil,.band.flip .veil{background:linear-gradient(160deg,rgba(52,90,98,.94),rgba(70,166,177,.7))}
+  .band.flip .bcontent{margin-left:0;text-align:left}
 }
 @media (max-width:680px){
   :root{--s24:64px;--s20:52px;--s16:44px;--s12:36px}
@@ -356,6 +361,16 @@ img,svg{display:block;max-width:100%}
   .flow{grid-template-columns:1fr;gap:30px 0}
   .example{gap:14px}
   .why-band .bcontent{padding:34px 26px}
+  .hero-visual{height:400px}
+  .chip.c-ai{left:-4px;top:18px;padding:8px 18px 8px 8px}
+  .chip.c-ai .av{width:36px;height:36px}
+  .chip.c-ai span{font-size:13.5px}
+  .chip.c-sum{right:-6px;top:11%;width:210px;padding:15px 17px}
+  .chip.c-sum .ic{width:42px;height:42px}
+  .chip.c-sum b{font-size:14px}
+  .chip.c-chart{left:-6px;bottom:6%;width:236px;padding:18px 20px;box-shadow:var(--sh-3),0 0 0 4px rgba(255,255,255,.55)}
+  .chip.c-chart .lbl{font-size:16px}
+  .chip.c-chart .bars{height:60px;gap:9px;margin-top:16px}
   .career-head{padding:22px}
   .career th,.career td{padding:12px 16px}
   .career td{font-size:12.5px}
@@ -365,10 +380,9 @@ img,svg{display:block;max-width:100%}
   body{font-size:15px}
   .hero h1{line-height:1.42}
   .hl{white-space:normal}
-  .hero-visual{height:380px}
-  .chip.c-chart{width:206px;padding:16px 16px 14px}
-  .chip.c-chart .bars{height:44px}
-  .chip.c-sum{width:172px;padding:13px 14px}
+  .hero-visual{height:360px}
+  .chip.c-chart{width:212px}
+  .chip.c-sum{width:190px}
   .btn{padding:15px 24px;font-size:15px}
   .cta-row .btn{width:100%}
   .brand{font-size:19px}
@@ -427,13 +441,13 @@ img,svg{display:block;max-width:100%}
         <img src="./assets/hero-photo.jpg" alt="ノートパソコンと資料を持ち寄って打ち合わせをする手元" width="1400" height="934" loading="eager">
         <span class="tint"></span><span class="dots"></span>
       </div>
-      <div class="chip c-ai"><span class="av">AI</span><span>×伴走で定着</span></div>
+      <div class="chip c-ai"><span class="av"><svg viewBox="0 0 24 24"><path d="M12 3.2l1.9 5.4 5.4 1.9-5.4 1.9L12 17.8l-1.9-5.4L4.7 10.5l5.4-1.9L12 3.2Z"/><circle cx="18.5" cy="5.5" r="1.3"/></svg></span><span>AIの安心活用</span></div>
       <div class="chip c-sum">
-        <div class="row"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v10H10l-4 3v-3H4Z"/><path d="M8.5 10h7"/></svg></span><div><b>議事録を要約</b><em>3分で完了</em></div></div>
+        <div class="row"><span class="ic"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v4h-4"/></svg></span><div><b>効率化の再提案</b></div></div>
       </div>
       <div class="chip c-chart">
-        <div class="row"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 19c3-7 7-9 10-9"/><circle cx="4" cy="19" r="1.4"/><path d="M14 4v9M14 4l5 1.6-5 1.6"/></svg></span><span class="lbl">作業効率が向上</span></div>
-        <div class="bars"><span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span></div>
+        <div class="top"><span class="ic"><svg viewBox="0 0 24 24"><path d="M13 3 5 13h5l-1 8 8-11h-5l1-7Z"/></svg></span><span class="lbl">DX化の加速</span><span class="trend"><svg viewBox="0 0 24 24"><path d="M4 15l6-6 4 4 6-7"/><path d="M20 6v5M20 6h-5"/></svg></span></div>
+        <div class="bars"><span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span><span class="b5"></span></div>
       </div>
     </div>
   </div>
