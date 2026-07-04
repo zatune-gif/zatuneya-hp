@@ -185,7 +185,7 @@ body {
   font-size: 15px; font-weight: 700; text-decoration: none;
   padding: 16px 32px; border-radius: 999px; transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
 }
-.btn svg { width: 19px; height: 19px; flex-shrink: 0; }
+.btn svg { width: 19px; height: 19px; stroke: currentColor; fill: none; flex-shrink: 0; }
 .btn:hover { transform: translateY(-2px); }
 .btn-fill { background: var(--orange); color: #fff; box-shadow: 0 12px 28px rgba(248,152,29,0.36); }
 .btn-fill:hover { background: var(--orange-dk); }
