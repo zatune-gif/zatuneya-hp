@@ -237,7 +237,7 @@ img,svg{display:block;max-width:100%}
 .cv-foot{position:relative;text-align:center;font:400 13px/1.6 'Noto Sans JP',sans-serif;color:var(--sub);margin-top:24px}
 
 /* ============ 6. FREE TOOLS ============ */
-.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px}
 .tool-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:26px;padding:36px 34px;box-shadow:var(--sh-1);display:flex;gap:22px;align-items:flex-start;transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
 .tool-card:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
 .tool-ic{flex:none;width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,var(--teal-pale),var(--teal-pale2));display:flex;align-items:center;justify-content:center}
@@ -638,6 +638,15 @@ img,svg{display:block;max-width:100%}
           <h3>AIツール理解度テスト（20問・約3分）</h3>
           <p>AI基礎知識・ツール操作・指示文の書き方・セキュリティ・業務応用の5軸をレーダーチャートで可視化。おすすめの研修コースもわかります。</p>
           <a class="arrowlink" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/ai-literacy-test/">テストを受ける <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="tool-card">
+        <span class="tool-ic ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="13" height="16" rx="2"/><path d="M8 9h5M8 13h5M8 17h3"/><path d="M17 8l3 1.5v9L17 20"/></svg></span>
+        <div>
+          <span class="tool-free">無料・登録不要</span>
+          <h3>AIプロンプトライブラリ（全22本）</h3>
+          <p>研修で使う実践プロンプトをそのままコピーして使える形で公開。文書・画像・動画・Claude Code分野別に検索・絞り込みができます。</p>
+          <a class="arrowlink" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/15_prompt-library/">ライブラリを見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
