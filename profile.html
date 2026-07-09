@@ -94,15 +94,19 @@ img,svg{display:block;max-width:100%}
 .heroC .txt .lead{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);max-width:500px;margin:16px 0 0}
 .heroC .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
 
-/* ROLE CARDS (経歴 → 強み) */
-.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:920px;margin:0 auto}
-.role-card{display:flex;gap:18px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px 26px;box-shadow:var(--sh-1);transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
-.role-card:hover{transform:translateY(-3px);box-shadow:var(--sh-2)}
-.role-num{flex:none;width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;display:flex;align-items:center;justify-content:center;font:900 15px 'Roboto',sans-serif}
-.role-card h3{font-size:16.5px;letter-spacing:.01em}
-.role-card p{font-family:'Noto Sans JP',sans-serif;font-size:13.5px;line-height:1.75;color:var(--body);margin-top:8px}
-.role-card p .arrow{color:var(--teal-d);font-weight:700;margin-right:4px}
-.role-card.accent .role-num{background:linear-gradient(135deg,var(--orange),var(--orange-d))}
+/* CAREER TIMELINE（経歴 → 強み。9つがつながって強みになったことを縦の線で見せる） */
+.timeline{position:relative;max-width:660px;margin:0 auto}
+.timeline::before{content:"";position:absolute;left:23px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--teal-line) 0%,var(--teal-line) 78%,var(--orange-line) 100%)}
+.tl-item{position:relative;display:flex;gap:20px;padding-bottom:16px}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:relative;z-index:1;flex:none;width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;display:flex;align-items:center;justify-content:center;font:900 17px 'Roboto',sans-serif;box-shadow:var(--sh-1)}
+.tl-item.accent .tl-dot{background:linear-gradient(135deg,var(--orange),var(--orange-d))}
+.tl-card{flex:1;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 22px;box-shadow:var(--sh-1);margin-top:3px;transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+.tl-card:hover{transform:translateX(3px);box-shadow:var(--sh-2)}
+.tl-card h3{font-size:16.5px;letter-spacing:.01em}
+.tl-card p{font-family:'Noto Sans JP',sans-serif;font-size:14px;line-height:1.75;color:var(--body);margin-top:6px}
+.tl-card p .arrow{color:var(--teal-d);font-weight:700;margin-right:4px}
+.tl-item.accent .tl-card p .arrow{color:var(--orange-d)}
 
 /* WHY (再掲・簡略) */
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -111,6 +115,7 @@ img,svg{display:block;max-width:100%}
 .why-ic svg{width:30px;height:30px;stroke:var(--teal-d)}
 .why-card h3{font-size:17px;margin:16px 0 0}
 .why-card p{font:400 13px/1.8 'Noto Sans JP',sans-serif;color:var(--body);margin:10px 0 0}
+.why-src{display:inline-block;font:700 11.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-d);background:var(--teal-pale);padding:7px 14px;border-radius:999px;margin-top:14px}
 
 /* CV */
 .cv-section{background:#fff}
@@ -152,8 +157,13 @@ img,svg{display:block;max-width:100%}
 @media (max-width:680px){
   :root{--s24:64px;--s20:52px;--s16:44px;--s12:36px}
   .container{padding:0 20px}
-  .role-grid{grid-template-columns:1fr}
   .cv-inner{padding:32px 22px}
+}
+@media (max-width:420px){
+  .timeline::before{left:19px}
+  .tl-dot{width:40px;height:40px;font-size:15px;border-radius:12px}
+  .tl-item{gap:14px}
+  .tl-card{padding:14px 16px}
 }
 @media (max-width:400px){
   body{font-size:15px}
@@ -221,66 +231,66 @@ img,svg{display:block;max-width:100%}
       <span class="eyebrow">Career</span>
       <h2>これまでの経歴と、この事業で活きる強み</h2>
     </div>
-    <div class="role-grid">
-      <div class="role-card">
-        <div class="role-num">1</div>
-        <div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">1</div>
+        <div class="tl-card">
           <h3>パソコン講師</h3>
           <p><span class="arrow">→</span>教育・導入支援・わかりやすく伝える技術</p>
         </div>
       </div>
-      <div class="role-card">
-        <div class="role-num">2</div>
-        <div>
+      <div class="tl-item">
+        <div class="tl-dot">2</div>
+        <div class="tl-card">
           <h3>NPO法人代表</h3>
           <p><span class="arrow">→</span>企画運営・プロジェクト設計</p>
         </div>
       </div>
-      <div class="role-card">
-        <div class="role-num">3</div>
-        <div>
+      <div class="tl-item">
+        <div class="tl-dot">3</div>
+        <div class="tl-card">
           <h3>コンテンツライター</h3>
           <p><span class="arrow">→</span>文章構成力・伝わる言葉選び・情報の整理力</p>
         </div>
       </div>
-      <div class="role-card">
-        <div class="role-num">4</div>
-        <div>
+      <div class="tl-item">
+        <div class="tl-dot">4</div>
+        <div class="tl-card">
           <h3>Webディレクター</h3>
           <p><span class="arrow">→</span>業務整理・要件定義・フロー可視化</p>
         </div>
       </div>
-      <div class="role-card">
-        <div class="role-num">5</div>
-        <div>
+      <div class="tl-item">
+        <div class="tl-dot">5</div>
+        <div class="tl-card">
           <h3>カスタマーエンジニア</h3>
           <p><span class="arrow">→</span>技術サポート・課題ヒアリング・非エンジニアへの説明力</p>
         </div>
       </div>
-      <div class="role-card">
-        <div class="role-num">6</div>
-        <div>
+      <div class="tl-item">
+        <div class="tl-dot">6</div>
+        <div class="tl-card">
           <h3>企業の課長職</h3>
           <p><span class="arrow">→</span>人材育成・業務手順書の作成・業務改善</p>
         </div>
       </div>
-      <div class="role-card">
-        <div class="role-num">7</div>
-        <div>
+      <div class="tl-item">
+        <div class="tl-dot">7</div>
+        <div class="tl-card">
           <h3>DX推進担当</h3>
           <p><span class="arrow">→</span>IT導入・仕組み化・補助金活用</p>
         </div>
       </div>
-      <div class="role-card">
-        <div class="role-num">8</div>
-        <div>
+      <div class="tl-item">
+        <div class="tl-dot">8</div>
+        <div class="tl-card">
           <h3>専門学校の担任</h3>
           <p><span class="arrow">→</span>伴走支援・継続サポート・学習の定着化</p>
         </div>
       </div>
-      <div class="role-card accent">
-        <div class="role-num">9</div>
-        <div>
+      <div class="tl-item accent">
+        <div class="tl-dot">9</div>
+        <div class="tl-card">
           <h3>AIプロダクト開発</h3>
           <p><span class="arrow">→</span>生成AI活用・実装・プロンプト設計</p>
         </div>
@@ -301,16 +311,19 @@ img,svg{display:block;max-width:100%}
         <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H12l-4 3v-3H4Z"/><path d="M8.5 10.5l2 2 4-4"/></svg></span>
         <h3>教えられる実装者</h3>
         <p>多くのAIコンサルは「提案だけ」か「実装だけ」。ざつね屋は作れるだけでなく、現場に合わせて説明し、定着するまで支援できます。</p>
+        <span class="why-src">経歴 1・8・9 より</span>
       </div>
       <div class="why-card">
         <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M15.5 20v-1.2a3.7 3.7 0 0 0-3.7-3.7H6.2A3.7 3.7 0 0 0 2.5 18.8V20"/><circle cx="9" cy="7" r="3.3"/><path d="M21.5 20v-1.2a3.7 3.7 0 0 0-2.8-3.6"/><path d="M15.5 3.9a3.3 3.3 0 0 1 0 6.4"/></svg></span>
         <h3>現場目線の伴走</h3>
         <p>管理職・教育機関の担任として「人が動く仕組み」を作ってきた経験。導入して終わりではなく、結果が出るまで付き合います。</p>
+        <span class="why-src">経歴 2・6・8 より</span>
       </div>
       <div class="why-card">
         <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M4 6h9M4 12h13M4 18h7"/><path d="M17 6l2.5 2.5L23 4"/></svg></span>
         <h3>業務整理から入れる</h3>
         <p>AI以前に業務が整理できていない会社が大半です。業務フローの整理・要件定義から対応できるので、遠回りしません。</p>
+        <span class="why-src">経歴 3・4・5・7 より</span>
       </div>
     </div>
   </div>
