@@ -29,6 +29,11 @@
   --orange:#F8981D; --orange-d:#E28511; --orange-pale:#FFF8EF; --orange-line:#F6E4C8;
   --sub:#839CAA; --head:#3C3C3C; --body:#575757;
   --line:#E1EAEC;
+  /* --- 文字専用トークン (G2: WCAG AA). --teal-d/--sub/--orange-d は背景・アイコン・枠線用のまま残す --- */
+  --teal-text:#31747C;   /* on #fff 5.36 / --bg 4.83 / --teal-pale 4.86 / --teal-pale2 4.54 */
+  --sub-text:#556E7C;    /* on #fff 5.37 / --bg 4.84 / --teal-pale 4.87 / --teal-pale2 4.55 */
+  --orange-text:#9C5C0C; /* on #fff 5.32 / --orange-pale 5.05 / --bg 4.79 */
+  --band-a:#2B7881; --band-b:#24565C; /* 価格帯グラデ: 白文字 5.11 / 8.20 */
   --sh-1:0 1px 3px rgba(40,60,70,.05), 0 4px 12px rgba(40,60,70,.05);
   --sh-2:0 2px 6px rgba(40,60,70,.06), 0 14px 30px rgba(40,60,70,.10);
   --sh-3:0 6px 14px rgba(40,60,70,.10), 0 30px 60px rgba(40,60,70,.18);
@@ -44,10 +49,11 @@ h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--he
 p{margin:0}
 a{color:inherit}
 img,svg{display:block;max-width:100%}
-:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:6px}
+:focus-visible{outline:3px solid var(--teal-text);outline-offset:3px;border-radius:6px}
+.site-footer :focus-visible,.price-band :focus-visible{outline-color:#fff}/* 暗い面では白リング: #334A52 上 9.37 / 帯上 5.11 */
 .container{max-width:1120px;margin:0 auto;padding:0 32px}
 .section{padding:var(--s24) 0}
-.eyebrow{display:inline-block;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.22em;color:var(--teal-d);text-transform:uppercase}
+.eyebrow{display:inline-block;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.22em;color:var(--teal-text);text-transform:uppercase}
 .ic{display:inline-flex;align-items:center;justify-content:center}
 .ic svg{width:100%;height:100%;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
 .sec-head{text-align:center;max-width:640px;margin:0 auto var(--s12)}
@@ -56,10 +62,10 @@ img,svg{display:block;max-width:100%}
 /* BUTTONS */
 .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:17px 34px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease);cursor:pointer;white-space:nowrap}
 .btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
-.btn-primary{background:var(--orange);color:#fff;box-shadow:var(--sh-orange)}
+.btn-primary{background:var(--orange);color:#332211;box-shadow:var(--sh-orange)}/* 文字色: 白は 2.21:1 で不合格。ブランドのオレンジを保つため濃色ブラウン #332211 = 6.90:1（hover の --orange-d 上でも 5.51:1）*/
 .btn-primary:hover{background:var(--orange-d);transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
 .btn-primary:active{transform:translateY(0);box-shadow:0 4px 12px rgba(248,152,29,.4)}
-.btn-outline{background:transparent;color:var(--teal-d);border-color:var(--teal)}
+.btn-outline{background:transparent;color:var(--teal-text);border-color:var(--teal)}
 .btn-outline:hover{background:var(--teal-pale);transform:translateY(-2px)}
 .btn-outline:active{transform:translateY(0)}
 
@@ -69,8 +75,8 @@ img,svg{display:block;max-width:100%}
 .brand{display:flex;align-items:center;gap:11px;font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:21px;color:var(--head);text-decoration:none;letter-spacing:.02em}
 .nav-desktop{display:flex;align-items:center;gap:28px}
 .nav-desktop a{font:700 14px 'Noto Sans JP',sans-serif;color:var(--body);text-decoration:none;transition:color .15s;padding-bottom:4px;border-bottom:2px solid transparent}
-.nav-desktop a:hover{color:var(--teal-d)}
-.nav-desktop a.active,.mnav-panel a.active{color:var(--teal-d)}
+.nav-desktop a:hover{color:var(--teal-text)}
+.nav-desktop a.active,.mnav-panel a.active{color:var(--teal-text)}
 .nav-desktop a.active{border-bottom-color:var(--teal)}
 .nav-desktop .btn{padding:11px 22px;font-size:14px}
 .mnav{display:none}
@@ -81,7 +87,7 @@ img,svg{display:block;max-width:100%}
 .page-hero .b1{top:-150px;right:-90px;width:500px;height:440px;background:rgba(91,189,200,.16);border-radius:60% 40% 55% 45%/55% 50% 50% 45%;filter:blur(3px)}
 .page-hero .b2{top:-20px;right:120px;width:320px;height:300px;background:rgba(91,189,200,.10);border-radius:52% 48% 60% 40%/50% 55% 45% 50%}
 .page-hero .b3{bottom:-130px;left:-110px;width:360px;height:360px;background:rgba(248,152,29,.07);border-radius:50%}
-.badge{display:inline-flex;align-items:center;gap:9px;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-d);background:#fff;padding:10px 18px;border-radius:999px;box-shadow:var(--sh-1)}
+.badge{display:inline-flex;align-items:center;gap:9px;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-text);background:#fff;padding:10px 18px;border-radius:999px;box-shadow:var(--sh-1)}
 .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
 .wave{display:block;width:100%;height:64px;margin-top:-1px;position:relative;z-index:1}
 
@@ -90,7 +96,7 @@ img,svg{display:block;max-width:100%}
 .heroC .artcard{padding:0;background:transparent;box-shadow:none;border-radius:0}
 .heroC .artcard img{width:100%;height:auto;border-radius:24px;box-shadow:var(--sh-3)}
 .heroC .txt h1{font-size:clamp(28px,3.6vw,40px);line-height:1.36;margin:24px 0 0;letter-spacing:.01em}
-.heroC .txt .role-tag{display:block;font:700 14px/1.6 'Noto Sans JP',sans-serif;color:var(--teal-d);margin-top:10px}
+.heroC .txt .role-tag{display:block;font:700 14px/1.6 'Noto Sans JP',sans-serif;color:var(--teal-text);margin-top:10px}
 .heroC .txt .lead{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);max-width:500px;margin:16px 0 0}
 .heroC .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
 
@@ -105,8 +111,8 @@ img,svg{display:block;max-width:100%}
 .tl-card:hover{transform:translateX(3px);box-shadow:var(--sh-2)}
 .tl-card h3{font-size:16.5px;letter-spacing:.01em}
 .tl-card p{font-family:'Noto Sans JP',sans-serif;font-size:14px;line-height:1.75;color:var(--body);margin-top:6px}
-.tl-card p .arrow{color:var(--teal-d);font-weight:700;margin-right:4px}
-.tl-item.accent .tl-card p .arrow{color:var(--orange-d)}
+.tl-card p .arrow{color:var(--teal-text);font-weight:700;margin-right:4px}
+.tl-item.accent .tl-card p .arrow{color:var(--orange-text)}
 
 /* WHY (再掲・簡略) */
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -115,7 +121,7 @@ img,svg{display:block;max-width:100%}
 .why-ic svg{width:30px;height:30px;stroke:var(--teal-d)}
 .why-card h3{font-size:17px;margin:16px 0 0}
 .why-card p{font:400 13px/1.8 'Noto Sans JP',sans-serif;color:var(--body);margin:10px 0 0}
-.why-src{display:inline-block;font:700 11.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-d);background:var(--teal-pale);padding:7px 14px;border-radius:999px;margin-top:14px}
+.why-src{display:inline-block;font:700 11.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-text);background:var(--teal-pale);padding:7px 14px;border-radius:999px;margin-top:14px}
 
 /* CV */
 .cv-section{background:#fff}
@@ -133,7 +139,7 @@ img,svg{display:block;max-width:100%}
 .footer-nav{display:flex;flex-wrap:wrap;gap:22px}
 .footer-nav a{font:700 13px 'Noto Sans JP',sans-serif;color:#b7c6cb;text-decoration:none;transition:color .15s}
 .footer-nav a:hover{color:#fff}
-.copy{text-align:center;font:400 12.5px 'Noto Sans JP',sans-serif;color:#8ba1a8;padding:18px 0 30px;border-top:1px solid rgba(255,255,255,.1)}
+.copy{text-align:center;font:400 12.5px 'Noto Sans JP',sans-serif;color:#A6B7BC;padding:18px 0 30px;border-top:1px solid rgba(255,255,255,.1)}
 
 /* RESPONSIVE */
 @media (max-width:960px){
@@ -145,7 +151,7 @@ img,svg{display:block;max-width:100%}
   .mnav[open]>summary{background:var(--teal-pale)}
   .mnav-panel{position:absolute;right:0;top:54px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-3);padding:14px;min-width:220px;display:flex;flex-direction:column;gap:2px}
   .mnav-panel a{font:700 15px 'Noto Sans JP',sans-serif;color:var(--body);text-decoration:none;padding:12px 14px;border-radius:12px}
-  .mnav-panel a:hover{background:var(--teal-pale);color:var(--teal-d)}
+  .mnav-panel a:hover{background:var(--teal-pale);color:var(--teal-text)}
   .mnav-panel .btn{margin-top:6px;font-size:15px;padding:14px}
   .why-grid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}
   .heroC .ph-inner{grid-template-columns:1fr;gap:32px;padding:48px 0}
