@@ -189,29 +189,32 @@ img,svg{display:block;max-width:100%}
 </head>
 <body>
 
-<!-- ================= HEADER ================= -->
 <header class="site-header">
-  <div class="container hdr-inner">
-    <a class="brand" href="index.html">生成AI活用支援のざつね屋</a>
-    <nav class="nav-desktop" aria-label="グローバルナビゲーション">
-      <a href="./services.html">サービス</a>
-      <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html">料金</a>
-      <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/diagnosis-simple.html">無料診断</a>
-      <a href="./profile.html">代表者プロフィール</a>
-      <a href="index.html#contact">お問い合わせ</a>
-      <a class="btn btn-primary" href="index.html#cv">資料請求・お見積り</a>
+  <div class="site-header__inner">
+    <a href="./index.html" class="site-logo" aria-label="ざつね屋 トップページ">ざつね屋</a>
+    <nav class="site-nav" id="site-nav" aria-label="グローバルナビゲーション">
+      <ul class="site-nav__list">
+        <li class="site-nav__item"><a href="./services.html" class="site-nav__link">サービス</a></li>
+        <li class="site-nav__item"><a href="./works.html" class="site-nav__link">実績</a></li>
+        <li class="site-nav__item"><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html" class="site-nav__link">料金</a></li>
+        <li class="site-nav__item site-nav__item--dropdown">
+          <button class="site-nav__dropdown-trigger site-nav__link" aria-expanded="false" aria-haspopup="true">
+            無料ツール<span class="site-nav__caret" aria-hidden="true">▾</span>
+          </button>
+          <ul class="site-nav__dropdown">
+            <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/diagnosis-simple.html" class="site-nav__dropdown-link">AI活用準備度診断</a></li>
+            <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/15_prompt-library/" class="site-nav__dropdown-link">プロンプトライブラリ</a></li>
+          </ul>
+        </li>
+        <li class="site-nav__item"><a href="./profile.html" class="site-nav__link">代表について</a></li>
+      </ul>
+      <a href="./index.html#contact" class="site-nav__cta">お問い合わせ</a>
     </nav>
-    <details class="mnav">
-      <summary aria-label="メニューを開く"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
-      <div class="mnav-panel">
-        <a href="./services.html">サービス</a>
-        <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html">料金</a>
-        <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/diagnosis-simple.html">無料診断</a>
-        <a href="./profile.html">代表者プロフィール</a>
-        <a href="index.html#contact">お問い合わせ</a>
-        <a class="btn btn-primary" href="index.html#cv">資料請求・お見積り</a>
-      </div>
-    </details>
+    <button class="site-nav__hamburger" id="nav-hamburger" aria-label="メニューを開閉する" aria-controls="site-nav" aria-expanded="false">
+      <span class="site-nav__hamburger-line"></span>
+      <span class="site-nav__hamburger-line"></span>
+      <span class="site-nav__hamburger-line"></span>
+    </button>
   </div>
 </header>
 
@@ -400,31 +403,18 @@ img,svg{display:block;max-width:100%}
 
 </main>
 
-<!-- ================= FOOTER ================= -->
 <footer class="site-footer">
-  <div class="container footer-inner">
-    <div class="footer-brand">生成AI活用支援のざつね屋</div>
-    <nav class="footer-nav" aria-label="フッターナビゲーション">
-      <a href="index.html#services">サービス</a>
-      <a href="profile.html">代表者プロフィール</a>
-      <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html">料金案内</a>
-      <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/request.html">資料請求</a>
-      <a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/estimate.html">お見積り</a>
-      <a href="privacy.html">プライバシーポリシー</a>
-      <a href="tokusyou.html">特定商取引法に基づく表記</a>
+  <div class="site-footer__inner">
+    <a href="./index.html" class="site-footer__logo" aria-label="ざつね屋 トップページ">ざつね屋</a>
+    <nav class="site-footer__nav" aria-label="フッターナビゲーション">
+      <a href="./faq.html">よくある質問</a>
+      <a href="./privacy.html">プライバシーポリシー</a>
+      <a href="./tokusho.html">特定商取引法に基づく表記</a>
     </nav>
+    <p class="site-footer__copy">© 2025 ざつね屋</p>
   </div>
-  <div class="copy">© 2026 ざつね屋</div>
 </footer>
 
-<script>
-(function(){
-  var here = location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-desktop a, .mnav-panel a').forEach(function(a){
-    var file = (a.getAttribute('href') || '').split('#')[0].split('/').pop();
-    if (file === here) a.classList.add('active');
-  });
-})();
-</script>
+<script src="./nav.js" defer></script>
 </body>
 </html>
