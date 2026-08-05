@@ -104,13 +104,18 @@ img,svg{display:block;max-width:100%}
 .arrowlink:hover svg{transform:translateX(4px)}
 
 /* ============ 1. HERO ============ */
-.hero{position:relative;background:var(--bg);overflow:hidden;
-  background-image:radial-gradient(rgba(131,156,170,.16) 1.1px,transparent 1.1px);background-size:22px 22px}
+.hero{position:relative;overflow:hidden;
+  background:
+    radial-gradient(rgba(131,156,170,.13) 1.1px,transparent 1.1px),
+    radial-gradient(ellipse 68% 80% at 78% 42%, rgba(91,189,200,.22) 0%, transparent 62%),
+    radial-gradient(ellipse 50% 60% at 15% 85%, rgba(248,152,29,.09) 0%, transparent 55%),
+    linear-gradient(148deg, #ffffff 0%, #EFF4F5 42%, #DCF0F2 100%);
+  background-size:22px 22px, auto, auto, auto}
 .hero .blob{position:absolute;pointer-events:none}
 .hero .b1{top:-160px;right:-110px;width:560px;height:500px;background:rgba(91,189,200,.15);border-radius:60% 40% 55% 45%/55% 50% 50% 45%;filter:blur(3px)}
 .hero .b2{top:-30px;right:80px;width:380px;height:360px;background:rgba(91,189,200,.10);border-radius:52% 48% 60% 40%/50% 55% 45% 50%}
 .hero .b3{bottom:-140px;left:-120px;width:420px;height:420px;background:rgba(248,152,29,.07);border-radius:50%}
-.hero-grid{position:relative;display:grid;grid-template-columns:.78fr 1.22fr;gap:64px;align-items:center;padding-top:var(--s20);padding-bottom:var(--s24)}
+.hero-grid{position:relative;display:grid;grid-template-columns:.62fr 1.38fr;gap:48px;align-items:center;padding-top:var(--s16);padding-bottom:var(--s20)}
 .badge{display:inline-flex;align-items:center;gap:8px;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-text);background:#fff;padding:8px 16px;border-radius:999px;box-shadow:var(--sh-1)}
 .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
 .hero h1{font-size:clamp(31px,4.7vw,47px);line-height:1.3;letter-spacing:.005em;margin:24px 0 0}
@@ -119,10 +124,10 @@ img,svg{display:block;max-width:100%}
 .hero-sub{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);max-width:430px;margin:24px 0 0}
 .cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:32px}
 .hero-note{font:400 13px/1.6 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-top:16px}
-/* hero visual — 600px frame, chips scaled up and overhanging for depth */
-.hero-visual{position:relative;height:600px}
-.hero-photo{position:absolute;inset:0;border-radius:48px 48px 150px 48px;overflow:hidden;box-shadow:var(--sh-3)}
-.hero-photo img{width:100%;height:100%;object-fit:cover}
+/* hero visual — 660px frame, illustration shown in full */
+.hero-visual{position:relative;height:660px}
+.hero-photo{position:absolute;inset:0;border-radius:32px;overflow:hidden;box-shadow:var(--sh-3);background:#fff}
+.hero-photo img{width:100%;height:100%;object-fit:contain}
 .hero-photo .tint{position:absolute;inset:0;background:linear-gradient(150deg,rgba(70,166,177,.34),rgba(91,189,200,.06) 48%,rgba(248,152,29,.05)),radial-gradient(120% 92% at 6% 100%,rgba(34,68,76,.44),rgba(34,68,76,0) 46%)}
 .hero-photo .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.10) 1.1px,transparent 1.1px);background-size:20px 20px;mix-blend-mode:overlay}
 /* チップ3枚の序列: c-chart=主役（左下角・白ハロー）/ c-sum=準主役（右上）/ c-ai=タグピル（左上）。全て枠からはみ出させて奥行きを出す */
