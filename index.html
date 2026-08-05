@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ざつね屋 — 中小企業のAI活用支援</title>
-<meta name="description" content="広島県福山市近郊の中小企業・小規模事業者向けAI活用支援。研修で「使える人」を作り、オーダーメイドで「使える仕組み」を作り、伴走で「組織ごと深化」させます。">
+<meta name="description" content="広島県東部の中小企業向けAI活用支援。研修・業務改善オーダーメイド・経営改善パッケージ・伴走の4サービス。報告書・営業資料・議事録などの日常業務にAIを組み込み、社員が自分で使い続けられる状態まで支援します。">
 <link rel="icon" href="./favicon.ico" sizes="any">
 <link rel="icon" href="./assets/favicon-32.png" type="image/png">
 <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ざつね屋">
 <meta property="og:title" content="ざつね屋 — 中小企業のAI活用支援">
-<meta property="og:description" content="広島県福山市近郊の中小企業・小規模事業者向けAI活用支援。研修で「使える人」を作り、オーダーメイドで「使える仕組み」を作り、伴走で「組織ごと深化」させます。">
+<meta property="og:description" content="広島県東部の中小企業向けAI活用支援。研修・業務改善オーダーメイド・経営改善パッケージ・伴走の4サービス。社員が自分で使い続けられる状態まで支援します。">
 <meta property="og:url" content="https://zatune-gif.github.io/zatuneya-hp/">
 <meta property="og:image" content="https://zatune-gif.github.io/zatuneya-hp/assets/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -173,7 +173,7 @@ img,svg{display:block;max-width:100%}
 .answer b{font-weight:900}
 
 /* ============ 3. SERVICES ============ */
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 .svc-card{background:#fff;border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:var(--sh-1);display:flex;flex-direction:column;transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
 .svc-card:hover{transform:translateY(-6px);box-shadow:var(--sh-2)}
 .svc-top{position:relative;background:linear-gradient(135deg,var(--teal-pale),var(--teal-pale2));padding:32px 24px;text-align:center;overflow:hidden}
@@ -290,6 +290,15 @@ img,svg{display:block;max-width:100%}
 .band .bcontent h3{color:#fff;font-size:clamp(21px,3vw,28px);line-height:1.5;margin:12px 0 0}
 .band .bcontent p{font-family:'Noto Sans JP',sans-serif;font-size:14.5px;line-height:1.9;color:rgba(255,255,255,.92);margin:16px 0 0}
 
+/* ============ 7b. FREE TOOLS — featured card ============ */
+.tool-card.tool-featured{border:2px solid var(--teal);background:linear-gradient(135deg,var(--teal-pale) 0%,#fff 70%)}
+.tool-featured-badge{display:inline-block;font:700 11px 'Noto Sans JP',sans-serif;color:#fff;background:var(--teal);padding:5px 14px;border-radius:999px;letter-spacing:.04em;margin-bottom:6px}
+
+/* ============ CTA 統合セクション ============ */
+.cv-cta-row{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:24px}
+.cv-foot a{color:var(--teal-text);text-decoration:none}
+.cv-foot a:hover{text-decoration:underline}
+
 /* ============ 8. FLOW ============ */
 .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
 .step{position:relative;text-align:center;padding:0 16px}
@@ -318,7 +327,7 @@ img,svg{display:block;max-width:100%}
   .chip.c-chart{left:-8px}
   .chip.c-sum{right:-14px}
   .hero-sub{max-width:none}
-  .svc-grid,.why-grid{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}
+  .why-grid{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}
   .flow{grid-template-columns:1fr 1fr;gap:40px 0}
   .step:not(:last-child)::after{display:none}
   .why-band .veil{background:linear-gradient(160deg,rgba(52,90,98,.94),rgba(70,166,177,.7))}
@@ -328,7 +337,7 @@ img,svg{display:block;max-width:100%}
 @media (max-width:680px){
   :root{--s24:64px;--s20:48px;--s16:40px;--s12:32px}
   .container{padding:0 20px}
-  .worry-grid,.cv-grid,.tools-grid{grid-template-columns:1fr}
+  .worry-grid,.cv-grid,.tools-grid,.svc-grid{grid-template-columns:1fr}
   .cv-inner,.contact-card{padding:32px 24px}
   .subsidy-card{padding:24px 20px}
   .answer{padding:32px 24px}
@@ -365,7 +374,7 @@ img,svg{display:block;max-width:100%}
   "@type": "Organization",
   "name": "ざつね屋",
   "url": "https://zatune-gif.github.io/zatuneya-hp/",
-  "description": "広島県福山市近郊の中小企業・小規模事業者向けAI活用支援。研修・オーダーメイド・伴走の3サービスを提供。",
+  "description": "広島県東部の中小企業向けAI活用支援。研修・業務改善オーダーメイド・経営改善パッケージ・伴走の4サービスを提供。",
   "areaServed": "広島県福山市近郊",
   "email": "zatuneya@gmail.com"
 }
@@ -419,9 +428,9 @@ img,svg{display:block;max-width:100%}
     <div class="hero-copy">
       <span class="badge"><span class="dot"></span>広島県福山市近郊の中小企業向け AI活用支援</span>
       <h1>教えて、作って、一緒に走る。AIを<span class="hl">「実際に使える」</span>会社にする。</h1>
-      <p class="hero-sub">生成AIを「知っている」から「業務で実際に使える」状態になるまでを伴走する、AI活用支援の専門家です。研修で使える人を作り、オーダーメイドで自社専用の仕組みを作り、伴走支援で組織ごと深化させます。</p>
+      <p class="hero-sub">広島県東部の中小企業向けに、AI研修・業務改善・定着支援を提供しています。報告書、営業資料、議事録などの日常業務にAIを組み込み、社員が自分で使い続けられる状態まで支援します。</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="#cv"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>資料請求・お見積りはこちら</a>
+        <a class="btn btn-primary" href="#contact"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>無料相談・見積もりを依頼する</a>
         <a class="btn btn-ghost" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/diagnosis-simple.html"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>無料AI診断を受ける（約3分）</a>
       </div>
       <p class="hero-note">診断は12問・無料・登録不要。資料請求・お見積りも無料です。</p>
@@ -487,9 +496,10 @@ img,svg{display:block;max-width:100%}
       <h2>まずは無料で「現在地」を知ることから</h2>
     </div>
     <div class="tools-grid">
-      <div class="tool-card">
+      <div class="tool-card tool-featured">
         <span class="tool-ic ic"><svg viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13h2M18 13h2M12 5V4"/><path d="M12 13l4-3"/><circle cx="12" cy="13" r="1.4"/></svg></span>
         <div>
+          <span class="tool-featured-badge">まずはここから</span>
           <span class="tool-free">無料・登録不要</span>
           <h3>AI活用準備度診断（12問・約3分）</h3>
           <p>貴社のAI活用が「準備期・導入期・活用期・推進期」のどの段階かを100点満点で診断。強み・優先課題・次のアクションまで表示します。</p>
@@ -529,7 +539,7 @@ img,svg{display:block;max-width:100%}
       <div class="why-card">
         <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H12l-4 3v-3H4Z"/><path d="M8.5 10.5l2 2 4-4"/></svg></span>
         <h3>教えられる実装者</h3>
-        <p>多くのAIコンサルは「提案だけ」か「実装だけ」。ざつね屋は作れるだけでなく、現場に合わせて説明し、定着するまで支援できます。</p>
+        <p>ざつね屋では、提案だけでなく、業務整理・AI指示書作成・操作手順書作成・現場への説明・運用後の改善まで対応します。</p>
       </div>
       <div class="why-card">
         <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M15.5 20v-1.2a3.7 3.7 0 0 0-3.7-3.7H6.2A3.7 3.7 0 0 0 2.5 18.8V20"/><circle cx="9" cy="7" r="3.3"/><path d="M21.5 20v-1.2a3.7 3.7 0 0 0-2.8-3.6"/><path d="M15.5 3.9a3.3 3.3 0 0 1 0 6.4"/></svg></span>
@@ -566,8 +576,8 @@ img,svg{display:block;max-width:100%}
   <div class="container">
     <div class="sec-head">
       <span class="eyebrow">Services</span>
-      <h2>3つのサービス</h2>
-      <p>研修が最も自然な入口です。研修 → オーダーメイド → 伴走と段階的に深められます。</p>
+      <h2>4つのサービス</h2>
+      <p>従業員5〜50名程度で、AI・DX専任担当者がいない中小企業を主な対象としています。研修が最も自然な入口です。研修 → オーダーメイド → 経営改善 → 伴走と段階的に深められます。</p>
     </div>
     <div class="svc-grid">
       <article class="svc-card">
@@ -577,9 +587,9 @@ img,svg{display:block;max-width:100%}
         </div>
         <div class="svc-body">
           <h3>AI研修ワークショップ</h3>
-          <div class="svc-catch">「使える人」を作る</div>
+          <div class="svc-catch">まず社員にAIを使わせたい</div>
           <p class="svc-desc">知識編＋文書・画像・動画・Claude Code実践の5コース体系。研修当日から受講者が自分の業務でAIを使い始められます。</p>
-          <div class="price-chip"><div class="box"><span class="amt">60,000円〜</span><span class="tax">（税別）</span><div class="note">助成金など公的支援の対象となり得ます</div></div></div>
+          <div class="price-chip"><div class="box"><span class="amt">60,000円〜</span><span class="tax">（税別）</span><div class="note">人材開発支援助成金等、公的支援の対象となり得ます（要件確認が必要）</div></div></div>
           <a class="arrowlink" href="./services.html#training">詳しく見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </article>
@@ -590,7 +600,7 @@ img,svg{display:block;max-width:100%}
         </div>
         <div class="svc-body">
           <h3>AI業務改善オーダーメイド</h3>
-          <div class="svc-catch">「使える仕組み」を手元に残す</div>
+          <div class="svc-catch">1つの業務を改善したい</div>
           <p class="svc-desc">貴社の業務専用のAI指示書・手順書を制作して納品する有期完結型。担当者が変わっても使い続けられます。</p>
           <div class="price-chip"><div class="box"><span class="amt">50,000円〜</span><span class="tax">（税別）</span><div class="note">定額・有期完結型</div></div></div>
           <a class="arrowlink" href="./services.html#order">詳しく見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -598,13 +608,26 @@ img,svg{display:block;max-width:100%}
       </article>
       <article class="svc-card">
         <div class="svc-top">
-          <span class="svc-ic ic"><svg viewBox="0 0 24 24"><path d="M15.5 20v-1.2a3.7 3.7 0 0 0-3.7-3.7H6.2A3.7 3.7 0 0 0 2.5 18.8V20"/><circle cx="9" cy="7" r="3.3"/><path d="M21.5 20v-1.2a3.7 3.7 0 0 0-2.8-3.6"/><path d="M15.5 3.9a3.3 3.3 0 0 1 0 6.4"/></svg></span>
-          <div class="svc-tag">SERVICE 03 ─ 継続支援</div>
+          <span class="svc-ic ic"><svg viewBox="0 0 24 24"><path d="M3 17l4-8 4 4 4-6 4 8"/><path d="M3 20h18"/></svg></span>
+          <div class="svc-tag">SERVICE 03 ─ 組織改善</div>
         </div>
         <div class="svc-body">
-          <h3>AI開発伴走サービス</h3>
-          <div class="svc-catch">「使い続けられる組織」にする</div>
-          <p class="svc-desc">月次ミーティングで知見を統合しながら共同開発を続ける3か月区切りの契約。ざつね屋も手を動かします。</p>
+          <h3>AI経営改善パッケージ</h3>
+          <div class="svc-catch">組織・KPIから整理したい</div>
+          <p class="svc-desc">経営課題を起点に、現状診断・KPI設計・体制設計・実装支援を一貫して行う組織改善パッケージ。2〜4か月の3プランから選べます。</p>
+          <div class="price-chip"><div class="box"><span class="amt">270,000円〜</span><span class="tax">（税別）</span><div class="note">要件を満たす場合、補助金の対象となり得ます（要件確認が必要）</div></div></div>
+          <a class="arrowlink" href="./services.html#management-pkg">詳しく見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="svc-card">
+        <div class="svc-top">
+          <span class="svc-ic ic"><svg viewBox="0 0 24 24"><path d="M15.5 20v-1.2a3.7 3.7 0 0 0-3.7-3.7H6.2A3.7 3.7 0 0 0 2.5 18.8V20"/><circle cx="9" cy="7" r="3.3"/><path d="M21.5 20v-1.2a3.7 3.7 0 0 0-2.8-3.6"/><path d="M15.5 3.9a3.3 3.3 0 0 1 0 6.4"/></svg></span>
+          <div class="svc-tag">SERVICE 04 ─ 継続支援</div>
+        </div>
+        <div class="svc-body">
+          <h3>AI活用伴走サービス</h3>
+          <div class="svc-catch">毎月継続して改善したい</div>
+          <p class="svc-desc">月次ミーティングで知見を統合しながら共同で改善を続ける3か月区切りの契約。ざつね屋も手を動かします。</p>
           <div class="price-chip"><div class="box"><span class="amt">月額 60,000円〜</span><span class="tax">（税別）</span><div class="note">3か月区切りで更新</div></div></div>
           <a class="arrowlink" href="./services.html#banso">詳しく見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
@@ -695,7 +718,12 @@ img,svg{display:block;max-width:100%}
           <div class="ex-label">（税別）</div>
         </div>
         <div class="ex-block">
-          <div class="ex-label">AI開発伴走サービス</div>
+          <div class="ex-label">AI経営改善パッケージ</div>
+          <div class="ex-num">270,000円〜</div>
+          <div class="ex-label">（税別）</div>
+        </div>
+        <div class="ex-block">
+          <div class="ex-label">AI活用伴走サービス</div>
           <div class="ex-num">月額 60,000円〜</div>
           <div class="ex-label">（税別）</div>
         </div>
@@ -704,7 +732,7 @@ img,svg{display:block;max-width:100%}
     <ul class="notes">
       <li>価格はすべて税別です。お支払い条件・修正回数・対象外業務などの詳細条件は料金ページに記載しています</li>
       <li>モニター制度（先着3社・30%引き）は研修の個別コースのみが対象です</li>
-      <li>※人材開発支援助成金が活用できる可能性があります（要件の確認が必要です）</li>
+      <li>人材開発支援助成金・補助金等、公的支援の対象となり得る場合があります（要件の確認が必要です）。制度の適用・支給を保証するものではありません。申請前に商工会議所・社会保険労務士等へご確認ください</li>
     </ul>
     <div class="price-cta">
       <a class="btn btn-white" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html">料金の詳細を見る</a>
@@ -713,48 +741,35 @@ img,svg{display:block;max-width:100%}
   </div>
 </section>
 
-<!-- ================= 8a. CV ================= -->
-<section class="section cv-section" id="cv">
+<!-- ================= 8. CONTACT (統合CTA) ================= -->
+<section class="section cv-section" id="contact">
   <div class="container">
     <div class="cv-card">
       <div class="cv-topbar"></div>
       <div class="cv-inner">
         <span class="glow"></span>
         <div class="cv-head">
-          <span class="cv-tag"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg>REQUEST ─ 無料</span>
-          <h2>資料請求・お見積りはこちらから</h2>
-          <p>どちらも無料です。詳細診断（23問・約7分）にお答えいただくと、貴社の状況に合わせた内容でお届けできます。</p>
+          <span class="cv-tag"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>CONTACT ─ 無料</span>
+          <h2>まずはお気軽にご相談ください</h2>
+          <p>「うちの業務でも使えるか？」の段階で大丈夫です。相談・資料請求・お見積りは以下のフォームからどうぞ。すべて無料です。</p>
         </div>
-        <div class="cv-grid">
-          <div class="cv-opt">
-            <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg></span>
-            <h3>資料請求</h3>
-            <p>サービス紹介資料と、詳細診断の結果レポート（貴社の現状・優先課題・おすすめの進め方）をメールでお送りします。「まず社内で検討したい」方はこちら。</p>
-            <a class="btn btn-primary btn-block" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/request.html">資料請求へ進む <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </div>
-          <div class="cv-opt">
-            <span class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h3"/></svg></span>
-            <h3>お見積り</h3>
-            <p>詳細診断の結果をもとに、貴社に合うプランの概算見積を3パターンご提示します。「費用感を先に知りたい」方はこちら。</p>
-            <a class="btn btn-primary btn-block" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/estimate.html">お見積りへ進む <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </div>
+        <div class="contact-form-wrapper">
+          <iframe
+            src="https://docs.google.com/forms/d/19KisDX9WrxpgxSLwPJNln5hKTJ2FlDPEDlzzc5GE-7I/viewform?embedded=true"
+            width="100%" height="760" frameborder="0"
+            marginheight="0" marginwidth="0"
+            title="お問い合わせフォーム" loading="lazy">
+            読み込んでいます…
+          </iframe>
         </div>
-        <p class="cv-foot">返信は2営業日以内です。しつこい営業連絡はいたしません。</p>
+        <div class="cv-cta-row">
+          <a class="btn btn-ghost" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/diagnosis-simple.html">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            まず3分でAI活用度を診断する
+          </a>
+        </div>
+        <p class="cv-foot">返信は2営業日以内です。しつこい営業連絡はいたしません。<br>フォームが読み込めない場合は <a href="mailto:zatuneya@gmail.com?subject=AI活用支援について問い合わせ">zatuneya@gmail.com</a> までご連絡ください。</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= 8b. CONTACT ================= -->
-<section class="section contact" id="contact">
-  <div class="container">
-    <div class="contact-card">
-      <span class="cc-blob"></span>
-      <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg></span>
-      <h2>お問い合わせ</h2>
-      <p>「うちの業務でも使えるか？」の段階で大丈夫です。まずはお気軽にご相談ください。</p>
-      <a class="btn btn-primary" href="mailto:zatuneya@gmail.com?subject=AI活用支援について問い合わせ"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>メールで相談する</a>
-      <p class="mailline">メールアドレス：<a href="mailto:zatuneya@gmail.com">zatuneya@gmail.com</a>（返信2営業日以内）</p>
     </div>
   </div>
 </section>
