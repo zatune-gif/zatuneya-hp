@@ -424,8 +424,8 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
-  height: 64px;
+  padding: 0 32px;
+  height: 72px;
 }
 
 .site-logo {
@@ -444,7 +444,7 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 20px;
   margin-left: auto;
 }
 
@@ -454,22 +454,25 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 4px;
+  gap: 2px;
   align-items: center;
 }
 
 .site-nav__link {
-  font-size: 0.9375rem;
-  padding: 8px 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 8px 14px;
   color: var(--text);
   text-decoration: none;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   display: inline-block;
-  transition: color 0.2s;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
 }
 
 .site-nav__link:hover {
   color: var(--teal-text);
+  background: var(--teal-pale);
 }
 
 .site-nav__item--dropdown {
@@ -481,11 +484,13 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   border: none;
   cursor: pointer;
   font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
-  font-size: 0.9375rem;
-  padding: 8px 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 8px 14px;
   color: var(--text);
   text-decoration: none;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
+  border-radius: 6px;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -494,6 +499,7 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 
 .site-nav__dropdown-trigger:hover {
   color: var(--teal-text);
+  background: var(--teal-pale);
 }
 
 .site-nav__caret {
@@ -542,20 +548,23 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 .site-nav__cta {
   background: var(--teal);
   color: #fff;
-  padding: 8px 20px;
-  border-radius: 4px;
-  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 999px;
+  font-weight: 700;
   text-decoration: none;
   font-size: 0.875rem;
-  letter-spacing: 0.02em;
-  transition: background 0.2s;
+  letter-spacing: 0.04em;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
   white-space: nowrap;
-  margin-left: 8px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(91,189,200,0.30);
 }
 
 .site-nav__cta:hover {
-  background: var(--teal-dk);
+  background: var(--teal-d);
   color: #fff;
+  box-shadow: 0 4px 18px rgba(91,189,200,0.40);
+  transform: translateY(-1px);
 }
 
 /* ── B. モバイル ハンバーガーメニュー ── */
