@@ -73,18 +73,6 @@ img,svg{display:block;max-width:100%}
 .btn-outline:hover{background:var(--teal-pale);transform:translateY(-2px)}
 .btn-outline:active{transform:translateY(0)}
 
-/* HEADER */
-.site-header{position:sticky;top:0;z-index:60;background:rgba(239,244,245,.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(90,140,150,.12)}
-.hdr-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
-.brand{display:flex;align-items:center;gap:12px;font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:21px;color:var(--head);text-decoration:none;letter-spacing:.02em}
-.nav-desktop{display:flex;align-items:center;gap:32px}
-.nav-desktop a{font:700 14px 'Noto Sans JP',sans-serif;color:var(--body);text-decoration:none;transition:color .15s;padding-bottom:4px;border-bottom:2px solid transparent}
-.nav-desktop a:hover{color:var(--teal-text)}
-.nav-desktop a.active,.mnav-panel a.active{color:var(--teal-text)}
-.nav-desktop a.active{border-bottom-color:var(--teal)}
-.nav-desktop .btn{padding:12px 20px;font-size:14px}
-.mnav{display:none}
-
 /* PAGE HERO */
 .page-hero{position:relative;background:var(--bg);overflow:hidden;background-image:radial-gradient(rgba(131,156,170,.16) 1.1px,transparent 1.1px);background-size:22px 22px}
 .page-hero .blob{position:absolute;pointer-events:none}
@@ -136,27 +124,8 @@ img,svg{display:block;max-width:100%}
 .cv-inner .lead{position:relative;font-family:'Noto Sans JP',sans-serif;font-size:14.5px;line-height:1.9;color:var(--body);max-width:520px;margin:16px auto 0}
 .cv-cta{position:relative;display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:24px}
 
-/* FOOTER */
-.site-footer{background:#334A52;color:#cdd9dd}
-.footer-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;padding:40px 0}
-.footer-brand{display:flex;align-items:center;gap:12px;font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:19px;color:#fff}
-.footer-nav{display:flex;flex-wrap:wrap;gap:24px}
-.footer-nav a{font:700 13px 'Noto Sans JP',sans-serif;color:#b7c6cb;text-decoration:none;transition:color .15s}
-.footer-nav a:hover{color:#fff}
-.copy{text-align:center;font:400 12.5px 'Noto Sans JP',sans-serif;color:#A6B7BC;padding:16px 0 32px;border-top:1px solid rgba(255,255,255,.1)}
-
 /* RESPONSIVE */
 @media (max-width:960px){
-  .nav-desktop{display:none}
-  .mnav{display:block;position:relative}
-  .mnav>summary{list-style:none;cursor:pointer;width:46px;height:46px;border-radius:13px;background:#fff;box-shadow:var(--sh-1);display:flex;align-items:center;justify-content:center}
-  .mnav>summary::-webkit-details-marker{display:none}
-  .mnav>summary svg{width:24px;height:24px;stroke:var(--head);stroke-width:1.8;stroke-linecap:round;fill:none}
-  .mnav[open]>summary{background:var(--teal-pale)}
-  .mnav-panel{position:absolute;right:0;top:54px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-3);padding:16px;min-width:220px;display:flex;flex-direction:column;gap:0}
-  .mnav-panel a{font:700 15px 'Noto Sans JP',sans-serif;color:var(--body);text-decoration:none;padding:12px 16px;border-radius:12px}
-  .mnav-panel a:hover{background:var(--teal-pale);color:var(--teal-text)}
-  .mnav-panel .btn{margin-top:8px;font-size:15px;padding:16px}
   .why-grid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}
   .heroC .ph-inner{grid-template-columns:1fr;gap:32px;padding:48px 0 40px}
   .heroC .artcard{max-width:380px;margin:0 auto}
@@ -227,7 +196,7 @@ img,svg{display:block;max-width:100%}
       <span class="badge"><span class="dot"></span>PROFILE ─ 代表について</span>
       <h1>「難しそう」を、<br>いっしょに越えていく。</h1>
       <span class="role-tag">ざつね屋 代表</span>
-      <p class="lead">立場も業界も異なる9つの経歴が、ざつね屋の「教えられる実装者」「現場目線の伴走」という強みにつながりました。そして現在、技術と人の“あいだ”に立ち続けてきた経験を、広島県福山市近郊の中小企業のAI活用に還元しています。</p>
+      <p class=”lead”>多様な現場での経験を経て、中小企業が「AIを知っている」から「実際に使える」へ変わっていく場面を一緒に作りたいと、ざつね屋を立ち上げました。広島県東部を中心に、AI活用支援を提供しています。</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="index.html#contact">お問い合わせへ進む</a>
         <a class="btn btn-outline" href="#career">経歴を見る</a>
@@ -235,6 +204,21 @@ img,svg{display:block;max-width:100%}
     </div>
   </div>
   <svg class="wave" viewBox="0 0 1440 64" preserveAspectRatio="none"><path d="M0 38 C 280 6 480 62 720 38 C 960 10 1180 58 1440 30 L1440 64 L0 64 Z" fill="#fff"/></svg>
+</section>
+
+<!-- ================= 事業を始めた理由 ================= -->
+<section class="section bg-tint">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Story</span>
+      <h2>なぜ、このサービスを始めたか</h2>
+    </div>
+    <div style="max-width:660px;margin:0 auto;font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;">
+      <p>パソコン講師・NPO代表・カスタマーエンジニア・DX推進担当・専門学校の担任と、9つの現場を経験する中で、ある共通の課題を繰り返し目にしてきました。</p>
+      <p style="margin-top:1.5em;">「AIを使ってみたいが、何から始めたらいいかわからない」「研修を受けたが、業務では使えていない」。<br>知識と実践の間に、大きな溝がある。</p>
+      <p style="margin-top:1.5em;">提案だけするコンサルでもなく、システムを納品するだけの業者でもない。業務を一緒に整理して、作って、定着するまで伴走できる存在が必要だと感じ、ざつね屋を立ち上げました。</p>
+    </div>
+  </div>
 </section>
 
 <!-- ================= 経歴 → 強み ================= -->
@@ -323,7 +307,7 @@ img,svg{display:block;max-width:100%}
       <div class="why-card">
         <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H12l-4 3v-3H4Z"/><path d="M8.5 10.5l2 2 4-4"/></svg></span>
         <h3>教えられる実装者</h3>
-        <p>多くのAIコンサルは「提案だけ」か「実装だけ」。ざつね屋は作れるだけでなく、現場に合わせて説明し、定着するまで支援できます。</p>
+        <p>ざつね屋では、提案にとどまらず、現場に合わせたAI指示書・手順書の作成、操作説明、運用後の改善まで一貫して対応します。</p>
         <span class="why-src">経歴 1・8・9 より</span>
       </div>
       <div class="why-card">
@@ -342,6 +326,33 @@ img,svg{display:block;max-width:100%}
   </div>
 </section>
 
+<!-- ================= 支援で大切にしていること ================= -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Values</span>
+      <h2>支援で大切にしていること</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M12 22c5.52 0 10-4.48 10-10S17.52 2 12 2 2 6.48 2 12s4.48 10 10 10z"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+        <h3>「難しそう」を言い訳にしない</h3>
+        <p>技術的な言葉を使わず、現場の言葉でAIを説明します。「うちには難しい」と感じる前に、一緒に試してみてください。</p>
+      </div>
+      <div class="why-card">
+        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <h3>担当者が自分で動ける状態まで</h3>
+        <p>渡して終わりではなく、担当者が日常業務で自分一人で使えるようになるまで一緒に進みます。依存ではなく自立を目指します。</p>
+      </div>
+      <div class="why-card">
+        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+        <h3>ツールより先に業務を整理する</h3>
+        <p>AIツールを入れる前に、まず業務の流れを整理します。手順が明確になれば、AIは確実に役立ちます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= CV ================= -->
 <section class="section cv-section">
   <div class="container">
@@ -349,10 +360,10 @@ img,svg{display:block;max-width:100%}
       <div class="cv-topbar"></div>
       <div class="cv-inner">
         <h2>サービス詳細もご覧ください</h2>
-        <p class="lead">研修・オーダーメイド・伴走の3サービスの内容と料金は、サービス詳細ページでご案内しています。</p>
+        <p class="lead">研修・業務改善・経営改善・伴走の4サービスの内容と料金は、サービス詳細ページでご案内しています。</p>
         <div class="cv-cta">
           <a class="btn btn-primary" href="./services.html">サービス詳細を見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn-outline" href="index.html#cv">資料請求・お見積り</a>
+          <a class="btn btn-outline" href="./index.html#contact">まずは相談する</a>
         </div>
       </div>
     </div>
