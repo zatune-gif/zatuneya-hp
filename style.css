@@ -435,6 +435,17 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   text-decoration: none;
   letter-spacing: 0.02em;
   white-space: nowrap;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.site-logo__pre {
+  font-size: 0.65em;
+  font-weight: 400;
+  color: var(--sub-text);
+  letter-spacing: 0.03em;
 }
 
 .site-nav {
@@ -446,6 +457,7 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 
 .site-nav__list {
   display: flex;
+  flex-direction: row;
   list-style: none;
   margin: 0;
   padding: 0;
