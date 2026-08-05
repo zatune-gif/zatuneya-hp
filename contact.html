@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お問い合わせ｜ざつね屋 AI活用支援</title>
+<meta name="description" content="ざつね屋へのお問い合わせ・無料相談はこちらから。相談・資料請求・お見積りはすべて無料です。広島県東部の中小企業向けAI活用支援。">
+<link rel="icon" href="./favicon.ico" sizes="any">
+<link rel="icon" href="./assets/favicon-32.png" type="image/png">
+<link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+<link rel="canonical" href="https://zatune-gif.github.io/zatuneya-hp/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ざつね屋">
+<meta property="og:title" content="お問い合わせ｜ざつね屋 AI活用支援">
+<meta property="og:description" content="ざつね屋へのお問い合わせ・無料相談はこちらから。相談・資料請求・お見積りはすべて無料です。">
+<meta property="og:url" content="https://zatune-gif.github.io/zatuneya-hp/contact.html">
+<meta property="og:image" content="https://zatune-gif.github.io/zatuneya-hp/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<style>
+/* ============================================================
+   ざつね屋 — contact.html  (design system shared with index.html)
+   ============================================================ */
+:root{
+  --bg:#EFF4F5; --card:#fff;
+  --teal:#5BBDC8; --teal-d:#46A6B1; --teal-pale:#EAF6F8; --teal-pale2:#DCF0F2; --teal-line:#D3E7EA;
+  --orange:#F8981D; --orange-d:#E28511; --orange-pale:#FFF8EF; --orange-line:#F6E4C8;
+  --sub:#839CAA; --head:#3C3C3C; --body:#575757;
+  --line:#E1EAEC;
+  /* --- 文字専用トークン (G2: WCAG AA). --teal-d/--sub/--orange-d は背景・アイコン・枠線用のまま残す --- */
+  --teal-text:#31747C;   /* on #fff 5.36 / --bg 4.83 / --teal-pale 4.86 / --teal-pale2 4.54 */
+  --sub-text:#556E7C;    /* on #fff 5.37 / --bg 4.84 / --teal-pale 4.87 / --teal-pale2 4.55 */
+  --orange-text:#9C5C0C; /* on #fff 5.32 / --orange-pale 5.05 / --bg 4.79 */
+  --band-a:#2B7881; --band-b:#24565C;
+  --sh-1:0 1px 3px rgba(40,60,70,.05), 0 4px 12px rgba(40,60,70,.05);
+  --sh-2:0 2px 6px rgba(40,60,70,.06), 0 14px 30px rgba(40,60,70,.10);
+  --sh-3:0 6px 14px rgba(40,60,70,.10), 0 30px 60px rgba(40,60,70,.18);
+  --sh-orange:0 10px 24px rgba(248,152,29,.34);
+  --sh-orange-h:0 16px 32px rgba(248,152,29,.44);
+  --s2:8px; --s3:12px; --s4:16px; --s6:24px; --s8:32px; --s10:40px; --s12:48px; --s16:64px; --s20:80px; --s24:96px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--body);font-family:'Roboto','Noto Sans JP',system-ui,sans-serif;font-size:16px;line-height:1.9;letter-spacing:0.02em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--head);margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--teal-text);outline-offset:3px;border-radius:6px}
+.site-footer :focus-visible{outline-color:#fff}
+.container{max-width:1120px;margin:0 auto;padding:0 32px}
+.container.tight{max-width:960px}
+.section{padding:var(--s24) 0}
+.bg-white{background:#fff}
+.bg-tint{background:var(--bg)}
+.eyebrow{display:inline-block;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.22em;color:var(--teal-text);text-transform:uppercase}
+.ic{display:inline-flex;align-items:center;justify-content:center}
+.ic svg{width:100%;height:100%;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
+
+/* BUTTONS */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease);cursor:pointer;white-space:nowrap}
+.btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
+.btn-primary{background:var(--orange);color:#332211;box-shadow:var(--sh-orange)}
+.btn-primary:hover{background:var(--orange-d);transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
+.btn-primary:active{transform:translateY(0);box-shadow:0 4px 12px rgba(248,152,29,.4)}
+.btn-outline{background:transparent;color:var(--teal-text);border-color:var(--teal)}
+.btn-outline:hover{background:var(--teal-pale);transform:translateY(-2px)}
+.btn-ghost{background:#fff;color:var(--teal-text);box-shadow:var(--sh-1)}
+.btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
+
+/* ============ CONTACT ============ */
+.contact-hero{padding:64px 0 48px;text-align:center}
+.contact-hero h1{font-size:clamp(28px,4vw,36px);margin:12px 0 0}
+.contact-hero p{margin:16px auto 0;max-width:560px;color:var(--body);line-height:1.9;font-family:'Noto Sans JP',sans-serif}
+.contact-form-section{padding:0 0 96px}
+.contact-form-card{background:#fff;border-radius:24px;padding:32px;box-shadow:0 6px 14px rgba(40,60,70,.10),0 30px 60px rgba(40,60,70,.18)}
+.contact-mail-note{text-align:center;margin-top:24px;font-size:14px;color:var(--sub-text)}
+.contact-mail-note a{color:var(--teal-text)}
+
+/* RESPONSIVE */
+@media (max-width:960px){
+  .nav-desktop{display:none}
+  .mnav{display:block}
+}
+@media (max-width:680px){
+  :root{--s24:64px;--s20:48px;--s16:40px;--s12:32px}
+  .container{padding:0 20px}
+  .contact-form-card{padding:16px}
+}
+@media (max-width:400px){
+  body{font-size:15px}
+  .btn{padding:16px 24px;font-size:15px}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="./index.html" class="site-logo" aria-label="ざつね屋 トップページ"><span class="site-logo__pre">中小企業向け<span class="site-logo__ai">AI</span>活用支援の</span><span class="site-logo__name">ざつね屋</span></a>
+    <nav class="site-nav" id="site-nav" aria-label="グローバルナビゲーション">
+      <ul class="site-nav__list">
+        <li class="site-nav__item"><a href="./services.html" class="site-nav__link">サービス</a></li>
+        <li class="site-nav__item"><a href="./works.html" class="site-nav__link">実績</a></li>
+        <li class="site-nav__item"><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html" class="site-nav__link">料金</a></li>
+        <li class="site-nav__item site-nav__item--dropdown">
+          <button class="site-nav__dropdown-trigger site-nav__link" aria-expanded="false" aria-haspopup="true">
+            無料ツール<span class="site-nav__caret" aria-hidden="true">▾</span>
+          </button>
+          <ul class="site-nav__dropdown">
+            <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/diagnosis-simple.html" class="site-nav__dropdown-link">AI活用準備度診断</a></li>
+            <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/15_prompt-library/" class="site-nav__dropdown-link">プロンプトライブラリ</a></li>
+          </ul>
+        </li>
+        <li class="site-nav__item"><a href="./profile.html" class="site-nav__link">代表について</a></li>
+      </ul>
+      <a href="./contact.html" class="site-nav__cta" aria-current="page">お問い合わせ</a>
+    </nav>
+    <button class="site-nav__hamburger" id="nav-hamburger" aria-label="メニューを開閉する" aria-controls="site-nav" aria-expanded="false">
+      <span class="site-nav__hamburger-line"></span>
+      <span class="site-nav__hamburger-line"></span>
+      <span class="site-nav__hamburger-line"></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="contact-hero">
+    <div class="container tight">
+      <span class="eyebrow">Contact</span>
+      <h1>お問い合わせ・無料相談</h1>
+      <p>「うちの業務でも使えるか？」の段階で大丈夫です。相談・資料請求・お見積りはすべて無料です。返信は2営業日以内です。</p>
+    </div>
+  </section>
+  <section class="contact-form-section">
+    <div class="container tight">
+      <div class="contact-form-card">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfmX_5vT9A751YBGaCqCsILRk8AQnrD1GlY3GY0Dhfo0-H3kA/viewform?embedded=true"
+          width="100%" height="900" frameborder="0"
+          marginheight="0" marginwidth="0"
+          title="お問い合わせフォーム" loading="lazy">
+          読み込んでいます…
+        </iframe>
+      </div>
+      <p class="contact-mail-note">フォームが読み込めない場合は <a href="mailto:zatuneya@gmail.com?subject=AI活用支援について問い合わせ">zatuneya@gmail.com</a> までご連絡ください。しつこい営業連絡はいたしません。</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <a href="./index.html" class="site-footer__logo">ざつね屋</a>
+      <p class="site-footer__tagline">広島県東部の中小企業に<br>AI活用支援を届ける</p>
+    </div>
+    <nav class="site-footer__sitemap" aria-label="サイトマップ">
+      <div class="site-footer__col">
+        <span class="site-footer__col-title">サービス</span>
+        <ul>
+          <li><a href="./services.html">サービス一覧</a></li>
+          <li><a href="./services.html#training">AI研修</a></li>
+          <li><a href="./services.html#custom">オーダーメイド支援</a></li>
+          <li><a href="./services.html#consulting">AI経営改善パッケージ</a></li>
+          <li><a href="./services.html#escort">AI活用伴走サービス</a></li>
+        </ul>
+      </div>
+      <div class="site-footer__col">
+        <span class="site-footer__col-title">会社情報</span>
+        <ul>
+          <li><a href="./works.html">支援実績</a></li>
+          <li><a href="./profile.html">代表について</a></li>
+          <li><a href="./faq.html">よくある質問</a></li>
+        </ul>
+      </div>
+      <div class="site-footer__col">
+        <span class="site-footer__col-title">お問い合わせ</span>
+        <ul>
+          <li><a href="./contact.html">相談・お見積もり</a></li>
+          <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/diagnosis-simple.html">無料AI診断ツール</a></li>
+          <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html">料金・プラン</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="site-footer__bottom">
+    <ul class="site-footer__legal">
+      <li><a href="./faq.html">よくある質問</a></li>
+      <li><a href="./privacy.html">プライバシーポリシー</a></li>
+      <li><a href="./tokusho.html">特定商取引法に基づく表記</a></li>
+    </ul>
+    <p class="site-footer__copy">© 2026 ざつね屋</p>
+  </div>
+</footer>
+
+<script src="./nav.js" defer></script>
+</body>
+</html>
