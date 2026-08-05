@@ -130,7 +130,7 @@ img,svg{display:block;max-width:100%}
 .hero-photo img{width:100%;height:100%;object-fit:cover}
 .hero-photo .tint{position:absolute;inset:0;background:linear-gradient(150deg,rgba(70,166,177,.34),rgba(91,189,200,.06) 48%,rgba(248,152,29,.05)),radial-gradient(120% 92% at 6% 100%,rgba(34,68,76,.44),rgba(34,68,76,0) 46%)}
 .hero-photo .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.10) 1.1px,transparent 1.1px);background-size:20px 20px;mix-blend-mode:overlay}
-/* チップ2枚: c-chart=主役（左下角・白ハロー）/ c-ai=タグピル（左上）。枠からはみ出させて奥行きを出す */
+/* チップ3枚: c-ai=タグピル（左上）/ c-sum=右サマリー/ c-chart=主役（左下）。枠からはみ出させて奥行きを出す */
 .chip{position:absolute;background:#fff;box-shadow:var(--sh-3);animation:float 6.5s var(--ease) infinite;z-index:2}
 .chip.c-ai{left:-18px;top:30px;display:inline-flex;align-items:center;gap:12px;padding:8px 20px 8px 8px;border-radius:999px;animation-delay:.2s}
 .chip.c-ai .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-d));display:flex;align-items:center;justify-content:center}
@@ -207,22 +207,10 @@ img,svg{display:block;max-width:100%}
 .price-inner h2{color:#fff;font-size:clamp(25px,4vw,34px);line-height:1.42;margin:16px auto 0;max-width:840px}
 .price-inner .desc{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:1.95;color:rgba(255,255,255,.94);max-width:700px;margin:16px auto 0}
 .subsidy-card{background:#fff;color:var(--body);border-radius:26px;padding:40px;max-width:780px;margin:32px auto 0;box-shadow:var(--sh-3)}
-.subsidy-note{font:400 16px/1.9 'Noto Sans JP',sans-serif;color:var(--body);text-align:center;margin:0}
 .example{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:22px}
 .ex-block{text-align:center}
 .ex-label{font:700 12px 'Noto Sans JP',sans-serif;color:var(--sub-text);letter-spacing:.04em}
 .ex-num{font:900 clamp(28px,5vw,34px) 'Roboto',sans-serif;color:var(--head);line-height:1.1;margin-top:6px}
-.ex-num.strike{color:var(--sub-text);position:relative;display:inline-block}
-.ex-num.strike::after{content:"";position:absolute;left:-6px;right:-6px;top:52%;height:3px;background:var(--sub);transform:rotate(-9deg)}
-.ex-num.hit{color:var(--orange-text)}
-.ex-arrow{color:var(--teal);display:flex}
-.ex-arrow svg{width:38px;height:38px;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.off-badge{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;font:900 15px 'Roboto',sans-serif;padding:8px 18px;border-radius:999px;margin-top:8px}
-.subbar{margin-top:28px}
-.subbar-track{display:flex;height:36px;border-radius:11px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line)}
-.subbar-fill{background:linear-gradient(90deg,var(--teal),var(--teal-d));display:flex;align-items:center;padding-left:18px;color:#fff;font:900 13px 'Noto Sans JP',sans-serif;width:75%}
-.subbar-rest{background:var(--orange);display:flex;align-items:center;justify-content:center;color:#fff;font:900 13px 'Noto Sans JP',sans-serif;flex:none;width:25%}
-.subbar-cap{display:flex;justify-content:space-between;font:700 11.5px 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-top:9px}
 .notes{list-style:none;padding:0;margin:32px auto 0;text-align:left;max-width:760px}
 .notes li{position:relative;padding-left:24px;font:400 13px/1.85 'Noto Sans JP',sans-serif;color:rgba(255,255,255,.92)}
 .notes li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.6)}
@@ -310,19 +298,6 @@ img,svg{display:block;max-width:100%}
 .step-num{position:relative;width:68px;height:68px;border-radius:50%;background:#fff;border:2px solid var(--teal);display:flex;align-items:center;justify-content:center;font:900 27px 'Roboto',sans-serif;color:var(--teal-text);margin:0 auto;box-shadow:var(--sh-1);z-index:1}
 .step h4{font-size:16px;margin:20px 0 0;letter-spacing:.01em}
 .step p{font:400 13px/1.8 'Noto Sans JP',sans-serif;color:var(--body);margin:12px 0 0}
-
-/* ============ 9. CONTACT ============ */
-.contact{background:var(--bg)}
-.contact-card{position:relative;max-width:780px;margin:0 auto;background:linear-gradient(135deg,var(--teal-pale),#fff);border:1px solid var(--teal-line);border-radius:30px;padding:48px 40px;text-align:center;box-shadow:var(--sh-2);overflow:hidden}
-.contact-card .cc-blob{position:absolute;bottom:-90px;right:-60px;width:240px;height:240px;background:rgba(91,189,200,.14);border-radius:50%}
-.contact-card .ic{position:relative;width:62px;height:62px;border-radius:18px;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:var(--sh-1)}
-.contact-card .ic svg{width:32px;height:32px;stroke:var(--teal-d)}
-.contact-card h2{position:relative;font-size:clamp(25px,3.6vw,32px)}
-.contact-card p{position:relative;font-family:'Noto Sans JP',sans-serif;font-size:15px;line-height:1.9;color:var(--body);margin:16px auto 0;max-width:520px}
-.contact-card .btn{position:relative;margin-top:24px}
-.mailline{position:relative;font:700 14px 'Noto Sans JP',sans-serif;color:var(--body);margin-top:20px}
-.mailline a{color:var(--teal-text);text-decoration:none}
-.mailline a:hover{text-decoration:underline}
 
 /* ============ RESPONSIVE ============ */
 @media (max-width:960px){
