@@ -439,19 +439,17 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 }
 
 .site-logo__pre {
-  font-size: 10px;
-  font-weight: 500;
+  font-size: 0.65em;
+  font-weight: 400;
   color: var(--sub-text);
-  letter-spacing: 0.06em;
-  font-family: 'Noto Sans JP', sans-serif;
+  letter-spacing: 0.03em;
 }
 
 .site-logo__name {
-  font-size: 22px;
-  font-weight: 900;
-  color: var(--teal-text);
-  letter-spacing: 0.04em;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: 0.02em;
 }
 
 .site-nav {
