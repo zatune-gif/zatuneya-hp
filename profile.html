@@ -163,7 +163,18 @@ img,svg{display:block;max-width:100%}
     <a href="./index.html" class="site-logo" aria-label="ざつね屋 トップページ"><span class="site-logo__pre">中小企業向け<span class="site-logo__ai">AI</span>活用支援の</span><span class="site-logo__name">ざつね屋</span></a>
     <nav class="site-nav" id="site-nav" aria-label="グローバルナビゲーション">
       <ul class="site-nav__list">
-        <li class="site-nav__item"><a href="./services.html" class="site-nav__link">サービス</a></li>
+        <li class="site-nav__item site-nav__item--dropdown">
+          <button class="site-nav__dropdown-trigger site-nav__link" aria-expanded="false" aria-haspopup="true">
+            サービス<span class="site-nav__caret" aria-hidden="true">▾</span>
+          </button>
+          <ul class="site-nav__dropdown">
+            <li><a href="./services.html" class="site-nav__dropdown-link">サービス一覧</a></li>
+            <li><a href="./service-training.html" class="site-nav__dropdown-link">AI研修ワークショップ</a></li>
+            <li><a href="./service-order.html" class="site-nav__dropdown-link">AI業務改善オーダーメイド</a></li>
+            <li><a href="./service-management.html" class="site-nav__dropdown-link">AI経営改善パッケージ</a></li>
+            <li><a href="./service-banso.html" class="site-nav__dropdown-link">AI活用伴走サービス</a></li>
+          </ul>
+        </li>
         <li class="site-nav__item"><a href="./works.html" class="site-nav__link">実績</a></li>
         <li class="site-nav__item"><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html" class="site-nav__link">料金</a></li>
         <li class="site-nav__item site-nav__item--dropdown">
@@ -392,14 +403,12 @@ img,svg{display:block;max-width:100%}
     </div>
     <nav class="site-footer__sitemap" aria-label="サイトマップ">
       <div class="site-footer__col">
-        <span class="site-footer__col-title">サービス</span>
-        <ul>
-          <li><a href="./services.html">サービス一覧</a></li>
-          <li><a href="./services.html#training">AI研修</a></li>
-          <li><a href="./services.html#custom">オーダーメイド支援</a></li>
-          <li><a href="./services.html#consulting">AI経営改善パッケージ</a></li>
-          <li><a href="./services.html#escort">AI活用伴走サービス</a></li>
-        </ul>
+        <p class="site-footer__col-head">サービス</p>
+        <a href="./services.html">サービス一覧</a>
+        <a href="./service-training.html">AI研修ワークショップ</a>
+        <a href="./service-order.html">AI業務改善オーダーメイド</a>
+        <a href="./service-management.html">AI経営改善パッケージ</a>
+        <a href="./service-banso.html">AI活用伴走サービス</a>
       </div>
       <div class="site-footer__col">
         <span class="site-footer__col-title">会社情報</span>

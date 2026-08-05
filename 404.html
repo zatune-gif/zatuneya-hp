@@ -37,7 +37,18 @@
     <a href="./index.html" class="site-logo" aria-label="ざつね屋 トップページ"><span class="site-logo__pre">中小企業向け<span class="site-logo__ai">AI</span>活用支援の</span><span class="site-logo__name">ざつね屋</span></a>
     <nav class="site-nav" id="site-nav" aria-label="グローバルナビゲーション">
       <ul class="site-nav__list">
-        <li class="site-nav__item"><a href="./services.html" class="site-nav__link">サービス</a></li>
+        <li class="site-nav__item site-nav__item--dropdown">
+          <button class="site-nav__dropdown-trigger site-nav__link" aria-expanded="false" aria-haspopup="true">
+            サービス<span class="site-nav__caret" aria-hidden="true">▾</span>
+          </button>
+          <ul class="site-nav__dropdown">
+            <li><a href="./services.html" class="site-nav__dropdown-link">サービス一覧</a></li>
+            <li><a href="./service-training.html" class="site-nav__dropdown-link">AI研修ワークショップ</a></li>
+            <li><a href="./service-order.html" class="site-nav__dropdown-link">AI業務改善オーダーメイド</a></li>
+            <li><a href="./service-management.html" class="site-nav__dropdown-link">AI経営改善パッケージ</a></li>
+            <li><a href="./service-banso.html" class="site-nav__dropdown-link">AI活用伴走サービス</a></li>
+          </ul>
+        </li>
         <li class="site-nav__item"><a href="./works.html" class="site-nav__link">実績</a></li>
         <li class="site-nav__item"><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html" class="site-nav__link">料金</a></li>
         <li class="site-nav__item site-nav__item--dropdown">
