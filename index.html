@@ -124,10 +124,10 @@ img,svg{display:block;max-width:100%}
 .hero-sub{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);max-width:430px;margin:24px 0 0}
 .cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:32px}
 .hero-note{font:400 13px/1.6 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-top:16px}
-/* hero visual — 660px frame, illustration shown in full */
-.hero-visual{position:relative;height:660px}
-.hero-photo{position:absolute;inset:0;border-radius:32px;overflow:hidden;box-shadow:var(--sh-3);background:#fff}
-.hero-photo img{width:100%;height:100%;object-fit:contain}
+/* hero visual — aspect-ratio 4/3 でコンテナに合わせる */
+.hero-visual{position:relative}
+.hero-photo{position:relative;border-radius:24px;overflow:hidden;box-shadow:var(--sh-3);background:#fff;aspect-ratio:4/3}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center}
 .hero-photo .tint{position:absolute;inset:0;background:linear-gradient(150deg,rgba(70,166,177,.34),rgba(91,189,200,.06) 48%,rgba(248,152,29,.05)),radial-gradient(120% 92% at 6% 100%,rgba(34,68,76,.44),rgba(34,68,76,0) 46%)}
 .hero-photo .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.10) 1.1px,transparent 1.1px);background-size:20px 20px;mix-blend-mode:overlay}
 /* チップ3枚の序列: c-chart=主役（左下角・白ハロー）/ c-sum=準主役（右上）/ c-ai=タグピル（左上）。全て枠からはみ出させて奥行きを出す */
@@ -390,7 +390,7 @@ img,svg{display:block;max-width:100%}
 <!-- ================= HEADER ================= -->
 <header class="site-header">
   <div class="site-header__inner">
-    <a href="./index.html" class="site-logo" aria-label="ざつね屋 トップページ"><span class="site-logo__pre">中小企業向け<span class="site-logo__ai">AI</span>活用支援</span><span class="site-logo__name">ざつね屋</span></a>
+    <a href="./index.html" class="site-logo" aria-label="ざつね屋 トップページ"><span class="site-logo__pre">中小企業向け<span class="site-logo__ai">AI</span>活用支援の</span><span class="site-logo__name">ざつね屋</span></a>
     <nav class="site-nav" id="site-nav" aria-label="グローバルナビゲーション">
       <ul class="site-nav__list">
         <li class="site-nav__item"><a href="./services.html" class="site-nav__link">サービス</a></li>
