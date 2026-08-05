@@ -12,18 +12,6 @@
       hamburger.setAttribute('aria-expanded', String(!isOpen));
       siteNav.classList.toggle('is-open', !isOpen);
     });
-
-    /* ナビ外クリックでモバイルメニューを閉じる */
-    document.addEventListener('click', function (e) {
-      if (
-        siteNav.classList.contains('is-open') &&
-        !siteNav.contains(e.target) &&
-        !hamburger.contains(e.target)
-      ) {
-        siteNav.classList.remove('is-open');
-        hamburger.setAttribute('aria-expanded', 'false');
-      }
-    });
   }
 
   /* ── ドロップダウンメニュー ── */
@@ -46,8 +34,15 @@
     });
   });
 
-  /* ドロップダウン外クリックで閉じる */
+  /* ナビ外クリックでメニュー・ドロップダウンを閉じる */
   document.addEventListener('click', function (e) {
+    /* ハンバーガーメニューを閉じる */
+    if (hamburger && siteNav && siteNav.classList.contains('is-open') &&
+        !siteNav.contains(e.target) && !hamburger.contains(e.target)) {
+      siteNav.classList.remove('is-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+    /* ドロップダウンを閉じる */
     if (!e.target.closest('.site-nav__item--dropdown')) {
       document.querySelectorAll('.site-nav__item--dropdown.is-open').forEach(function (el) {
         el.classList.remove('is-open');
@@ -75,6 +70,7 @@
   var here = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.site-nav__link[href]').forEach(function (a) {
     var href = a.getAttribute('href') || '';
+    if (href.startsWith('http')) return; /* 絶対URLはスキップ */
     var file = href.split('#')[0].split('/').pop();
     if (file && file === here) {
       a.classList.add('is-active');
