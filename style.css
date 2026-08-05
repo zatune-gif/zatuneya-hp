@@ -445,6 +445,11 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   letter-spacing: 0.03em;
 }
 
+.site-logo__ai {
+  color: var(--teal);
+  font-weight: 700;
+}
+
 .site-logo__name {
   font-size: 1.25rem;
   font-weight: 700;
