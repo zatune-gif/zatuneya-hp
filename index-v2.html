@@ -396,6 +396,36 @@ img,svg{display:block;max-width:100%}
     font-size: 13px;
   }
 }
+
+/* ============ MOBILE NARROW (480px) ============ */
+@media (max-width:480px) {
+  /* バンドセクション: min-height 解除（過剰な縦伸びを防止） */
+  .band,
+  .why-band {
+    min-height: auto;
+  }
+
+  /* バンドセクション: bcontent padding 縮小 */
+  .band .bcontent,
+  .why-band .bcontent {
+    padding: 24px 20px;
+  }
+
+  /* 本文 text-align: left 統一（スマホでは左揃えが読みやすい） */
+  .price-inner .desc,
+  .why-card p,
+  .cv-opt p {
+    text-align: left;
+  }
+
+  /* 12px 未満フォントを 12px に引き上げ */
+  .svc-tag             { font-size: 12px; }
+  .tool-free           { font-size: 12px; }
+  .tool-featured-badge { font-size: 12px; }
+
+  /* hero-note: 本文最小フォントサイズ 14px を保証 */
+  .hero-note { font-size: 14px; }
+}
 </style>
 <script type="application/ld+json">
 {
