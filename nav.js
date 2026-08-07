@@ -10,6 +10,7 @@
     hamburger.addEventListener('click', function () {
       var isOpen = hamburger.getAttribute('aria-expanded') === 'true';
       hamburger.setAttribute('aria-expanded', String(!isOpen));
+      hamburger.classList.toggle('is-open', !isOpen);
       siteNav.classList.toggle('is-open', !isOpen);
     });
   }
@@ -40,6 +41,7 @@
     if (hamburger && siteNav && siteNav.classList.contains('is-open') &&
         !siteNav.contains(e.target) && !hamburger.contains(e.target)) {
       siteNav.classList.remove('is-open');
+      hamburger.classList.remove('is-open');
       hamburger.setAttribute('aria-expanded', 'false');
     }
     /* ドロップダウンを閉じる */
