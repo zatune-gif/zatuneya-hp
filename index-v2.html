@@ -358,6 +358,44 @@ img,svg{display:block;max-width:100%}
 /* ── ナビ：横スペーシング統一（display・gap） ── */
 .site-nav__list{gap:8px}
 .site-nav__link{display:inline-flex;align-items:center}
+
+/* ============ MOBILE (768px) ============ */
+@media (max-width: 768px) {
+  /* Workshop / Together バンドのパディング・フォント縮小 */
+  .band .bcontent {
+    padding: 32px 24px;
+  }
+  .band .bcontent h3 {
+    font-size: 1.25rem;
+    line-height: 1.45;
+  }
+  .band .bcontent p {
+    font-size: 0.875rem;
+    text-align: left;
+  }
+  .band .bcontent .eyebrow {
+    font-size: 0.7rem;
+  }
+
+  /* ヒーロー装飾カード（c-sum）の縮小 */
+  .chip.c-sum {
+    width: 210px;
+    right: -14px;
+    padding: 14px 16px;
+  }
+  .chip.c-sum .ic {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
+  .chip.c-sum .ic svg {
+    width: 20px;
+    height: 20px;
+  }
+  .chip.c-sum b {
+    font-size: 13px;
+  }
+}
 </style>
 <script type="application/ld+json">
 {
