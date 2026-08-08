@@ -227,14 +227,6 @@ img,svg{display:block;max-width:100%}
 .cv-tag svg{width:15px;height:15px;stroke:var(--orange-d);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
 .cv-head h2{font-size:clamp(26px,3.8vw,34px);margin:16px 0 0;letter-spacing:.01em}
 .cv-head p{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:1.9;color:var(--body);max-width:640px;margin:16px auto 0}
-.cv-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
-.cv-opt{background:var(--orange-pale);border:1px solid var(--orange-line);border-radius:22px;padding:32px;text-align:center;display:flex;flex-direction:column;transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
-.cv-opt:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
-.cv-opt .ic{width:56px;height:56px;border-radius:16px;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto;box-shadow:var(--sh-1)}
-.cv-opt .ic svg{width:28px;height:28px;stroke:var(--orange-d)}
-.cv-opt h3{font-size:20px;margin:16px 0 0}
-.cv-opt p{font:400 13px/1.8 'Noto Sans JP',sans-serif;color:var(--body);margin:12px 0 0;flex:1}
-.cv-opt .btn{margin-top:24px;font-size:15px;padding:16px}
 .cv-foot{position:relative;text-align:center;font:400 13px/1.6 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-top:24px}
 
 /* ============ 6. FREE TOOLS ============ */
@@ -301,12 +293,20 @@ img,svg{display:block;max-width:100%}
 .step p{font:400 13px/1.8 'Noto Sans JP',sans-serif;color:var(--body);margin:12px 0 0}
 .step-note{font-size:12px;color:var(--sub-text);margin-top:8px;line-height:1.6}
 
+.badge--region{font-size:0.9rem;font-weight:600;padding:6px 14px}
+.hero-benefits{list-style:none;padding:0;margin:24px 0 0;display:flex;flex-direction:column;gap:12px}
+.hero-benefits li{display:flex;align-items:center;gap:12px;font-size:1.05rem;color:var(--body);font-weight:600}
+.hb-check{width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0;font-weight:700}
+.btn-teal{background:var(--teal);color:#fff;box-shadow:0 2px 12px rgba(91,189,200,0.35)}
+.site-nav__dropdown-link{font-weight:500;color:var(--body);letter-spacing:0.03em}
+.site-nav__list{gap:8px}
+.site-nav__link{display:inline-flex;align-items:center}
+
 /* ============ RESPONSIVE ============ */
 @media (max-width:960px){
   .hero-grid{grid-template-columns:1fr;gap:40px;padding-top:var(--s16)}
   .hero-visual{height:440px;max-width:540px;margin:0 auto;width:100%}
   .chip.c-chart{left:-8px}
-
   .hero-sub{max-width:none}
   .why-grid{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}
   .flow{grid-template-columns:1fr 1fr;gap:40px 0}
@@ -315,11 +315,21 @@ img,svg{display:block;max-width:100%}
   .band .veil,.band.flip .veil{background:linear-gradient(160deg,rgba(52,90,98,.94),rgba(70,166,177,.7))}
   .band.flip .bcontent{margin-left:0;text-align:left}
 }
+@media (max-width:768px){
+  .band .bcontent{padding:32px 24px}
+  .band .bcontent h3{font-size:1.25rem;line-height:1.45}
+  .band .bcontent p{font-size:0.875rem;text-align:left}
+  .band .bcontent .eyebrow{font-size:0.7rem}
+  .chip.c-sum{width:210px;right:-14px;padding:14px 16px}
+  .chip.c-sum .ic{width:40px;height:40px;border-radius:12px}
+  .chip.c-sum .ic svg{width:20px;height:20px}
+  .chip.c-sum b{font-size:13px}
+}
 @media (max-width:680px){
   :root{--s24:64px;--s20:48px;--s16:40px;--s12:32px}
   .container{padding:0 20px}
-  .worry-grid,.cv-grid,.tools-grid,.svc-grid{grid-template-columns:1fr}
-  .cv-inner,.contact-card{padding:32px 24px}
+  .worry-grid,.tools-grid,.svc-grid{grid-template-columns:1fr}
+  .cv-inner{padding:32px 24px}
   .subsidy-card{padding:24px 20px}
   .answer{padding:32px 24px}
   .answer-in{flex-direction:column;gap:16px}
@@ -330,10 +340,18 @@ img,svg{display:block;max-width:100%}
   .chip.c-ai{left:-4px;top:18px;padding:8px 16px 8px 8px}
   .chip.c-ai .av{width:36px;height:36px}
   .chip.c-ai span{font-size:13.5px}
-
   .chip.c-chart{left:-6px;bottom:6%;width:236px;padding:16px 20px}
   .chip.c-chart .lbl{font-size:16px}
   .chip.c-chart .bars{height:60px;gap:8px;margin-top:16px}
+}
+@media (max-width:480px){
+  .band,.why-band{min-height:auto}
+  .band .bcontent,.why-band .bcontent{padding:24px 20px}
+  .price-inner .desc,.why-card p{text-align:left}
+  .svc-tag{font-size:12px}
+  .tool-free{font-size:12px}
+  .tool-featured-badge{font-size:12px}
+  .hero-note{font-size:14px}
 }
 @media (max-width:400px){
   body{font-size:15px}
@@ -342,89 +360,8 @@ img,svg{display:block;max-width:100%}
   .hl{white-space:normal}
   .hero-visual{height:360px}
   .chip.c-chart{width:212px}
-
   .btn{padding:16px 24px;font-size:15px}
   .cta-row .btn{width:100%}
-}
-.badge--region{font-size:0.9rem;font-weight:600;padding:6px 14px}
-.hero-benefits{list-style:none;padding:0;margin:24px 0 0;display:flex;flex-direction:column;gap:12px}
-.hero-benefits li{display:flex;align-items:center;gap:12px;font-size:1.05rem;color:var(--body);font-weight:600}
-.hb-check{width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0;font-weight:700}
-.btn-teal{background:var(--teal);color:#fff;box-shadow:0 2px 12px rgba(91,189,200,0.35)}
-
-/* ── ナビ：ドロップダウンリンクのスタイルをナビリンクと統一 ── */
-.site-nav__dropdown-link{font-weight:500;color:var(--body);letter-spacing:0.03em}
-
-/* ── ナビ：横スペーシング統一（display・gap） ── */
-.site-nav__list{gap:8px}
-.site-nav__link{display:inline-flex;align-items:center}
-
-/* ============ MOBILE (768px) ============ */
-@media (max-width: 768px) {
-  /* Workshop / Together バンドのパディング・フォント縮小 */
-  .band .bcontent {
-    padding: 32px 24px;
-  }
-  .band .bcontent h3 {
-    font-size: 1.25rem;
-    line-height: 1.45;
-  }
-  .band .bcontent p {
-    font-size: 0.875rem;
-    text-align: left;
-  }
-  .band .bcontent .eyebrow {
-    font-size: 0.7rem;
-  }
-
-  /* ヒーロー装飾カード（c-sum）の縮小 */
-  .chip.c-sum {
-    width: 210px;
-    right: -14px;
-    padding: 14px 16px;
-  }
-  .chip.c-sum .ic {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-  }
-  .chip.c-sum .ic svg {
-    width: 20px;
-    height: 20px;
-  }
-  .chip.c-sum b {
-    font-size: 13px;
-  }
-}
-
-/* ============ MOBILE NARROW (480px) ============ */
-@media (max-width:480px) {
-  /* バンドセクション: min-height 解除（過剰な縦伸びを防止） */
-  .band,
-  .why-band {
-    min-height: auto;
-  }
-
-  /* バンドセクション: bcontent padding 縮小 */
-  .band .bcontent,
-  .why-band .bcontent {
-    padding: 24px 20px;
-  }
-
-  /* 本文 text-align: left 統一（スマホでは左揃えが読みやすい） */
-  .price-inner .desc,
-  .why-card p,
-  .cv-opt p {
-    text-align: left;
-  }
-
-  /* 12px 未満フォントを 12px に引き上げ */
-  .svc-tag             { font-size: 12px; }
-  .tool-free           { font-size: 12px; }
-  .tool-featured-badge { font-size: 12px; }
-
-  /* hero-note: 本文最小フォントサイズ 14px を保証 */
-  .hero-note { font-size: 14px; }
 }
 </style>
 <script type="application/ld+json">
