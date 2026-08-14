@@ -31,4 +31,7 @@ check(/<button[^>]*aria-expanded=/i.test(faq), 'FAQ uses buttons with ARIA state
 check(/aria-controls=/i.test(faq), 'FAQ buttons control answer regions');
 const script = readFileSync(join(root, 'nav.js'), 'utf8');
 check(!/alert\(|confirm\(|prompt\(/.test(script), 'V2 script avoids blocking dialogs');
+const css = readFileSync(join(root, 'style.css'), 'utf8');
+check(/@media \(max-width:400px\)/.test(css), 'V2 has a narrow-screen overflow guard');
+check(/\.site-nav__hamburger\s*\{[^}]*min-width:44px/.test(css), 'V2 keeps the mobile menu control touch-safe');
 console.log(`PASS ${checks} V2 static checks`);
