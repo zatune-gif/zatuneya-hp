@@ -1,0 +1,21 @@
+# AGENTS.md
+
+- 応答は敬語で行う。
+- プロジェクト概要：ざつね屋Web。静的HTML/CSS/JSで構成し、GitHub Pagesで公開する。
+- 公開URL：https://zatune-gif.github.io/zatuneya-hp/
+- 診断URL：https://han-ai-diagnosis.netlify.app/
+- 役割：CodexはHP開発・保守・デザイン改善の主担当。Claude Codeは暮らしの土台／ざつね屋事業全体の統括・整合確認。ChatGPTはデザイン検討・カンプ・全体ディレクションを担当する。
+- 恒久ルールはAGENTS.md、実装履歴はGit、設計判断はObsidianを正本とする。
+- 通常変更はmainで行う。サービス内容・価格・ブランド・外部ツール接続・URL・公開方式・親構成に関わる大規模変更はcodex/...ブランチまたはworktreeで行う。
+- 作業前に親リポジトリとサブモジュールのgit statusを確認し、未コミット変更を上書きしない。
+- index.htmlは公開正本、index-v2.htmlは改善候補。トップ変更前に両方への反映・昇格・片方のみの判断を行う。
+- 構成はHTML 15件、style.css、nav.js、assetsである。
+- nav.jsのDOM契約は `#nav-hamburger`、`#site-nav`、`.site-nav__dropdown-trigger`、`.fade-in`、`#sticky-cta` とする。
+- header/footer/CTA/著作権/診断リンクを変更した場合は、全15HTMLを機械照合する。
+- デザイン基準は背景 `#EFF4F5`、ティール `#5BBDC8`、オレンジ `#F8981D`、Roboto + Noto Sans JP。絵文字アイコンは禁止し、SVGモノラインを使う。顔を判別できない写真を使う。
+- 新規のinline style、`alert`、`confirm`、`prompt`は禁止する。著作権表記は `© [年] ざつね屋` とする。
+- 既存ページ内の`<style>`や既存不整合は別タスクとし、新たな悪化を生じさせない。
+- 検証では375/768/1280pxのPlaywright表示、横スクロール・崩れ、内部リンク、canonical、sitemap、著作権年、`git diff --check`を確認する。
+- Gitはサブモジュールでcommit/push後、親でgitlinkをcommit/pushする。
+- 完了前にObsidianへ記録する。
+- HTML/CSS/JS/assetsを変更した場合はサイトコードを検証する。設定ファイル追加のみの場合、サイト表示検証は不要とする。
