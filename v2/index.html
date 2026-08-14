@@ -1,0 +1,844 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ざつね屋 — 中小企業のAI活用支援</title>
+<meta name="description" content="広島県東部の中小企業向けAI活用支援。研修・業務改善オーダーメイド・経営改善パッケージ・伴走の4サービス。報告書・営業資料・議事録などの日常業務にAIを組み込み、社員が自分で使い続けられる状態まで支援します。">
+<link rel="icon" href="./favicon.ico" sizes="any">
+<link rel="icon" href="./assets/favicon-32.png" type="image/png">
+<link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+<link rel="canonical" href="https://zatune-gif.github.io/zatuneya-hp/v2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ざつね屋">
+<meta property="og:title" content="ざつね屋 — 中小企業のAI活用支援">
+<meta property="og:description" content="広島県東部の中小企業向けAI活用支援。研修・業務改善オーダーメイド・経営改善パッケージ・伴走の4サービス。社員が自分で使い続けられる状態まで支援します。">
+<meta property="og:url" content="https://zatune-gif.github.io/zatuneya-hp/v2/">
+<meta property="og:image" content="./assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<style>
+/* ============================================================
+   ざつね屋 TOP  — design tokens
+   ============================================================ */
+:root{
+  --bg:#EFF4F5; --card:#fff;
+  --teal:#5BBDC8; --teal-d:#46A6B1; --teal-pale:#EAF6F8; --teal-pale2:#DCF0F2; --teal-line:#D3E7EA;
+  --orange:#F8981D; --orange-d:#E28511; --orange-pale:#FFF8EF; --orange-line:#F6E4C8;
+  --sub:#839CAA; --head:#3C3C3C; --body:#575757;
+  --line:#E1EAEC;
+  /* --- 文字専用トークン (G2: WCAG AA). --teal-d/--sub/--orange-d は背景・アイコン・枠線用のまま残す --- */
+  --teal-text:#31747C;   /* on #fff 5.36 / --bg 4.83 / --teal-pale 4.86 / --teal-pale2 4.54 */
+  --sub-text:#556E7C;    /* on #fff 5.37 / --bg 4.84 / --teal-pale 4.87 / --teal-pale2 4.55 */
+  --orange-text:#9C5C0C; /* on #fff 5.32 / --orange-pale 5.05 / --bg 4.79 */
+  --band-a:#2B7881; --band-b:#24565C; /* 価格帯グラデ: 白文字 5.11 / 8.20 */
+
+  /* SHADOW SYSTEM — 3 tiers (+ colored CTA) */
+  --sh-1:0 1px 3px rgba(40,60,70,.05), 0 4px 12px rgba(40,60,70,.05);   /* resting cards */
+  --sh-2:0 2px 6px rgba(40,60,70,.06), 0 14px 30px rgba(40,60,70,.10);  /* hover / float */
+  --sh-3:0 6px 14px rgba(40,60,70,.10), 0 30px 60px rgba(40,60,70,.18); /* hero / CV       */
+  --sh-orange:0 10px 24px rgba(248,152,29,.34);
+  --sh-orange-h:0 16px 32px rgba(248,152,29,.44);
+
+  /* SPACING SCALE (8px base) */
+  --s2:8px; --s3:12px; --s4:16px; --s6:24px; --s8:32px; --s10:40px; --s12:48px; --s16:64px; --s20:80px; --s24:96px;
+
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--body);
+  font-family:'Roboto','Noto Sans JP',system-ui,sans-serif;
+  font-size:16px; line-height:1.9; letter-spacing:0.02em; -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--head);margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--teal-text);outline-offset:3px;border-radius:6px}
+.site-footer :focus-visible,.price-band :focus-visible{outline-color:#fff}/* 暗い面では白リング: #334A52 上 9.37 / 帯上 5.11 */
+
+.container{max-width:1120px;margin:0 auto;padding:0 32px}
+.container.tight{max-width:960px}
+.section{padding:var(--s24) 0}
+.section.sm{padding:var(--s16) 0}
+.bg-white{background:#fff}
+.bg-tint{background:var(--bg)}
+.pt-tight{padding-top:var(--s12)}
+
+/* TYPE SCALE ------------------------------------------------- */
+.eyebrow{display:inline-block;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.22em;color:var(--teal-text);text-transform:uppercase}
+.sec-head{text-align:center;max-width:760px;margin:0 auto var(--s12)}
+.sec-head h2{font-size:clamp(28px,4.4vw,38px);line-height:1.3;letter-spacing:.01em;margin:16px 0 0}
+.sec-head p{font-family:'Noto Sans JP',sans-serif;font-size:16px;line-height:1.95;color:var(--body);margin:16px auto 0;max-width:640px}
+
+/* ICON RULE: monoline, stroke 1.6, round caps, 24 grid ------- */
+.ic{display:inline-flex;align-items:center;justify-content:center}
+.ic svg{width:100%;height:100%;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
+
+/* BUTTONS --------------------------------------------------- */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;
+  padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;
+  transition:transform .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease);cursor:pointer;white-space:nowrap}
+.btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
+.btn-primary{background:var(--orange);color:#332211;box-shadow:var(--sh-orange)}/* 文字色: 白は 2.21:1 で不合格。ブランドのオレンジを保つため濃色ブラウン #332211 = 6.90:1（hover の --orange-d 上でも 5.51:1）*/
+.btn-primary:hover{background:var(--orange-d);transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
+.btn-primary:active{transform:translateY(0);box-shadow:0 4px 12px rgba(248,152,29,.4)}
+.btn-ghost{background:#fff;color:var(--teal-text);box-shadow:var(--sh-1)}
+.btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
+.btn-ghost:active{transform:translateY(0)}
+.btn-outline{background:transparent;color:var(--teal-text);border-color:var(--teal)}
+.btn-outline:hover{background:var(--teal-pale);transform:translateY(-2px)}
+.btn-white{background:#fff;color:var(--teal-text);box-shadow:var(--sh-2)}
+.btn-white:hover{transform:translateY(-2px);box-shadow:var(--sh-3)}
+.btn-block{display:flex;width:100%}
+.arrowlink{display:inline-flex;align-items:center;gap:8px;font:700 14px 'Noto Sans JP',sans-serif;color:var(--teal-text);text-decoration:none;transition:color .18s}
+.arrowlink svg{width:16px;height:16px;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none;transition:transform .2s var(--ease)}
+.arrowlink:hover{color:var(--orange-text)}
+.arrowlink:hover svg{transform:translateX(4px)}
+
+/* ============ 1. HERO ============ */
+.hero{position:relative;overflow:hidden;
+  background:
+    radial-gradient(rgba(131,156,170,.13) 1.1px,transparent 1.1px),
+    radial-gradient(ellipse 68% 80% at 78% 42%, rgba(91,189,200,.22) 0%, transparent 62%),
+    radial-gradient(ellipse 50% 60% at 15% 85%, rgba(248,152,29,.09) 0%, transparent 55%),
+    linear-gradient(148deg, #ffffff 0%, #EFF4F5 42%, #DCF0F2 100%);
+  background-size:22px 22px, auto, auto, auto}
+.hero .blob{position:absolute;pointer-events:none}
+.hero .b1{top:-160px;right:-110px;width:560px;height:500px;background:rgba(91,189,200,.15);border-radius:60% 40% 55% 45%/55% 50% 50% 45%;filter:blur(3px)}
+.hero .b2{top:-30px;right:80px;width:380px;height:360px;background:rgba(91,189,200,.10);border-radius:52% 48% 60% 40%/50% 55% 45% 50%}
+.hero .b3{bottom:-140px;left:-120px;width:420px;height:420px;background:rgba(248,152,29,.07);border-radius:50%}
+.hero-grid{position:relative;display:grid;grid-template-columns:.62fr 1.38fr;gap:48px;align-items:center;padding-top:var(--s16);padding-bottom:var(--s20)}
+.badge{display:inline-flex;align-items:center;gap:8px;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-text);background:#fff;padding:8px 16px;border-radius:999px;box-shadow:var(--sh-1)}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
+.hero h1{font-size:clamp(31px,4.7vw,47px);line-height:1.3;letter-spacing:.005em;margin:24px 0 0}
+.hero-lead{font-family:'Noto Sans JP',sans-serif;font-weight:500;font-size:clamp(15.5px,1.6vw,17px);line-height:1.8;color:var(--body);max-width:400px;margin:16px 0 0}
+.hl{position:relative;color:#3B8B95;white-space:nowrap}/* hero背景 #EFF4F5 上で 3:1 を満たす見出し専用ティール = 3.56:1（--teal-d #46A6B1 は 2.58:1 で不合格）*/
+.hl::after{content:"";position:absolute;left:-2px;right:-2px;bottom:3px;height:12px;background:rgba(91,189,200,.26);border-radius:6px;z-index:-1}
+.hero-sub{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);max-width:430px;margin:24px 0 0}
+.cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:32px}
+.hero-note{font:400 13px/1.6 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-top:16px}
+/* hero visual */
+.hero-visual{position:relative;height:600px}
+.hero-photo{position:absolute;inset:0;border-radius:48px 48px 150px 48px;overflow:hidden;box-shadow:var(--sh-3)}
+.hero-photo img{width:100%;height:100%;object-fit:cover}
+.hero-photo .tint{position:absolute;inset:0;background:linear-gradient(150deg,rgba(70,166,177,.34),rgba(91,189,200,.06) 48%,rgba(248,152,29,.05)),radial-gradient(120% 92% at 6% 100%,rgba(34,68,76,.44),rgba(34,68,76,0) 46%)}
+.hero-photo .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.10) 1.1px,transparent 1.1px);background-size:20px 20px;mix-blend-mode:overlay}
+/* チップ3枚: c-ai=タグピル（左上）/ c-sum=右サマリー/ c-chart=主役（左下）。枠からはみ出させて奥行きを出す */
+.chip{position:absolute;background:#fff;box-shadow:var(--sh-3);animation:float 6.5s var(--ease) infinite;z-index:2}
+.chip.c-ai{left:-18px;top:30px;display:inline-flex;align-items:center;gap:12px;padding:8px 20px 8px 8px;border-radius:999px;animation-delay:.2s}
+.chip.c-ai .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-d));display:flex;align-items:center;justify-content:center}
+.chip.c-ai .av svg{width:22px;height:22px;fill:#fff;stroke:none}
+.chip.c-ai span{font:700 15px 'Noto Sans JP',sans-serif;color:var(--head);white-space:nowrap}
+.chip.c-sum{right:-30px;top:14%;width:250px;padding:20px;border-radius:20px;animation-delay:1.5s}
+.chip.c-sum .row{display:flex;align-items:center;gap:16px}
+.chip.c-sum .ic{flex:none;width:48px;height:48px;border-radius:14px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center}
+.chip.c-sum .ic svg{stroke:var(--teal-d);width:25px;height:25px;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.chip.c-sum b{display:block;font:700 15.5px 'Noto Sans JP',sans-serif;color:var(--head);line-height:1.3}
+.chip.c-chart{left:-46px;bottom:8%;width:288px;padding:24px;border-radius:26px;animation-delay:2.8s}
+.chip.c-chart .top{display:flex;align-items:center;gap:12px}
+.chip.c-chart .ic{flex:none;width:40px;height:40px;border-radius:13px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center}
+.chip.c-chart .ic svg{stroke:var(--teal-d);width:23px;height:23px;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.chip.c-chart .lbl{font:900 18px 'Noto Sans JP',sans-serif;color:var(--head);letter-spacing:.01em}
+.chip.c-chart .trend{margin-left:auto;flex:none;width:30px;height:30px;border-radius:9px;background:var(--orange-pale);display:flex;align-items:center;justify-content:center}
+.chip.c-chart .trend svg{width:16px;height:16px;stroke:var(--orange-d);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.chip.c-chart .bars{display:flex;align-items:flex-end;gap:12px;height:80px;margin-top:20px}
+.chip.c-chart .bars span{flex:1;border-radius:6px}
+.chip.c-chart .bars .b1{height:34%;background:#E4EFF1}
+.chip.c-chart .bars .b2{height:50%;background:#BFE3E8}
+.chip.c-chart .bars .b3{height:68%;background:#8DD2DA}
+.chip.c-chart .bars .b4{height:84%;background:#5BBDC8}
+.chip.c-chart .bars .b5{height:100%;background:#F8981D}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@media (prefers-reduced-motion:reduce){.chip{animation:none}}
+.wave{display:block;width:100%;height:70px;margin-top:-1px;position:relative;z-index:1}
+
+/* ============ 2. WORRIES ============ */
+.worry-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.worry-card{display:flex;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--sh-1);transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
+.worry-card:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
+.worry-card .ic{flex:none;width:52px;height:52px;border-radius:15px;background:var(--teal-pale)}
+.worry-card .ic svg{width:28px;height:28px;stroke:var(--teal-d)}
+.worry-card p{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:1.75;color:var(--head);font-weight:500}
+.answer{position:relative;margin-top:32px;background:linear-gradient(120deg,var(--orange),var(--orange-d));border-radius:24px;padding:40px;color:#fff;overflow:hidden;box-shadow:0 20px 44px rgba(226,133,17,.28)}
+.answer .ring{position:absolute;border:2px solid rgba(255,255,255,.16);border-radius:50%}
+.answer .r1{top:-60px;right:-30px;width:200px;height:200px}
+.answer .r2{bottom:-90px;right:14%;width:150px;height:150px;border-color:rgba(255,255,255,.1)}
+.answer-in{position:relative;display:flex;gap:24px;align-items:center}
+.answer .abadge{flex:none;width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.2)}
+.answer .abadge svg{width:28px;height:28px;stroke:#fff;stroke-width:2}
+.answer p{font-family:'Noto Sans JP',sans-serif;font-size:16.5px;line-height:1.95;font-weight:500}
+.answer b{font-weight:900}
+
+/* ============ 3. SERVICES ============ */
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.svc-card{background:#fff;border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:var(--sh-1);display:flex;flex-direction:column;transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
+.svc-card:hover{transform:translateY(-6px);box-shadow:var(--sh-2)}
+.svc-top{position:relative;background:linear-gradient(135deg,var(--teal-pale),var(--teal-pale2));padding:32px 24px;text-align:center;overflow:hidden}
+.svc-top::after{content:"";position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.35)}
+.svc-ic{position:relative;width:68px;height:68px;border-radius:22px;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto;box-shadow:var(--sh-1)}
+.svc-ic svg{width:34px;height:34px;stroke:var(--teal-d)}
+.svc-tag{position:relative;font:700 11.5px/1 'Roboto',sans-serif;letter-spacing:.1em;color:var(--sub-text);margin-top:16px}
+.svc-body{padding:24px;text-align:center;display:flex;flex-direction:column;flex:1}
+.svc-body h3{font-size:21px;letter-spacing:.01em}
+.svc-catch{font:700 14px 'Noto Sans JP',sans-serif;color:var(--teal-text);margin-top:8px}
+.svc-desc{font:400 13.5px/1.85 'Noto Sans JP',sans-serif;color:var(--body);margin-top:16px;text-align:left}
+.price-chip{margin-top:auto;padding-top:24px}
+.price-chip .box{background:var(--bg);border-radius:16px;padding:16px}
+.price-chip .amt{font:900 22px 'Roboto',sans-serif;color:var(--head)}
+.price-chip .tax{font:400 12px 'Noto Sans JP',sans-serif;color:var(--sub-text)}
+.price-chip .note{font:700 12px 'Noto Sans JP',sans-serif;color:var(--orange-text);margin-top:4px}
+.svc-body .arrowlink{margin-top:20px;align-self:center}
+
+/* ============ 4. PRICE / SUBSIDY (teal band) ============ */
+.price-band{position:relative;background:linear-gradient(135deg,var(--band-a),var(--band-b));overflow:hidden;color:#fff}
+.price-band .blob{position:absolute;pointer-events:none}
+.price-band .p1{top:-80px;left:-50px;width:280px;height:280px;background:rgba(255,255,255,.08);border-radius:50%}
+.price-band .p2{bottom:-100px;right:5%;width:320px;height:320px;background:rgba(255,255,255,.06);border-radius:50%}
+.price-band .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.12) 1.1px,transparent 1.1px);background-size:22px 22px}
+.price-inner{position:relative;text-align:center}
+.price-inner .eyebrow{color:rgba(255,255,255,.9)}
+.price-inner h2{color:#fff;font-size:clamp(25px,4vw,34px);line-height:1.42;margin:16px auto 0;max-width:840px}
+.price-inner .desc{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:1.95;color:rgba(255,255,255,.94);max-width:700px;margin:16px auto 0}
+.subsidy-card{background:#fff;color:var(--body);border-radius:26px;padding:40px;max-width:780px;margin:32px auto 0;box-shadow:var(--sh-3)}
+.example{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:22px}
+.ex-block{text-align:center}
+.ex-label{font:700 12px 'Noto Sans JP',sans-serif;color:var(--sub-text);letter-spacing:.04em}
+.ex-num{font:900 clamp(28px,5vw,34px) 'Roboto',sans-serif;color:var(--head);line-height:1.1;margin-top:6px}
+.notes{list-style:none;padding:0;margin:32px auto 0;text-align:left;max-width:760px}
+.notes li{position:relative;padding-left:24px;font:400 13px/1.85 'Noto Sans JP',sans-serif;color:rgba(255,255,255,.92)}
+.notes li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.6)}
+.price-cta{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:32px}
+
+/* ============ 5. CV (most prominent) ============ */
+.cv-section{background:var(--bg);position:relative}
+.cv-card{position:relative;max-width:940px;margin:0 auto;background:#fff;border-radius:34px;padding:16px 16px 0;box-shadow:var(--sh-3);overflow:hidden}
+.cv-topbar{height:6px;border-radius:99px;background:linear-gradient(90deg,var(--orange),var(--orange-d));margin:0 0 0}
+.cv-inner{padding:40px 48px 48px;position:relative}
+.cv-card .glow{position:absolute;top:-120px;right:-80px;width:360px;height:360px;background:radial-gradient(circle,rgba(248,152,29,.16),rgba(248,152,29,0) 70%);border-radius:50%;pointer-events:none}
+.cv-head{position:relative;text-align:center}
+.cv-tag{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font:700 12.5px/1 'Roboto',sans-serif;letter-spacing:.16em;color:var(--orange-text);background:var(--orange-pale);border:1px solid var(--orange-line);padding:8px 16px;border-radius:999px}
+.cv-tag svg{width:15px;height:15px;stroke:var(--orange-d);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.cv-head h2{font-size:clamp(26px,3.8vw,34px);margin:16px 0 0;letter-spacing:.01em}
+.cv-head p{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:1.9;color:var(--body);max-width:640px;margin:16px auto 0}
+.cv-foot{position:relative;text-align:center;font:400 13px/1.6 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-top:24px}
+
+/* ============ 6. FREE TOOLS ============ */
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.tool-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:26px;padding:40px 32px;box-shadow:var(--sh-1);display:flex;gap:24px;align-items:flex-start;transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
+.tool-card:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
+.tool-ic{flex:none;width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,var(--teal-pale),var(--teal-pale2));display:flex;align-items:center;justify-content:center}
+.tool-ic svg{width:34px;height:34px;stroke:var(--teal-d)}
+.tool-free{display:inline-block;font:700 11px 'Noto Sans JP',sans-serif;color:var(--teal-text);background:var(--teal-pale);padding:4px 12px;border-radius:999px;letter-spacing:.04em}
+.tool-card h3{font-size:19px;margin:12px 0 0;letter-spacing:.01em;min-height:3rem}
+.tool-card p{font:400 13.5px/1.8 'Noto Sans JP',sans-serif;color:var(--body);margin:10px 0 0}
+.tool-card .arrowlink{margin-top:16px}
+.tool-note{font-size:12px;color:var(--sub-text);margin-top:8px;line-height:1.6}
+
+/* ============ 7. WHY (+ photo band + profile teaser) ============ */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.why-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:32px;box-shadow:var(--sh-1);text-align:center;transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
+.why-card:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
+.why-ic{width:64px;height:64px;border-radius:20px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;margin:0 auto}
+.why-ic svg{width:34px;height:34px;stroke:var(--teal-d)}
+.why-card h3{font-size:19px;margin:20px 0 0;letter-spacing:.01em}
+.why-card p{font:400 13.5px/1.85 'Noto Sans JP',sans-serif;color:var(--body);margin:12px 0 0}
+.profile-teaser{max-width:640px;margin:var(--s12) auto 0;text-align:center}
+.profile-teaser p{font:400 13.5px/1.9 'Noto Sans JP',sans-serif;color:var(--body);margin:0 0 16px}
+
+/* WHY photo band */
+.why-band{position:relative;margin-top:var(--s12);border-radius:28px;overflow:hidden;box-shadow:var(--sh-2);min-height:280px;display:flex;align-items:center}
+.why-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.why-band .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(52,90,98,.92) 0%,rgba(70,166,177,.72) 48%,rgba(70,166,177,.28) 100%)}
+.why-band .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.12) 1.1px,transparent 1.1px);background-size:20px 20px}
+.why-band .bcontent{position:relative;color:#fff;padding:40px 48px;max-width:620px}
+.why-band .bcontent .eyebrow{color:rgba(255,255,255,.82)}
+.why-band .bcontent h3{color:#fff;font-size:clamp(20px,3vw,26px);line-height:1.5;margin:12px 0 0}
+.why-band .bcontent p{font-family:'Noto Sans JP',sans-serif;font-size:14.5px;line-height:1.9;color:rgba(255,255,255,.92);margin:16px 0 0}
+/* standalone band + flipped variant (rhythm) */
+.section.pt-0{padding-top:0}
+.band-wrap{padding:0}
+.band{position:relative;border-radius:28px;overflow:hidden;box-shadow:var(--sh-2);min-height:300px;display:flex;align-items:center}
+.band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.band .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(52,90,98,.92) 0%,rgba(70,166,177,.72) 48%,rgba(70,166,177,.28) 100%)}
+.band.flip .veil{background:linear-gradient(270deg,rgba(52,90,98,.92) 0%,rgba(70,166,177,.72) 48%,rgba(70,166,177,.28) 100%)}
+.band .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.12) 1.1px,transparent 1.1px);background-size:20px 20px}
+.band .bcontent{position:relative;color:#fff;padding:48px;max-width:600px}
+.band.flip .bcontent{margin-left:auto;text-align:right}
+.band .bcontent .eyebrow{color:rgba(255,255,255,.82)}
+.band .bcontent h3{color:#fff;font-size:clamp(21px,3vw,28px);line-height:1.5;margin:12px 0 0}
+.band .bcontent p{font-family:'Noto Sans JP',sans-serif;font-size:14.5px;line-height:1.9;color:rgba(255,255,255,.92);margin:16px 0 0}
+
+/* ============ 7b. FREE TOOLS — featured card ============ */
+.tool-card.tool-featured{border:2px solid var(--teal);background:linear-gradient(135deg,var(--teal-pale) 0%,#fff 70%)}
+.tool-featured-badge{display:inline-block;font:700 11px 'Noto Sans JP',sans-serif;color:#fff;background:var(--teal);padding:5px 14px;border-radius:999px;letter-spacing:.04em;margin-bottom:6px}
+
+/* ============ CTA 統合セクション ============ */
+.cv-cta-row{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:24px}
+.cv-foot a{color:var(--teal-text);text-decoration:none}
+.cv-foot a:hover{text-decoration:underline}
+
+/* ============ 8. FLOW ============ */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.step{position:relative;text-align:center;padding:0 16px;display:flex;flex-direction:column;align-items:center}
+.step:not(:last-child)::after{content:"";position:absolute;top:34px;left:calc(50% + 42px);right:calc(-50% + 42px);height:2px;background:repeating-linear-gradient(90deg,var(--teal-line) 0 6px,transparent 6px 13px)}
+.step-num{position:relative;width:68px;height:68px;border-radius:50%;background:#fff;border:2px solid var(--teal);display:flex;align-items:center;justify-content:center;font:900 27px 'Roboto',sans-serif;color:var(--teal-text);margin:0 auto;box-shadow:var(--sh-1);z-index:1}
+.step h4{font-size:15px;margin:20px 0 0;letter-spacing:.01em;min-height:2em;display:flex;align-items:flex-start;justify-content:center}
+.step p{font:400 13px/1.8 'Noto Sans JP',sans-serif;color:var(--body);margin:12px 0 0}
+.step-note{font-size:12px;color:var(--sub-text);margin-top:8px;line-height:1.6}
+
+.badge--region{font-size:0.9rem;font-weight:600;padding:6px 14px}
+.hero-benefits{list-style:none;padding:0;margin:24px 0 0;display:flex;flex-direction:column;gap:12px}
+.hero-benefits li{display:flex;align-items:center;gap:12px;font-size:1.05rem;color:var(--body);font-weight:600}
+.hb-check{width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0;font-weight:700}
+.btn-teal{background:var(--teal);color:#fff;box-shadow:0 2px 12px rgba(91,189,200,0.35)}
+.site-nav__dropdown-link{font-weight:500;color:var(--body);letter-spacing:0.03em}
+.site-nav__list{gap:8px}
+.site-nav__link{display:inline-flex;align-items:center}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:40px;padding-top:var(--s16)}
+  .hero-visual{height:440px;max-width:540px;margin:0 auto;width:100%}
+  .chip.c-chart{left:-8px}
+  .hero-sub{max-width:none}
+  .why-grid{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}
+  .flow{grid-template-columns:1fr 1fr;gap:40px 0}
+  .step:not(:last-child)::after{display:none}
+  .why-band .veil{background:linear-gradient(160deg,rgba(52,90,98,.94),rgba(70,166,177,.7))}
+  .band .veil,.band.flip .veil{background:linear-gradient(160deg,rgba(52,90,98,.94),rgba(70,166,177,.7))}
+  .band.flip .bcontent{margin-left:0;text-align:left}
+}
+@media (max-width:768px){
+  .band .bcontent{padding:32px 24px}
+  .band .bcontent h3{font-size:1.25rem;line-height:1.45}
+  .band .bcontent p{font-size:0.875rem;text-align:left}
+  .band .bcontent .eyebrow{font-size:0.7rem}
+  .chip.c-sum{width:210px;right:-14px;padding:14px 16px}
+  .chip.c-sum .ic{width:40px;height:40px;border-radius:12px}
+  .chip.c-sum .ic svg{width:20px;height:20px}
+  .chip.c-sum b{font-size:13px}
+}
+@media (max-width:680px){
+  :root{--s24:64px;--s20:48px;--s16:40px;--s12:32px}
+  .container{padding:0 20px}
+  .worry-grid,.tools-grid,.svc-grid{grid-template-columns:1fr}
+  .cv-inner{padding:32px 24px}
+  .subsidy-card{padding:24px 20px}
+  .answer{padding:32px 24px}
+  .answer-in{flex-direction:column;gap:16px}
+  .tool-card{flex-direction:column;gap:16px}
+  .flow{grid-template-columns:1fr;gap:32px 0}
+  .why-band .bcontent{padding:32px 24px}
+  .hero-visual{height:400px}
+  .chip.c-ai{left:-4px;top:18px;padding:8px 16px 8px 8px}
+  .chip.c-ai .av{width:36px;height:36px}
+  .chip.c-ai span{font-size:13.5px}
+  .chip.c-chart{left:-6px;bottom:6%;width:236px;padding:16px 20px}
+  .chip.c-chart .lbl{font-size:16px}
+  .chip.c-chart .bars{height:60px;gap:8px;margin-top:16px}
+}
+@media (max-width:480px){
+  .band,.why-band{min-height:auto}
+  .band .bcontent,.why-band .bcontent{padding:24px 20px}
+  .price-inner .desc,.why-card p{text-align:left}
+  .svc-tag{font-size:12px}
+  .tool-free{font-size:12px}
+  .tool-featured-badge{font-size:12px}
+  .hero-note{font-size:14px}
+}
+@media (max-width:400px){
+  body{font-size:15px}
+  .hero .badge{font-size:11px;padding:8px 12px}
+  .hero h1{line-height:1.3}
+  .hl{white-space:normal}
+  .hero-visual{height:360px}
+  .chip.c-chart{width:212px}
+  .btn{padding:16px 24px;font-size:15px}
+  .cta-row .btn{width:100%}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ざつね屋",
+  "url": "./",
+  "description": "広島県東部の中小企業向けAI活用支援。研修・業務改善オーダーメイド・経営改善パッケージ・伴走の4サービスを提供。",
+  "areaServed": "広島県福山市近郊",
+  "email": "zatuneya@gmail.com"
+}
+</script>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="./index.html" class="site-logo" aria-label="ざつね屋 トップページ"><span class="site-logo__pre">中小企業向け<span class="site-logo__ai">AI</span>活用支援の</span><span class="site-logo__name">ざつね屋</span></a>
+    <nav class="site-nav" id="site-nav" aria-label="グローバルナビゲーション">
+      <ul class="site-nav__list">
+        <li class="site-nav__item site-nav__item--dropdown">
+          <button class="site-nav__dropdown-trigger site-nav__link" aria-expanded="false" aria-haspopup="true">
+            サービス<span class="site-nav__caret" aria-hidden="true">▾</span>
+          </button>
+          <ul class="site-nav__dropdown">
+            <li><a href="./services.html" class="site-nav__dropdown-link">サービス一覧</a></li>
+            <li><a href="./service-training.html" class="site-nav__dropdown-link">AI研修ワークショップ</a></li>
+            <li><a href="./service-order.html" class="site-nav__dropdown-link">AI業務改善オーダーメイド</a></li>
+            <li><a href="./service-management.html" class="site-nav__dropdown-link">AI経営改善パッケージ</a></li>
+            <li><a href="./service-banso.html" class="site-nav__dropdown-link">AI活用伴走サービス</a></li>
+          </ul>
+        </li>
+        <li class="site-nav__item"><a href="./works.html" class="site-nav__link">実績</a></li>
+        <li class="site-nav__item"><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html" class="site-nav__link">料金</a></li>
+        <li class="site-nav__item site-nav__item--dropdown">
+          <button class="site-nav__dropdown-trigger site-nav__link" aria-expanded="false" aria-haspopup="true">
+            無料ツール<span class="site-nav__caret" aria-hidden="true">▾</span>
+          </button>
+          <ul class="site-nav__dropdown">
+            <li><a href="https://han-ai-diagnosis.netlify.app/" class="site-nav__dropdown-link">AI活用準備度診断</a></li>
+            <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/15_prompt-library/" class="site-nav__dropdown-link">プロンプトライブラリ</a></li>
+          </ul>
+        </li>
+        <li class="site-nav__item"><a href="./profile.html" class="site-nav__link">代表について</a></li>
+      </ul>
+      <a href="./contact.html" class="site-nav__cta">お問い合わせ</a>
+    </nav>
+    <button class="site-nav__hamburger" id="nav-hamburger" aria-label="メニューを開閉する" aria-controls="site-nav" aria-expanded="false">
+      <span class="site-nav__hamburger-line"></span>
+      <span class="site-nav__hamburger-line"></span>
+      <span class="site-nav__hamburger-line"></span>
+    </button>
+  </div>
+</header>
+
+<!-- ================= STICKY CTA ================= -->
+<div class="sticky-cta" id="sticky-cta">
+  <p class="sticky-cta__text">AIが自社に使えるか、まず無料で確かめてみませんか？</p>
+  <a href="https://han-ai-diagnosis.netlify.app/" class="sticky-cta__btn">無料診断を受ける</a>
+  <button class="sticky-cta__close" id="sticky-cta-close" aria-label="バナーを閉じる">✕</button>
+</div>
+
+<main id="top">
+
+<!-- ================= 1. HERO ================= -->
+<section class="hero">
+  <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="badge badge--region"><span class="dot"></span>広島県福山市近郊の中小企業専門</span>
+      <h1>人手不足でも、会社は<span class="hl">もっと伸ばせる。</span></h1>
+      <p class="hero-lead">業務改善とAI活用で、利益を生み出す仕組みをつくります。</p>
+      <ul class="hero-benefits">
+        <li><span class="hb-check">✓</span>見積書作成　30分 → 5分</li>
+        <li><span class="hb-check">✓</span>日報・議事録を自動化</li>
+        <li><span class="hb-check">✓</span>営業資料をAIで作成</li>
+      </ul>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://han-ai-diagnosis.netlify.app/"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>AI活用診断（無料）</a>
+        <a class="btn btn-teal" href="./contact.html"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>無料相談・見積もりを依頼する</a>
+      </div>
+      <p class="hero-note">診断は12問・無料・登録不要。資料請求・お見積りも無料です。</p>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-photo">
+        <img src="./assets/hero-photo.jpg" alt="ノートパソコンと資料を持ち寄って打ち合わせをする手元" width="1400" height="934" loading="eager">
+      </div>
+      <div class="chip c-ai"><span class="av"><svg viewBox="0 0 24 24"><path d="M12 3.2l1.9 5.4 5.4 1.9-5.4 1.9L12 17.8l-1.9-5.4L4.7 10.5l5.4-1.9L12 3.2Z"/><circle cx="18.5" cy="5.5" r="1.3"/></svg></span><span>AIの安心活用</span></div>
+      <div class="chip c-sum">
+        <div class="row"><span class="ic"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v4h-4"/></svg></span><div><b>効率化の再提案</b></div></div>
+      </div>
+      <div class="chip c-chart">
+        <div class="top"><span class="ic"><svg viewBox="0 0 24 24"><path d="M13 3 5 13h5l-1 8 8-11h-5l1-7Z"/></svg></span><span class="lbl">DX化の加速</span><span class="trend"><svg viewBox="0 0 24 24"><path d="M4 15l6-6 4 4 6-7"/><path d="M20 6v5M20 6h-5"/></svg></span></div>
+        <div class="bars"><span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span><span class="b5"></span></div>
+      </div>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0 40 C 280 6 480 68 720 40 C 960 10 1180 62 1440 32 L1440 70 L0 70 Z" fill="#fff"/></svg>
+</section>
+
+<!-- ================= 2. 問題提起（旧WORRIES・コピー変更） ================= -->
+<section class="section bg-white pt-tight">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Check</span>
+      <h2>ツールを入れても、業務は変わらなかった</h2>
+      <p>AI活用が定着しない9割の理由は、ツール選びではなく業務整理の不足にある。</p>
+    </div>
+    <div class="worry-grid">
+      <div class="worry-card">
+        <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1"/></svg></span>
+        <p>ChatGPTを契約したが、使っているのは自分だけ</p>
+      </div>
+      <div class="worry-card">
+        <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2"/><path d="M9 2h6"/></svg></span>
+        <p>AIに何を頼めばいいか、正直わからない</p>
+      </div>
+      <div class="worry-card">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3 21 8 12 13 3 8 12 3Z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/></svg></span>
+        <p>試してはみたが、業務への組み込み方が見えない</p>
+      </div>
+      <div class="worry-card">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/><path d="M9.5 12l1.8 1.8 3.4-3.6"/></svg></span>
+        <p>セキュリティが心配で、社内展開に踏み出せない</p>
+      </div>
+    </div>
+    <div class="answer">
+      <span class="ring r1"></span><span class="ring r2"></span>
+      <div class="answer-in">
+        <span class="abadge ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span>
+        <p>問題は「何のツールを使うか」ではなく<b>「どの業務にどう組み込むか」</b>。ざつね屋は業務整理から始めます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3. WHY（コピー変更） ================= -->
+<section class="section bg-white" id="about">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Why</span>
+      <h2>「教えられる実装者」が、業務整理から伴走します</h2>
+      <p>ざつね屋は、中小企業の業務改善パートナーです。AIを導入することが目的ではありません。現場の業務を整理し、ムダを減らし、利益を生み出す仕組みを一緒につくります。AIはそのための手段です。</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H12l-4 3v-3H4Z"/><path d="M8.5 10.5l2 2 4-4"/></svg></span>
+        <h3>作って終わりにしない</h3>
+        <p>指示書の作成から現場への定着まで、一緒に手を動かします</p>
+      </div>
+      <div class="why-card">
+        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M15.5 20v-1.2a3.7 3.7 0 0 0-3.7-3.7H6.2A3.7 3.7 0 0 0 2.5 18.8V20"/><circle cx="9" cy="7" r="3.3"/><path d="M21.5 20v-1.2a3.7 3.7 0 0 0-2.8-3.6"/><path d="M15.5 3.9a3.3 3.3 0 0 1 0 6.4"/></svg></span>
+        <h3>業務整理が先</h3>
+        <p>AIを入れる前に「何を効率化したいか」を整理することが、定着への近道です</p>
+      </div>
+      <div class="why-card">
+        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M4 6h9M4 12h13M4 18h7"/><path d="M17 6l2.5 2.5L23 4"/></svg></span>
+        <h3>現場が動かない理由がわかる</h3>
+        <p>管理職・教育経験を持つ実装者だからこそ、"なぜ使われないか"が見えます</p>
+      </div>
+    </div>
+
+    <!-- photo band（そのまま維持） -->
+    <div class="why-band">
+      <img src="./assets/band-onsite.jpg" alt="画面を一緒に見ながら業務を組み立てる手元" width="1400" height="934" loading="lazy">
+      <span class="veil"></span><span class="dots"></span>
+      <div class="bcontent">
+        <span class="eyebrow">On Site</span>
+        <h3>「提案書を渡して終わり」にはしません。</h3>
+        <p>現場に入り、実際の業務を一緒に見ながら、貴社の言葉でAIの使い方を組み立てます。担当者が自分で回せるようになるまで伴走するのが、ざつね屋の仕事です。</p>
+      </div>
+    </div>
+
+    <div class="profile-teaser">
+      <p>パソコン講師・NPO法人代表・コンテンツライター・Webディレクター・カスタマーエンジニア・企業の課長職・DX推進担当・専門学校の担任——多様な経歴を経て、AIプロダクト開発に至った代表者の歩みと、この事業で活きる強みをご紹介します。</p>
+      <a class="arrowlink" href="./profile.html">代表者プロフィールを見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4. SERVICES ================= -->
+<section class="section bg-tint" id="services">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Services</span>
+      <h2>4つのサービス</h2>
+      <p>従業員5〜50名程度で、AI・DX専任担当者がいない中小企業を主な対象としています。研修が最も自然な入口です。研修 → オーダーメイド → 経営改善 → 伴走と段階的に深められます。</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc-card">
+        <div class="svc-top">
+          <span class="svc-ic ic"><svg viewBox="0 0 24 24"><path d="M12 4 22 9 12 14 2 9 12 4Z"/><path d="M6 11v5c0 1 2.7 2.4 6 2.4s6-1.4 6-2.4v-5"/></svg></span>
+          <div class="svc-tag">SERVICE 01 ─ 入口におすすめ</div>
+        </div>
+        <div class="svc-body">
+          <h3>AI研修ワークショップ</h3>
+          <div class="svc-catch">まず社員にAIを使わせたい</div>
+          <p class="svc-desc">Claude Code特化コースを含む全6コースから選択可能。研修当日から受講者が自分の業務でAIを使い始められます。</p>
+          <div class="price-chip"><div class="box"><span class="amt">60,000円〜</span><span class="tax">（税別）</span><div class="note">人材開発支援助成金等、公的支援の対象となり得ます（要件確認が必要）</div></div></div>
+          <a class="arrowlink" href="./service-training.html">詳しく見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="svc-card">
+        <div class="svc-top">
+          <span class="svc-ic ic"><svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6Z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg></span>
+          <div class="svc-tag">SERVICE 02 ─ 課題解決</div>
+        </div>
+        <div class="svc-body">
+          <h3>AI業務改善オーダーメイド</h3>
+          <div class="svc-catch">1つの業務を改善したい</div>
+          <p class="svc-desc">貴社の業務専用のAI指示書・手順書を制作して納品する有期完結型。担当者が変わっても使い続けられます。</p>
+          <div class="price-chip"><div class="box"><span class="amt">50,000円〜</span><span class="tax">（税別）</span><div class="note">定額・有期完結型</div></div></div>
+          <a class="arrowlink" href="./service-order.html">詳しく見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="svc-card">
+        <div class="svc-top">
+          <span class="svc-ic ic"><svg viewBox="0 0 24 24"><path d="M3 17l4-8 4 4 4-6 4 8"/><path d="M3 20h18"/></svg></span>
+          <div class="svc-tag">SERVICE 03 ─ 組織改善</div>
+        </div>
+        <div class="svc-body">
+          <h3>AI経営改善パッケージ</h3>
+          <div class="svc-catch">組織・KPIから整理したい</div>
+          <p class="svc-desc">経営課題を起点に、現状診断・KPI設計・体制設計・実装支援を一貫して行う組織改善パッケージ。2〜4か月の3プランから選べます。</p>
+          <div class="price-chip"><div class="box"><span class="amt">270,000円〜</span><span class="tax">（税別）</span><div class="note">要件を満たす場合、補助金の対象となり得ます（要件確認が必要）</div></div></div>
+          <a class="arrowlink" href="./service-management.html">詳しく見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="svc-card">
+        <div class="svc-top">
+          <span class="svc-ic ic"><svg viewBox="0 0 24 24"><path d="M15.5 20v-1.2a3.7 3.7 0 0 0-3.7-3.7H6.2A3.7 3.7 0 0 0 2.5 18.8V20"/><circle cx="9" cy="7" r="3.3"/><path d="M21.5 20v-1.2a3.7 3.7 0 0 0-2.8-3.6"/><path d="M15.5 3.9a3.3 3.3 0 0 1 0 6.4"/></svg></span>
+          <div class="svc-tag">SERVICE 04 ─ 継続支援</div>
+        </div>
+        <div class="svc-body">
+          <h3>AI活用伴走サービス</h3>
+          <div class="svc-catch">毎月継続して改善したい</div>
+          <p class="svc-desc">月次ミーティングで知見を統合しながら共同で改善を続ける3か月区切りの契約。ざつね屋も手を動かします。</p>
+          <div class="price-chip"><div class="box"><span class="amt">月額 60,000円〜</span><span class="tax">（税別）</span><div class="note">3か月区切りで更新</div></div></div>
+          <a class="arrowlink" href="./service-banso.html">詳しく見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4b. WORKSHOP BAND ================= -->
+<section class="section sm bg-tint pt-0">
+  <div class="container band-wrap">
+    <div class="band">
+      <img src="./assets/band-training.jpg" alt="少人数の実践型研修の様子" width="1400" height="934" loading="lazy">
+      <span class="veil"></span><span class="dots"></span>
+      <div class="bcontent">
+        <span class="eyebrow">Workshop</span>
+        <h3>研修は「聞いて終わり」にしません。</h3>
+        <p>受講者が自分の業務データを持ち寄り、その場で手を動かす実践型。研修当日から、翌日の仕事でAIを使い始められる状態を目指します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5. FLOW ================= -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Flow</span>
+      <h2>ご相談から最短1〜2週間で開始できます</h2>
+    </div>
+    <div class="flow">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>資料請求・お問い合わせ</h4>
+        <p>上の資料請求・お見積りフォーム、またはメールでご連絡ください。返信は2営業日以内です。</p>
+        <p class="step-note">お見積りご依頼の方には、詳細版AI診断（23問・約7分）をご案内します。</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>ヒアリング（無料）</h4>
+        <p>現在の業務・困りごと・AIの利用状況をお聞きします。オンラインまたは広島県福山市近郊は訪問も可能です。</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>ご提案・正式お見積り</h4>
+        <p>最適なサービスとプランをご提案します。この時点まで費用はかかりません。</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>実施開始</h4>
+        <p>研修・制作・伴走支援を開始します。研修は最短で受注の翌週から実施できます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5b. TOGETHER BAND ================= -->
+<section class="section sm bg-white pt-0">
+  <div class="container band-wrap">
+    <div class="band flip">
+      <img src="./assets/band-together.jpg" alt="画面を一緒に見ながら検討する2人" width="1400" height="934" loading="lazy">
+      <span class="veil"></span><span class="dots"></span>
+      <div class="bcontent">
+        <span class="eyebrow">Together</span>
+        <h3>「一緒に走る」が、いちばんの強みです。</h3>
+        <p>導入して終わりではなく、現場で使いこなせるようになるまで並走します。小さな困りごとも、気軽に相談できる相手でいます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 6. FREE TOOLS（FLOW後に移動） ================= -->
+<section class="section bg-tint" id="tools">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Free Tools</span>
+      <h2>まずは無料で「現在地」を知ることから</h2>
+    </div>
+    <div class="tools-grid">
+      <div class="tool-card tool-featured">
+        <span class="tool-ic ic"><svg viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13h2M18 13h2M12 5V4"/><path d="M12 13l4-3"/><circle cx="12" cy="13" r="1.4"/></svg></span>
+        <div>
+          <span class="tool-featured-badge">まずはここから</span>
+          <span class="tool-free">無料・登録不要</span>
+          <h3>AI活用準備度診断（12問・約3分）</h3>
+          <p>貴社のAI活用が「準備期・導入期・活用期・推進期」のどの段階かを100点満点で診断。強み・優先課題・次のアクションまで表示します。</p>
+          <p class="tool-note">お見積りをご依頼いただくと、詳細版AI診断（23問・約7分）もご利用いただけます。</p>
+          <a class="arrowlink" href="https://han-ai-diagnosis.netlify.app/">診断を受ける <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="tool-card">
+        <span class="tool-ic ic"><svg viewBox="0 0 24 24"><path d="M12 3 21 9v6l-9 6-9-6V9l9-6Z"/><path d="M12 7.5 16.5 11v2.5L12 16.5 7.5 13.5V11L12 7.5Z"/><path d="M12 3v4.5M12 16.5V21M3 9l4.5 2M21 9l-4.5 2"/></svg></span>
+        <div>
+          <span class="tool-free">無料・登録不要</span>
+          <h3>ITリテラシー診断（20問・約3分）</h3>
+          <p>AI基礎知識・ツール操作・指示文の書き方・セキュリティ・業務応用の5軸をレーダーチャートで可視化。おすすめの研修コースもわかります。</p>
+          <a class="arrowlink" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/ai-literacy-test/">テストを受ける <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="tool-card">
+        <span class="tool-ic ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="13" height="16" rx="2"/><path d="M8 9h5M8 13h5M8 17h3"/><path d="M17 8l3 1.5v9L17 20"/></svg></span>
+        <div>
+          <span class="tool-free">無料・登録不要</span>
+          <h3>AIプロンプトライブラリ（全22本）</h3>
+          <p>研修で使う実践プロンプトをそのままコピーして使える形で公開。文書・画像・動画・Claude Code分野別に検索・絞り込みができます。</p>
+          <a class="arrowlink" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/15_prompt-library/">ライブラリを見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 7. PRICE / SUBSIDY ================= -->
+<section class="section price-band" id="price">
+  <span class="blob p1"></span><span class="blob p2"></span><span class="dots"></span>
+  <div class="container price-inner">
+    <span class="eyebrow">Price</span>
+    <h2>料金概要</h2>
+    <p class="desc">すべて税別表示です。詳細なオプション・お支払い条件は料金ページでご確認いただけます。</p>
+    <div class="subsidy-card">
+      <div class="example">
+        <div class="ex-block">
+          <div class="ex-label">AI研修ワークショップ</div>
+          <div class="ex-num">60,000円〜</div>
+          <div class="ex-label">（税別）</div>
+        </div>
+        <div class="ex-block">
+          <div class="ex-label">AI業務改善オーダーメイド</div>
+          <div class="ex-num">50,000円〜</div>
+          <div class="ex-label">（税別）</div>
+        </div>
+        <div class="ex-block">
+          <div class="ex-label">AI経営改善パッケージ</div>
+          <div class="ex-num">270,000円〜</div>
+          <div class="ex-label">（税別）</div>
+        </div>
+        <div class="ex-block">
+          <div class="ex-label">AI活用伴走サービス</div>
+          <div class="ex-num">月額 60,000円〜</div>
+          <div class="ex-label">（税別）</div>
+        </div>
+      </div>
+    </div>
+    <ul class="notes">
+      <li>価格はすべて税別です。お支払い条件・修正回数・対象外業務などの詳細条件は料金ページに記載しています</li>
+      <li>モニター制度（先着3社・30%引き）は研修の個別コースのみが対象です</li>
+      <li>人材開発支援助成金・補助金等、公的支援の対象となり得る場合があります（要件の確認が必要です）。制度の適用・支給を保証するものではありません。申請前に商工会議所・社会保険労務士等へご確認ください</li>
+    </ul>
+    <div class="price-cta">
+      <a class="btn btn-white" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html">料金の詳細を見る</a>
+      <a class="btn btn-white" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/curriculum.html">研修カリキュラムを見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 8. CTA（コピー変更） ================= -->
+<section class="section cv-section" id="contact">
+  <div class="container">
+    <div class="cv-card">
+      <div class="cv-topbar"></div>
+      <div class="cv-inner">
+        <span class="glow"></span>
+        <div class="cv-head">
+          <span class="cv-tag"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>CONTACT ─ 無料</span>
+          <h2>まず30分、話を聞かせてください</h2>
+          <p>費用は発生しません。資料請求・様子見だけでも歓迎です。返信は2営業日以内。</p>
+        </div>
+        <div class="cv-cta-row">
+          <a class="btn btn-primary" href="https://han-ai-diagnosis.netlify.app/">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            AI活用診断（無料）
+          </a>
+          <a class="btn btn-ghost" href="./contact.html">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
+            お問い合わせ・無料相談をする
+          </a>
+        </div>
+        <p class="cv-foot">返信は2営業日以内です。しつこい営業連絡はいたしません。<br>フォームが読み込めない場合は <a href="mailto:zatuneya@gmail.com?subject=AI活用支援について問い合わせ">zatuneya@gmail.com</a> までご連絡ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <a href="./index.html" class="site-footer__logo">ざつね屋</a>
+      <p class="site-footer__tagline">広島県東部の中小企業に<br>AI活用支援を届ける</p>
+    </div>
+    <nav class="site-footer__sitemap" aria-label="サイトマップ">
+      <div class="site-footer__col">
+        <p class="site-footer__col-head">サービス</p>
+        <ul>
+          <li><a href="./services.html">サービス一覧</a></li>
+          <li><a href="./service-training.html">AI研修ワークショップ</a></li>
+          <li><a href="./service-order.html">AI業務改善オーダーメイド</a></li>
+          <li><a href="./service-management.html">AI経営改善パッケージ</a></li>
+          <li><a href="./service-banso.html">AI活用伴走サービス</a></li>
+        </ul>
+      </div>
+      <div class="site-footer__col">
+        <span class="site-footer__col-title">会社情報</span>
+        <ul>
+          <li><a href="./works.html">支援実績</a></li>
+          <li><a href="./profile.html">代表について</a></li>
+          <li><a href="./faq.html">よくある質問</a></li>
+        </ul>
+      </div>
+      <div class="site-footer__col">
+        <span class="site-footer__col-title">お問い合わせ</span>
+        <ul>
+          <li><a href="./contact.html">相談・お見積もり</a></li>
+          <li><a href="https://han-ai-diagnosis.netlify.app/">無料AI診断ツール</a></li>
+          <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html">料金・プラン</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="site-footer__bottom">
+    <ul class="site-footer__legal">
+      <li><a href="./faq.html">よくある質問</a></li>
+      <li><a href="./privacy.html">プライバシーポリシー</a></li>
+      <li><a href="./tokusho.html">特定商取引法に基づく表記</a></li>
+    </ul>
+    <p class="site-footer__copy">© 2026 ざつね屋</p>
+  </div>
+</footer>
+
+<script src="./nav.js" defer></script>
+
+<!-- スマホ固定CTAバー -->
+<div class="mobile-cta-bar" aria-label="AI活用診断・お問い合わせへのショートカット">
+  <a href="https://han-ai-diagnosis.netlify.app/" class="mobile-cta-primary">AI活用診断（無料）</a>
+  <a href="./contact.html" class="mobile-cta-sub">相談・お見積り</a>
+</div>
+</body>
+</html>

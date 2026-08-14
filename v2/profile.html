@@ -1,0 +1,443 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>代表について | ざつね屋</title>
+<meta name="description" content="ざつね屋 代表者のプロフィール。パソコン講師・NPO法人代表・コンテンツライター・Webディレクター・カスタマーエンジニア・企業の課長職・DX推進担当・専門学校の担任という多様な経歴と、AI活用支援事業で活きる強みをご紹介します。">
+<link rel="icon" href="./favicon.ico" sizes="any">
+<link rel="icon" href="./assets/favicon-32.png" type="image/png">
+<link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+<link rel="canonical" href="https://zatune-gif.github.io/zatuneya-hp/v2/profile.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ざつね屋">
+<meta property="og:title" content="代表者プロフィール｜ざつね屋 AI活用支援">
+<meta property="og:description" content="ざつね屋 代表者のプロフィール。多様な経歴と、AI活用支援事業で活きる強みをご紹介します。">
+<meta property="og:url" content="https://zatune-gif.github.io/zatuneya-hp/v2/profile.html">
+<meta property="og:image" content="./assets/profile-portrait-2.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<style>
+/* ============================================================
+   ざつね屋 — profile.html  (design system shared with index.html)
+   ============================================================ */
+:root{
+  --bg:#EFF4F5; --card:#fff;
+  --teal:#5BBDC8; --teal-d:#46A6B1; --teal-pale:#EAF6F8; --teal-pale2:#DCF0F2; --teal-line:#D3E7EA;
+  --orange:#F8981D; --orange-d:#E28511; --orange-pale:#FFF8EF; --orange-line:#F6E4C8;
+  --sub:#839CAA; --head:#3C3C3C; --body:#575757;
+  --line:#E1EAEC;
+  /* --- 文字専用トークン (G2: WCAG AA). --teal-d/--sub/--orange-d は背景・アイコン・枠線用のまま残す --- */
+  --teal-text:#31747C;   /* on #fff 5.36 / --bg 4.83 / --teal-pale 4.86 / --teal-pale2 4.54 */
+  --sub-text:#556E7C;    /* on #fff 5.37 / --bg 4.84 / --teal-pale 4.87 / --teal-pale2 4.55 */
+  --orange-text:#9C5C0C; /* on #fff 5.32 / --orange-pale 5.05 / --bg 4.79 */
+  --band-a:#2B7881; --band-b:#24565C; /* 価格帯グラデ: 白文字 5.11 / 8.20 */
+  --sh-1:0 1px 3px rgba(40,60,70,.05), 0 4px 12px rgba(40,60,70,.05);
+  --sh-2:0 2px 6px rgba(40,60,70,.06), 0 14px 30px rgba(40,60,70,.10);
+  --sh-3:0 6px 14px rgba(40,60,70,.10), 0 30px 60px rgba(40,60,70,.18);
+  --sh-orange:0 10px 24px rgba(248,152,29,.34);
+  --sh-orange-h:0 16px 32px rgba(248,152,29,.44);
+  --s2:8px; --s3:12px; --s4:16px; --s6:24px; --s8:32px; --s10:40px; --s12:48px; --s16:64px; --s20:80px; --s24:96px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--body);font-family:'Roboto','Noto Sans JP',system-ui,sans-serif;font-size:16px;line-height:1.9;letter-spacing:0.02em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--head);margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--teal-text);outline-offset:3px;border-radius:6px}
+.site-footer :focus-visible,.price-band :focus-visible{outline-color:#fff}/* 暗い面では白リング: #334A52 上 9.37 / 帯上 5.11 */
+.container{max-width:1120px;margin:0 auto;padding:0 32px}
+.section{padding:var(--s24) 0}
+.bg-white{background:#fff}
+.bg-tint{background:var(--bg)}
+.pt-0{padding-top:0}
+.eyebrow{display:inline-block;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.22em;color:var(--teal-text);text-transform:uppercase}
+.ic{display:inline-flex;align-items:center;justify-content:center}
+.ic svg{width:100%;height:100%;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.sec-head{text-align:center;max-width:640px;margin:0 auto var(--s12)}
+.sec-head h2{font-size:clamp(22px,3vw,30px);line-height:1.3;margin-top:16px}
+
+/* BUTTONS */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease);cursor:pointer;white-space:nowrap}
+.btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
+.btn-primary{background:var(--orange);color:#332211;box-shadow:var(--sh-orange)}/* 文字色: 白は 2.21:1 で不合格。ブランドのオレンジを保つため濃色ブラウン #332211 = 6.90:1（hover の --orange-d 上でも 5.51:1）*/
+.btn-primary:hover{background:var(--orange-d);transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
+.btn-primary:active{transform:translateY(0);box-shadow:0 4px 12px rgba(248,152,29,.4)}
+.btn-outline{background:transparent;color:var(--teal-text);border-color:var(--teal)}
+.btn-outline:hover{background:var(--teal-pale);transform:translateY(-2px)}
+.btn-outline:active{transform:translateY(0)}
+
+/* PAGE HERO */
+.page-hero{position:relative;background:var(--bg);overflow:hidden;background-image:radial-gradient(rgba(131,156,170,.16) 1.1px,transparent 1.1px);background-size:22px 22px}
+.page-hero .blob{position:absolute;pointer-events:none}
+.page-hero .b1{top:-150px;right:-90px;width:500px;height:440px;background:rgba(91,189,200,.16);border-radius:60% 40% 55% 45%/55% 50% 50% 45%;filter:blur(3px)}
+.page-hero .b2{top:-20px;right:120px;width:320px;height:300px;background:rgba(91,189,200,.10);border-radius:52% 48% 60% 40%/50% 55% 45% 50%}
+.page-hero .b3{bottom:-130px;left:-110px;width:360px;height:360px;background:rgba(248,152,29,.07);border-radius:50%}
+.badge{display:inline-flex;align-items:center;gap:8px;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-text);background:#fff;padding:8px 16px;border-radius:999px;box-shadow:var(--sh-1)}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
+/* PATTERN C — 左に素材丸ごと、右にテキスト（Claude Design案・services.htmlと同一トークン） */
+.heroC .ph-inner{position:relative;display:grid;grid-template-columns:.82fr 1fr;gap:48px;align-items:center;padding:var(--s20) 0 var(--s16)}
+.heroC .artcard{padding:0;background:transparent;box-shadow:none;border-radius:0}
+.heroC .artcard img{width:100%;height:auto;border-radius:24px;box-shadow:var(--sh-3)}
+.heroC .txt h1{font-size:clamp(28px,3.6vw,40px);line-height:1.3;margin:24px 0 0;letter-spacing:.01em}
+.heroC .txt .role-tag{display:block;font:700 14px/1.6 'Noto Sans JP',sans-serif;color:var(--teal-text);margin-top:10px}
+.heroC .txt .lead{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);max-width:500px;margin:16px 0 0}
+.heroC .hero-cta{display:flex;flex-wrap:wrap;gap:16px;margin-top:24px}
+
+/* CAREER TIMELINE（経歴 → 強み。9つがつながって強みになったことを縦の線で見せる） */
+.timeline{position:relative;max-width:660px;margin:0 auto}
+.timeline::before{content:"";position:absolute;left:23px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--teal-line) 0%,var(--teal-line) 78%,var(--orange-line) 100%)}
+.tl-item{position:relative;display:flex;gap:20px;padding-bottom:16px}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:relative;z-index:1;flex:none;width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;display:flex;align-items:center;justify-content:center;font:900 17px 'Roboto',sans-serif;box-shadow:var(--sh-1)}
+.tl-item.accent .tl-dot{background:linear-gradient(135deg,var(--orange),var(--orange-d))}
+.tl-card{flex:1;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 20px;box-shadow:var(--sh-1);margin-top:4px;transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+.tl-card:hover{transform:translateX(3px);box-shadow:var(--sh-2)}
+.tl-card h3{font-size:16.5px;letter-spacing:.01em}
+.tl-card p{font-family:'Noto Sans JP',sans-serif;font-size:14px;line-height:1.75;color:var(--body);margin-top:6px}
+.tl-card p .arrow{color:var(--teal-text);font-weight:700;margin-right:4px}
+.tl-item.accent .tl-card p .arrow{color:var(--orange-text)}
+
+/* WHY (再掲・簡略) */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.why-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:32px;box-shadow:var(--sh-1);text-align:center}
+.why-ic{width:58px;height:58px;border-radius:18px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;margin:0 auto}
+.why-ic svg{width:30px;height:30px;stroke:var(--teal-d)}
+.why-card h3{font-size:17px;margin:16px 0 0}
+.why-card p{font:400 13px/1.8 'Noto Sans JP',sans-serif;color:var(--body);margin:12px 0 0}
+.why-src{display:inline-block;font:700 11.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-text);background:var(--teal-pale);padding:8px 16px;border-radius:999px;margin-top:16px}
+
+/* CV */
+.cv-section{background:var(--bg)}
+.cv-card{position:relative;max-width:820px;margin:0 auto;background:#fff;border-radius:34px;padding:16px 16px 0;box-shadow:var(--sh-3);overflow:hidden}
+.cv-topbar{height:6px;border-radius:99px;background:linear-gradient(90deg,var(--orange),var(--orange-d))}
+.cv-inner{position:relative;padding:48px;text-align:center}
+.cv-card .glow{position:absolute;top:-120px;right:-80px;width:360px;height:360px;background:radial-gradient(circle,rgba(248,152,29,.16),rgba(248,152,29,0) 70%);border-radius:50%;pointer-events:none}
+.cv-tag{position:relative;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font:700 12.5px/1 'Roboto',sans-serif;letter-spacing:.16em;color:var(--orange-text);background:var(--orange-pale);border:1px solid var(--orange-line);padding:8px 16px;border-radius:999px}
+.cv-tag svg{width:15px;height:15px;stroke:var(--orange-d);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.cv-inner h2{position:relative;font-size:clamp(25px,3.6vw,32px);margin:16px 0 0}
+.cv-inner .lead{position:relative;font-family:'Noto Sans JP',sans-serif;font-size:15px;line-height:1.9;color:var(--body);max-width:560px;margin:16px auto 0}
+.cv-cta{position:relative;display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:32px}
+.cv-note{position:relative;font:400 13px/1.6 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-top:24px}
+.btn-ghost{background:#fff;color:var(--teal-text);box-shadow:var(--sh-1)}
+.btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
+
+/* RESPONSIVE */
+@media (max-width:960px){
+  .why-grid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}
+  .heroC .ph-inner{grid-template-columns:1fr;gap:32px;padding:48px 0 40px}
+  .heroC .artcard{max-width:380px;margin:0 auto}
+  .heroC .txt{text-align:center}
+  .heroC .txt .lead{margin-left:auto;margin-right:auto}
+  .heroC .hero-cta{justify-content:center}
+}
+@media (max-width:680px){
+  :root{--s24:64px;--s20:48px;--s16:40px;--s12:32px}
+  .container{padding:0 20px}
+  .cv-inner{padding:32px 20px}
+}
+@media (max-width:420px){
+  .timeline::before{left:19px}
+  .tl-dot{width:40px;height:40px;font-size:15px;border-radius:12px}
+  .tl-item{gap:12px}
+  .tl-card{padding:12px 16px}
+}
+@media (max-width:400px){
+  body{font-size:15px}
+  .btn{padding:16px 24px;font-size:15px}
+  .cv-cta .btn{width:100%}
+  .brand{font-size:19px}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="./index.html" class="site-logo" aria-label="ざつね屋 トップページ"><span class="site-logo__pre">中小企業向け<span class="site-logo__ai">AI</span>活用支援の</span><span class="site-logo__name">ざつね屋</span></a>
+    <nav class="site-nav" id="site-nav" aria-label="グローバルナビゲーション">
+      <ul class="site-nav__list">
+        <li class="site-nav__item site-nav__item--dropdown">
+          <button class="site-nav__dropdown-trigger site-nav__link" aria-expanded="false" aria-haspopup="true">
+            サービス<span class="site-nav__caret" aria-hidden="true">▾</span>
+          </button>
+          <ul class="site-nav__dropdown">
+            <li><a href="./services.html" class="site-nav__dropdown-link">サービス一覧</a></li>
+            <li><a href="./service-training.html" class="site-nav__dropdown-link">AI研修ワークショップ</a></li>
+            <li><a href="./service-order.html" class="site-nav__dropdown-link">AI業務改善オーダーメイド</a></li>
+            <li><a href="./service-management.html" class="site-nav__dropdown-link">AI経営改善パッケージ</a></li>
+            <li><a href="./service-banso.html" class="site-nav__dropdown-link">AI活用伴走サービス</a></li>
+          </ul>
+        </li>
+        <li class="site-nav__item"><a href="./works.html" class="site-nav__link">実績</a></li>
+        <li class="site-nav__item"><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html" class="site-nav__link">料金</a></li>
+        <li class="site-nav__item site-nav__item--dropdown">
+          <button class="site-nav__dropdown-trigger site-nav__link" aria-expanded="false" aria-haspopup="true">
+            無料ツール<span class="site-nav__caret" aria-hidden="true">▾</span>
+          </button>
+          <ul class="site-nav__dropdown">
+            <li><a href="https://han-ai-diagnosis.netlify.app/" class="site-nav__dropdown-link">AI活用準備度診断</a></li>
+            <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/15_prompt-library/" class="site-nav__dropdown-link">プロンプトライブラリ</a></li>
+          </ul>
+        </li>
+        <li class="site-nav__item"><a href="./profile.html" class="site-nav__link">代表について</a></li>
+      </ul>
+      <a href="./contact.html" class="site-nav__cta">お問い合わせ</a>
+    </nav>
+    <button class="site-nav__hamburger" id="nav-hamburger" aria-label="メニューを開閉する" aria-controls="site-nav" aria-expanded="false">
+      <span class="site-nav__hamburger-line"></span>
+      <span class="site-nav__hamburger-line"></span>
+      <span class="site-nav__hamburger-line"></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= PAGE HERO ================= -->
+<section class="page-hero heroC">
+  <span class="blob b1"></span><span class="blob b3"></span>
+  <div class="container ph-inner">
+    <div class="artcard">
+      <img src="./assets/profile-portrait-2.jpg" alt="ざつね屋 代表者のイラスト" width="900" height="1349" loading="eager">
+    </div>
+    <div class="txt">
+      <span class="badge"><span class="dot"></span>PROFILE ─ 代表について</span>
+      <h1>「難しそう」を、<br>いっしょに越えていく。</h1>
+      <span class="role-tag">ざつね屋 代表</span>
+      <p class=”lead”>多様な現場での経験を経て、中小企業が「AIを知っている」から「実際に使える」へ変わっていく場面を一緒に作りたいと、ざつね屋を立ち上げました。広島県東部を中心に、AI活用支援を提供しています。</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://han-ai-diagnosis.netlify.app/"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>AI活用診断（無料）</a>
+        <a class="btn btn-outline" href="#career">経歴を見る</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 事業を始めた理由 ================= -->
+<section class="section bg-tint">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Story</span>
+      <h2>なぜ、このサービスを始めたか</h2>
+    </div>
+    <div>
+      <p>パソコン講師・NPO代表・カスタマーエンジニア・DX推進担当・専門学校の担任と、9つの現場を経験する中で、ある共通の課題を繰り返し目にしてきました。</p>
+      <p>「AIを使ってみたいが、何から始めたらいいかわからない」「研修を受けたが、業務では使えていない」。<br>知識と実践の間に、大きな溝がある。</p>
+      <p>提案だけするコンサルでもなく、システムを納品するだけの業者でもない。業務を一緒に整理して、作って、定着するまで伴走できる存在が必要だと感じ、ざつね屋を立ち上げました。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 経歴 → 強み ================= -->
+<section class="section bg-white pt-0" id="career">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Career</span>
+      <h2>これまでの経歴と、この事業で活きる強み</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">1</div>
+        <div class="tl-card">
+          <h3>パソコン講師</h3>
+          <p><span class="arrow">→</span>教育・導入支援・わかりやすく伝える技術</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">2</div>
+        <div class="tl-card">
+          <h3>NPO法人代表</h3>
+          <p><span class="arrow">→</span>企画運営・プロジェクト設計</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">3</div>
+        <div class="tl-card">
+          <h3>コンテンツライター</h3>
+          <p><span class="arrow">→</span>文章構成力・伝わる言葉選び・情報の整理力</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">4</div>
+        <div class="tl-card">
+          <h3>Webディレクター</h3>
+          <p><span class="arrow">→</span>業務整理・要件定義・フロー可視化</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">5</div>
+        <div class="tl-card">
+          <h3>カスタマーエンジニア</h3>
+          <p><span class="arrow">→</span>技術サポート・課題ヒアリング・非エンジニアへの説明力</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">6</div>
+        <div class="tl-card">
+          <h3>企業の課長職</h3>
+          <p><span class="arrow">→</span>人材育成・業務手順書の作成・業務改善</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">7</div>
+        <div class="tl-card">
+          <h3>DX推進担当</h3>
+          <p><span class="arrow">→</span>IT導入・仕組み化・補助金活用</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">8</div>
+        <div class="tl-card">
+          <h3>専門学校の担任</h3>
+          <p><span class="arrow">→</span>伴走支援・継続サポート・学習の定着化</p>
+        </div>
+      </div>
+      <div class="tl-item accent">
+        <div class="tl-dot">9</div>
+        <div class="tl-card">
+          <h3>AIプロダクト開発</h3>
+          <p><span class="arrow">→</span>生成AI活用・実装・プロンプト設計</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY（差別化ポイント） ================= -->
+<section class="section bg-tint" id="about">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Why</span>
+      <h2>「教えられる実装者」が、業務整理から伴走します</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H12l-4 3v-3H4Z"/><path d="M8.5 10.5l2 2 4-4"/></svg></span>
+        <h3>教えられる実装者</h3>
+        <p>ざつね屋では、提案にとどまらず、現場に合わせたAI指示書・手順書の作成、操作説明、運用後の改善まで一貫して対応します。</p>
+        <span class="why-src">経歴 1・8・9 より</span>
+      </div>
+      <div class="why-card">
+        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M15.5 20v-1.2a3.7 3.7 0 0 0-3.7-3.7H6.2A3.7 3.7 0 0 0 2.5 18.8V20"/><circle cx="9" cy="7" r="3.3"/><path d="M21.5 20v-1.2a3.7 3.7 0 0 0-2.8-3.6"/><path d="M15.5 3.9a3.3 3.3 0 0 1 0 6.4"/></svg></span>
+        <h3>現場目線の伴走</h3>
+        <p>管理職・教育機関の担任として「人が動く仕組み」を作ってきた経験。導入して終わりではなく、結果が出るまで付き合います。</p>
+        <span class="why-src">経歴 2・6・8 より</span>
+      </div>
+      <div class="why-card">
+        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M4 6h9M4 12h13M4 18h7"/><path d="M17 6l2.5 2.5L23 4"/></svg></span>
+        <h3>業務整理から入れる</h3>
+        <p>AI以前に業務が整理できていない会社が大半です。業務フローの整理・要件定義から対応できるので、遠回りしません。</p>
+        <span class="why-src">経歴 3・4・5・7 より</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 支援で大切にしていること ================= -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Values</span>
+      <h2>支援で大切にしていること</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M12 22c5.52 0 10-4.48 10-10S17.52 2 12 2 2 6.48 2 12s4.48 10 10 10z"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+        <h3>「難しそう」を言い訳にしない</h3>
+        <p>技術的な言葉を使わず、現場の言葉でAIを説明します。「うちには難しい」と感じる前に、一緒に試してみてください。</p>
+      </div>
+      <div class="why-card">
+        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <h3>担当者が自分で動ける状態まで</h3>
+        <p>渡して終わりではなく、担当者が日常業務で自分一人で使えるようになるまで一緒に進みます。依存ではなく自立を目指します。</p>
+      </div>
+      <div class="why-card">
+        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+        <h3>ツールより先に業務を整理する</h3>
+        <p>AIツールを入れる前に、まず業務の流れを整理します。手順が明確になれば、AIは確実に役立ちます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="section cv-section">
+  <div class="container">
+    <div class="cv-card">
+      <div class="cv-topbar"></div>
+      <div class="cv-inner">
+        <span class="glow"></span>
+        <span class="cv-tag"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>CONTACT ─ 無料</span>
+        <h2>まずはお気軽にご相談ください</h2>
+        <p class="lead">「うちの業務でも使えるか？」の段階で大丈夫です。相談・資料請求・お見積りはすべて無料です。</p>
+        <div class="cv-cta">
+          <a class="btn btn-primary" href="https://han-ai-diagnosis.netlify.app/">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            AI活用診断（無料）
+          </a>
+          <a class="btn btn-ghost" href="./contact.html">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
+            お問い合わせ・無料相談をする
+          </a>
+        </div>
+        <p class="cv-note">返信は2営業日以内です。しつこい営業連絡はいたしません。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <a href="./index.html" class="site-footer__logo">ざつね屋</a>
+      <p class="site-footer__tagline">広島県東部の中小企業に<br>AI活用支援を届ける</p>
+    </div>
+    <nav class="site-footer__sitemap" aria-label="サイトマップ">
+      <div class="site-footer__col">
+        <p class="site-footer__col-head">サービス</p>
+        <a href="./services.html">サービス一覧</a>
+        <a href="./service-training.html">AI研修ワークショップ</a>
+        <a href="./service-order.html">AI業務改善オーダーメイド</a>
+        <a href="./service-management.html">AI経営改善パッケージ</a>
+        <a href="./service-banso.html">AI活用伴走サービス</a>
+      </div>
+      <div class="site-footer__col">
+        <span class="site-footer__col-title">会社情報</span>
+        <ul>
+          <li><a href="./works.html">支援実績</a></li>
+          <li><a href="./profile.html">代表について</a></li>
+          <li><a href="./faq.html">よくある質問</a></li>
+        </ul>
+      </div>
+      <div class="site-footer__col">
+        <span class="site-footer__col-title">お問い合わせ</span>
+        <ul>
+          <li><a href="./contact.html">相談・お見積もり</a></li>
+          <li><a href="https://han-ai-diagnosis.netlify.app/">無料AI診断ツール</a></li>
+          <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html">料金・プラン</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="site-footer__bottom">
+    <ul class="site-footer__legal">
+      <li><a href="./faq.html">よくある質問</a></li>
+      <li><a href="./privacy.html">プライバシーポリシー</a></li>
+      <li><a href="./tokusho.html">特定商取引法に基づく表記</a></li>
+    </ul>
+    <p class="site-footer__copy">© 2026 ざつね屋</p>
+  </div>
+</footer>
+
+<script src="./nav.js" defer></script>
+</body>
+</html>
