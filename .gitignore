@@ -1,0 +1,5 @@
+# ローカル視覚検証用ツール（v2/qa-screenshots作成に使用、サイト本体には不要）
+node_modules/
+package.json
+package-lock.json
+shoot.mjs
