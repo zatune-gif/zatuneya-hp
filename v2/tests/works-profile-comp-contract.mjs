@@ -67,26 +67,63 @@ check(profile.includes('https://han-ai-diagnosis.netlify.app/'), 'profile.html h
 check(profile.includes('href="./contact.html"'), 'profile.html has the secondary contact CTA link');
 check(profile.includes('./assets/profile-portrait-2.jpg'), 'profile.html keeps the existing portrait asset');
 
-/* ── shared header/footer parity with v2/index.html ── */
-const indexHtml = readFileSync(join(root, 'index.html'), 'utf8');
-const headerMatch = indexHtml.match(/<header class="comp-header">[\s\S]*?<\/header>/);
-check(!!headerMatch, 'v2/index.html has a comp-header block to copy from');
-if (headerMatch) {
-  const headerCore = headerMatch[0].replace(/\s*aria-current="page"/g, '').replace(/\s+/g, ' ');
-  const worksHeaderNorm = works.replace(/\s*aria-current="page"/g, '').replace(/\s+/g, ' ');
-  const profileHeaderNorm = profile.replace(/\s*aria-current="page"/g, '').replace(/\s+/g, ' ');
-  check(worksHeaderNorm.includes(headerCore.trim()), 'works.html reuses the confirmed TOP header markup verbatim');
-  check(profileHeaderNorm.includes(headerCore.trim()), 'profile.html reuses the confirmed TOP header markup verbatim');
+/* ── shared lower-page header parity ── */
+// The V3 TOP header has its own contract in top-comp-contract.mjs. These
+// lower pages intentionally retain their existing shared header instead of
+// inheriting the TOP markup verbatim.
+const extractLowerPageHeader = (html, filename) => {
+  const match = html.match(/<header class="comp-header">[\s\S]*?<\/header>/);
+  check(!!match, `${filename} has a comp-header block`);
+  return match ? match[0].replace(/\s*aria-current="page"/g, '').replace(/\s+/g, ' ').trim() : '';
+};
+
+const worksHeader = extractLowerPageHeader(works, 'works.html');
+const profileHeader = extractLowerPageHeader(profile, 'profile.html');
+check(worksHeader === profileHeader, 'works.html and profile.html retain identical lower-page header markup except aria-current');
+
+for (const [filename, header] of [
+  ['works.html', worksHeader],
+  ['profile.html', profileHeader],
+]) {
+  check(header.includes('<nav id="site-nav" class="comp-nav" aria-label="主要ナビゲーション">'), `${filename} header retains the accessible primary navigation hook`);
+  check(header.includes('<button id="nav-hamburger" class="comp-menu" type="button" aria-label="メニューを開く" aria-expanded="false">'), `${filename} header retains the accessible mobile-menu hook`);
+  for (const href of [
+    './services.html',
+    'https://han-ai-diagnosis.netlify.app/',
+    './works.html',
+    './profile.html',
+    '#prices',
+    './contact.html',
+  ]) check(header.includes(`href="${href}"`), `${filename} header retains nav link: ${href}`);
 }
 
-const footerMatch = indexHtml.match(/<footer class="comp-footer">[\s\S]*?<\/footer>/);
-check(!!footerMatch, 'v2/index.html has a comp-footer block to copy from');
-if (footerMatch) {
-  const footerNorm = footerMatch[0].replace(/\s+/g, ' ').trim();
-  const worksNorm = works.replace(/\s+/g, ' ');
-  const profileNorm = profile.replace(/\s+/g, ' ');
-  check(worksNorm.includes(footerNorm), 'works.html reuses the confirmed TOP footer markup verbatim');
-  check(profileNorm.includes(footerNorm), 'profile.html reuses the confirmed TOP footer markup verbatim');
+/* ── shared lower-page footer parity ── */
+// The V3 TOP footer has its own contract in top-comp-contract.mjs. These
+// lower pages intentionally retain their existing shared footer instead of
+// inheriting the TOP markup verbatim.
+const extractLowerPageFooter = (html, filename) => {
+  const match = html.match(/<footer class="comp-footer">[\s\S]*?<\/footer>/);
+  check(!!match, `${filename} has a comp-footer block`);
+  return match ? match[0].replace(/\s+/g, ' ').trim() : '';
+};
+
+const worksFooter = extractLowerPageFooter(works, 'works.html');
+const profileFooter = extractLowerPageFooter(profile, 'profile.html');
+check(worksFooter === profileFooter, 'works.html and profile.html retain identical lower-page footer markup');
+
+for (const [filename, footer] of [
+  ['works.html', worksFooter],
+  ['profile.html', profileFooter],
+]) {
+  check(footer.includes('© 2026 ざつね屋'), `${filename} footer retains the 2026 copyright line`);
+  for (const href of [
+    './services.html',
+    'https://han-ai-diagnosis.netlify.app/',
+    './works.html',
+    './profile.html',
+    '#prices',
+    './contact.html',
+  ]) check(footer.includes(`href="${href}"`), `${filename} footer retains link: ${href}`);
 }
 
 console.log(`PASS ${checks} works/profile comp contract checks`);

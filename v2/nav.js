@@ -56,16 +56,80 @@
   /* ── スティッキーCTAバナーを閉じる ── */
   var closeBtn = document.getElementById('sticky-cta-close');
   var banner   = document.getElementById('sticky-cta');
+  var hero     = document.getElementById('hero');
+
+  var readSessionValue = function (key) {
+    try {
+      return window.sessionStorage.getItem(key);
+    } catch (error) {
+      return null;
+    }
+  };
+  var writeSessionValue = function (key, value) {
+    try {
+      window.sessionStorage.setItem(key, value);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
 
   if (closeBtn && banner) {
     /* セッション内で閉じた場合は再表示しない */
-    if (sessionStorage.getItem('sticky-cta-closed') === '1') {
+    if (readSessionValue('sticky-cta-closed') === '1') {
       banner.classList.add('is-closed');
+    } else if (hero) {
+      var stickyFrame = null;
+      var stickyListenersRegistered = false;
+      var updateStickyCta = function () {
+        stickyFrame = null;
+        if (banner.classList.contains('is-closed')) return;
+        banner.classList.toggle('is-after-hero', hero.getBoundingClientRect().bottom <= 0);
+      };
+      var scheduleStickyCtaUpdate = function () {
+        if (stickyFrame !== null) return;
+        stickyFrame = window.requestAnimationFrame(updateStickyCta);
+      };
+      var unregisterStickyCtaListeners = function () {
+        if (!stickyListenersRegistered) return;
+        window.removeEventListener('scroll', scheduleStickyCtaUpdate);
+        window.removeEventListener('resize', scheduleStickyCtaUpdate);
+        window.removeEventListener('pagehide', unregisterStickyCtaListeners);
+        stickyListenersRegistered = false;
+        if (stickyFrame !== null) {
+          window.cancelAnimationFrame(stickyFrame);
+          stickyFrame = null;
+        }
+      };
+      var registerStickyCtaListeners = function () {
+        if (stickyListenersRegistered || banner.classList.contains('is-closed')) return;
+        window.addEventListener('scroll', scheduleStickyCtaUpdate, { passive: true });
+        window.addEventListener('resize', scheduleStickyCtaUpdate);
+        window.addEventListener('pagehide', unregisterStickyCtaListeners);
+        stickyListenersRegistered = true;
+      };
+      var restoreStickyCtaAfterPageShow = function () {
+        if (banner.classList.contains('is-closed')) return;
+        registerStickyCtaListeners();
+        updateStickyCta();
+      };
+
+      updateStickyCta();
+      registerStickyCtaListeners();
+      window.addEventListener('pageshow', restoreStickyCtaAfterPageShow);
+      closeBtn.addEventListener('click', function () {
+        banner.classList.add('is-closed');
+        banner.classList.remove('is-after-hero');
+        writeSessionValue('sticky-cta-closed', '1');
+        unregisterStickyCtaListeners();
+        window.removeEventListener('pageshow', restoreStickyCtaAfterPageShow);
+      });
+    } else {
+      closeBtn.addEventListener('click', function () {
+        banner.classList.add('is-closed');
+        writeSessionValue('sticky-cta-closed', '1');
+      });
     }
-    closeBtn.addEventListener('click', function () {
-      banner.classList.add('is-closed');
-      sessionStorage.setItem('sticky-cta-closed', '1');
-    });
   }
 
   /* ── アクティブなナビリンクのハイライト ── */
