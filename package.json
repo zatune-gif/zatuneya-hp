@@ -1,0 +1,22 @@
+{
+  "name": "zatuneya-hp-qa",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Reproducible local QA gates for the Zatuneya HP V2 page.",
+  "scripts": {
+    "qa:gitignore": "node ./v2/tests/qa-gitignore.mjs",
+    "qa:cross-browser": "node ./v2/tests/qa-cross-browser.mjs",
+    "qa:axe": "node ./v2/tests/qa-axe.mjs",
+    "qa:lighthouse-contract": "node ./v2/tests/qa-lighthouse-contract.mjs",
+    "qa:lighthouse": "node ./v2/tests/qa-lighthouse.mjs",
+    "qa": "npm run qa:gitignore && npm run qa:cross-browser && npm run qa:axe && npm run qa:lighthouse-contract",
+    "qa:install-browsers": "playwright install firefox webkit"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "chrome-launcher": "1.2.1",
+    "lighthouse": "13.4.1",
+    "playwright": "1.62.1"
+  }
+}

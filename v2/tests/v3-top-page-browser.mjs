@@ -32,6 +32,7 @@ const mime = new Map([
 let browser;
 let serve;
 let page;
+let baseUrl;
 const canonicalHashesBeforeForcedFailure = forceFailureAfterFirstScreenshot
   ? canonicalScreenshotHashes()
   : undefined;
@@ -124,7 +125,7 @@ async function waitForDocumentFonts(targetPage) {
 }
 
 async function loadTopPage(targetPage) {
-  await targetPage.goto('http://127.0.0.1:4173/index.html', {
+  await targetPage.goto(`${baseUrl}/index.html`, {
     waitUntil: 'domcontentloaded',
     timeout: 5_000
   });
@@ -289,13 +290,16 @@ try {
   });
   await new Promise((resolveListen, rejectListen) => {
     serve.once('error', rejectListen);
-    serve.listen(4173, '127.0.0.1', () => {
+    serve.listen(0, '127.0.0.1', () => {
       serve.off('error', rejectListen);
+      const address = serve.address();
+      assert.ok(address && typeof address !== 'string', 'top-page browser server exposes a numeric port');
+      baseUrl = `http://127.0.0.1:${address.port}`;
       resolveListen();
     });
   });
 
-  const missingResponse = await fetch('http://127.0.0.1:4173/does-not-exist.html');
+  const missingResponse = await fetch(`${baseUrl}/does-not-exist.html`);
   assert.equal(missingResponse.status, 404, 'server returns 404 once for a missing file');
   assert.equal(await missingResponse.text(), 'Not found', 'missing-file response is safe');
 
@@ -331,6 +335,35 @@ try {
   await trackStickyCtaListeners(page);
   await loadTopPage(page);
   await page.locator('#nav-hamburger').waitFor({ state: 'visible' });
+
+  const diagnosisLinks = page.locator('a[data-diagnosis-link]');
+  assert.equal(await diagnosisLinks.count(), 5, 'all five diagnosis links are present after page load');
+  const diagnosisLinkStates = await diagnosisLinks.evaluateAll((links) => links.map((link) => {
+    const style = getComputedStyle(link);
+    return {
+      href: link.getAttribute('href'),
+      disabled: link.getAttribute('aria-disabled'),
+      usable: !link.hidden && style.display !== 'none' && style.visibility !== 'hidden' && style.pointerEvents !== 'none'
+    };
+  }));
+  for (const state of diagnosisLinkStates) {
+    assert.equal(state.href, 'https://ai-shindan-zatuneya.netlify.app/', 'diagnosis link is hydrated with the current HTTPS URL');
+    assert.equal(state.disabled, null, 'hydrated diagnosis link is not marked unavailable');
+    assert.equal(state.usable, true, 'hydrated diagnosis link remains visible and usable');
+  }
+
+  const offscreenFade = page.locator('#faq .fade-in').first();
+  await offscreenFade.waitFor({ state: 'attached' });
+  assert.equal(await offscreenFade.evaluate((element) => element.classList.contains('is-visible')), false,
+    'an offscreen fade target starts hidden before it enters the viewport');
+  assert.equal(await offscreenFade.evaluate((element) => getComputedStyle(element).opacity), '0',
+    'an offscreen fade target has a visually hidden base state');
+  await offscreenFade.scrollIntoViewIfNeeded();
+  await page.waitForFunction(() => document.querySelector('#faq .fade-in')?.classList.contains('is-visible'));
+  assert.equal(await offscreenFade.evaluate((element) => getComputedStyle(element).animationName), 'v3-fade-in',
+    'scrolling a fade target into view starts its reveal animation');
+  assert.equal(await offscreenFade.evaluate((element) => getComputedStyle(element).animationDuration), '0.4s',
+    'the reveal animation keeps its designed duration');
 
   const faqButtons = page.locator('#faq button[aria-controls]');
   await faqButtons.first().waitFor({ state: 'visible' });
@@ -407,7 +440,13 @@ try {
   });
   assert.equal(await dropdownTrigger.getAttribute('aria-expanded'), 'true', 'dropdown trigger expands with Enter');
   assert.equal(await dropdownMenu.isHidden(), false, 'expanded dropdown menu is visible');
-  await dropdownTrigger.click();
+  await page.waitForFunction(() => {
+    const trigger = document.querySelector('.site-nav__dropdown-trigger');
+    const menu = trigger?.parentElement?.querySelector('.site-nav__dropdown-menu');
+    if (trigger?.getAttribute('aria-expanded') !== 'true' || !menu) return false;
+    return getComputedStyle(menu).display !== 'none';
+  });
+  await page.keyboard.press('Escape');
   await page.waitForFunction(() => {
     const trigger = document.querySelector('.site-nav__dropdown-trigger');
     const menu = trigger?.parentElement?.querySelector('.site-nav__dropdown-menu');
@@ -415,9 +454,14 @@ try {
     const style = getComputedStyle(menu);
     return style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0';
   });
-  assert.equal(await dropdownTrigger.getAttribute('aria-expanded'), 'false', 'dropdown trigger collapses on a second activation');
-  assert.equal(await dropdownMenu.isHidden(), true, 'collapsed dropdown menu is hidden');
-
+  assert.equal(await dropdownTrigger.getAttribute('aria-expanded'), 'false', 'Escape collapses the open dropdown');
+  assert.equal(await dropdownMenu.isHidden(), true, 'Escape hides the dropdown menu');
+  assert.equal(await page.evaluate(() => document.activeElement?.classList.contains('site-nav__dropdown-trigger')), true,
+    'Escape restores focus to the dropdown trigger');
+  assert.equal(await page.locator('#nav-hamburger').getAttribute('aria-expanded'), 'true',
+    'Escape keeps the mobile navigation open after closing its focused dropdown');
+  assert.equal(await page.locator('#site-nav').evaluate((element) => getComputedStyle(element).display !== 'none'), true,
+    'the focused dropdown trigger remains visible after Escape');
   await page.keyboard.press('Escape');
   await page.waitForFunction(() => {
     const hamburger = document.querySelector('#nav-hamburger');
@@ -431,6 +475,16 @@ try {
     const style = getComputedStyle(element);
     return element.hasAttribute('hidden') || style.display === 'none' || style.visibility === 'hidden';
   }), true, 'closed navigation is hidden');
+
+  const inactiveEscapeFocus = faqButtons.nth(0);
+  await inactiveEscapeFocus.focus();
+  await page.keyboard.press('Escape');
+  assert.equal(await page.evaluate(() => document.activeElement === document.querySelector('#faq button[aria-controls]')),
+    true, 'Escape keeps focus in place when neither the navigation nor a dropdown is open');
+  assert.equal(await page.locator('#nav-hamburger').getAttribute('aria-expanded'), 'false',
+    'Escape leaves the closed mobile navigation closed');
+  assert.equal(await page.locator('#site-nav').evaluate((element) => !element.classList.contains('is-open')),
+    true, 'Escape does not reopen the closed mobile navigation');
 
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.locator('.fade-in').first().waitFor({ state: 'attached' });

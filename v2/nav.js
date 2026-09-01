@@ -2,6 +2,29 @@
 (function () {
   'use strict';
 
+  /* ── 診断CTAをheadの単一URLから安全に有効化 ── */
+  var diagnosisUrl = null;
+  var diagnosisUrlMeta = document.querySelector('meta[name="zatuneya:diagnosis-url"]');
+  if (diagnosisUrlMeta) {
+    try {
+      var parsedDiagnosisUrl = new URL(diagnosisUrlMeta.getAttribute('content') || '');
+      if (parsedDiagnosisUrl.protocol === 'https:' && !parsedDiagnosisUrl.username && !parsedDiagnosisUrl.password) {
+        diagnosisUrl = parsedDiagnosisUrl.href;
+      }
+    } catch (error) {
+      diagnosisUrl = null;
+    }
+  }
+  document.querySelectorAll('a[data-diagnosis-link]').forEach(function (link) {
+    if (diagnosisUrl) {
+      link.setAttribute('href', diagnosisUrl);
+      link.removeAttribute('aria-disabled');
+    } else {
+      link.removeAttribute('href');
+      link.setAttribute('aria-disabled', 'true');
+    }
+  });
+
   /* ── ハンバーガーメニュー ── */
   var hamburger = document.getElementById('nav-hamburger');
   var siteNav   = document.getElementById('site-nav');
@@ -166,7 +189,22 @@
     if (event.key !== 'Escape') return;
     var button = document.getElementById('nav-hamburger');
     var nav = document.getElementById('site-nav');
-    if (button && nav) { button.setAttribute('aria-expanded', 'false'); button.classList.remove('is-open'); nav.classList.remove('is-open'); button.focus(); }
+    var openDropdownTrigger = document.querySelector('.site-nav__item--dropdown.is-open .site-nav__dropdown-trigger');
+    document.querySelectorAll('.site-nav__item--dropdown.is-open').forEach(function (item) {
+      item.classList.remove('is-open');
+      var trigger = item.querySelector('.site-nav__dropdown-trigger');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+    });
+    if (openDropdownTrigger) {
+      openDropdownTrigger.focus();
+      return;
+    }
+    if (button && nav && (button.getAttribute('aria-expanded') === 'true' || nav.classList.contains('is-open'))) {
+      button.setAttribute('aria-expanded', 'false');
+      button.classList.remove('is-open');
+      nav.classList.remove('is-open');
+      button.focus();
+    }
   });
   document.querySelectorAll('.faq-trigger').forEach(function (trigger) {
     trigger.addEventListener('click', function () {

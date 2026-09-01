@@ -4,18 +4,22 @@ import { join, resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
 const indexPath = join(root, 'index.html');
-const cssPath = join(root, 'top-comp.css');
+const cssPath = join(root, 'v3-top-page.css');
+const legacyCssPath = join(root, 'top-comp.css');
 const navPath = join(root, 'nav.js');
 const browserTestPath = join(import.meta.dirname, 'v3-top-page-browser.mjs');
-const diagnosisUrl = 'https://han-ai-diagnosis.netlify.app/';
+const diagnosisUrl = 'https://ai-shindan-zatuneya.netlify.app/';
+const oldDiagnosisUrl = `https://${'han-ai-' + 'diagnosis.netlify.app/'}`;
 
 assert.ok(existsSync(indexPath), 'TOP v3 implementation exists');
-assert.ok(existsSync(cssPath), 'TOP v3 stylesheet exists');
+assert.ok(existsSync(cssPath), 'TOP v3 stylesheet is isolated from lower-page shared CSS');
+assert.ok(existsSync(legacyCssPath), 'lower-page shared stylesheet exists');
 assert.ok(existsSync(navPath), 'TOP v3 navigation script exists');
 assert.ok(existsSync(browserTestPath), 'TOP v3 browser test exists');
 
 const html = readFileSync(indexPath, 'utf8');
 const css = readFileSync(cssPath, 'utf8');
+const legacyCss = readFileSync(legacyCssPath, 'utf8');
 const nav = readFileSync(navPath, 'utf8');
 const browserTest = readFileSync(browserTestPath, 'utf8');
 const cssWithoutComments = css.replace(/\/\*[\s\S]*?\*\//g, '');
@@ -66,18 +70,36 @@ function sectionMarkup(id) {
 
 const requiredCopy = [
   'AIを入れることより、仕事がよくなることから。',
+  '数十名規模の会社で、「人が足りない」「引き継ぎが回らない」「同じ説明を何度もしている」。その一つひとつを、現場に入って一緒にほどいていきます。ツールの導入は、そのあとの話です。',
   'こんな詰まり方を、していませんか',
+  '人が足りず、改善に手が回らない',
+  '特定の人しか分からない仕事がある',
+  '同じ説明・同じ入力を繰り返している',
+  'AIを試してはみたが、続かなかった',
   '「業務変革屋」の仕事',
+  '業務整理から入る',
+  '教えられる実装者',
+  '現場目線の伴走',
   '「知っている」から「自分たちで回せる」まで',
+  '知る', 'わかる', 'できる', '教える', '内製化',
   'まず3か月、一つの業務を確実に変える',
   'AI経営改善パッケージ ／ 360,000円（3か月）',
   '必要なところから始められます',
   'はじめてのご相談から',
+  '無料診断', 'ご相談（30分・無料）', '小さく試す', 'パッケージで変える', '伴走で広げる',
   '「教えられる人」が、現場に入ります',
   'これまでにお手伝いしたこと',
   'まず、無料のツールから',
   'よくある質問',
-  'まず30分、話を聞かせてください'
+  'Q. AIのことがまったく分からなくても大丈夫ですか。',
+  'Q. どのくらいの規模の会社が対象ですか。',
+  'Q. 遠方でも対応してもらえますか。',
+  'まず30分、話を聞かせてください',
+  '広島県府中市を拠点に、近隣の地域企業を訪問して支援しています。',
+  'どの段階からでも始められます。「まず話を聞いてみたい」で構いません。',
+  '以下は仮データです。事実確認済みの匿名事例に差し替え予定です。',
+  'まずは無料診断から',
+  '診断する'
 ];
 for (const copy of requiredCopy) {
   assert.ok(html.includes(copy), `TOP v3 copy exists: ${copy}`);
@@ -89,14 +111,23 @@ assert.match(html, /\bid="nav-hamburger"/i, 'hamburger navigation control exists
 assert.match(html, /\bid="site-nav"/i, 'site navigation exists');
 assert.match(html, /\bclass="[^"]*\bsite-nav__dropdown-trigger\b[^"]*"/i, 'dropdown trigger exists');
 assert.match(html, /\bclass="[^"]*\bfade-in\b[^"]*"/i, 'scroll reveal targets exist');
+assert.doesNotMatch(sectionMarkup('hero'), /\bclass="[^"]*\bfade-in\b[^"]*"/i,
+  'hero is visible immediately and does not depend on the scroll reveal animation');
 assert.match(html, /\bid="sticky-cta"/i, 'sticky call to action exists');
 assert.match(html, /\bid="sticky-cta-close"/i, 'sticky call to action close control exists');
 assert.match(html, /©\s*2026\s*ざつね屋/, 'copyright is current');
-assert.match(
-  html,
-  /<link\b(?=[^>]*\brel="stylesheet")(?=[^>]*\bhref="[^"]*top-comp\.css")[^>]*>/i,
-  'TOP loads its dedicated v3 stylesheet with a stylesheet link'
-);
+assert.match(html, /<link\b(?=[^>]*\brel="stylesheet")(?=[^>]*\bhref="[^"]*v3-top-page\.css")[^>]*>/i,
+  'TOP loads its dedicated v3 stylesheet with a stylesheet link');
+assert.doesNotMatch(html, /<link\b(?=[^>]*\brel="stylesheet")(?=[^>]*\bhref="[^"]*top-comp\.css")[^>]*>/i,
+  'TOP does not load the lower-page shared stylesheet');
+assert.doesNotMatch(html, /fonts\.(?:googleapis|gstatic)\.com/i,
+  'TOP does not request externally hosted Google Fonts');
+assert.match(cssWithoutComments,
+  /--font-sans:\s*"Noto Sans JP",\s*"Yu Gothic",\s*"Hiragino Kaku Gothic ProN",\s*sans-serif/i,
+  'TOP sans-serif token keeps the intended name with Japanese system-font fallbacks');
+assert.match(cssWithoutComments,
+  /--font-serif:\s*"Noto Serif JP",\s*"Yu Mincho",\s*"Hiragino Mincho ProN",\s*serif/i,
+  'TOP serif token keeps the intended name with Japanese system-font fallbacks');
 assert.match(
   html,
   /<script\b(?=[^>]*\bsrc="[^"]*nav\.js")[^>]*><\/script>/i,
@@ -104,17 +135,33 @@ assert.match(
 );
 
 const anchors = [...html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)].map(([, attributes, content]) => ({
+  attributes,
   content,
   href: attributes.match(/\bhref="([^"]+)"/i)?.[1] ?? ''
 }));
-const diagnosisCallsToAction = anchors.filter(({ content }) => /診断/.test(content));
-assert.ok(diagnosisCallsToAction.length >= 4, 'at least four diagnosis calls to action exist');
-const diagnosisRelatedLinks = anchors.filter(({ content, href }) =>
-  /診断/.test(content) || /diagnos(?:is|tic)|ai-diagnosis/i.test(href)
-);
-for (const { href } of diagnosisRelatedLinks) {
-  assert.equal(href, diagnosisUrl, 'all diagnosis-related links use the canonical diagnosis URL');
+assert.doesNotMatch(html, /href="(?:\.\/)?(?:growth|tools)\.html"|href="#(?:growth|tools)"/i,
+  'TOP has no dead growth or tools call-to-action links');
+const diagnosisMetaTags = [...html.matchAll(/<meta\b(?=[^>]*\bname="zatuneya:diagnosis-url")(?=[^>]*\bcontent="([^"]+)")[^>]*>/gi)];
+assert.equal(diagnosisMetaTags.length, 1, 'TOP has exactly one diagnosis URL meta marker');
+assert.equal(diagnosisMetaTags[0][1], diagnosisUrl, 'diagnosis URL meta marker has the current value');
+assert.equal(html.split(diagnosisUrl).length - 1, 1, 'current diagnosis URL literal occurs only in the meta marker');
+assert.doesNotMatch(html, new RegExp(oldDiagnosisUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), 'old diagnosis URL is absent from TOP source');
+const diagnosisCallsToAction = anchors.filter(({ attributes }) => /\bdata-diagnosis-link\b/i.test(attributes));
+assert.equal(diagnosisCallsToAction.length, 5, 'TOP has exactly five diagnosis links hydrated from the meta marker');
+for (const { attributes, href } of diagnosisCallsToAction) {
+  assert.equal(href, '', 'diagnosis links omit static href values until safe hydration');
+  assert.match(attributes, /\baria-disabled="true"/i, 'unhydrated diagnosis links are marked unavailable');
+  assert.doesNotMatch(attributes, /https?:\/\//i, 'diagnosis links do not duplicate external URL literals');
 }
+assert.match(nav, /meta\[name="zatuneya:diagnosis-url"\]/, 'navigation reads the diagnosis URL meta marker');
+assert.match(nav, /new URL\(/, 'navigation parses the diagnosis URL before use');
+assert.match(nav, /\.protocol\s*===\s*['"]https:['"]/, 'navigation accepts only HTTPS diagnosis URLs');
+assert.match(nav, /querySelectorAll\(['"]a\[data-diagnosis-link\]['"]\)/, 'navigation selects every diagnosis link for hydration');
+assert.match(nav, /setAttribute\(['"]href['"]/, 'navigation hydrates diagnosis link href values');
+assert.match(nav, /else\s*\{\s*link\.removeAttribute\(['"]href['"]\);\s*link\.setAttribute\(['"]aria-disabled['"],\s*['"]true['"]\);/,
+  'missing or invalid diagnosis URLs leave calls to action non-link and unavailable');
+assert.doesNotMatch(nav, /innerHTML\s*=/, 'navigation does not inject diagnosis URL markup');
+assert.doesNotMatch(nav, new RegExp(oldDiagnosisUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), 'old diagnosis URL is absent from navigation source');
 
 const faqButtons = [...sectionMarkup('faq').matchAll(/<button\b(?=[^>]*\baria-expanded=)(?=[^>]*\baria-controls=)[^>]*>/gi)];
 assert.equal(faqButtons.length, 3, 'FAQ has exactly three buttons with expanded and controlled state');
@@ -145,6 +192,32 @@ assert.match(
   /async function loadAssetRoleImages\(viewportPage\)\s*\{[\s\S]*?viewportPage\.waitForFunction\([\s\S]*?\},\s*index\s*,\s*\{\s*timeout\s*:\s*5_000\s*\}/,
   'lazy-image loader passes its finite timeout as the third waitForFunction argument'
 );
+
+function metaContent(attribute, name) {
+  const match = html.match(new RegExp(`<meta\\b(?=[^>]*\\b${attribute}="${name}")(?=[^>]*\\bcontent="([^"]*)")[^>]*>`, 'i'));
+  assert.ok(match, `${attribute} ${name} exists`);
+  return match[1];
+}
+
+const pageTitle = 'ざつね屋｜地域企業の小さな業務変革屋';
+const pageDescription = 'ざつね屋は、地域企業の困りごとを起点に、業務整理・人の育成・小さな仕組みづくりまで伴走する業務変革屋です。';
+const canonicalUrl = 'https://zatune-gif.github.io/zatuneya-hp/v2/';
+assert.equal(metaContent('name', 'description'), pageDescription, 'meta description is exact');
+assert.equal(metaContent('property', 'og:type'), 'website', 'OGP type is exact');
+assert.equal(metaContent('property', 'og:url'), canonicalUrl, 'OGP URL is canonical');
+assert.equal(metaContent('property', 'og:title'), pageTitle, 'OGP title is exact');
+assert.equal(metaContent('property', 'og:description'), pageDescription, 'OGP description matches meta description');
+assert.equal(metaContent('property', 'og:image'), `${canonicalUrl}assets/og-image.jpg`, 'OGP image is the existing absolute image');
+assert.match(html, new RegExp(`<title>\\s*${pageTitle}\\s*<\\/title>`, 'i'), 'document title is exact');
+
+for (const selectorOrToken of ['.skip', '.btn-orange', '.bottom-cta', '--teal-dk', '--mint', '--serif', '--shadow']) {
+  assert.ok(legacyCss.includes(selectorOrToken), `lower shared CSS preserves legacy compatibility: ${selectorOrToken}`);
+}
+for (const lowerPage of ['works.html', 'profile.html', 'services.html']) {
+  const lowerHtml = readFileSync(join(root, lowerPage), 'utf8');
+  assert.match(lowerHtml, /<link\b(?=[^>]*\brel="stylesheet")(?=[^>]*\bhref="[^"]*top-comp\.css")[^>]*>/i,
+    `${lowerPage} continues to load the lower shared stylesheet`);
+}
 assert.match(
   browserTest,
   /const stagingDir\s*=\s*join\(screenshotDir,\s*[^;]*staging[^;]*\);/,
@@ -201,11 +274,21 @@ const interactiveControlSelectors = [
 for (const [controlName, selectorPattern] of interactiveControlSelectors) {
   assert.ok(
     [...declarationsBySelector.entries()].some(([selector, declarations]) =>
-      selectorPattern.test(selector) && hasDeclaration(declarations, 'min-height', '44px')
+      selectorPattern.test(selector) && hasDeclaration(declarations, 'min-height', 'var\\(--size-control\\)')
     ),
     `${controlName} has a 44-pixel minimum height`
   );
 }
+assert.ok(hasCssDeclaration('--size-icon', '40px'), 'icon size token exists');
+assert.ok(hasCssDeclaration('--size-control', '44px'), 'control size token exists');
+assert.match(cssWithoutComments, /\.brand-mark\{[^}]*\bwidth:var\(--size-icon\)[^}]*\bheight:var\(--size-icon\)/,
+  'brand mark uses the icon-size token');
+assert.match(cssWithoutComments, /\.v3-line-icon\{[^}]*\bwidth:var\(--size-icon\)[^}]*\bheight:var\(--size-icon\)/,
+  'line icons use the icon-size token');
+assert.match(cssWithoutComments, /\.fade-in\{[^}]*\bopacity:\s*0[^}]*\btransform:translateY\(var\(--space-16\)\)/,
+  'fade-in has a meaningful hidden base state');
+assert.match(cssWithoutComments, /\.fade-in\.is-visible\{[^}]*\banimation:v3-fade-in\s+\.4s\s+ease-out\s+both/,
+  'visible fade-in elements use the reveal animation');
 assert.ok(cssRules.some(([selector, declarations]) => /:focus-visible/i.test(selector) && declarations.trim()), 'keyboard focus is visible');
 assert.ok(hasCssDeclaration('scroll-padding-bottom', '[^;]+'), 'sticky call to action is accounted for when scrolling');
 assert.ok(hasCssDeclaration('--space-4', '4px'), 'four-pixel spacing token exists');

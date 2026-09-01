@@ -9,6 +9,8 @@ const pages = [
   'faq.html', 'contact.html', 'privacy.html', 'tokusho.html', 'thank-you.html', '404.html'
 ];
 const origin = 'https://zatune-gif.github.io/zatuneya-hp/v2/';
+const legacyDiagnosisUrl = 'https://han-ai-diagnosis.netlify.app/';
+const currentDiagnosisMeta = '<meta name="zatuneya:diagnosis-url" content="https://ai-shindan-zatuneya.netlify.app/">';
 let checks = 0;
 const check = (condition, message) => { checks += 1; assert.ok(condition, message); };
 
@@ -20,7 +22,13 @@ for (const page of pages) {
   const html = readFileSync(path, 'utf8');
   check(/<html lang="ja">/i.test(html), `${page} declares Japanese`);
   check(html.includes(`rel="canonical" href="${origin}${page === 'index.html' ? '' : page}"`), `${page} has a V2 canonical URL`);
-  check(html.includes('https://han-ai-diagnosis.netlify.app/'), `${page} has the primary diagnosis CTA`);
+  if (page === 'index.html') {
+    check(html.split(currentDiagnosisMeta).length - 1 === 1, 'index.html has one current diagnosis URL metadata literal');
+    check((html.match(/\bdata-diagnosis-link\b/g) ?? []).length === 5, 'index.html has five diagnosis-link hydration hooks');
+    check(!html.includes(legacyDiagnosisUrl), 'index.html no longer contains the legacy diagnosis URL');
+  } else {
+    check(html.includes(legacyDiagnosisUrl), `${page} retains the existing primary diagnosis CTA`);
+  }
   check(!/style\s*=/.test(html), `${page} adds no inline styles`);
   for (const match of html.matchAll(/(?:href|src)="(\.\/[^"?#]+)(?:[?#][^"]*)?"/g)) {
     check(existsSync(join(root, match[1].replace(/^\.\//, ''))), `${page} local reference exists: ${match[1]}`);
