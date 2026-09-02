@@ -28,10 +28,14 @@ for (const [name, html] of [['faq.html', faq], ['contact.html', contact]]) {
   check(!/\sstyle\s*=\s*"/.test(html), `${name} adds no inline styles`);
   check(!/alert\(|confirm\(|prompt\(/.test(html), `${name} avoids blocking dialogs`);
   check(html.includes('<script src="./nav.js" defer></script>'), `${name} includes nav.js`);
-  check(html.includes('class="comp-header"'), `${name} reuses TOP comp-header block`);
+  check(html.includes('class="comp-header"'), `${name} reuses V3 comp-header block without reveal animation`);
   check(html.includes('class="comp-footer"'), `${name} reuses TOP comp-footer block`);
   check(html.includes('© 2026 ざつね屋'), `${name} has correct copyright`);
-  check(html.includes('https://han-ai-diagnosis.netlify.app/'), `${name} keeps primary diagnosis CTA reachable`);
+  check((html.match(/<meta name="zatuneya:diagnosis-url"/g) ?? []).length === 1, `${name} has one diagnosis meta`);
+  check(!html.includes('https://han-ai-diagnosis.netlify.app/'), `${name} removes the legacy diagnosis URL`);
+  check(/<a\b[^>]*\bdata-diagnosis-link\b/.test(html), `${name} delegates diagnosis links`);
+  check(html.includes('site-nav__dropdown-trigger') && html.includes('site-nav__link'), `${name} keeps V3 navigation hooks`);
+  for (const href of ['./index.html', './services.html', './works.html', './profile.html', './contact.html']) check(html.includes(`href="${href}"`), `${name} V3 nav includes ${href}`);
   for (const match of html.matchAll(/(?:href|src)="(\.\/[^"?#]+)(?:[?#][^"]*)?"/g)) {
     check(existsSync(join(root, match[1].replace(/^\.\//, ''))), `${name} local reference exists: ${match[1]}`);
   }

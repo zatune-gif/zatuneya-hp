@@ -10,7 +10,8 @@ const check = (condition, message) => { checks += 1; assert.ok(condition, messag
 // ---- shared CSS file must exist ----
 check(existsSync(join(root, 'services-comp.css')), 'services-comp.css exists');
 const compCss = readFileSync(join(root, 'services-comp.css'), 'utf8');
-check(!/top-comp\.css[\s\S]*\{/.test(compCss) || true, 'services-comp.css is its own file (sanity)');
+check(!/@import\s+[^;]*top-comp\.css/i.test(compCss), 'services-comp.css does not re-import the shared stylesheet');
+check(/\.assist-card\.accent \.assist-card__link\{color:var\(--orange-ink\)\}/.test(compCss), 'accent service link uses the shared AA orange ink token');
 
 const pages = [
   'services.html',
@@ -36,10 +37,16 @@ for (const page of pages) {
   check(!/\balert\(|\bconfirm\(|\bprompt\(/.test(html), `${page} avoids blocking dialogs`);
   check(html.includes('<script src="./nav.js" defer></script>'), `${page} includes nav.js`);
   check(html.includes(`rel="canonical" href="${origin}${page}"`), `${page} has correct V2 canonical URL`);
-  check(html.includes('https://han-ai-diagnosis.netlify.app/'), `${page} links the primary diagnosis CTA`);
+  check((html.match(/<meta name="zatuneya:diagnosis-url"/g) ?? []).length === 1, `${page} has one diagnosis meta`);
+  check(!html.includes('https://han-ai-diagnosis.netlify.app/'), `${page} removes the legacy diagnosis URL`);
+  check(/<a\b[^>]*\bdata-diagnosis-link\b/.test(html), `${page} delegates diagnosis links`);
   check(html.includes('href="./contact.html"'), `${page} links the secondary contact CTA`);
   check(html.includes('© 2026 ざつね屋'), `${page} has the correct copyright notice`);
   check(html.includes('id="nav-hamburger"') && html.includes('id="site-nav"'), `${page} keeps nav.js DOM contract`);
+  check(html.includes('site-nav__dropdown-trigger') && html.includes('site-nav__link'), `${page} keeps V3 navigation hooks`);
+  for (const href of ['./index.html', './services.html', './works.html', './profile.html', './contact.html']) {
+    check(html.includes(`href="${href}"`), `${page} V3 nav includes ${href}`);
+  }
   check(/サービス<\/a>/.test(html) && html.includes('aria-current="page"'), `${page} marks サービス nav item as current`);
   check(!html.includes('href="#prices"'), `${page} does not use a same-page #prices anchor (fixed to index.html#prices)`);
 

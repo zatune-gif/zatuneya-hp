@@ -25,7 +25,7 @@
 .assist-card p{font-size:13.5px;line-height:1.8;color:var(--muted);margin:0 0 14px}
 .assist-card__link{display:inline-flex;align-items:center;gap:4px;min-height:24px;font-size:12.5px;font-weight:800;color:var(--teal-dk);text-decoration:none}
 .assist-card__link:hover{text-decoration:underline}
-.assist-card.accent .assist-card__link{color:#b96b0a}
+.assist-card.accent .assist-card__link{color:var(--orange-ink)}
 
 /* ===== サービス一覧: 支援の考え方（写真＋テキスト分割） ===== */
 .svc-philosophy{background:#fff}

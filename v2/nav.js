@@ -1,6 +1,7 @@
 /* ざつね屋 グローバルナビゲーション制御 */
 (function () {
   'use strict';
+  document.documentElement.classList.add('js-nav');
 
   /* ── 診断CTAをheadの単一URLから安全に有効化 ── */
   var diagnosisUrl = null;
@@ -79,7 +80,7 @@
   /* ── スティッキーCTAバナーを閉じる ── */
   var closeBtn = document.getElementById('sticky-cta-close');
   var banner   = document.getElementById('sticky-cta');
-  var hero     = document.getElementById('hero');
+  var hero     = document.getElementById('hero') || document.querySelector('main > section');
 
   var readSessionValue = function (key) {
     try {

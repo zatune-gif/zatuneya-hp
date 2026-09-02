@@ -31,6 +31,7 @@ export function normalizedMainDigest(html) {
         const canonicalAttributes = attributes
           .replace(/\s+href\s*=\s*(["'])https:\/\/han-ai-diagnosis\.netlify\.app\/\1/i, '')
           .replace(/\s+data-diagnosis-link(?:\s*=\s*(["'])[^"']*\1)?/i, '')
+          .replace(/\s+aria-disabled\s*=\s*(["'])true\1/i, '')
           .trim();
         return `<a${canonicalAttributes ? ` ${canonicalAttributes}` : ''} data-diagnosis-link>`;
       });
@@ -109,11 +110,11 @@ for (const page of managedPages) {
   check(stylesheetCount(html, 'v3-top-page.css') === (page === 'index.html' ? 1 : 0), `${page} has the required v3-top-page.css count`);
   check(/<script\b(?=[^>]*\bsrc=["'][^"']*nav\.js(?:[?#][^"']*)?["'])[^>]*><\/script>/i.test(html), `${page} loads nav.js`);
   check(/<header\b[^>]*\bclass=["'][^"']*\bcomp-header\b/i.test(html), `${page} has V3 comp-header`);
+  check(!/<header\b[^>]*\bclass=["'][^"']*\bfade-in\b/i.test(html), `${page} keeps the primary header outside reveal animation`);
   check(/<footer\b[^>]*\bclass=["'][^"']*\bcomp-footer\b/i.test(html), `${page} has V3 comp-footer`);
   check(/\bid=["']nav-hamburger["']/i.test(html), `${page} has #nav-hamburger`);
   check(/\bid=["']site-nav["']/i.test(html), `${page} has #site-nav`);
   check(/\bclass=["'][^"']*\bsite-nav__dropdown-trigger\b/i.test(html), `${page} has dropdown trigger`);
-  check(/\bclass=["'][^"']*\bfade-in\b/i.test(html), `${page} retains a fade-in hook`);
   check(/\bid=["']sticky-cta["']/i.test(html), `${page} has #sticky-cta`);
   check(/\bid=["']sticky-cta-close["']/i.test(html), `${page} has #sticky-cta-close`);
 
@@ -130,6 +131,7 @@ for (const page of managedPages) {
   for (const [index, anchor] of diagnosisAnchors.entries()) {
     check(/\bdata-diagnosis-link\b/i.test(anchor), `${page} diagnosis anchor ${index + 1} delegates to nav.js`);
     check(!/\bhref\s*=/i.test(anchor), `${page} diagnosis anchor ${index + 1} has no hard-coded href`);
+    check(/\baria-disabled=["']true["']/i.test(anchor), `${page} diagnosis anchor ${index + 1} starts disabled until hydration`);
   }
 }
 
