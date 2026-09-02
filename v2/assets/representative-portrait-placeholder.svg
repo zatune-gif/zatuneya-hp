@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="代表者写真（正式素材に差し替え予定）">
+  <rect width="400" height="500" fill="#E4EDEE"/>
+  <g fill="none" stroke="#9DB6B9" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="200" cy="196" r="70"/>
+    <path d="M92 430c0-70 48-118 108-118s108 48 108 118"/>
+  </g>
+  <text x="200" y="474" text-anchor="middle" font-family="'Yu Gothic','Hiragino Kaku Gothic ProN',sans-serif" font-size="20" fill="#6E888B">代表者写真（差し替え予定）</text>
+</svg>
