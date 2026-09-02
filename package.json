@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Reproducible local QA gates for the Zatuneya HP V2 page.",
+  "description": "Reproducible static, browser, accessibility, and performance QA gates for all Zatuneya HP V3 staging pages.",
   "scripts": {
+    "qa:lower-pages-contract": "node ./v2/tests/lower-pages-v3-contract.mjs",
+    "qa:lower-pages-browser": "node ./v2/tests/lower-pages-v3-browser.mjs",
+    "qa:all": "npm run qa:lower-pages-contract && npm run qa:lower-pages-browser && npm run qa",
     "qa:gitignore": "node ./v2/tests/qa-gitignore.mjs",
     "qa:cross-browser": "node ./v2/tests/qa-cross-browser.mjs",
     "qa:axe": "node ./v2/tests/qa-axe.mjs",
