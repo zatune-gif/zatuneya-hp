@@ -69,7 +69,8 @@ function sectionMarkup(id) {
 }
 
 const requiredCopy = [
-  'AIを入れることより、仕事がよくなることから。',
+  'AIを入れることより、',
+  '仕事がよくなることから。',
   '数十名規模の会社で、「人が足りない」「引き継ぎが回らない」「同じ説明を何度もしている」。その一つひとつを、現場に入って一緒にほどいていきます。ツールの導入は、そのあとの話です。',
   'こんな詰まり方を、していませんか',
   '人が足りず、改善に手が回らない',
@@ -169,7 +170,7 @@ const placeholders = [...sectionMarkup('cases').matchAll(/\bdata-case-status="pl
 assert.equal(placeholders.length, 3, 'cases has exactly three placeholder case studies');
 const allSectionMarkup = sectionIds.map(sectionMarkup).join('');
 const assetImages = [...allSectionMarkup.matchAll(/<img\b(?=[^>]*\bdata-asset-role=)[^>]*>/gi)];
-assert.equal(assetImages.length, 6, 'sections contain exactly six images with asset roles');
+assert.equal(assetImages.length, 7, 'sections contain exactly seven images with asset roles');
 for (const [sectionId, role] of [['hero', 'hero-meeting'], ['why-us', 'representative-portrait']]) {
   assert.match(
     sectionMarkup(sectionId),
