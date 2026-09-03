@@ -40,7 +40,7 @@ body{margin:0;background:var(--bg);color:var(--body);font-family:'Roboto','Noto 
 h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--head);margin:0;text-wrap:balance}
 p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 :focus-visible{outline:3px solid var(--teal-text);outline-offset:3px;border-radius:6px}
-.container{max-width:1120px;margin:0 auto;padding:0 32px}
+.container{max-width:1120px;margin:0 auto;padding:0 32px;text-align:left}
 .section{padding:96px 0}
 .eyebrow{display:inline-block;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.22em;color:var(--teal-text);text-transform:uppercase;margin-bottom:16px}
 
@@ -76,6 +76,7 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 .svc-card__desc{font:400 14.5px/1.85 'Noto Sans JP',sans-serif;color:var(--body);margin-top:16px;flex:1}
 .svc-card__price{font:700 13.5px/1 'Noto Sans JP',sans-serif;color:var(--head);background:var(--bg);padding:12px 16px;border-radius:10px;margin-top:20px}
 .svc-card__cta{margin-top:20px;align-self:flex-start}
+.svc-card__cta svg{width:16px;height:16px}
 
 /* CV SECTION */
 .cv-section{background:var(--bg);padding:96px 0}
@@ -85,7 +86,7 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 .cv-card .glow{position:absolute;top:-120px;right:-80px;width:360px;height:360px;background:radial-gradient(circle,rgba(248,152,29,.16),rgba(248,152,29,0) 70%);border-radius:50%;pointer-events:none}
 .cv-tag{display:inline-flex;align-items:center;gap:8px;font:700 12.5px/1 'Roboto',sans-serif;letter-spacing:.16em;color:var(--orange-text);background:var(--orange-pale);border:1px solid var(--orange-line);padding:8px 16px;border-radius:999px}
 .cv-inner h2{font-size:clamp(22px,3.5vw,30px);margin:16px 0 0}
-.cv-inner .lead{font-family:'Noto Sans JP',sans-serif;font-size:15px;line-height:1.9;color:var(--body);max-width:540px;margin:14px auto 0}
+.cv-inner .lead{font-family:'Noto Sans JP',sans-serif;font-size:15px;line-height:1.9;color:var(--body);max-width:540px;margin:14px auto 0;word-break:keep-all;overflow-wrap:anywhere}
 .cv-cta-row{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:32px}
 .cv-foot{font:400 13px/1.6 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-top:20px}
 
@@ -146,7 +147,7 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
   <div class="container">
     <p class="eyebrow">Services</p>
     <h1 class="ph-title">サービス一覧</h1>
-    <p class="ph-lead">会社の困りごとを起点に、必要なところから始められます。<br>主力のAI経営改善パッケージと、3つのサービスをご用意しています。</p>
+    <p class="ph-lead">会社の困りごとを起点に、必要なところから始められます。主力のAI経営改善パッケージと、3つのサービスをご用意しています。</p>
   </div>
 </section>
 
@@ -166,7 +167,7 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
         <p class="svc-card__target">まず社内の共通理解をつくりたい企業向け</p>
         <p class="svc-card__desc">受講当日から業務でAIを使い始められる実践型研修。6コース体系（AI知識編・文書・画像・動画の実践編、AI活用ルール・運用定着編、Claude Code特化）から選択可能。②〜⑤は要お問い合わせ。</p>
         <div class="svc-card__price">5名 60,000円〜（税別・コースにより異なる）</div>
-        <a class="btn btn-outline svc-card__cta" href="./service-training.html">詳しく見る <svg viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="btn btn-outline svc-card__cta" href="./service-training.html">詳しく見る <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </article>
 
       <!-- SERVICE 02 -->
@@ -180,7 +181,7 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
         <p class="svc-card__target">特定の業務を、自社向けに作り込みたい企業向け</p>
         <p class="svc-card__desc">ヒアリングで業務の困りごとを特定し、自社専用のAI指示書・手順書を制作・納品する有期完結型。汎用ではなく貴社の業務専用に設計します。</p>
         <div class="svc-card__price">内容に応じてお見積もり</div>
-        <a class="btn btn-outline svc-card__cta" href="./service-order.html">詳しく見る <svg viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="btn btn-outline svc-card__cta" href="./service-order.html">詳しく見る <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </article>
 
       <!-- SERVICE 03 -->
@@ -194,7 +195,7 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
         <p class="svc-card__target">改善したい業務の心当たりがある企業向け（主力サービス）</p>
         <p class="svc-card__desc">「どこから手をつけるか」を一緒に決め、3か月で一つの業務を選んで、目に見えて軽くします。やり方は手順書にして残すので、期間が終わったあとも社内で続けられます。</p>
         <div class="svc-card__price">360,000円（税別・3か月・16時間）</div>
-        <a class="btn btn-outline svc-card__cta" href="./service-management.html">詳しく見る <svg viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="btn btn-outline svc-card__cta" href="./service-management.html">詳しく見る <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </article>
 
       <!-- SERVICE 04 -->
@@ -208,7 +209,7 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
         <p class="svc-card__target">一つうまくいったので、他の業務にも広げたい企業向け</p>
         <p class="svc-card__desc">月次のミーティングを核に、AIを使いながら改善を積み重ねる伴走型契約。研修・指示書制作・ツール提案を組み合わせながら「定着・拡大・深化」を支援します。</p>
         <div class="svc-card__price">内容に応じてお見積もり</div>
-        <a class="btn btn-outline svc-card__cta" href="./service-banso.html">詳しく見る <svg viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a class="btn btn-outline svc-card__cta" href="./service-banso.html">詳しく見る <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </article>
 
     </div><!-- /.svc-overview-grid -->
@@ -256,19 +257,20 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
         </ul>
       </div>
       <div class="site-footer__col">
-        <span class="site-footer__col-title">会社情報</span>
+        <span class="site-footer__col-title">無料ツール</span>
+        <ul>
+          <li><a href="https://ai-shindan-zatuneya.netlify.app/">AI活用準備度診断</a></li>
+          <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/ai-literacy-test/">AIツール理解度テスト</a></li>
+          <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/15_prompt-library/">プロンプトライブラリ</a></li>
+        </ul>
+      </div>
+      <div class="site-footer__col">
+        <span class="site-footer__col-title">ざつね屋について</span>
         <ul>
           <li><a href="./works.html">支援実績</a></li>
           <li><a href="./profile.html">代表について</a></li>
           <li><a href="./faq.html">よくある質問</a></li>
-        </ul>
-      </div>
-      <div class="site-footer__col">
-        <span class="site-footer__col-title">お問い合わせ</span>
-        <ul>
           <li><a href="./contact.html">相談・お見積もり</a></li>
-          <li><a href="https://ai-shindan-zatuneya.netlify.app/">無料AI診断ツール</a></li>
-          <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html">料金・プラン</a></li>
         </ul>
       </div>
     </nav>
