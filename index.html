@@ -161,7 +161,7 @@ img,svg{display:block;max-width:100%}
 
 /* ============ 2. WORRIES ============ */
 .worry-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.worry-card{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--sh-1);transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
+.worry-card{display:flex;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--sh-1);transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
 .worry-card:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
 .worry-card .ic{flex:none;width:52px;height:52px;border-radius:15px;background:var(--teal-pale)}
 .worry-card .ic svg{width:28px;height:28px;stroke:var(--teal-d)}
@@ -215,6 +215,28 @@ img,svg{display:block;max-width:100%}
 .notes li{position:relative;padding-left:24px;font:400 13px/1.85 'Noto Sans JP',sans-serif;color:rgba(255,255,255,.92)}
 .notes li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.6)}
 .price-cta{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:32px}
+/* PRICE comparison table (§7) — dark band 内の白カードに載せる比較表。
+   style.css の汎用 table 規則（--bluegray ヘッダ・偶数行ゼブラ）を打ち消し、TOP のトークンへ揃える */
+.price-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.price-table{width:100%;min-width:600px;border-collapse:collapse;text-align:left;font-family:'Noto Sans JP',sans-serif;background:transparent}
+.price-table thead th{background:var(--teal-pale);color:var(--teal-text);font:700 12px/1.5 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.06em;padding:12px 16px;text-align:left;border-bottom:1px solid var(--teal-line);white-space:nowrap}
+.price-table tbody tr:nth-child(even){background:transparent}
+.price-table tbody th{font:700 14.5px/1.6 'Noto Sans JP',sans-serif;color:var(--head);padding:16px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;white-space:nowrap}
+.price-table tbody td{font:400 13.5px/1.75 'Noto Sans JP',sans-serif;color:var(--body);padding:16px;border-bottom:1px solid var(--line);vertical-align:top}
+.price-table tbody tr:last-child th,.price-table tbody tr:last-child td{border-bottom:0}
+.price-table .pt-amt{font:900 15.5px/1.4 'Roboto','Noto Sans JP',sans-serif;color:var(--head);white-space:nowrap}
+/* 狭幅（他 grid と同じ 680px）: 表を1行=1カードへ積み上げ、横スクロールを不要にする */
+@media (max-width:680px){
+  .price-table{min-width:0}
+  .price-table thead{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  .price-table,.price-table tbody,.price-table tbody tr,.price-table tbody th,.price-table tbody td{display:block;width:auto}
+  .price-table tbody tr{border:1px solid var(--line);border-radius:16px;background:#fff;padding:16px 18px;margin-top:16px}
+  .price-table tbody tr:first-child{margin-top:0}
+  .price-table tbody th{padding:0 0 10px;border:0;font-size:16px;white-space:normal}
+  .price-table tbody td{padding:8px 0 0;border:0;position:relative;padding-left:104px;min-height:22px}
+  .price-table tbody td::before{content:attr(data-label);position:absolute;left:0;top:8px;width:92px;font:700 11.5px/1.7 'Noto Sans JP',sans-serif;color:var(--sub-text)}
+  .price-table tbody tr:last-child td{border:0}
+}
 
 /* ============ 5. CV (most prominent) ============ */
 .cv-section{background:var(--bg);position:relative}
@@ -390,6 +412,7 @@ img,svg{display:block;max-width:100%}
           </button>
           <ul class="site-nav__dropdown">
             <li><a href="https://ai-shindan-zatuneya.netlify.app/" class="site-nav__dropdown-link">AI活用準備度診断</a></li>
+            <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/ai-literacy-test/" class="site-nav__dropdown-link">AIツール理解度テスト</a></li>
             <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/15_prompt-library/" class="site-nav__dropdown-link">プロンプトライブラリ</a></li>
           </ul>
         </li>
@@ -503,12 +526,12 @@ img,svg{display:block;max-width:100%}
         </div>
       </div>
       <div class="tool-card">
-        <span class="tool-ic ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="13" height="16" rx="2"/><path d="M8 9h5M8 13h5M8 17h3"/><path d="M17 8l3 1.5v9L17 20"/></svg></span>
+        <span class="tool-ic ic"><svg viewBox="0 0 24 24"><path d="M12 3 21 9v6l-9 6-9-6V9l9-6Z"/><path d="M12 7.5 16.5 11v2.5L12 16.5 7.5 13.5V11L12 7.5Z"/><path d="M12 3v4.5M12 16.5V21M3 9l4.5 2M21 9l-4.5 2"/></svg></span>
         <div>
           <span class="tool-free">無料・登録不要</span>
-          <h3>AIプロンプトライブラリ</h3>
-          <p>そのまま使える指示文を、業務別にまとめています。文書・画像・動画・Claude Code分野別に検索・絞り込みができます。</p>
-          <a class="arrowlink" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/15_prompt-library/">ライブラリを見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <h3>AIツール理解度テスト（20問・約3分）</h3>
+          <p>AI基礎知識・ツール操作・指示文の書き方・セキュリティ・業務応用の5軸をレーダーチャートで可視化。おすすめの研修コースもわかります。</p>
+          <a class="arrowlink" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/ai-literacy-test/">テストを受ける <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
@@ -559,20 +582,6 @@ img,svg{display:block;max-width:100%}
   </div>
 </section>
 
-<!-- ================= 5-0. FLAGSHIP PACKAGE ================= -->
-<section class="section price-band" id="flagship">
-  <span class="blob p1"></span><span class="blob p2"></span><span class="dots"></span>
-  <div class="container price-inner">
-    <span class="eyebrow">主力サービス</span>
-    <h2>まず3か月、一つの業務を確実に変える</h2>
-    <p class="desc">AI経営改善パッケージ ／ 360,000円（税別・3か月・16時間）。「どこから手をつけるか」を一緒に決め、3か月で一つの業務を選んで、目に見えて軽くします。やり方は手順書にして残すので、期間が終わったあとも社内で続けられます。</p>
-    <div class="price-cta">
-      <a class="btn btn-white" href="./service-management.html">パッケージの内容を見る</a>
-      <a class="btn btn-white" href="./contact.html">無料相談・お見積り</a>
-    </div>
-  </div>
-</section>
-
 <!-- ================= 5. SERVICES ================= -->
 <section class="section bg-tint" id="services">
   <div class="container">
@@ -581,7 +590,7 @@ img,svg{display:block;max-width:100%}
       <h2>必要なところから始められます</h2>
       <p>数十名規模の地域企業で、AI・DXの専任担当者がいない会社を主な対象としています。会社の困りごとを起点に、必要なところから始められます。</p>
     </div>
-    <div class="svc-grid why-grid">
+    <div class="svc-grid">
       <article class="svc-card">
         <div class="svc-top">
           <span class="svc-ic ic"><svg viewBox="0 0 24 24"><path d="M12 4 22 9 12 14 2 9 12 4Z"/><path d="M6 11v5c0 1 2.7 2.4 6 2.4s6-1.4 6-2.4v-5"/></svg></span>
@@ -610,8 +619,21 @@ img,svg{display:block;max-width:100%}
       </article>
       <article class="svc-card">
         <div class="svc-top">
+          <span class="svc-ic ic"><svg viewBox="0 0 24 24"><path d="M3 17l4-8 4 4 4-6 4 8"/><path d="M3 20h18"/></svg></span>
+          <div class="svc-tag">SERVICE 03 ─ 業務を変える</div>
+        </div>
+        <div class="svc-body">
+          <h3>AI経営改善パッケージ</h3>
+          <div class="svc-catch">3か月で、一つの業務を確実に変える</div>
+          <p class="svc-desc">「どこから手をつけるか」を一緒に決め、3か月で一つの業務を選んで、目に見えて軽くします。やり方は手順書にして残すので、期間が終わったあとも社内で続けられます。</p>
+          <div class="price-chip"><div class="box"><span class="amt">360,000円</span><span class="tax">（税別・3か月）</span><div class="note">16時間・期間完結型</div></div></div>
+          <a class="arrowlink" href="./service-management.html">詳しく見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="svc-card">
+        <div class="svc-top">
           <span class="svc-ic ic"><svg viewBox="0 0 24 24"><path d="M15.5 20v-1.2a3.7 3.7 0 0 0-3.7-3.7H6.2A3.7 3.7 0 0 0 2.5 18.8V20"/><circle cx="9" cy="7" r="3.3"/><path d="M21.5 20v-1.2a3.7 3.7 0 0 0-2.8-3.6"/><path d="M15.5 3.9a3.3 3.3 0 0 1 0 6.4"/></svg></span>
-          <div class="svc-tag">SERVICE 03 ─ 継続支援</div>
+          <div class="svc-tag">SERVICE 04 ─ 継続支援</div>
         </div>
         <div class="svc-body">
           <h3>AI活用伴走</h3>
@@ -621,21 +643,6 @@ img,svg{display:block;max-width:100%}
           <a class="arrowlink" href="./service-banso.html">詳しく見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </article>
-    </div>
-  </div>
-</section>
-
-<!-- ================= 5b. WORKSHOP BAND ================= -->
-<section class="section sm bg-tint pt-0">
-  <div class="container band-wrap">
-    <div class="band">
-      <img src="./assets/band-training.jpg" alt="少人数の実践型研修の様子" width="1400" height="934" loading="lazy">
-      <span class="veil"></span><span class="dots"></span>
-      <div class="bcontent">
-        <span class="eyebrow">Workshop</span>
-        <h3>研修は「聞いて終わり」にしません。</h3>
-        <p>受講者が自分の業務データを持ち寄り、その場で手を動かす実践型。研修当日から、翌日の仕事でAIを使い始められる状態を目指します。</p>
-      </div>
     </div>
   </div>
 </section>
@@ -695,27 +702,43 @@ img,svg{display:block;max-width:100%}
     <h2>料金概要</h2>
     <p class="desc">すべて税別表示です。詳細なオプション・お支払い条件は料金ページでご確認いただけます。</p>
     <div class="subsidy-card">
-      <div class="example">
-        <div class="ex-block">
-          <div class="ex-label">AI経営改善パッケージ</div>
-          <div class="ex-num">360,000円</div>
-          <div class="ex-label">（税別・3か月）</div>
-        </div>
-        <div class="ex-block">
-          <div class="ex-label">AI実務研修</div>
-          <div class="ex-num">5名 60,000円〜</div>
-          <div class="ex-label">（税別）</div>
-        </div>
-        <div class="ex-block">
-          <div class="ex-label">個別業務設計</div>
-          <div class="ex-num">お見積もり</div>
-          <div class="ex-label">（内容に応じて）</div>
-        </div>
-        <div class="ex-block">
-          <div class="ex-label">AI活用伴走</div>
-          <div class="ex-num">お見積もり</div>
-          <div class="ex-label">（内容に応じて）</div>
-        </div>
+      <div class="price-table-wrap">
+        <table class="price-table">
+          <thead>
+            <tr>
+              <th scope="col">サービス</th>
+              <th scope="col">料金（税別）</th>
+              <th scope="col">期間・単位</th>
+              <th scope="col">こんなときに</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">AI経営改善パッケージ</th>
+              <td data-label="料金（税別）"><span class="pt-amt">360,000円</span></td>
+              <td data-label="期間・単位">3か月・16時間</td>
+              <td data-label="こんなときに">一つの業務を確実に変え、横展開まで</td>
+            </tr>
+            <tr>
+              <th scope="row">AI実務研修</th>
+              <td data-label="料金（税別）"><span class="pt-amt">5名 60,000円〜</span></td>
+              <td data-label="期間・単位">コース単位（全6コース）</td>
+              <td data-label="こんなときに">まず社員がAIを使える状態にしたい</td>
+            </tr>
+            <tr>
+              <th scope="row">個別業務設計</th>
+              <td data-label="料金（税別）">内容に応じてお見積もり</td>
+              <td data-label="期間・単位">有期・完結型</td>
+              <td data-label="こんなときに">自社の業務に合わせた手順書がほしい</td>
+            </tr>
+            <tr>
+              <th scope="row">AI活用伴走</th>
+              <td data-label="料金（税別）">内容に応じてお見積もり</td>
+              <td data-label="期間・単位">月次・3か月区切り</td>
+              <td data-label="こんなときに">定着と改善を継続的に支えてほしい</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <ul class="notes">
