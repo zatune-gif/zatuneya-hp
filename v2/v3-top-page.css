@@ -53,13 +53,17 @@
 .section-title::after{content:"";display:block;width:48px;height:3px;margin:var(--space-16) auto 0;border-radius:2px;background:var(--teal-dark)}
 .value-copy .section-title::after,.package-heading .section-title::after,.why-us-copy .section-title::after,.faq-layout .section-title::after{margin-inline:0}
 
-/* --- Hero：h1 は読点で2行、2行目をティール、単語途中で折らない。写真を少し大きく --- */
-.v3-hero h1{text-wrap:balance;max-width:none;font-size:clamp(38px,3.2vw,46px);letter-spacing:.01em;line-height:1.4}
+/* --- Hero：カンプの没入型（左テキスト40%／右に大きな写真が画面端までブリード） --- */
+.v3-hero{background:var(--surface);overflow:clip}
+.v3-hero__grid{grid-template-columns:minmax(0,40%) minmax(0,60%);gap:var(--space-40);min-height:600px;align-items:center}
+.v3-hero__copy{padding-block:var(--space-64)}
+.v3-hero h1{max-width:none;text-wrap:balance;font-size:clamp(28px,2.4vw,36px);letter-spacing:.02em;line-height:1.5}
 .v3-hero h1::first-line{color:inherit}
 .v3-hero h1 .hero-accent{color:var(--teal-dark)}
 .v3-hero h1 br{display:block}
-.v3-hero__grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);min-height:580px}
-.v3-media--hero{aspect-ratio:16 / 11}
+.v3-hero__lead{max-width:30em;font-size:16px;line-height:1.9;color:var(--muted)}
+.v3-hero .v3-media--hero{aspect-ratio:auto;height:min(72vh,600px);border-radius:20px 0 0 20px;box-shadow:none;margin-right:calc(-1 * (50vw - 50%))}
+.v3-hero h1 .hero-accent{white-space:nowrap}
 
 /* --- 業務変革屋の仕事：写真は右上に控えめ、ピラーは枠なし（番号＋本文） --- */
 .value-figure{max-width:480px;justify-self:end;aspect-ratio:16 / 10}
@@ -102,7 +106,8 @@
 }
 @media(max-width:768px){
   .v3-hero__grid{grid-template-columns:1fr}
-  .v3-media--hero{aspect-ratio:16 / 11}
+  .v3-hero .v3-media--hero{aspect-ratio:16 / 11;height:auto;border-radius:var(--radius-card);margin-right:0}
+  .v3-hero h1{font-size:clamp(22px,5.8vw,32px);letter-spacing:0}
   .service-card>:not(.service-card__media){margin-inline:var(--space-24)}
   .service-card>.text-link{margin-bottom:var(--space-24)}
 }
