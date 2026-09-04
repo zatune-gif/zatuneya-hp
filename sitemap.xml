@@ -16,11 +16,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zatune-gif.github.io/zatuneya-hp/service-order.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://zatune-gif.github.io/zatuneya-hp/service-management.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
