@@ -111,6 +111,34 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 .point-text{font:500 15px/1.75 'Noto Sans JP',sans-serif;color:var(--body);flex:1;min-width:0;text-wrap:pretty}
 .point-item.accent .point-text{font-weight:700;color:var(--head)}
 
+/* COURSE BLURBS（各コースでできること） */
+.courses-section{background:#fff;border-radius:24px;padding:40px;margin-top:32px;box-shadow:var(--sh-1)}
+.courses-section__title{display:flex;align-items:center;gap:10px;margin-bottom:24px}
+.courses-section__title .bar{width:24px;height:3px;border-radius:99px;background:var(--teal)}
+.courses-section__title span{font:700 14px 'Noto Sans JP',sans-serif;letter-spacing:.06em;color:var(--head)}
+.course-blurb-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px}
+.course-blurb-item{display:flex;gap:14px;align-items:flex-start;padding:16px 20px;background:var(--bg);border-radius:14px}
+.course-blurb-num{flex:none;font:900 13px/1 'Roboto',sans-serif;color:var(--teal-text);background:var(--teal-pale);padding:6px 10px;border-radius:99px;margin-top:1px}
+.course-blurb-text{font:400 14.5px/1.8 'Noto Sans JP',sans-serif;color:var(--body);flex:1;min-width:0;text-wrap:pretty}
+.course-blurb-text strong{color:var(--head);font-weight:700}
+
+/* GUIDE（どれを選べばいいか迷ったら） */
+.guide-section{background:#fff;border-radius:24px;padding:40px;margin-top:32px;box-shadow:var(--sh-1)}
+.guide-section__title{display:flex;align-items:center;gap:10px;margin-bottom:24px}
+.guide-section__title .bar{width:24px;height:3px;border-radius:99px;background:var(--orange)}
+.guide-section__title span{font:700 14px 'Noto Sans JP',sans-serif;letter-spacing:.06em;color:var(--head)}
+.guide-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.guide-row{display:flex;align-items:center;gap:16px;padding:16px 4px;border-bottom:1px solid var(--line)}
+.guide-row:last-child{border-bottom:none}
+.guide-row__situation{flex:1;min-width:0;font:500 14.5px/1.75 'Noto Sans JP',sans-serif;color:var(--body);text-wrap:pretty}
+.guide-row__arrow{flex:none;color:var(--sub);font:400 16px/1 'Roboto',sans-serif}
+.guide-row__rec{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:2px;text-align:right}
+.guide-row__rec-name{font:700 14.5px/1.4 'Noto Sans JP',sans-serif;color:var(--teal-text)}
+.guide-row__rec-note{font:400 12.5px/1.4 'Noto Sans JP',sans-serif;color:var(--sub-text)}
+.guide-note{font:400 13px/1.7 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-top:18px}
+.guide-link{display:inline-block;font:700 13.5px/1.5 'Noto Sans JP',sans-serif;color:var(--teal-text);text-decoration:none;margin-top:10px}
+.guide-link:hover{text-decoration:underline}
+
 /* CTA ROW */
 .svc-cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
 
@@ -140,7 +168,7 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 
 /* RESPONSIVE */
 @media(max-width:960px){.svc-hero-grid{grid-template-columns:1fr}.related-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:680px){:root{--s24:64px;--s20:48px;--s16:40px}.container{padding:0 20px}.related-grid{grid-template-columns:1fr}.price-box__cta .btn{width:100%}.cv-inner{padding:32px 24px}}
+@media(max-width:680px){:root{--s24:64px;--s20:48px;--s16:40px}.container{padding:0 20px}.related-grid{grid-template-columns:1fr}.price-box__cta .btn{width:100%}.cv-inner{padding:32px 24px}.courses-section,.guide-section{padding:24px 20px}.guide-row{flex-wrap:wrap;gap:6px 12px}.guide-row__situation{flex-basis:100%}.guide-row__arrow{transform:rotate(90deg)}.guide-row__rec{align-items:flex-start;text-align:left}}
 </style>
 </head>
 <body>
@@ -220,6 +248,50 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
             <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">受講対象に合わせた業種カスタマイズも可能です</span></li>
             <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">5名・10名の定員設定（コース⑥は個別1名またはグループ3名まで）</span></li>
           </ul>
+        </div>
+
+        <div class="courses-section">
+          <div class="courses-section__title"><span class="bar"></span><span>各コースでできること</span></div>
+          <ul class="course-blurb-list">
+            <li class="course-blurb-item"><span class="course-blurb-num">①</span><span class="course-blurb-text"><strong>AI活用知識編</strong>　何から始めるか迷う状態を解消。ツール選びと社内ルールまで整理できます。</span></li>
+            <li class="course-blurb-item"><span class="course-blurb-num">②</span><span class="course-blurb-text"><strong>実践編（文書系）</strong>　文書作業をAIで大幅効率化。広報・採用の発信頻度も上げられます。</span></li>
+            <li class="course-blurb-item"><span class="course-blurb-num">③</span><span class="course-blurb-text"><strong>実践編（画像系）</strong>　デザイナー不在でもSNS・チラシ・広報のビジュアルが作れます。</span></li>
+            <li class="course-blurb-item"><span class="course-blurb-num">④</span><span class="course-blurb-text"><strong>実践編（動画系）</strong>　スマホ撮影素材から字幕・BGM・編集までAIが自動でこなします。</span></li>
+            <li class="course-blurb-item"><span class="course-blurb-num">⑤</span><span class="course-blurb-text"><strong>AI活用ルール・運用定着編</strong>　情報セキュリティ・社内ガイドライン・KPI・推進体制まで。組織にAI活用を定着させます。</span></li>
+            <li class="course-blurb-item"><span class="course-blurb-num">⑥</span><span class="course-blurb-text"><strong>実践編（Claude Code特化）</strong>　コード経験不要。社内の困りごとを解決する仕組みを自分で作れます。</span></li>
+          </ul>
+        </div>
+
+        <div class="guide-section">
+          <div class="guide-section__title"><span class="bar"></span><span>どれを選べばいいか迷ったら</span></div>
+          <ul class="guide-list">
+            <li class="guide-row">
+              <span class="guide-row__situation">まず試したい</span>
+              <span class="guide-row__arrow" aria-hidden="true">→</span>
+              <span class="guide-row__rec">
+                <span class="guide-row__rec-name">①AI活用知識編・10名</span>
+                <span class="guide-row__rec-note">1人あたり 8,000円〜</span>
+              </span>
+            </li>
+            <li class="guide-row">
+              <span class="guide-row__situation">コスパよく実践力をつけたい</span>
+              <span class="guide-row__arrow" aria-hidden="true">→</span>
+              <span class="guide-row__rec">
+                <span class="guide-row__rec-name">入門セット（①＋②）10名</span>
+                <span class="guide-row__rec-note">20,900円・2コース分</span>
+              </span>
+            </li>
+            <li class="guide-row">
+              <span class="guide-row__situation">一気に全部仕上げたい</span>
+              <span class="guide-row__arrow" aria-hidden="true">→</span>
+              <span class="guide-row__rec">
+                <span class="guide-row__rec-name">全コースセット・10名</span>
+                <span class="guide-row__rec-note">560,000円・5コース分（①②③④＋⑥）</span>
+              </span>
+            </li>
+          </ul>
+          <p class="guide-note">10名集めると1人あたりの受講料をさらに抑えられます。</p>
+          <a class="guide-link" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html">コース別の詳しい料金は料金案内をご覧ください →</a>
         </div>
 
         <div class="svc-cta-row">
