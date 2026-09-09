@@ -145,8 +145,16 @@ const anchors = [...html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)].map(([, attr
   content,
   href: attributes.match(/\bhref="([^"]+)"/i)?.[1] ?? ''
 }));
-assert.doesNotMatch(html, /href="(?:\.\/)?(?:growth|tools)\.html"|href="#(?:growth|tools)"/i,
-  'TOP has no dead growth or tools call-to-action links');
+for (const [label, href] of [
+  ['成長段階の考え方をくわしく見る', './growth.html'],
+  ['ツールの一覧を見る', './tools.html']
+]) {
+  const escapedLabel = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const escapedHref = href.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const links = html.match(new RegExp(`<a\\b(?=[^>]*href=["']${escapedHref}["'])[^>]*>\\s*${escapedLabel}\\s*</a>`, 'g')) ?? [];
+  assert.equal(links.length, 1, `TOP has exactly one approved ${label} link`);
+  assert.ok(existsSync(resolve(root, href.replace('./', ''))), `${label} destination exists`);
+}
 const diagnosisMetaTags = [...html.matchAll(/<meta\b(?=[^>]*\bname="zatuneya:diagnosis-url")(?=[^>]*\bcontent="([^"]+)")[^>]*>/gi)];
 assert.equal(diagnosisMetaTags.length, 1, 'TOP has exactly one diagnosis URL meta marker');
 assert.equal(diagnosisMetaTags[0][1], diagnosisUrl, 'diagnosis URL meta marker has the current value');
@@ -195,10 +203,8 @@ for (const role of ['service-training', 'service-order', 'service-banso']) {
 }
 assert.doesNotMatch(sectionMarkup('why-us'), /profile-portrait-2\.jpg/,
   'representative slot no longer uses the text-baked legacy illustration');
-assert.doesNotMatch(sectionMarkup('why-us'), /<img\b[^>]*data-asset-role="representative-portrait"/,
-  'representative placeholder does not reuse an unrelated photograph');
-assert.match(sectionMarkup('why-us'), /<figure\b(?=[^>]*class="[^"]*representative-card__placeholder)(?=[^>]*data-asset-role="representative-portrait")(?=[^>]*role="img")(?=[^>]*aria-label="代表者写真の仮枠")[^>]*>/,
-  'representative slot is a dedicated accessible placeholder');
+assert.match(sectionMarkup('why-us'), /<img\b(?=[^>]*src="\.\/assets\/representative-portrait-placeholder\.svg")(?=[^>]*data-asset-role="representative-portrait")(?=[^>]*alt="代表者写真（正式素材に差し替え予定）")[^>]*>/,
+  'representative slot uses the dedicated replaceable placeholder asset from origin/main');
 assert.match(html, /<a class="nav-diagnosis site-nav__link" data-diagnosis-link aria-disabled="true">無料で診断する<\/a>/,
   'desktop header presents the approved orange diagnosis call to action');
 assert.match(sharedCssWithoutComments, /\.nav-diagnosis\{[^}]*background:var\(--orange\)[^}]*color:var\(--orange-ink\)/,
@@ -342,8 +348,10 @@ assert.match(sharedCssWithoutComments, /\.brand-mark\{[^}]*\bwidth:var\(--size-i
   'brand mark uses the icon-size token');
 assert.match(sharedCssWithoutComments, /\.v3-line-icon\{[^}]*\bwidth:var\(--size-icon\)[^}]*\bheight:var\(--size-icon\)/,
   'line icons use the icon-size token');
-assert.match(sharedCssWithoutComments, /\.fade-in\{[^}]*\bopacity:\s*0[^}]*\btransform:translateY\(var\(--space-16\)\)/,
-  'fade-in has a meaningful hidden base state');
+assert.match(sharedCssWithoutComments, /\.fade-in\{[^}]*\bopacity:\s*1[^}]*\btransform:none/,
+  'fade-in is visible by default for progressive enhancement');
+assert.match(sharedCssWithoutComments, /\.js-reveal \.fade-in:not\(\.is-visible\)\{[^}]*\bopacity:\s*0[^}]*\btransform:translateY\(var\(--space-16\)\)/,
+  'fade-in becomes hidden only after reveal enhancement initializes');
 assert.match(sharedCssWithoutComments, /\.fade-in\.is-visible\{[^}]*\banimation:v3-fade-in\s+\.4s\s+ease-out\s+both/,
   'visible fade-in elements use the reveal animation');
 assert.match(sharedCssWithoutComments, /@keyframes v3-fade-in\{from\{opacity:1;transform:translateY\(var\(--space-16\)\)\}to\{opacity:1;transform:translateY\(0\)\}\}/,

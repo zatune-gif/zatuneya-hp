@@ -113,6 +113,81 @@ async function verifyWithoutJavaScript(browser, browserName, width, origin) {
   } finally { await context.close(); }
 }
 
+async function verifyNewPageKeyboard(browser, browserName, width, origin) {
+  for (const filename of ['growth.html', 'tools.html']) {
+    const context = await browser.newContext({ viewport: { width, height: 900 } });
+    const page = await context.newPage();
+    const scope = `${browserName}/${width}/${filename} keyboard`;
+    try {
+      await page.goto(`${origin}/${filename}`, { waitUntil: 'domcontentloaded' });
+      await check(`${scope} skip link reaches main`, async () => {
+        await page.locator('.skip-link').focus();
+        assert.equal(await page.locator('.skip-link').evaluate((element) => document.activeElement === element), true);
+        await page.keyboard.press('Enter');
+        await page.waitForFunction(() => location.hash === '#main');
+        assert.equal(await page.locator('#main').evaluate((element) => document.activeElement === element), true);
+      });
+      await check(`${scope} natural Tab order reaches page actions`, async () => {
+        await page.goto(`${origin}/${filename}`, { waitUntil: 'domcontentloaded' });
+        const expected = filename === 'tools.html' ? 'a.v3-button[href]' : 'footer a[href]';
+        await page.locator('.skip-link').focus();
+        let reached = false;
+        for (let step = 0; step < 30; step += 1) {
+          await page.keyboard.press('Tab');
+          reached = await page.evaluate((selector) => document.activeElement?.matches(selector) ?? false, expected);
+          if (reached) {
+            const outline = await page.evaluate(() => {
+              const style = getComputedStyle(document.activeElement);
+              return style.outlineStyle !== 'none' && Number.parseFloat(style.outlineWidth) >= 3;
+            });
+            assert.equal(outline, true, `${expected} lacks a visible focus outline`);
+            break;
+          }
+        }
+        assert.equal(reached, true, `Tab did not reach ${expected}`);
+      });
+    } finally { await context.close(); }
+  }
+}
+
+async function verifyRevealFallback(browser, browserName, width, origin) {
+  for (const filename of ['index.html', 'growth.html', 'tools.html']) {
+    const context = await browser.newContext({ viewport: { width, height: 900 } });
+    await context.addInitScript(() => { Object.defineProperty(window, 'IntersectionObserver', { configurable: true, value: undefined }); });
+    const page = await context.newPage();
+    const scope = `${browserName}/${width}/${filename} no IntersectionObserver`;
+    try {
+      await page.goto(`${origin}/${filename}`, { waitUntil: 'domcontentloaded' });
+      await check(`${scope} fade content remains visible`, async () => {
+        const states = await page.locator('.fade-in').evaluateAll((elements) => elements.map((element) => {
+          const style = getComputedStyle(element);
+          return style.visibility !== 'hidden' && Number(style.opacity) > 0;
+        }));
+        assert.ok(states.length > 0 && states.every(Boolean));
+      });
+    } finally { await context.close(); }
+  }
+}
+
+async function verifyNoJavaScriptRevealFallback(browser, browserName, width, origin) {
+  const context = await browser.newContext({ viewport: { width, height: 900 }, javaScriptEnabled: false });
+  try {
+    for (const filename of ['index.html', 'growth.html', 'tools.html']) {
+      const page = await context.newPage();
+      const scope = `${browserName}/${width}/${filename} no JavaScript`;
+      await page.goto(`${origin}/${filename}`, { waitUntil: 'domcontentloaded' });
+      await check(`${scope} fade content remains visible`, async () => {
+        const states = await page.locator('.fade-in').evaluateAll((elements) => elements.map((element) => {
+          const style = getComputedStyle(element);
+          return style.visibility !== 'hidden' && Number(style.opacity) > 0;
+        }));
+        assert.ok(states.length > 0 && states.every(Boolean));
+      });
+      await page.close();
+    }
+  } finally { await context.close(); }
+}
+
 const server = await startQaServer(root);
 try {
   for (const [browserName, browserType] of Object.entries(browserTypes)) {
@@ -128,6 +203,10 @@ try {
       await verifyInteraction(browser, browserName, 1280, server.origin);
       await verifyWithoutJavaScript(browser, browserName, 375, server.origin);
       await verifyWithoutJavaScript(browser, browserName, 1280, server.origin);
+      await verifyNewPageKeyboard(browser, browserName, 375, server.origin);
+      await verifyNewPageKeyboard(browser, browserName, 1280, server.origin);
+      await verifyRevealFallback(browser, browserName, 375, server.origin);
+      await verifyNoJavaScriptRevealFallback(browser, browserName, 375, server.origin);
     } catch (error) { failures.push(`${browserName} session: ${error.message}`); }
     finally { await browser?.close().catch(() => {}); }
   }

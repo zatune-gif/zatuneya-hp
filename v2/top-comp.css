@@ -207,7 +207,8 @@ a[data-diagnosis-link][aria-disabled="true"]{opacity:.6;cursor:not-allowed;point
 .v3-button--inverse{border-color:var(--surface);background:transparent;color:var(--surface)}
 .v3-button--inverse:hover{background:rgb(255 255 255 / 16%)}
 .v3-line-icon{width:var(--size-icon);height:var(--size-icon);fill:none;stroke:var(--teal-dark);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.fade-in{opacity:0;transform:translateY(var(--space-16))}
+.fade-in{opacity:1;transform:none}
+.js-reveal .fade-in:not(.is-visible){opacity:0;transform:translateY(var(--space-16))}
 .fade-in.is-visible{animation:v3-fade-in .4s ease-out both}
 @keyframes v3-fade-in{from{opacity:1;transform:translateY(var(--space-16))}to{opacity:1;transform:translateY(0)}}
 :focus-visible{outline:3px solid var(--teal-dark);outline-offset:var(--space-4)}

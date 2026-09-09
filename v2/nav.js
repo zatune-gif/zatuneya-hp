@@ -3,6 +3,27 @@
   'use strict';
   document.documentElement.classList.add('js-nav');
 
+  /* ── スキップリンクから本文へキーボードフォーカスを移す ── */
+  document.querySelectorAll('a.skip-link[href^="#"]').forEach(function (link) {
+    var temporaryTarget = null;
+    var cleanupTarget = function () {
+      if (!temporaryTarget) return;
+      temporaryTarget.removeAttribute('tabindex');
+      temporaryTarget = null;
+    };
+    link.addEventListener('click', function () {
+      cleanupTarget();
+      var target = document.getElementById(link.getAttribute('href').slice(1));
+      if (!target) return;
+      if (!target.hasAttribute('tabindex')) {
+        target.setAttribute('tabindex', '-1');
+        temporaryTarget = target;
+        target.addEventListener('blur', cleanupTarget, { once: true });
+      }
+      target.focus({ preventScroll: false });
+    });
+  });
+
   /* ── 診断CTAをheadの単一URLから安全に有効化 ── */
   var diagnosisUrl = null;
   var diagnosisUrlMeta = document.querySelector('meta[name="zatuneya:diagnosis-url"]');
@@ -171,16 +192,23 @@
 /* ── フェードインアニメーション（Intersection Observer） ── */
 (function () {
   var els = document.querySelectorAll('.fade-in');
-  if (!els.length) return;
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) {
-        e.target.classList.add('is-visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  els.forEach(function (el) { io.observe(el); });
+  if (!els.length || typeof window.IntersectionObserver !== 'function') return;
+  var io;
+  try {
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(function (el) { io.observe(el); });
+    document.documentElement.classList.add('js-reveal');
+  } catch (error) {
+    if (io) io.disconnect();
+    document.documentElement.classList.remove('js-reveal');
+  }
 })();
 
 /* V2: keyboard-safe FAQ accordion and Escape close behavior. */

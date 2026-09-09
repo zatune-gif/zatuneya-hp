@@ -139,6 +139,7 @@ const lowerPages = [
   '404.html',
   'contact.html',
   'faq.html',
+  'growth.html',
   'privacy.html',
   'profile.html',
   'service-banso.html',
@@ -148,6 +149,7 @@ const lowerPages = [
   'services.html',
   'thank-you.html',
   'tokusho.html',
+  'tools.html',
   'works.html'
 ];
 const discoveredLowerPages = readdirSync(root)
