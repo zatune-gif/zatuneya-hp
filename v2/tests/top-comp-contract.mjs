@@ -24,8 +24,11 @@ const nav = readFileSync(navPath, 'utf8');
 const browserTest = readFileSync(browserTestPath, 'utf8');
 const cssWithoutComments = css.replace(/\/\*[\s\S]*?\*\//g, '');
 const cssRules = [...cssWithoutComments.matchAll(/([^{}]+)\{([^{}]*)\}/g)];
+const sharedCssWithoutComments = legacyCss.replace(/\/\*[\s\S]*?\*\//g, '');
+const sharedCssRules = [...sharedCssWithoutComments.matchAll(/([^{}]+)\{([^{}]*)\}/g)];
+const allCssRules = [...sharedCssRules, ...cssRules];
 const declarationsBySelector = new Map();
-for (const [, selector, declarations] of cssRules) {
+for (const [, selector, declarations] of allCssRules) {
   const normalizedSelector = selector.replace(/\s+/g, ' ').trim();
   declarationsBySelector.set(
     normalizedSelector,
@@ -38,7 +41,7 @@ function hasDeclaration(declarations, property, value) {
 }
 
 function hasCssDeclaration(property, value) {
-  return cssRules.some(([, , declarations]) => hasDeclaration(declarations, property, value));
+  return allCssRules.some(([, , declarations]) => hasDeclaration(declarations, property, value));
 }
 
 function assertNoEmoji(markup) {
@@ -102,8 +105,9 @@ const requiredCopy = [
   'まずは無料診断から',
   '診断する'
 ];
+const htmlCopy = html.replace(/<[^>]+>/g, '');
 for (const copy of requiredCopy) {
-  assert.ok(html.includes(copy), `TOP v3 copy exists: ${copy}`);
+  assert.ok(htmlCopy.includes(copy), `TOP v3 copy exists: ${copy}`);
 }
 
 assert.match(html, /<main\b[^>]*\bid="main"[^>]*>/i, 'main landmark exists');
@@ -117,16 +121,17 @@ assert.doesNotMatch(sectionMarkup('hero'), /\bclass="[^"]*\bfade-in\b[^"]*"/i,
 assert.match(html, /\bid="sticky-cta"/i, 'sticky call to action exists');
 assert.match(html, /\bid="sticky-cta-close"/i, 'sticky call to action close control exists');
 assert.match(html, /©\s*2026\s*ざつね屋/, 'copyright is current');
-assert.match(html, /<link\b(?=[^>]*\brel="stylesheet")(?=[^>]*\bhref="[^"]*v3-top-page\.css")[^>]*>/i,
-  'TOP loads its dedicated v3 stylesheet with a stylesheet link');
-assert.doesNotMatch(html, /<link\b(?=[^>]*\brel="stylesheet")(?=[^>]*\bhref="[^"]*top-comp\.css")[^>]*>/i,
-  'TOP does not load the lower-page shared stylesheet');
+const sharedCssLinkIndex = html.indexOf('<link rel="stylesheet" href="./top-comp.css">');
+const pageCssLinkIndex = html.indexOf('<link rel="stylesheet" href="./v3-top-page.css">');
+assert.ok(sharedCssLinkIndex >= 0, 'TOP loads the v3 shared stylesheet');
+assert.ok(pageCssLinkIndex > sharedCssLinkIndex,
+  'TOP loads top-comp.css before v3-top-page.css');
 assert.doesNotMatch(html, /fonts\.(?:googleapis|gstatic)\.com/i,
   'TOP does not request externally hosted Google Fonts');
-assert.match(cssWithoutComments,
+assert.match(sharedCssWithoutComments,
   /--font-sans:\s*"Noto Sans JP",\s*"Yu Gothic",\s*"Hiragino Kaku Gothic ProN",\s*sans-serif/i,
   'TOP sans-serif token keeps the intended name with Japanese system-font fallbacks');
-assert.match(cssWithoutComments,
+assert.match(sharedCssWithoutComments,
   /--font-serif:\s*"Noto Serif JP",\s*"Yu Mincho",\s*"Hiragino Mincho ProN",\s*serif/i,
   'TOP serif token keeps the intended name with Japanese system-font fallbacks');
 assert.match(
@@ -177,6 +182,47 @@ for (const [sectionId, role] of [['hero', 'hero-meeting'], ['why-us', 'represent
     new RegExp(`<img\\b(?=[^>]*\\bdata-asset-role="${role}")(?=[^>]*\\balt="[^"\\s][^"]*")[^>]*>`, 'i'),
     `${role} image has meaningful alternative text`
   );
+}
+assert.match(sectionMarkup('hero'), /<h1[^>]*>AIを入れることより、<br><span class="hero-accent">仕事がよくなることから。<\/span><\/h1>/,
+  'hero heading exposes the approved two phrase lines without word-internal breaks');
+assert.doesNotMatch(sectionMarkup('cases'), /\bcases-figure\b|data-asset-role="cases-workshop"/,
+  'case studies do not retain a decorative photograph');
+assert.doesNotMatch(sectionMarkup('final-cta'), /\bfinal-cta__image\b|data-asset-role="final-conversation"/,
+  'final call to action is a photograph-free color band');
+for (const role of ['service-training', 'service-order', 'service-banso']) {
+  assert.match(sectionMarkup('services'), new RegExp(`data-asset-role="${role}"`),
+    `services include the approved ${role} photograph slot`);
+}
+assert.doesNotMatch(sectionMarkup('why-us'), /profile-portrait-2\.jpg/,
+  'representative slot no longer uses the text-baked legacy illustration');
+assert.doesNotMatch(sectionMarkup('why-us'), /<img\b[^>]*data-asset-role="representative-portrait"/,
+  'representative placeholder does not reuse an unrelated photograph');
+assert.match(sectionMarkup('why-us'), /<figure\b(?=[^>]*class="[^"]*representative-card__placeholder)(?=[^>]*data-asset-role="representative-portrait")(?=[^>]*role="img")(?=[^>]*aria-label="代表者写真の仮枠")[^>]*>/,
+  'representative slot is a dedicated accessible placeholder');
+assert.match(html, /<a class="nav-diagnosis site-nav__link" data-diagnosis-link aria-disabled="true">無料で診断する<\/a>/,
+  'desktop header presents the approved orange diagnosis call to action');
+assert.match(sharedCssWithoutComments, /\.nav-diagnosis\{[^}]*background:var\(--orange\)[^}]*color:var\(--orange-ink\)/,
+  'header diagnosis call to action uses the accessible orange pill treatment');
+assert.match(sharedCssWithoutComments, /\.comp-menu,#nav-hamburger\{[^}]*flex-direction:column[^}]*justify-content:center[^}]*align-items:center/,
+  'hamburger lays out three bars clearly within its control');
+assert.match(sharedCssWithoutComments, /\.comp-menu span\{[^}]*width:24px[^}]*height:2px[^}]*background:var\(--ink\)/,
+  'hamburger bars have explicit visible dimensions and color');
+
+const commonSelectorPatterns = [
+  /^:root(?:\s|,|$)/,
+  /(?:^|,)\s*\.comp-[\w-]*/,
+  /(?:^|,)\s*\.site-nav__[\w-]*/,
+  /(?:^|,)\s*\.sticky-cta[\w-]*/,
+  /(?:^|,)\s*\.v3-button[\w-]*/,
+  /(?:^|,)\s*\.comp-header(?:\s|$)/,
+  /(?:^|,)\s*\.comp-footer(?:\s|$)/
+];
+for (const pattern of commonSelectorPatterns) {
+  assert.ok(!cssRules.some(([, selector]) => pattern.test(selector.replace(/\s+/g, ' ').trim())),
+    `TOP-only stylesheet excludes shared selector pattern ${pattern}`);
+}
+for (const selector of [':root', '.comp-header', '.site-nav__link', '.sticky-cta', '.v3-button', '.comp-footer']) {
+  assert.ok(legacyCss.includes(selector), `shared stylesheet owns ${selector}`);
 }
 
 assert.doesNotMatch(html, /<[^>]+\sstyle\s*=/i, 'index has no inline styles');
@@ -229,6 +275,16 @@ assert.match(
   /await viewportPage\.screenshot\(\{\s*path:\s*join\(stagingDir,\s*`\$\{viewport\.width\}\.png`\),/,
   'each viewport screenshot is written to staging, never directly to the canonical directory'
 );
+assert.match(
+  browserTest,
+  /async function prepareFullPageScreenshot\(viewportPage\)\s*\{[\s\S]*?\.fade-in[\s\S]*?is-visible[\s\S]*?opacity[\s\S]*?\.decode\(\)[\s\S]*?naturalWidth[\s\S]*?returnToTopAfterLazyLoading\(viewportPage\)[\s\S]*?\}/,
+  'full-page screenshot preparation reveals every fade target, decodes every image, and returns to the top'
+);
+assert.match(
+  browserTest,
+  /await prepareFullPageScreenshot\(viewportPage\);[\s\S]*?await viewportPage\.screenshot\(\{\s*path:\s*join\(stagingDir,/,
+  'full-page preparation completes before the staged screenshot is captured'
+);
 assert.doesNotMatch(
   browserTest,
   /unlinkSync\(screenshotPath\)/,
@@ -261,7 +317,7 @@ assert.match(
 );
 
 assert.match(
-  cssWithoutComments,
+  `${sharedCssWithoutComments}\n${cssWithoutComments}`,
   /@media\s*\([^)]*prefers-reduced-motion[^)]*\)\s*\{[\s\S]*?\{[^{}]+\}/i,
   'reduced motion preferences have a real nested rule'
 );
@@ -282,19 +338,21 @@ for (const [controlName, selectorPattern] of interactiveControlSelectors) {
 }
 assert.ok(hasCssDeclaration('--size-icon', '40px'), 'icon size token exists');
 assert.ok(hasCssDeclaration('--size-control', '44px'), 'control size token exists');
-assert.match(cssWithoutComments, /\.brand-mark\{[^}]*\bwidth:var\(--size-icon\)[^}]*\bheight:var\(--size-icon\)/,
+assert.match(sharedCssWithoutComments, /\.brand-mark\{[^}]*\bwidth:var\(--size-icon\)[^}]*\bheight:var\(--size-icon\)/,
   'brand mark uses the icon-size token');
-assert.match(cssWithoutComments, /\.v3-line-icon\{[^}]*\bwidth:var\(--size-icon\)[^}]*\bheight:var\(--size-icon\)/,
+assert.match(sharedCssWithoutComments, /\.v3-line-icon\{[^}]*\bwidth:var\(--size-icon\)[^}]*\bheight:var\(--size-icon\)/,
   'line icons use the icon-size token');
-assert.match(cssWithoutComments, /\.fade-in\{[^}]*\bopacity:\s*0[^}]*\btransform:translateY\(var\(--space-16\)\)/,
+assert.match(sharedCssWithoutComments, /\.fade-in\{[^}]*\bopacity:\s*0[^}]*\btransform:translateY\(var\(--space-16\)\)/,
   'fade-in has a meaningful hidden base state');
-assert.match(cssWithoutComments, /\.fade-in\.is-visible\{[^}]*\banimation:v3-fade-in\s+\.4s\s+ease-out\s+both/,
+assert.match(sharedCssWithoutComments, /\.fade-in\.is-visible\{[^}]*\banimation:v3-fade-in\s+\.4s\s+ease-out\s+both/,
   'visible fade-in elements use the reveal animation');
-assert.ok(cssRules.some(([selector, declarations]) => /:focus-visible/i.test(selector) && declarations.trim()), 'keyboard focus is visible');
+assert.match(sharedCssWithoutComments, /@keyframes v3-fade-in\{from\{opacity:1;transform:translateY\(var\(--space-16\)\)\}to\{opacity:1;transform:translateY\(0\)\}\}/,
+  'fade reveal animates position without transient low-contrast opacity');
+assert.ok(allCssRules.some(([selector, declarations]) => /:focus-visible/i.test(selector) && declarations.trim()), 'keyboard focus is visible');
 assert.ok(hasCssDeclaration('scroll-padding-bottom', '[^;]+'), 'sticky call to action is accounted for when scrolling');
 assert.ok(hasCssDeclaration('--space-4', '4px'), 'four-pixel spacing token exists');
 assert.ok(hasCssDeclaration('--space-96', '96px'), 'ninety-six-pixel spacing token exists');
-for (const [selector, declarations] of declarationsBySelector) {
+for (const [, selector, declarations] of cssRules) {
   const hasOrangeBackground = hasDeclaration(declarations, 'background(?:-color)?', 'var\\(--orange\\)');
   const hasWhiteText = hasDeclaration(
     declarations,

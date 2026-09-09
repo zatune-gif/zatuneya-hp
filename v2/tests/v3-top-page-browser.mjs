@@ -133,6 +133,34 @@ async function loadTopPage(targetPage) {
   await waitForDocumentFonts(targetPage);
 }
 
+async function assertHeroPhraseLines(targetPage, viewportWidth) {
+  if (![320, 375, 1280].includes(viewportWidth)) return;
+  const layout = await targetPage.locator('#hero-title').evaluate((heading) => {
+    const first = heading.firstChild;
+    const accent = heading.querySelector('.hero-accent');
+    const rectFor = (node) => {
+      const range = document.createRange();
+      range.selectNodeContents(node);
+      const rects = [...range.getClientRects()].filter((rect) => rect.width > 0);
+      return {
+        text: node.textContent,
+        top: Math.round(rects[0]?.top ?? -1),
+        rectCount: rects.length,
+        whiteSpace: node.nodeType === Node.ELEMENT_NODE ? getComputedStyle(node).whiteSpace : null
+      };
+    };
+    return [rectFor(first), rectFor(accent)];
+  });
+  assert.deepEqual(layout.map(({ text }) => text),
+    ['AIを入れることより、', '仕事がよくなることから。'],
+    `hero phrase text is exact at ${viewportWidth}px`);
+  const resultPhrase = layout[1];
+  assert.equal(resultPhrase.rectCount, 1, `hero phrase '${resultPhrase.text}' is never internally split at ${viewportWidth}px`);
+  assert.equal(resultPhrase.whiteSpace, 'nowrap', `hero phrase '${resultPhrase.text}' is nowrap at ${viewportWidth}px`);
+  const lineCount = new Set(layout.map(({ top }) => top)).size;
+  assert.equal(lineCount, 2, `hero uses two intentional phrase lines at ${viewportWidth}px`);
+}
+
 async function trackStickyCtaListeners(targetPage) {
   await targetPage.addInitScript(() => {
     const trackedTypes = new Set(['scroll', 'resize', 'pagehide', 'pageshow']);
@@ -209,6 +237,43 @@ async function returnToTopAfterLazyLoading(viewportPage) {
     await new Promise((resolveFrame) => requestAnimationFrame(() => requestAnimationFrame(resolveFrame)));
     return window.scrollY === 0;
   }, undefined, { timeout: 5_000 });
+}
+
+async function prepareFullPageScreenshot(viewportPage) {
+  const fadeTargets = viewportPage.locator('.fade-in');
+  const fadeCount = await fadeTargets.count();
+  assert.ok(fadeCount > 0, 'full-page screenshot has fade targets to reveal');
+  for (let index = 0; index < fadeCount; index += 1) {
+    const target = fadeTargets.nth(index);
+    await target.scrollIntoViewIfNeeded({ timeout: 5_000 });
+    await viewportPage.waitForFunction(
+      (targetIndex) => document.querySelectorAll('.fade-in')[targetIndex]?.classList.contains('is-visible'),
+      index,
+      { timeout: 5_000 }
+    );
+  }
+  await viewportPage.waitForFunction(() => Array.from(document.querySelectorAll('.fade-in')).every((target) => {
+    const opacity = Number.parseFloat(getComputedStyle(target).opacity);
+    return target.classList.contains('is-visible') && opacity >= 0.99;
+  }), undefined, { timeout: 5_000 });
+
+  await viewportPage.waitForFunction(() => Array.from(document.images).every((image) =>
+    image.complete && image.naturalWidth > 0 && image.naturalHeight > 0
+  ), undefined, { timeout: 5_000 });
+  await viewportPage.locator('img').evaluateAll(async (images) => {
+    await Promise.all(images.map((image) => image.decode()));
+  });
+  const imageStates = await viewportPage.locator('img').evaluateAll((images) => images.map((image) => ({
+    src: image.currentSrc,
+    naturalWidth: image.naturalWidth,
+    naturalHeight: image.naturalHeight
+  })));
+  for (const image of imageStates) {
+    assert.ok(image.src && image.naturalWidth > 0 && image.naturalHeight > 0,
+      `full-page screenshot image decoded: ${image.src || '(missing source)'}`);
+  }
+  await returnToTopAfterLazyLoading(viewportPage);
+  await viewportPage.waitForTimeout(100);
 }
 
 async function scrollPastHero(viewportPage, expectVisible = true) {
@@ -318,9 +383,11 @@ try {
       );
       await assertAssetRoleImagesReady(viewportPage);
       await returnToTopAfterLazyLoading(viewportPage);
+      await assertHeroPhraseLines(viewportPage, viewport.width);
       if (viewport.width === 320 || viewport.width === 375) {
         await assertInitialHeroCtasAreUncovered(viewportPage, viewport.width);
       }
+      await prepareFullPageScreenshot(viewportPage);
       await viewportPage.screenshot({ path: join(stagingDir, `${viewport.width}.png`), fullPage: true });
       if (forceFailureAfterFirstScreenshot) {
         throw new Error('Intentional screenshot failure after staging; canonical PNGs must remain unchanged');
