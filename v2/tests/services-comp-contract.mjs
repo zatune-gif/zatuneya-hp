@@ -12,6 +12,7 @@ check(existsSync(join(root, 'services-comp.css')), 'services-comp.css exists');
 const compCss = readFileSync(join(root, 'services-comp.css'), 'utf8');
 check(!/@import\s+[^;]*top-comp\.css/i.test(compCss), 'services-comp.css does not re-import the shared stylesheet');
 check(/\.assist-card\.accent \.assist-card__link\{color:var\(--orange-ink\)\}/.test(compCss), 'accent service link uses the shared AA orange ink token');
+check(/\.process-item\.last \.process-num\{background:var\(--orange\);color:var\(--orange-ink\)\}/.test(compCss), 'final process marker uses AA orange ink on orange');
 
 const pages = [
   'services.html',

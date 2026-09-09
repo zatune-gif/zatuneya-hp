@@ -11,9 +11,10 @@
     "qa:gitignore": "node ./v2/tests/qa-gitignore.mjs",
     "qa:cross-browser": "node ./v2/tests/qa-cross-browser.mjs",
     "qa:axe": "node ./v2/tests/qa-axe.mjs",
+    "qa:contrast-states": "node ./v2/tests/contrast-states-browser.mjs",
     "qa:lighthouse-contract": "node ./v2/tests/qa-lighthouse-contract.mjs",
     "qa:lighthouse": "node ./v2/tests/qa-lighthouse.mjs",
-    "qa": "npm run qa:gitignore && npm run qa:cross-browser && npm run qa:axe && npm run qa:lighthouse-contract",
+    "qa": "npm run qa:gitignore && npm run qa:cross-browser && npm run qa:axe && npm run qa:contrast-states && npm run qa:lighthouse-contract",
     "qa:install-browsers": "playwright install firefox webkit"
   },
   "devDependencies": {

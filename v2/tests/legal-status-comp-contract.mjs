@@ -12,6 +12,9 @@ const check = (condition, message) => { checks += 1; assert.ok(condition, messag
 const cssPath = join(root, 'legal-status-comp.css');
 check(existsSync(cssPath), 'legal-status-comp.css exists');
 const css = readFileSync(cssPath, 'utf8');
+const sharedCss = readFileSync(join(root, 'top-comp.css'), 'utf8');
+check(/\.btn-teal\{[^}]*background:var\(--teal\)[^}]*color:var\(--ink\)/.test(sharedCss), 'shared teal button uses AA ink on teal');
+check(/\.btn-teal:hover\{[^}]*background:var\(--teal-dk\)[^}]*color:var\(--surface\)/.test(sharedCss), 'shared teal button hover uses AA surface text on dark teal');
 check(css.includes('.legal-hero'), 'legal-status-comp.css defines the legal/status hero block');
 check(css.includes('.status-band'), 'legal-status-comp.css defines the dark status CTA band');
 
