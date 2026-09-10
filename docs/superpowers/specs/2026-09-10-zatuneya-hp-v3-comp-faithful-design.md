@@ -59,6 +59,8 @@ SPカンプは狭いサムネイルであり、文章の判読性より配置確
 
 | ファイル | 元矩形 `(left, top, right, bottom)` | 原寸 | 用途 | 実装 |
 |---|---:|---:|---|---|
+| `comp-desktop-reference.png` | `(0, 0, 588, 2178)` | 588×2178 | PC視覚比較 | 表示には使わない |
+| `comp-mobile-reference.png` | `(590, 0, 722, 2178)` | 132×2178 | SP視覚比較 | 表示には使わない |
 | `hero-desktop.png` | `(232, 41, 588, 328)` | 356×287 | PC Hero | `<picture>` desktop source |
 | `hero-mobile.png` | `(600, 45, 709, 131)` | 109×86 | SP Hero | `<picture>` mobile source |
 | `package-dashboard.png` | `(21, 587, 170, 711)` | 149×124 | 主力パッケージ | `<img>` |
@@ -145,7 +147,7 @@ FAQは2列×3行の6問とする。最初の3問はTOP確定本文を逐語維�
 `v2/tests/comp-parts-contract.mjs` を新設し、次を検査する。
 
 - manifestのsource SHA-256が親カンプと一致。
-- 9パーツの座標・寸法・ファイルが一致。
+- 11パーツの座標・寸法・ファイルが一致。
 - 表示用7写真にカンプ由来パスが使われ、既存 `v3-*.jpg` がTOPから消えている。
 - カンプ焼き込み文字を含む大きな矩形を表示画像として使っていない。
 
