@@ -1,0 +1,153 @@
+{
+  "sourceFile": "v3-top-page-comp.png",
+  "sourceSize": [
+    722,
+    2178
+  ],
+  "sourceSha256": "cc784ccce9b6b89a4683c50825d66848fddfbd81aa30ab4bf283e45bff37749b",
+  "parts": {
+    "comp-desktop-reference.png": {
+      "crop": [
+        0,
+        0,
+        588,
+        2178
+      ],
+      "size": [
+        588,
+        2178
+      ],
+      "sha256": "6414222b2a6ab22f0c1e98260cccc20b4049fed5b5b03f0b6bb858ff2363acee"
+    },
+    "comp-mobile-reference.png": {
+      "crop": [
+        590,
+        0,
+        722,
+        2178
+      ],
+      "size": [
+        132,
+        2178
+      ],
+      "sha256": "1adbfc268253f7d38951e10a6c60e8b618c7a7de2fef47a47fe42b8ed96fb805"
+    },
+    "hero-desktop.png": {
+      "crop": [
+        272,
+        41,
+        588,
+        270
+      ],
+      "size": [
+        316,
+        229
+      ],
+      "sha256": "3f2943aa1a97361646f0b30ab5d7558350e7045db08ebbe89e95eaee1e978c56"
+    },
+    "hero-mobile.png": {
+      "crop": [
+        600,
+        45,
+        709,
+        131
+      ],
+      "size": [
+        109,
+        86
+      ],
+      "sha256": "9baab20a3da220777af023d9001757402dbdc94d0648a85b4ab32a22a791b6c8"
+    },
+    "package-dashboard.png": {
+      "crop": [
+        21,
+        587,
+        170,
+        711
+      ],
+      "size": [
+        149,
+        124
+      ],
+      "sha256": "d74eddf4920dd8673b336baf0b87c4e6a395cf24c7e017cf80254deda5aad715"
+    },
+    "service-training.png": {
+      "crop": [
+        21,
+        875,
+        183,
+        978
+      ],
+      "size": [
+        162,
+        103
+      ],
+      "sha256": "6c2b902e914557e71926be1671e7bddd498f37df1f5d9dc39a7271cc7f3176e7"
+    },
+    "service-design.png": {
+      "crop": [
+        204,
+        875,
+        366,
+        978
+      ],
+      "size": [
+        162,
+        103
+      ],
+      "sha256": "9a0e468b5ee4d05aa848cb6ba6842e389edd720d2db55485e47b5e5b1c9460b6"
+    },
+    "service-support.png": {
+      "crop": [
+        389,
+        875,
+        566,
+        978
+      ],
+      "size": [
+        177,
+        103
+      ],
+      "sha256": "14b47d07551fa973ada005931c85f85d230d1491fd98e656480e423c724d8c9f"
+    },
+    "representative.png": {
+      "crop": [
+        26,
+        1300,
+        211,
+        1471
+      ],
+      "size": [
+        185,
+        171
+      ],
+      "sha256": "b7553d5dbed68cd6d858724cf49e8295fdcad83885021572faa145ab76f7e27e"
+    },
+    "logo-reference.png": {
+      "crop": [
+        13,
+        12,
+        36,
+        35
+      ],
+      "size": [
+        23,
+        23
+      ],
+      "sha256": "d855682e9c81fd7c70a63d484718dd13c276e2b7d4267e08e73fabc9e595d02c"
+    },
+    "tool-icons-reference.png": {
+      "crop": [
+        20,
+        1725,
+        568,
+        1850
+      ],
+      "size": [
+        548,
+        125
+      ],
+      "sha256": "1d96df192e04ba1464a86a5be52930df989fbcd1ef3aeb28bf4e275211babc68"
+    }
+  }
+}

@@ -61,15 +61,15 @@ SPカンプは狭いサムネイルであり、文章の判読性より配置確
 |---|---:|---:|---|---|
 | `comp-desktop-reference.png` | `(0, 0, 588, 2178)` | 588×2178 | PC視覚比較 | 表示には使わない |
 | `comp-mobile-reference.png` | `(590, 0, 722, 2178)` | 132×2178 | SP視覚比較 | 表示には使わない |
-| `hero-desktop.png` | `(232, 41, 588, 328)` | 356×287 | PC Hero | `<picture>` desktop source |
+| `hero-desktop.png` | `(272, 41, 588, 270)` | 316×229 | PC Hero（焼き込み文字のない写真領域） | `<picture>` desktop source |
 | `hero-mobile.png` | `(600, 45, 709, 131)` | 109×86 | SP Hero | `<picture>` mobile source |
 | `package-dashboard.png` | `(21, 587, 170, 711)` | 149×124 | 主力パッケージ | `<img>` |
 | `service-training.png` | `(21, 875, 183, 978)` | 162×103 | AI実務研修 | `<img>` |
 | `service-design.png` | `(204, 875, 366, 978)` | 162×103 | 個別業務設計 | `<img>` |
 | `service-support.png` | `(389, 875, 566, 978)` | 177×103 | AI活用伴走 | `<img>` |
-| `representative.png` | `(26, 1224, 211, 1383)` | 185×159 | 代表者枠の仮画像 | `<img>`、仮素材明記 |
+| `representative.png` | `(26, 1300, 211, 1471)` | 185×171 | 代表者枠の仮画像 | `<img>`、仮素材明記 |
 | `logo-reference.png` | `(13, 12, 36, 35)` | 23×23 | ロゴSVG再構築用の参照 | 表示には使わない |
-| `tool-icons-reference.png` | `(190, 1642, 529, 1734)` | 339×92 | 無料ツールSVG再構築用の参照 | 表示には使わない |
+| `tool-icons-reference.png` | `(20, 1725, 568, 1850)` | 548×125 | 無料ツールSVG再構築用の参照 | 表示には使わない |
 
 ### 4.1 解像度と権利上の扱い
 

@@ -23,15 +23,15 @@
 const expected = {
   'comp-desktop-reference.png': [0, 0, 588, 2178],
   'comp-mobile-reference.png': [590, 0, 722, 2178],
-  'hero-desktop.png': [232, 41, 588, 328],
+  'hero-desktop.png': [272, 41, 588, 270],
   'hero-mobile.png': [600, 45, 709, 131],
   'package-dashboard.png': [21, 587, 170, 711],
   'service-training.png': [21, 875, 183, 978],
   'service-design.png': [204, 875, 366, 978],
   'service-support.png': [389, 875, 566, 978],
-  'representative.png': [26, 1224, 211, 1383],
+  'representative.png': [26, 1300, 211, 1471],
   'logo-reference.png': [13, 12, 36, 35],
-  'tool-icons-reference.png': [190, 1642, 529, 1734]
+  'tool-icons-reference.png': [20, 1725, 568, 1850]
 };
 ```
 
@@ -67,15 +67,15 @@ from PIL import Image
 PARTS = {
     "comp-desktop-reference.png": (0, 0, 588, 2178),
     "comp-mobile-reference.png": (590, 0, 722, 2178),
-    "hero-desktop.png": (232, 41, 588, 328),
+    "hero-desktop.png": (272, 41, 588, 270),
     "hero-mobile.png": (600, 45, 709, 131),
     "package-dashboard.png": (21, 587, 170, 711),
     "service-training.png": (21, 875, 183, 978),
     "service-design.png": (204, 875, 366, 978),
     "service-support.png": (389, 875, 566, 978),
-    "representative.png": (26, 1224, 211, 1383),
+    "representative.png": (26, 1300, 211, 1471),
     "logo-reference.png": (13, 12, 36, 35),
-    "tool-icons-reference.png": (190, 1642, 529, 1734),
+    "tool-icons-reference.png": (20, 1725, 568, 1850),
 }
 ```
 
@@ -150,7 +150,7 @@ Expected: 現行が12セクション、FAQ3問、AI生成画像参照のためFA
 ```html
 <picture class="hero-visual">
   <source media="(max-width: 480px)" srcset="./assets/comp-parts/hero-mobile.png">
-  <img src="./assets/comp-parts/hero-desktop.png" data-asset-role="hero-meeting" width="356" height="287" alt="業務資料を囲み、二人で業務を整理する様子" fetchpriority="high">
+  <img src="./assets/comp-parts/hero-desktop.png" data-asset-role="hero-meeting" width="316" height="229" alt="業務資料を囲み、二人で業務を整理する様子" fetchpriority="high">
 </picture>
 ```
 
