@@ -116,6 +116,10 @@ assert.match(html, /\bid="nav-hamburger"/i, 'hamburger navigation control exists
 assert.match(html, /\bid="site-nav"/i, 'site navigation exists');
 assert.match(html, /\bclass="[^"]*\bsite-nav__dropdown-trigger\b[^"]*"/i, 'dropdown trigger exists');
 assert.match(html, /\bclass="[^"]*\bfade-in\b[^"]*"/i, 'scroll reveal targets exist');
+assert.ok(
+  (html.match(/\bclass="[^"]*\bfade-in\b[^"]*"/gi) ?? []).length <= 16,
+  'TOP groups card reveals so navigation startup observes at most sixteen targets'
+);
 assert.doesNotMatch(sectionMarkup('hero'), /\bclass="[^"]*\bfade-in\b[^"]*"/i,
   'hero is visible immediately and does not depend on the scroll reveal animation');
 assert.match(html, /\bid="sticky-cta"/i, 'sticky call to action exists');
@@ -203,8 +207,26 @@ for (const role of ['service-training', 'service-order', 'service-banso']) {
 }
 assert.doesNotMatch(sectionMarkup('why-us'), /profile-portrait-2\.jpg/,
   'representative slot no longer uses the text-baked legacy illustration');
-assert.match(sectionMarkup('why-us'), /<img\b(?=[^>]*src="\.\/assets\/representative-portrait-placeholder\.svg")(?=[^>]*data-asset-role="representative-portrait")(?=[^>]*alt="代表者写真（正式素材に差し替え予定）")[^>]*>/,
-  'representative slot uses the dedicated replaceable placeholder asset from origin/main');
+assert.match(sectionMarkup('why-us'), /<img\b(?=[^>]*src="\.\/assets\/v3-representative-placeholder\.jpg")(?=[^>]*data-asset-role="representative-portrait")(?=[^>]*alt="代表者写真（正式素材に差し替え予定）")(?=[^>]*width="900")(?=[^>]*height="819")[^>]*>/,
+  'representative slot uses the dedicated generated and replaceable portrait asset');
+for (const [sectionId, asset, width, height] of [
+  ['hero', 'v3-hero-workflow.jpg', 1536, 1024],
+  ['package', 'v3-package-dashboard.jpg', 1200, 800],
+  ['services', 'v3-service-training.jpg', 900, 600],
+  ['services', 'v3-service-design.jpg', 900, 600],
+  ['services', 'v3-service-support.jpg', 960, 540]
+]) {
+  assert.match(
+    sectionMarkup(sectionId),
+    new RegExp(`<img\\b(?=[^>]*src="\\.\\/assets\\/${asset}")(?=[^>]*width="${width}")(?=[^>]*height="${height}")[^>]*>`),
+    `${sectionId} uses the approved generated ${asset} asset with intrinsic dimensions`
+  );
+}
+assert.match(
+  sectionMarkup('hero'),
+  /<img\b(?=[^>]*srcset="\.\/assets\/v3-hero-workflow-640\.jpg 640w, \.\/assets\/v3-hero-workflow-768\.jpg 768w, \.\/assets\/v3-hero-workflow-960\.jpg 960w, \.\/assets\/v3-hero-workflow\.jpg 1536w")(?=[^>]*sizes="\(max-width: 480px\) 375px, \(max-width: 768px\) 768px, 1000px")[^>]*>/,
+  'hero serves a compact responsive source for the mobile largest-contentful paint'
+);
 assert.match(html, /<a class="nav-diagnosis site-nav__link" data-diagnosis-link aria-disabled="true">無料で診断する<\/a>/,
   'desktop header presents the approved orange diagnosis call to action');
 assert.match(sharedCssWithoutComments, /\.nav-diagnosis\{[^}]*background:var\(--orange\)[^}]*color:var\(--orange-ink\)/,
