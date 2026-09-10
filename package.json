@@ -7,14 +7,17 @@
   "scripts": {
     "qa:lower-pages-contract": "node ./v2/tests/lower-pages-v3-contract.mjs",
     "qa:lower-pages-browser": "node ./v2/tests/lower-pages-v3-browser.mjs",
-    "qa:all": "npm run qa:lower-pages-contract && npm run qa:lower-pages-browser && npm run qa",
+    "qa:verify": "node ./v2/tests/verify-v2.mjs",
+    "qa:comp-contracts": "node ./v2/tests/top-comp-contract.mjs && node ./v2/tests/works-profile-comp-contract.mjs && node ./v2/tests/services-comp-contract.mjs && node ./v2/tests/faq-contact-comp-contract.mjs && node ./v2/tests/legal-status-comp-contract.mjs",
+    "qa:top-browser": "node ./v2/tests/v3-top-page-browser.mjs",
+    "qa:all": "npm run qa:verify && npm run qa:comp-contracts && npm run qa:lower-pages-contract && npm run qa:lower-pages-browser && npm run qa:top-browser && npm run qa",
     "qa:gitignore": "node ./v2/tests/qa-gitignore.mjs",
     "qa:cross-browser": "node ./v2/tests/qa-cross-browser.mjs",
     "qa:axe": "node ./v2/tests/qa-axe.mjs",
     "qa:contrast-states": "node ./v2/tests/contrast-states-browser.mjs",
-    "qa:lighthouse-contract": "node ./v2/tests/qa-lighthouse-contract.mjs",
+    "qa:lighthouse-contract": "node ./v2/tests/qa-lighthouse-contract.mjs --static-only",
     "qa:lighthouse": "node ./v2/tests/qa-lighthouse.mjs",
-    "qa": "npm run qa:gitignore && npm run qa:cross-browser && npm run qa:axe && npm run qa:contrast-states && npm run qa:lighthouse-contract",
+    "qa": "npm run qa:gitignore && npm run qa:cross-browser && npm run qa:axe && npm run qa:contrast-states && npm run qa:lighthouse-contract && npm run qa:lighthouse",
     "qa:install-browsers": "playwright install firefox webkit"
   },
   "devDependencies": {

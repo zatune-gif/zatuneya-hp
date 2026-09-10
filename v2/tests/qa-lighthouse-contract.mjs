@@ -6,6 +6,16 @@ import { join, resolve } from 'node:path';
 const root = resolve(import.meta.dirname, '..');
 const runnerPath = join(root, 'tests', 'qa-lighthouse.mjs');
 const source = readFileSync(runnerPath, 'utf8');
+const packageJson = JSON.parse(readFileSync(resolve(root, '..', 'package.json'), 'utf8'));
+const expectedPages = [
+  'index.html',
+  'growth.html',
+  'tools.html',
+  'services.html',
+  'service-management.html',
+  'faq.html',
+  'works.html'
+];
 
 function countMatches(pattern) {
   return [...source.matchAll(pattern)].length;
@@ -31,7 +41,12 @@ assert.ok(source.includes('settings.disableStorageReset, false'),
 assert.ok(source.includes('LIGHTHOUSE_RUN_TIMEOUT_MS'),
   'each Lighthouse audit has a finite timeout');
 assert.ok(source.includes('LIGHTHOUSE_TOTAL_TIMEOUT_MS'),
-  'the complete four-audit run has a finite timeout');
+  'the complete 28-audit run has a finite timeout');
+for (const page of expectedPages) {
+  assert.ok(source.includes(`'${page}'`), `Lighthouse includes representative page ${page}`);
+}
+assert.match(packageJson.scripts.qa, /qa:lighthouse(?:\s|$|&)/,
+  'the standard npm run qa gate executes the actual Lighthouse audits');
 assert.ok(source.includes('await rm(temporaryReportDirectory'),
   'temporary reports and the single Chrome profile are cleaned up');
 assert.ok(!source.includes('taskkill'), 'the runner does not use repeated taskkill cleanup');
@@ -61,8 +76,8 @@ function runIntegration() {
       if (settled) return;
       settled = true;
       child.kill();
-      rejectRun(new Error('Lighthouse integration child timed out after 240000ms'));
-    }, 240_000);
+      rejectRun(new Error('Lighthouse integration child timed out after 660000ms'));
+    }, 660_000);
 
     child.stdout.on('data', chunk => { stdout += chunk; });
     child.stderr.on('data', chunk => { stderr += chunk; });
@@ -81,17 +96,26 @@ function runIntegration() {
   });
 }
 
-const integration = await runIntegration();
-assert.equal(integration.signal, null,
-  `Lighthouse integration child was not terminated by a signal\n${integration.stderr}`);
-assert.equal(integration.code, 0,
-  `Lighthouse integration child exits successfully\n${integration.stdout}\n${integration.stderr}`);
-const scoreLines = integration.stdout.match(/^LIGHTHOUSE (?:mobile|desktop) run [12]:.*$/gm) ?? [];
-assert.deepEqual(scoreLines.map(line => line.match(/^LIGHTHOUSE (mobile|desktop) run ([12]):/).slice(1).join('-')),
-  ['mobile-1', 'mobile-2', 'desktop-1', 'desktop-2'],
-  'integration emits exactly four ordered score lines');
-assert.equal((integration.stdout.match(/^PASS Lighthouse /gm) ?? []).length, 1,
-  'integration emits exactly one final PASS line');
+const staticOnly = process.argv.includes('--static-only');
+if (staticOnly) {
+  console.log('PASS Lighthouse 28-audit static lifecycle contract');
+} else {
+  const integration = await runIntegration();
+  assert.equal(integration.signal, null,
+    `Lighthouse integration child was not terminated by a signal\n${integration.stderr}`);
+  assert.equal(integration.code, 0,
+    `Lighthouse integration child exits successfully\n${integration.stdout}\n${integration.stderr}`);
+  const scoreLines = integration.stdout.match(/^LIGHTHOUSE \S+ (?:mobile|desktop) run [12]:.*$/gm) ?? [];
+  const expectedAuditKeys = expectedPages.flatMap(page =>
+    ['mobile', 'desktop'].flatMap(profile => [1, 2].map(run => `${page}-${profile}-${run}`))
+  );
+  assert.deepEqual(scoreLines.map(line => {
+    const match = line.match(/^LIGHTHOUSE (\S+) (mobile|desktop) run ([12]):/);
+    return match.slice(1).join('-');
+  }), expectedAuditKeys, 'integration emits exactly 28 ordered representative-page score lines');
+  assert.equal((integration.stdout.match(/^PASS Lighthouse /gm) ?? []).length, 1,
+    'integration emits exactly one final PASS line');
 
-process.stdout.write(integration.stdout);
-console.log('PASS Lighthouse single-Chrome lifecycle contract and bounded integration');
+  process.stdout.write(integration.stdout);
+  console.log('PASS Lighthouse 28-audit single-Chrome lifecycle contract and bounded integration');
+}
