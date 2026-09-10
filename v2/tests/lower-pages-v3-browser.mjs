@@ -215,10 +215,10 @@ try {
     browser = await chromium.launch({ headless: true });
     const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
     page.setDefaultTimeout(5_000);
-    for (const [label, href, destination] of [['growth', './growth.html', '/growth.html'], ['tools', './tools.html', '/tools.html']].filter(([, , destination]) => existsSync(resolve(root, destination.slice(1))))) {
+    for (const [label, href, destination] of [['tools', './tools.html', '/tools.html']].filter(([, , destination]) => existsSync(resolve(root, destination.slice(1))))) {
       await page.goto(`${server.origin}/index.html`, { waitUntil: 'domcontentloaded' });
-      await check(`TOP ${label} CTA navigation`, async () => {
-        await Promise.all([page.waitForURL((url) => url.pathname.endsWith(destination)), page.locator(`a[href="${href}"]`).click()]);
+      await check(`TOP ${label} navigation`, async () => {
+        await Promise.all([page.waitForURL((url) => url.pathname.endsWith(destination)), page.locator(`#site-nav a[href="${href}"]`).click()]);
       });
     }
   } catch (error) { failures.push(`Chromium CTA session: ${error.message}`); }

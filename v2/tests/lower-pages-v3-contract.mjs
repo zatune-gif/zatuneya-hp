@@ -141,8 +141,8 @@ if (existsSync(indexPath)) {
   const topCompIndex = html.search(/<link\b(?=[^>]*href=["'][^"']*top-comp\.css)[^>]*>/i);
   const topPageIndex = html.search(/<link\b(?=[^>]*href=["'][^"']*v3-top-page\.css)[^>]*>/i);
   check(topCompIndex >= 0 && topPageIndex > topCompIndex, 'index.html loads top-comp.css before v3-top-page.css');
-  check(/<a\b(?=[^>]*href=["']\.\/growth\.html["'])[^>]*>\s*成長段階の考え方をくわしく見る\s*<\/a>/i.test(html), 'TOP restores the approved growth CTA and href');
-  check(/<a\b(?=[^>]*href=["']\.\/tools\.html["'])[^>]*>\s*ツールの一覧を見る\s*<\/a>/i.test(html), 'TOP restores the approved tools CTA and href');
+  check(!/<section\b[^>]*id=["'](?:value|growth)["']/i.test(html), 'TOP omits sections absent from the approved comp');
+  check(/<section\b[^>]*id=["']tools["'][\s\S]*href=["']\.\/tools\.html["']/i.test(html) || /<a\b[^>]*href=["']https:\/\/zatune-gif\.github\.io\/kurashi-no-dodai-log\/00-01_han-ai\/15_prompt_library\//i.test(html), 'TOP tools area provides a working tool destination');
 }
 
 const v3CssPath = join(root, 'v3-top-page.css');
