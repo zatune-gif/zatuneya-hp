@@ -1,19 +1,10 @@
 import assert from 'node:assert/strict';
-import { createServer } from 'node:http';
 import { readFileSync, readdirSync } from 'node:fs';
-import { extname, join, resolve, sep } from 'node:path';
+import { join, resolve } from 'node:path';
 import { chromium } from 'playwright';
+import { startQaServer } from './qa-server.mjs';
 
 const root = resolve(import.meta.dirname, '..');
-const mime = new Map([
-  ['.css', 'text/css; charset=utf-8'],
-  ['.html', 'text/html; charset=utf-8'],
-  ['.ico', 'image/x-icon'],
-  ['.jpeg', 'image/jpeg'],
-  ['.jpg', 'image/jpeg'],
-  ['.js', 'text/javascript; charset=utf-8'],
-  ['.png', 'image/png']
-]);
 const desktopWidths = [1280, 1440, 1600, 1920, 2560];
 const responsiveWidths = [375, 768, ...desktopWidths];
 const consultPages = readdirSync(root)
@@ -29,31 +20,16 @@ const check = (condition, message) => {
   if (!condition) failures.push(message);
 };
 
-const server = createServer((request, response) => {
-  const pathname = decodeURIComponent(new URL(request.url, 'http://127.0.0.1').pathname);
-  const relative = pathname === '/' ? 'index.html' : pathname.slice(1);
-  const absolute = resolve(root, relative);
-  if (!(absolute === root || absolute.startsWith(`${root}${sep}`))) {
-    response.writeHead(403);
-    response.end('Forbidden');
-    return;
-  }
-  try {
-    response.writeHead(200, { 'content-type': mime.get(extname(absolute)) || 'application/octet-stream' });
-    response.end(readFileSync(absolute));
-  } catch {
-    response.writeHead(404);
-    response.end('Not found');
-  }
-});
-
-await new Promise((resolveListen) => server.listen(0, '127.0.0.1', resolveListen));
-const { port } = server.address();
-const baseUrl = `http://127.0.0.1:${port}`;
+const server = await startQaServer(root);
+const baseUrl = server.origin;
 const browser = await chromium.launch();
 
 try {
-  check(consultPages.length === 15, 'all 15 lower pages with the shared consultation link are covered');
+  check(consultPages.length === 15, '15 lower pages declare the shared consultation label');
+  check(consultPages.every((filename) => {
+    const html = readFileSync(join(root, filename), 'utf8');
+    return html.includes('nav-diagnosis') && html.includes('nav-contact');
+  }), 'all 15 lower pages declare both shared navigation CTA classes');
 
   for (const width of responsiveWidths) {
     const page = await browser.newPage({ viewport: { width, height: 900 } });
@@ -167,7 +143,7 @@ try {
   }
 } finally {
   await browser.close();
-  await new Promise((resolveClose) => server.close(resolveClose));
+  await server.close();
 }
 
 assert.equal(failures.length, 0, `${failures.length} header text geometry failures:\n${failures.slice(0, 24).join('\n')}`);
