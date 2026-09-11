@@ -144,6 +144,7 @@ async function assertHeroPhraseLines(targetPage, viewportWidth) {
       const rects = [...range.getClientRects()].filter((rect) => rect.width > 0);
       return {
         text: node.textContent,
+        lineCount: new Set(rects.map((rect) => Math.round(rect.top))).size,
         top: Math.round(rects[0]?.top ?? -1),
         rectCount: rects.length,
         whiteSpace: node.nodeType === Node.ELEMENT_NODE ? getComputedStyle(node).whiteSpace : null
@@ -156,11 +157,11 @@ async function assertHeroPhraseLines(targetPage, viewportWidth) {
     `hero phrase text is exact at ${viewportWidth}px`);
   const resultPhrase = layout[1];
   if (viewportWidth <= 375) {
-    assert.equal(layout[0].rectCount, 1, `hero first phrase stays intact at ${viewportWidth}px`);
-    assert.equal(resultPhrase.rectCount, 2, `hero accent follows the approved two-line mobile comp at ${viewportWidth}px`);
+    assert.equal(layout[0].lineCount, 1, `hero first phrase stays intact at ${viewportWidth}px`);
+    assert.equal(resultPhrase.lineCount, 2, `hero accent follows the approved two-line mobile comp at ${viewportWidth}px`);
     assert.equal(resultPhrase.whiteSpace, 'normal', `hero accent wraps naturally on mobile at ${viewportWidth}px`);
   } else {
-    assert.equal(resultPhrase.rectCount, 1, `hero phrase '${resultPhrase.text}' is never internally split at ${viewportWidth}px`);
+    assert.equal(resultPhrase.lineCount, 1, `hero phrase '${resultPhrase.text}' is never internally split at ${viewportWidth}px`);
     assert.equal(resultPhrase.whiteSpace, 'nowrap', `hero phrase '${resultPhrase.text}' is nowrap at ${viewportWidth}px`);
     const lineCount = new Set(layout.map(({ top }) => top)).size;
     assert.equal(lineCount, 2, `hero uses two intentional phrase lines at ${viewportWidth}px`);

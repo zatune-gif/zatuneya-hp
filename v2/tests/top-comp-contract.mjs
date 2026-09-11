@@ -58,7 +58,7 @@ const text = html.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ');
 for (const copy of requiredCopy) assert.ok(text.includes(copy), `approved copy exists: ${copy}`);
 
 assert.equal((html.match(/<h1\b/gi) ?? []).length, 1, 'TOP has one h1');
-assert.match(sectionMarkup('hero'), /<h1[^>]*>AIを入れることより、<br><span class="hero-accent">仕事がよくなることから。<\/span><\/h1>/, 'hero breaks at the approved comma');
+assert.match(sectionMarkup('hero'), /<h1[^>]*><span class="hero-intro">AIを入れることより、<\/span><br><span class="hero-accent"><span class="hero-accent-part">仕事がよくなる<\/span><span class="hero-accent-part">ことから。<\/span><\/span><\/h1>/, 'hero breaks at the approved comma and mobile-safe meaning units');
 for (const hook of ['nav-hamburger', 'site-nav', 'sticky-cta', 'sticky-cta-close']) {
   assert.match(html, new RegExp(`\\bid="${hook}"`), `DOM hook #${hook} remains`);
 }
