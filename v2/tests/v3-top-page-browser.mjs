@@ -155,10 +155,16 @@ async function assertHeroPhraseLines(targetPage, viewportWidth) {
     ['AIを入れることより、', '仕事がよくなることから。'],
     `hero phrase text is exact at ${viewportWidth}px`);
   const resultPhrase = layout[1];
-  assert.equal(resultPhrase.rectCount, 1, `hero phrase '${resultPhrase.text}' is never internally split at ${viewportWidth}px`);
-  assert.equal(resultPhrase.whiteSpace, 'nowrap', `hero phrase '${resultPhrase.text}' is nowrap at ${viewportWidth}px`);
-  const lineCount = new Set(layout.map(({ top }) => top)).size;
-  assert.equal(lineCount, 2, `hero uses two intentional phrase lines at ${viewportWidth}px`);
+  if (viewportWidth <= 375) {
+    assert.equal(layout[0].rectCount, 1, `hero first phrase stays intact at ${viewportWidth}px`);
+    assert.equal(resultPhrase.rectCount, 2, `hero accent follows the approved two-line mobile comp at ${viewportWidth}px`);
+    assert.equal(resultPhrase.whiteSpace, 'normal', `hero accent wraps naturally on mobile at ${viewportWidth}px`);
+  } else {
+    assert.equal(resultPhrase.rectCount, 1, `hero phrase '${resultPhrase.text}' is never internally split at ${viewportWidth}px`);
+    assert.equal(resultPhrase.whiteSpace, 'nowrap', `hero phrase '${resultPhrase.text}' is nowrap at ${viewportWidth}px`);
+    const lineCount = new Set(layout.map(({ top }) => top)).size;
+    assert.equal(lineCount, 2, `hero uses two intentional phrase lines at ${viewportWidth}px`);
+  }
 }
 
 async function trackStickyCtaListeners(targetPage) {

@@ -7,8 +7,8 @@ import { startQaServer } from './qa-server.mjs';
 // comp, normalized to readable production viewports. They deliberately reject
 // the former extra value/growth sections and its overlong mobile page.
 const budgets = {
-  1280: { total: [4300, 5100], header: [56, 76], hero: [570, 670], problems: [390, 520], package: [500, 680], services: [600, 760] },
-  375: { total: [5700, 6800], header: [56, 72], hero: [600, 760], problems: [560, 760], package: [720, 980], services: [820, 1120] }
+  1280: { total: [4300, 5100], header: [76, 88], hero: [570, 670], problems: [390, 520], package: [500, 680], services: [600, 760] },
+  375: { total: [7200, 8200], header: [76, 88], hero: [680, 820], problems: [720, 860], package: [1040, 1260], services: [1480, 1760] }
 };
 
 const server = await startQaServer(resolve(import.meta.dirname, '..'));
@@ -61,7 +61,7 @@ try {
       check(geometry.packagePhoto.x < geometry.packageHeading.x, 'PC: package image is left of heading');
       check(geometry.representative.x < geometry.strengths.x, 'PC: representative image is left of strengths');
       check(geometry.faqColumns === 2, 'PC: FAQ uses two columns');
-      check(geometry.photo.x >= 480 && geometry.photo.w >= 620, 'PC: hero photograph owns the right half');
+      check(geometry.photo.x >= 400 && geometry.photo.x <= 460 && geometry.photo.w >= 820, 'PC: hero photograph begins near one-third and owns the right side');
     } else {
       check(geometry.photo.y < geometry.copy.y && geometry.photo.h >= 220 && geometry.photo.h <= 270, 'SP: hero image is above copy');
       check(geometry.serviceCards[1].y > geometry.serviceCards[0].y, 'SP: services stack');
