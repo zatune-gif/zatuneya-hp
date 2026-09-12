@@ -28,7 +28,7 @@ check(!/\b(alert|confirm|prompt)\s*\(/.test(works), 'works.html avoids blocking 
 check(works.includes(`rel="canonical" href="${origin}works.html"`), 'works.html has the V2 canonical URL');
 check(works.includes('© 2026 ざつね屋'), 'works.html has the 2026 copyright line');
 check(works.includes('<script src="./nav.js" defer></script>'), 'works.html loads nav.js');
-check(/aria-current="page"[^>]*>導入事例/.test(works) || /導入事例[^<]*<\/a>[^>]*aria-current="page"/.test(works.replace(/\n/g, '')), 'works.html marks 導入事例 nav link as current');
+check(/href="\.\/works\.html" aria-current="page">お手伝いしたこと/.test(works), 'works.html marks the V3 works nav link as current');
 
 for (const token of [
   'WORKS', '導入事例',
@@ -39,7 +39,9 @@ for (const token of [
   '要確認',
 ]) check(works.includes(token), `works.html contains: ${token}`);
 
-check(works.includes('https://han-ai-diagnosis.netlify.app/'), 'works.html has the primary diagnosis CTA link');
+check((works.match(/<meta name="zatuneya:diagnosis-url"/g) ?? []).length === 1, 'works.html has one diagnosis meta');
+check(!works.includes('https://han-ai-diagnosis.netlify.app/'), 'works.html removes the legacy diagnosis URL');
+check(/<a\b[^>]*\bdata-diagnosis-link\b/.test(works), 'works.html delegates diagnosis links');
 check(works.includes('href="./contact.html"'), 'works.html has the secondary contact CTA link');
 check(works.includes('./assets/band-onsite.jpg') || works.includes('./assets/band-together.jpg'), 'works.html reuses an existing band photo asset');
 
@@ -57,7 +59,7 @@ check(!/\b(alert|confirm|prompt)\s*\(/.test(profile), 'profile.html avoids block
 check(profile.includes(`rel="canonical" href="${origin}profile.html"`), 'profile.html has the V2 canonical URL');
 check(profile.includes('© 2026 ざつね屋'), 'profile.html has the 2026 copyright line');
 check(profile.includes('<script src="./nav.js" defer></script>'), 'profile.html loads nav.js');
-check(/aria-current="page"[^>]*>代表プロフィール/.test(profile), 'profile.html marks 代表プロフィール nav link as current');
+check(/href="\.\/profile\.html" aria-current="page">代表について/.test(profile), 'profile.html marks the V3 profile nav link as current');
 
 for (const token of [
   'PROFILE', '代表プロフィール',
@@ -70,7 +72,9 @@ for (const token of [
   '要確認',
 ]) check(profile.includes(token), `profile.html contains: ${token}`);
 
-check(profile.includes('https://han-ai-diagnosis.netlify.app/'), 'profile.html has the primary diagnosis CTA link');
+check((profile.match(/<meta name="zatuneya:diagnosis-url"/g) ?? []).length === 1, 'profile.html has one diagnosis meta');
+check(!profile.includes('https://han-ai-diagnosis.netlify.app/'), 'profile.html removes the legacy diagnosis URL');
+check(/<a\b[^>]*\bdata-diagnosis-link\b/.test(profile), 'profile.html delegates diagnosis links');
 check(profile.includes('href="./contact.html"'), 'profile.html has the secondary contact CTA link');
 check(profile.includes('./assets/profile-portrait-2.jpg'), 'profile.html keeps the existing portrait asset');
 
@@ -92,14 +96,13 @@ for (const [filename, header] of [
   ['works.html', worksHeader],
   ['profile.html', profileHeader],
 ]) {
-  check(header.includes('<nav id="site-nav" class="comp-nav" aria-label="主要ナビゲーション">'), `${filename} header retains the accessible primary navigation hook`);
+  check(header.includes('<nav id="site-nav" class="comp-nav site-nav" aria-label="主要ナビゲーション">'), `${filename} header retains the accessible primary navigation hook`);
+  check(header.includes('site-nav__dropdown-trigger'), `${filename} header retains the V3 dropdown hook`);
   check(header.includes('<button id="nav-hamburger" class="comp-menu" type="button" aria-label="メニューを開く" aria-expanded="false">'), `${filename} header retains the accessible mobile-menu hook`);
   for (const href of [
-    './services.html',
-    'https://han-ai-diagnosis.netlify.app/',
+    './index.html', './services.html',
     './works.html',
     './profile.html',
-    '#prices',
     './contact.html',
   ]) check(header.includes(`href="${href}"`), `${filename} header retains nav link: ${href}`);
 }
@@ -125,10 +128,9 @@ for (const [filename, footer] of [
   check(footer.includes('© 2026 ざつね屋'), `${filename} footer retains the 2026 copyright line`);
   for (const href of [
     './services.html',
-    'https://han-ai-diagnosis.netlify.app/',
     './works.html',
     './profile.html',
-    '#prices',
+    './faq.html',
     './contact.html',
   ]) check(footer.includes(`href="${href}"`), `${filename} footer retains link: ${href}`);
 }
@@ -137,6 +139,7 @@ const lowerPages = [
   '404.html',
   'contact.html',
   'faq.html',
+  'growth.html',
   'privacy.html',
   'profile.html',
   'service-banso.html',
@@ -146,6 +149,7 @@ const lowerPages = [
   'services.html',
   'thank-you.html',
   'tokusho.html',
+  'tools.html',
   'works.html'
 ];
 const discoveredLowerPages = readdirSync(root)
@@ -209,11 +213,12 @@ try {
           `${file} has no horizontal overflow at ${width}px`);
         const skip = page.locator('.skip');
         if (await skip.count()) {
-          assert.equal(await skip.first().evaluate((element) => getComputedStyle(element).left), '-999px',
-            `${file} visually hides its skip link before focus at ${width}px`);
+          assert.equal(await skip.first().evaluate((element) => element.getBoundingClientRect().bottom <= 0), true,
+            `${file} visually hides its V3 skip link before focus at ${width}px`);
           await skip.first().focus();
-          assert.equal(await skip.first().evaluate((element) => getComputedStyle(element).left), '16px',
-            `${file} reveals its skip link on focus at ${width}px`);
+          await page.waitForTimeout(250);
+          assert.equal(await skip.first().evaluate((element) => element.getBoundingClientRect().top >= 0), true,
+            `${file} reveals its V3 skip link on focus at ${width}px`);
         }
         const orangeButtons = page.locator('.btn-orange');
         if (await orangeButtons.count()) {

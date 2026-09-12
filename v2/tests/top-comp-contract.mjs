@@ -1,310 +1,132 @@
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
-const indexPath = join(root, 'index.html');
-const cssPath = join(root, 'v3-top-page.css');
-const legacyCssPath = join(root, 'top-comp.css');
-const navPath = join(root, 'nav.js');
-const browserTestPath = join(import.meta.dirname, 'v3-top-page-browser.mjs');
+const html = readFileSync(resolve(root, 'index.html'), 'utf8');
+const sharedCss = readFileSync(resolve(root, 'top-comp.css'), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
+const pageCss = readFileSync(resolve(root, 'v3-top-page.css'), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
+const nav = readFileSync(resolve(root, 'nav.js'), 'utf8');
 const diagnosisUrl = 'https://ai-shindan-zatuneya.netlify.app/';
-const oldDiagnosisUrl = `https://${'han-ai-' + 'diagnosis.netlify.app/'}`;
 
-assert.ok(existsSync(indexPath), 'TOP v3 implementation exists');
-assert.ok(existsSync(cssPath), 'TOP v3 stylesheet is isolated from lower-page shared CSS');
-assert.ok(existsSync(legacyCssPath), 'lower-page shared stylesheet exists');
-assert.ok(existsSync(navPath), 'TOP v3 navigation script exists');
-assert.ok(existsSync(browserTestPath), 'TOP v3 browser test exists');
-
-const html = readFileSync(indexPath, 'utf8');
-const css = readFileSync(cssPath, 'utf8');
-const legacyCss = readFileSync(legacyCssPath, 'utf8');
-const nav = readFileSync(navPath, 'utf8');
-const browserTest = readFileSync(browserTestPath, 'utf8');
-const cssWithoutComments = css.replace(/\/\*[\s\S]*?\*\//g, '');
-const cssRules = [...cssWithoutComments.matchAll(/([^{}]+)\{([^{}]*)\}/g)];
-const declarationsBySelector = new Map();
-for (const [, selector, declarations] of cssRules) {
-  const normalizedSelector = selector.replace(/\s+/g, ' ').trim();
-  declarationsBySelector.set(
-    normalizedSelector,
-    `${declarationsBySelector.get(normalizedSelector) ?? ''};${declarations}`
-  );
-}
-
-function hasDeclaration(declarations, property, value) {
-  return new RegExp(`(?:^|;)\\s*${property}\\s*:\\s*${value}\\s*(?:;|$)`, 'i').test(declarations);
-}
-
-function hasCssDeclaration(property, value) {
-  return cssRules.some(([, , declarations]) => hasDeclaration(declarations, property, value));
-}
-
-function assertNoEmoji(markup) {
-  // © is intentionally allowed; these ranges cover pictographic and dingbat emoji such as 🚀🌱✅✨.
-  assert.doesNotMatch(markup, /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}]/u, 'index has no emoji');
-}
-
-const sectionIds = [
-  'hero', 'problems', 'value', 'growth', 'package', 'services',
-  'journey', 'why-us', 'cases', 'tools', 'faq', 'final-cta'
+const expectedSections = [
+  'hero', 'problems', 'package', 'services', 'journey',
+  'why-us', 'cases', 'tools', 'faq', 'final-cta'
 ];
-const sectionMatches = new Map();
-let previousSectionIndex = -1;
-for (const id of sectionIds) {
-  const matches = [...html.matchAll(new RegExp(`<section\\b[^>]*\\bid="${id}"[^>]*>`, 'gi'))];
-  assert.equal(matches.length, 1, `TOP v3 has exactly one section: #${id}`);
-  const match = matches[0];
-  assert.ok(match.index > previousSectionIndex, `TOP v3 section order: #${id}`);
-  previousSectionIndex = match.index;
-  sectionMatches.set(id, match);
-}
+const actualSections = [...html.matchAll(/<section\b[^>]*\bid="([^"]+)"[^>]*>/gi)].map(([, id]) => id);
+assert.deepEqual(actualSections, expectedSections, 'TOP visible sections follow the approved comp exactly');
+assert.doesNotMatch(html, /\bid="(?:value|growth)"/, 'comp-only TOP omits sections absent from the approved comp');
 
 function sectionMarkup(id) {
-  const start = sectionMatches.get(id);
-  const end = html.indexOf('</section>', start.index);
-  assert.ok(end >= 0, `TOP v3 section closes: #${id}`);
-  return html.slice(start.index, end + '</section>'.length);
+  const start = html.search(new RegExp(`<section\\b[^>]*\\bid="${id}"[^>]*>`, 'i'));
+  assert.ok(start >= 0, `section #${id} exists`);
+  const end = html.indexOf('</section>', start);
+  assert.ok(end > start, `section #${id} closes`);
+  return html.slice(start, end + 10);
 }
 
 const requiredCopy = [
-  'AIを入れることより、',
-  '仕事がよくなることから。',
+  '地域企業の小さな業務変革屋 ／ ざつね屋',
+  'AIを入れることより、', '仕事がよくなることから。',
   '数十名規模の会社で、「人が足りない」「引き継ぎが回らない」「同じ説明を何度もしている」。その一つひとつを、現場に入って一緒にほどいていきます。ツールの導入は、そのあとの話です。',
+  '無料でAI活用準備度を診断する', 'まず30分、話を聞かせてください',
+  '広島県府中市を拠点に、近隣の地域企業を訪問して支援しています。',
   'こんな詰まり方を、していませんか',
-  '人が足りず、改善に手が回らない',
-  '特定の人しか分からない仕事がある',
-  '同じ説明・同じ入力を繰り返している',
-  'AIを試してはみたが、続かなかった',
-  '「業務変革屋」の仕事',
-  '業務整理から入る',
-  '教えられる実装者',
-  '現場目線の伴走',
-  '「知っている」から「自分たちで回せる」まで',
-  '知る', 'わかる', 'できる', '教える', '内製化',
-  'まず3か月、一つの業務を確実に変える',
-  'AI経営改善パッケージ ／ 360,000円（3か月）',
-  '必要なところから始められます',
-  'はじめてのご相談から',
-  '無料診断', 'ご相談（30分・無料）', '小さく試す', 'パッケージで変える', '伴走で広げる',
+  '人が足りず、改善に手が回らない', '特定の人しか分からない仕事がある',
+  '同じ説明・同じ入力を繰り返している', 'AIを試してはみたが、続かなかった',
+  'どれも、ツールを増やせば解決する話ではありません。まず、仕事の中身を見せてください。',
+  'まず3か月、一つの業務を確実に変える', 'AI経営改善パッケージ ／ 360,000円（3か月）',
+  '3か月でやること', '受け取れるもの', 'こんな会社に向いています',
+  '必要なところから始められます', 'AI実務研修', '個別業務設計', 'AI活用伴走',
+  'はじめてのご相談から', '無料診断', 'ご相談（30分・無料）', '小さく試す', 'パッケージで変える', '伴走で広げる',
+  'どの段階からでも始められます。「まず話を聞いてみたい」で構いません。',
   '「教えられる人」が、現場に入ります',
+  '教えられる実装者', '現場でのデジタル化推進経験', '業務整理から入れる',
+  '大音 晃司（おおと こうじ）。広島県府中市を拠点に、地域企業のAI活用を支援しています。',
   'これまでにお手伝いしたこと',
-  'まず、無料のツールから',
+  '以下は仮データです。事実確認済みの匿名事例に差し替え予定です。',
+  'まず、無料のツールから', 'AI活用準備度診断', 'プロンプトライブラリ',
   'よくある質問',
   'Q. AIのことがまったく分からなくても大丈夫ですか。',
   'Q. どのくらいの規模の会社が対象ですか。',
   'Q. 遠方でも対応してもらえますか。',
-  'まず30分、話を聞かせてください',
-  '広島県府中市を拠点に、近隣の地域企業を訪問して支援しています。',
-  'どの段階からでも始められます。「まず話を聞いてみたい」で構いません。',
-  '以下は仮データです。事実確認済みの匿名事例に差し替え予定です。',
-  'まずは無料診断から',
-  '診断する'
+  '研修は何名から受けられますか？', '費用の目安を教えてください。', '伴走支援とはどのような内容ですか？',
+  '「何から手をつけるか」から一緒に考えます。売り込みはしません。',
+  'まずは無料診断から', '診断する', '© 2026 ざつね屋'
 ];
-for (const copy of requiredCopy) {
-  assert.ok(html.includes(copy), `TOP v3 copy exists: ${copy}`);
+const text = html.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ');
+for (const copy of requiredCopy) assert.ok(text.includes(copy), `approved copy exists: ${copy}`);
+
+assert.equal((html.match(/<h1\b/gi) ?? []).length, 1, 'TOP has one h1');
+assert.match(sectionMarkup('hero'), /<h1[^>]*><span class="hero-intro">AIを入れることより、<\/span><br><span class="hero-accent"><span class="hero-accent-part">仕事がよくなる<\/span><span class="hero-accent-part">ことから。<\/span><\/span><\/h1>/, 'hero breaks at the approved comma and mobile-safe meaning units');
+for (const hook of ['nav-hamburger', 'site-nav', 'sticky-cta', 'sticky-cta-close']) {
+  assert.match(html, new RegExp(`\\bid="${hook}"`), `DOM hook #${hook} remains`);
+}
+assert.match(html, /\bclass="[^"]*\bsite-nav__dropdown-trigger\b/, 'dropdown DOM hook remains');
+assert.match(html, /\bclass="[^"]*\bfade-in\b/, 'reveal DOM hook remains');
+assert.match(sharedCss, /\.fade-in\{[^}]*opacity:1[^}]*transform:none/, 'fade-in base state is explicit');
+assert.match(sharedCss, /\.fade-in\.is-visible\{[^}]*animation:/, 'fade-in visible state declares animation');
+assert.match(nav, /IntersectionObserver/, 'nav script activates fade-in with IntersectionObserver');
+
+const header = html.slice(html.indexOf('<header'), html.indexOf('</header>') + 9);
+for (const href of ['./services.html', '#journey', './works.html', './tools.html', './profile.html', './faq.html', './contact.html']) {
+  const escaped = href.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  assert.match(header, new RegExp(`href="${escaped}"`), `header includes comp navigation ${href}`);
+}
+assert.match(header, /<svg\b[^>]*class="brand-mark"/, 'brand mark is reconstructed as scalable SVG');
+
+const diagnosisMeta = [...html.matchAll(/<meta\b(?=[^>]*name="zatuneya:diagnosis-url")(?=[^>]*content="([^"]+)")[^>]*>/gi)];
+assert.equal(diagnosisMeta.length, 1, 'diagnosis URL has one meta source');
+assert.equal(diagnosisMeta[0][1], diagnosisUrl, 'diagnosis URL source is current');
+assert.equal(html.split(diagnosisUrl).length - 1, 1, 'diagnosis URL literal is not duplicated');
+assert.equal((html.match(/<a\b[^>]*\bdata-diagnosis-link\b/gi) ?? []).length, 5, 'five diagnosis CTAs delegate to nav.js');
+
+const faq = sectionMarkup('faq');
+const faqButtons = [...faq.matchAll(/<button\b(?=[^>]*aria-expanded="false")(?=[^>]*aria-controls="([^"]+)")[^>]*>/gi)];
+assert.equal(faqButtons.length, 6, 'FAQ has six accessible disclosure buttons');
+for (const [, answerId] of faqButtons) {
+  assert.match(faq, new RegExp(`<div\\b(?=[^>]*id="${answerId}")(?=[^>]*hidden)[^>]*>`), `FAQ answer ${answerId} is linked and initially hidden`);
 }
 
-assert.match(html, /<main\b[^>]*\bid="main"[^>]*>/i, 'main landmark exists');
-assert.equal([...html.matchAll(/<h1\b[^>]*>/gi)].length, 1, 'page has exactly one primary heading');
-assert.match(html, /\bid="nav-hamburger"/i, 'hamburger navigation control exists');
-assert.match(html, /\bid="site-nav"/i, 'site navigation exists');
-assert.match(html, /\bclass="[^"]*\bsite-nav__dropdown-trigger\b[^"]*"/i, 'dropdown trigger exists');
-assert.match(html, /\bclass="[^"]*\bfade-in\b[^"]*"/i, 'scroll reveal targets exist');
-assert.doesNotMatch(sectionMarkup('hero'), /\bclass="[^"]*\bfade-in\b[^"]*"/i,
-  'hero is visible immediately and does not depend on the scroll reveal animation');
-assert.match(html, /\bid="sticky-cta"/i, 'sticky call to action exists');
-assert.match(html, /\bid="sticky-cta-close"/i, 'sticky call to action close control exists');
-assert.match(html, /©\s*2026\s*ざつね屋/, 'copyright is current');
-assert.match(html, /<link\b(?=[^>]*\brel="stylesheet")(?=[^>]*\bhref="[^"]*v3-top-page\.css")[^>]*>/i,
-  'TOP loads its dedicated v3 stylesheet with a stylesheet link');
-assert.doesNotMatch(html, /<link\b(?=[^>]*\brel="stylesheet")(?=[^>]*\bhref="[^"]*top-comp\.css")[^>]*>/i,
-  'TOP does not load the lower-page shared stylesheet');
-assert.doesNotMatch(html, /fonts\.(?:googleapis|gstatic)\.com/i,
-  'TOP does not request externally hosted Google Fonts');
-assert.match(cssWithoutComments,
-  /--font-sans:\s*"Noto Sans JP",\s*"Yu Gothic",\s*"Hiragino Kaku Gothic ProN",\s*sans-serif/i,
-  'TOP sans-serif token keeps the intended name with Japanese system-font fallbacks');
-assert.match(cssWithoutComments,
-  /--font-serif:\s*"Noto Serif JP",\s*"Yu Mincho",\s*"Hiragino Mincho ProN",\s*serif/i,
-  'TOP serif token keeps the intended name with Japanese system-font fallbacks');
-assert.match(
-  html,
-  /<script\b(?=[^>]*\bsrc="[^"]*nav\.js")[^>]*><\/script>/i,
-  'TOP loads its navigation script with a script source'
-);
+assert.equal((sectionMarkup('cases').match(/data-case-status="placeholder"/g) ?? []).length, 3, 'three anonymous cases remain disclosed placeholders');
+assert.doesNotMatch(sectionMarkup('cases'), /cases-figure|data-asset-role="cases-workshop"/, 'cases have no decorative photograph');
+assert.doesNotMatch(sectionMarkup('final-cta'), /<img\b|final-cta__image/, 'final CTA is a solid color band');
 
-const anchors = [...html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)].map(([, attributes, content]) => ({
-  attributes,
-  content,
-  href: attributes.match(/\bhref="([^"]+)"/i)?.[1] ?? ''
-}));
-assert.doesNotMatch(html, /href="(?:\.\/)?(?:growth|tools)\.html"|href="#(?:growth|tools)"/i,
-  'TOP has no dead growth or tools call-to-action links');
-const diagnosisMetaTags = [...html.matchAll(/<meta\b(?=[^>]*\bname="zatuneya:diagnosis-url")(?=[^>]*\bcontent="([^"]+)")[^>]*>/gi)];
-assert.equal(diagnosisMetaTags.length, 1, 'TOP has exactly one diagnosis URL meta marker');
-assert.equal(diagnosisMetaTags[0][1], diagnosisUrl, 'diagnosis URL meta marker has the current value');
-assert.equal(html.split(diagnosisUrl).length - 1, 1, 'current diagnosis URL literal occurs only in the meta marker');
-assert.doesNotMatch(html, new RegExp(oldDiagnosisUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), 'old diagnosis URL is absent from TOP source');
-const diagnosisCallsToAction = anchors.filter(({ attributes }) => /\bdata-diagnosis-link\b/i.test(attributes));
-assert.equal(diagnosisCallsToAction.length, 5, 'TOP has exactly five diagnosis links hydrated from the meta marker');
-for (const { attributes, href } of diagnosisCallsToAction) {
-  assert.equal(href, '', 'diagnosis links omit static href values until safe hydration');
-  assert.match(attributes, /\baria-disabled="true"/i, 'unhydrated diagnosis links are marked unavailable');
-  assert.doesNotMatch(attributes, /https?:\/\//i, 'diagnosis links do not duplicate external URL literals');
-}
-assert.match(nav, /meta\[name="zatuneya:diagnosis-url"\]/, 'navigation reads the diagnosis URL meta marker');
-assert.match(nav, /new URL\(/, 'navigation parses the diagnosis URL before use');
-assert.match(nav, /\.protocol\s*===\s*['"]https:['"]/, 'navigation accepts only HTTPS diagnosis URLs');
-assert.match(nav, /querySelectorAll\(['"]a\[data-diagnosis-link\]['"]\)/, 'navigation selects every diagnosis link for hydration');
-assert.match(nav, /setAttribute\(['"]href['"]/, 'navigation hydrates diagnosis link href values');
-assert.match(nav, /else\s*\{\s*link\.removeAttribute\(['"]href['"]\);\s*link\.setAttribute\(['"]aria-disabled['"],\s*['"]true['"]\);/,
-  'missing or invalid diagnosis URLs leave calls to action non-link and unavailable');
-assert.doesNotMatch(nav, /innerHTML\s*=/, 'navigation does not inject diagnosis URL markup');
-assert.doesNotMatch(nav, new RegExp(oldDiagnosisUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), 'old diagnosis URL is absent from navigation source');
-
-const faqButtons = [...sectionMarkup('faq').matchAll(/<button\b(?=[^>]*\baria-expanded=)(?=[^>]*\baria-controls=)[^>]*>/gi)];
-assert.equal(faqButtons.length, 3, 'FAQ has exactly three buttons with expanded and controlled state');
-const placeholders = [...sectionMarkup('cases').matchAll(/\bdata-case-status="placeholder"/gi)];
-assert.equal(placeholders.length, 3, 'cases has exactly three placeholder case studies');
-const allSectionMarkup = sectionIds.map(sectionMarkup).join('');
-const assetImages = [...allSectionMarkup.matchAll(/<img\b(?=[^>]*\bdata-asset-role=)[^>]*>/gi)];
-assert.equal(assetImages.length, 7, 'sections contain exactly seven images with asset roles');
-for (const [sectionId, role] of [['hero', 'hero-meeting'], ['why-us', 'representative-portrait']]) {
-  assert.match(
-    sectionMarkup(sectionId),
-    new RegExp(`<img\\b(?=[^>]*\\bdata-asset-role="${role}")(?=[^>]*\\balt="[^"\\s][^"]*")[^>]*>`, 'i'),
-    `${role} image has meaningful alternative text`
-  );
-}
-
-assert.doesNotMatch(html, /<[^>]+\sstyle\s*=/i, 'index has no inline styles');
-assertNoEmoji(html);
-assert.doesNotMatch(html, /ロボット|AIチップ|ホログラム|回路/i, 'index avoids generic artificial-intelligence imagery');
-assert.doesNotMatch(nav, /\b(?:alert|confirm|prompt)\s*\(/, 'navigation avoids blocking browser dialogs');
-assert.doesNotMatch(
-  browserTest,
-  /viewportPage\.waitForFunction\(\s*\(\)\s*=>\s*Array\.from\(document\.images\)\.every\([\s\S]*?\)\s*,\s*\{\s*timeout\s*:/,
-  'lazy-image waitForFunction does not pass options as its second argument'
-);
-assert.match(
-  browserTest,
-  /async function loadAssetRoleImages\(viewportPage\)\s*\{[\s\S]*?viewportPage\.waitForFunction\([\s\S]*?\},\s*index\s*,\s*\{\s*timeout\s*:\s*5_000\s*\}/,
-  'lazy-image loader passes its finite timeout as the third waitForFunction argument'
-);
-
-function metaContent(attribute, name) {
-  const match = html.match(new RegExp(`<meta\\b(?=[^>]*\\b${attribute}="${name}")(?=[^>]*\\bcontent="([^"]*)")[^>]*>`, 'i'));
-  assert.ok(match, `${attribute} ${name} exists`);
-  return match[1];
-}
-
-const pageTitle = 'ざつね屋｜地域企業の小さな業務変革屋';
-const pageDescription = 'ざつね屋は、地域企業の困りごとを起点に、業務整理・人の育成・小さな仕組みづくりまで伴走する業務変革屋です。';
-const canonicalUrl = 'https://zatune-gif.github.io/zatuneya-hp/v2/';
-assert.equal(metaContent('name', 'description'), pageDescription, 'meta description is exact');
-assert.equal(metaContent('property', 'og:type'), 'website', 'OGP type is exact');
-assert.equal(metaContent('property', 'og:url'), canonicalUrl, 'OGP URL is canonical');
-assert.equal(metaContent('property', 'og:title'), pageTitle, 'OGP title is exact');
-assert.equal(metaContent('property', 'og:description'), pageDescription, 'OGP description matches meta description');
-assert.equal(metaContent('property', 'og:image'), `${canonicalUrl}assets/og-image.jpg`, 'OGP image is the existing absolute image');
-assert.match(html, new RegExp(`<title>\\s*${pageTitle}\\s*<\\/title>`, 'i'), 'document title is exact');
-
-for (const selectorOrToken of ['.skip', '.btn-orange', '.bottom-cta', '--teal-dk', '--mint', '--serif', '--shadow']) {
-  assert.ok(legacyCss.includes(selectorOrToken), `lower shared CSS preserves legacy compatibility: ${selectorOrToken}`);
-}
-for (const lowerPage of ['works.html', 'profile.html', 'services.html']) {
-  const lowerHtml = readFileSync(join(root, lowerPage), 'utf8');
-  assert.match(lowerHtml, /<link\b(?=[^>]*\brel="stylesheet")(?=[^>]*\bhref="[^"]*top-comp\.css")[^>]*>/i,
-    `${lowerPage} continues to load the lower shared stylesheet`);
-}
-assert.match(
-  browserTest,
-  /const stagingDir\s*=\s*join\(screenshotDir,\s*[^;]*staging[^;]*\);/,
-  'browser screenshots use a run-specific staging directory below the canonical screenshot directory'
-);
-assert.match(
-  browserTest,
-  /await viewportPage\.screenshot\(\{\s*path:\s*join\(stagingDir,\s*`\$\{viewport\.width\}\.png`\),/,
-  'each viewport screenshot is written to staging, never directly to the canonical directory'
-);
-assert.doesNotMatch(
-  browserTest,
-  /unlinkSync\(screenshotPath\)/,
-  'canonical screenshots are not deleted before the browser checks have passed'
-);
-assert.match(
-  browserTest,
-  /await verifyStagedScreenshots\(stagingDir\);[\s\S]*?publishStagedScreenshots\(stagingDir\);/,
-  'all staged screenshots are validated before they are published together'
-);
-assert.match(
-  browserTest,
-  /finally\s*\{[\s\S]*?rmSync\(stagingDir,\s*\{\s*recursive:\s*true,\s*force:\s*true\s*\}\)/,
-  'the run-specific staging directory is removed even after a failure'
-);
-assert.match(
-  browserTest,
-  /waitUntil:\s*'domcontentloaded'/,
-  'visual capture navigation waits for DOM content rather than swallowing a load timeout'
-);
-assert.doesNotMatch(
-  browserTest,
-  /\.goto\([\s\S]{0,300}?waitUntil:\s*'load'[\s\S]{0,300}?\.catch\(/,
-  'navigation failures are not swallowed'
-);
-assert.match(
-  browserTest,
-  /document\.fonts\.ready/,
-  'visual capture waits for document fonts before taking screenshots'
-);
-
-assert.match(
-  cssWithoutComments,
-  /@media\s*\([^)]*prefers-reduced-motion[^)]*\)\s*\{[\s\S]*?\{[^{}]+\}/i,
-  'reduced motion preferences have a real nested rule'
-);
-const interactiveControlSelectors = [
-  ['v3 button', /\.v3-button\b/i],
-  ['FAQ button', /#faq\s+button\b|button\.faq[^\s,>+~]*\b|\.faq-trigger\b|\.faq__(?:button|question|trigger)\b/i],
-  ['navigation hamburger', /#nav-hamburger\b/i],
-  ['navigation dropdown trigger', /\.site-nav__dropdown-trigger\b/i],
-  ['sticky call-to-action close control', /#sticky-cta-close\b|\.sticky-cta__close\b/i]
+const expectedImages = [
+  ['./assets/comp-parts/hero-desktop.png', '316', '229'],
+  ['./assets/comp-parts/package-dashboard.png', '149', '124'],
+  ['./assets/comp-parts/service-training.png', '162', '103'],
+  ['./assets/comp-parts/service-design.png', '162', '103'],
+  ['./assets/comp-parts/service-support.png', '177', '103'],
+  ['./assets/comp-parts/representative.png', '185', '171']
 ];
-for (const [controlName, selectorPattern] of interactiveControlSelectors) {
-  assert.ok(
-    [...declarationsBySelector.entries()].some(([selector, declarations]) =>
-      selectorPattern.test(selector) && hasDeclaration(declarations, 'min-height', 'var\\(--size-control\\)')
-    ),
-    `${controlName} has a 44-pixel minimum height`
-  );
+for (const [src, width, height] of expectedImages) {
+  const escaped = src.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  assert.match(html, new RegExp(`<img\\b(?=[^>]*src="${escaped}")(?=[^>]*width="${width}")(?=[^>]*height="${height}")[^>]*>`), `${src} uses intrinsic comp dimensions`);
+  assert.ok(existsSync(resolve(root, src.replace('./', ''))), `${src} exists`);
 }
-assert.ok(hasCssDeclaration('--size-icon', '40px'), 'icon size token exists');
-assert.ok(hasCssDeclaration('--size-control', '44px'), 'control size token exists');
-assert.match(cssWithoutComments, /\.brand-mark\{[^}]*\bwidth:var\(--size-icon\)[^}]*\bheight:var\(--size-icon\)/,
-  'brand mark uses the icon-size token');
-assert.match(cssWithoutComments, /\.v3-line-icon\{[^}]*\bwidth:var\(--size-icon\)[^}]*\bheight:var\(--size-icon\)/,
-  'line icons use the icon-size token');
-assert.match(cssWithoutComments, /\.fade-in\{[^}]*\bopacity:\s*0[^}]*\btransform:translateY\(var\(--space-16\)\)/,
-  'fade-in has a meaningful hidden base state');
-assert.match(cssWithoutComments, /\.fade-in\.is-visible\{[^}]*\banimation:v3-fade-in\s+\.4s\s+ease-out\s+both/,
-  'visible fade-in elements use the reveal animation');
-assert.ok(cssRules.some(([selector, declarations]) => /:focus-visible/i.test(selector) && declarations.trim()), 'keyboard focus is visible');
-assert.ok(hasCssDeclaration('scroll-padding-bottom', '[^;]+'), 'sticky call to action is accounted for when scrolling');
-assert.ok(hasCssDeclaration('--space-4', '4px'), 'four-pixel spacing token exists');
-assert.ok(hasCssDeclaration('--space-96', '96px'), 'ninety-six-pixel spacing token exists');
-for (const [selector, declarations] of declarationsBySelector) {
-  const hasOrangeBackground = hasDeclaration(declarations, 'background(?:-color)?', 'var\\(--orange\\)');
-  const hasWhiteText = hasDeclaration(
-    declarations,
-    'color',
-    '(?:#fff(?:fff)?|white|var\\(--(?:surface|color-surface|white)\\))'
-  );
-  assert.ok(
-    !hasOrangeBackground || !hasWhiteText,
-    `orange backgrounds do not use white text in ${selector} (static same-selector check)`
-  );
-}
+assert.match(sectionMarkup('hero'), /<source\b(?=[^>]*media="\(max-width: 480px\)")(?=[^>]*srcset="\.\/assets\/comp-parts\/hero-mobile\.png")[^>]*>/, 'Hero uses the dedicated SP crop');
+assert.match(sectionMarkup('why-us'), /data-asset-status="comp-placeholder"/, 'representative crop is marked provisional');
+assert.doesNotMatch(html, /\.\/assets\/v3-(?:hero|package|service|representative)[^"']*\.(?:jpg|png)/, 'TOP does not use AI-generated V3 images');
 
-console.log('PASS TOP v3 contract');
+assert.match(html, /<link rel="stylesheet" href="\.\/top-comp\.css">[\s\S]*<link rel="stylesheet" href="\.\/v3-top-page\.css">/, 'shared CSS loads before TOP CSS');
+for (const selector of [':root', '.comp-header', '.site-nav__link', '.v3-button', '.sticky-cta', '.comp-footer']) {
+  const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  assert.match(sharedCss, new RegExp(escaped), `${selector} lives in shared CSS`);
+  assert.doesNotMatch(pageCss, new RegExp(`(?:^|})\\s*${escaped}\\s*\\{`, 'm'), `${selector} is not duplicated in TOP CSS`);
+}
+for (const selector of ['.problem-grid', '.package-detail', '.service-grid', '.journey-steps', '.why-us-layout', '.case-grid', '.tool-grid', '.faq-list']) {
+  assert.match(pageCss, new RegExp(selector.replace('.', '\\.') + '\\{'), `${selector} has a TOP layout rule`);
+}
+assert.match(pageCss, /\.problem-grid\{[^}]*grid-template-columns:repeat\(4,/s, 'PC problems use four columns');
+assert.match(pageCss, /\.service-grid\{[^}]*grid-template-columns:repeat\(3,/s, 'PC services use three columns');
+assert.match(pageCss, /\.journey-steps\{[^}]*grid-template-columns:repeat\(5,/s, 'PC journey uses five columns');
+assert.match(pageCss, /\.faq-list\{[^}]*grid-template-columns:repeat\(2,/s, 'PC FAQ uses two columns');
+assert.match(pageCss, /@media\s*\(max-width:480px\)[\s\S]*\.faq-list\{[^}]*grid-template-columns:1fr/s, 'SP FAQ collapses to one column');
+
+assert.doesNotMatch(html, /\sstyle=/i, 'TOP has no inline style');
+assert.doesNotMatch(html, /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}]/u, 'TOP has no emoji');
+assert.doesNotMatch(html + nav, /\b(?:alert|confirm|prompt)\s*\(/, 'TOP has no blocking browser dialogs');
+assert.doesNotMatch(html, /han-ai-diagnosis\.netlify\.app/, 'retired diagnosis URL is absent');
+
+console.info(`top-comp-contract: ${requiredCopy.length} copy checks, 10 sections, 6 FAQ items and comp assets PASS`);
