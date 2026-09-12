@@ -9,6 +9,7 @@ const root = resolve(import.meta.dirname, '..');
 const widths = [375, 768, 1280];
 const browserTypes = { chromium, firefox, webkit };
 const taskBOnly = process.argv.slice(2).includes('--task-b-only');
+const interactionsOnly = process.argv.slice(2).includes('--interactions-only');
 const pagesUnderTest = taskBOnly ? ['index.html', ...existingLowerPages] : managedPages;
 assert.equal(new Set(pagesUnderTest).size, pagesUnderTest.length, 'browser page inventory has no duplicates');
 for (const filename of pagesUnderTest) assert.ok(existsSync(resolve(root, filename)), `required browser page exists: ${filename}`);
@@ -71,8 +72,33 @@ async function verifyInteraction(browser, browserName, width, origin) {
       const states = await page.locator('a[data-diagnosis-link]').evaluateAll((links) => links.map((link) => ({ href: link.getAttribute('href'), disabled: link.getAttribute('aria-disabled') })));
       assert.ok(states.length > 0 && states.every(({ href, disabled }) => href === diagnosisUrl && disabled === null));
     });
-    await check(`${scope} sticky visible then closed`, async () => {
-      await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await check(`${scope} sticky avoids the footer, then appears mid-page and closes`, async () => {
+      await page.locator('.comp-footer').scrollIntoViewIfNeeded();
+      await page.waitForFunction(() => {
+        const sticky = document.querySelector('#sticky-cta');
+        return sticky && getComputedStyle(sticky).visibility === 'hidden';
+      });
+      // Preserve the old 900px geometry: the centered section still exposes
+      // either the hero diagnosis action or the terminal CTA, so hide the dock.
+      await page.locator('.section.mint').scrollIntoViewIfNeeded();
+      const blockers = await page.evaluate(() => {
+        const inView = (element) => { const rect = element.getBoundingClientRect(); return rect.bottom > 0 && rect.top < innerHeight; };
+        return {
+          hero: inView(document.querySelector('main > section [data-diagnosis-link]')),
+          terminal: inView(document.querySelector('.svc-cta-band'))
+        };
+      });
+      assert.ok(blockers.hero || blockers.terminal, `900px negative case has a visible competing CTA: ${JSON.stringify(blockers)}`);
+      await page.waitForFunction(() => {
+        const style = getComputedStyle(document.querySelector('#sticky-cta'));
+        return style.display === 'none' || style.visibility === 'hidden';
+      });
+      // A separate shorter viewport provides a genuine middle state.
+      await page.setViewportSize({ width, height: 700 });
+      await page.evaluate(() => {
+        const heroAction = document.querySelector('main > section [data-diagnosis-link]');
+        window.scrollTo({ top: scrollY + heroAction.getBoundingClientRect().bottom + 16, behavior: 'instant' });
+      });
       await page.waitForFunction(() => {
         const sticky = document.querySelector('#sticky-cta');
         if (!sticky) return false;
@@ -195,12 +221,13 @@ try {
     let browser;
     try {
       browser = await browserType.launch({ headless: true });
-      for (const width of widths) {
+      for (const width of interactionsOnly ? [] : widths) {
         console.log(`PROGRESS ${browserName}/${width}: ${pagesUnderTest.length} pages`);
         for (const filename of pagesUnderTest) await inspectCell(browser, browserName, width, filename, server.origin);
       }
       await verifyInteraction(browser, browserName, 375, server.origin);
       await verifyInteraction(browser, browserName, 1280, server.origin);
+      if (interactionsOnly) continue;
       await verifyWithoutJavaScript(browser, browserName, 375, server.origin);
       await verifyWithoutJavaScript(browser, browserName, 1280, server.origin);
       await verifyNewPageKeyboard(browser, browserName, 375, server.origin);
@@ -215,7 +242,7 @@ try {
     browser = await chromium.launch({ headless: true });
     const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
     page.setDefaultTimeout(5_000);
-    for (const [label, href, destination] of [['tools', './tools.html', '/tools.html']].filter(([, , destination]) => existsSync(resolve(root, destination.slice(1))))) {
+    for (const [label, href, destination] of (interactionsOnly ? [] : [['tools', './tools.html', '/tools.html']]).filter(([, , destination]) => existsSync(resolve(root, destination.slice(1))))) {
       await page.goto(`${server.origin}/index.html`, { waitUntil: 'domcontentloaded' });
       await check(`TOP ${label} navigation`, async () => {
         await Promise.all([page.waitForURL((url) => url.pathname.endsWith(destination)), page.locator(`#site-nav a[href="${href}"]`).click()]);
@@ -229,4 +256,4 @@ if (failures.length) {
   console.error(`FAIL ${failures.length}/${checks} V3 lower-page browser checks`);
   for (const failure of failures) console.error(`- ${failure}`);
   process.exitCode = 1;
-} else console.log(`PASS ${checks} browser checks: ${pagesUnderTest.length} required pages x 3 engines x 3 widths plus representative interactions and no-JS visibility`);
+} else console.log(interactionsOnly ? `PASS ${checks} lower-page interaction checks: 3 engines x 2 widths, 900px suppression and 700px display` : `PASS ${checks} browser checks: ${pagesUnderTest.length} required pages x 3 engines x 3 widths plus representative interactions and no-JS visibility`);
