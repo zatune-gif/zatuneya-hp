@@ -8,6 +8,7 @@ const sharedCss = readFileSync(resolve(root, 'top-comp.css'), 'utf8').replace(/\
 const pageCss = readFileSync(resolve(root, 'v3-top-page.css'), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
 const nav = readFileSync(resolve(root, 'nav.js'), 'utf8');
 const diagnosisUrl = 'https://ai-shindan-zatuneya.netlify.app/';
+assert.doesNotMatch(html, /service-order|個別業務設計|全6コース|②〜⑤/, 'TOP exposes only the September 5 active services and five courses');
 
 const expectedSections = [
   'hero', 'problems', 'package', 'services', 'journey',
@@ -37,7 +38,7 @@ const requiredCopy = [
   'どれも、ツールを増やせば解決する話ではありません。まず、仕事の中身を見せてください。',
   'まず3か月、一つの業務を確実に変える', 'AI経営改善パッケージ ／ 360,000円（3か月）',
   '3か月でやること', '受け取れるもの', 'こんな会社に向いています',
-  '必要なところから始められます', 'AI実務研修', '個別業務設計', 'AI活用伴走',
+  '必要なところから始められます', 'AI実務研修', 'AI経営改善パッケージ', 'AI活用伴走',
   'はじめてのご相談から', '無料診断', 'ご相談（30分・無料）', '小さく試す', 'パッケージで変える', '伴走で広げる',
   'どの段階からでも始められます。「まず話を聞いてみたい」で構いません。',
   '「教えられる人」が、現場に入ります',

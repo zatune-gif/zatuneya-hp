@@ -6,6 +6,9 @@ import { startQaServer } from './qa-server.mjs';
 import { managedPages } from './v3-lower-pages-fixture.mjs';
 
 const root = resolve(import.meta.dirname, '..');
+const pageSelection = process.argv.find(arg => arg.startsWith('--pages='))?.slice(8).split(',');
+const auditPages = pageSelection || managedPages;
+assert.ok(auditPages.every(page => managedPages.includes(page)), 'selected axe pages are managed pages');
 const profiles = [
   { name: 'mobile', viewport: { width: 375, height: 812 } },
   { name: 'desktop', viewport: { width: 1280, height: 900 } }
@@ -24,7 +27,7 @@ try {
     const context = await browser.newContext({ viewport: profile.viewport });
     try {
       const page = await context.newPage();
-      for (const filename of managedPages) {
+      for (const filename of auditPages) {
         const response = await page.goto(`${server.origin}/${filename}`, { waitUntil: 'domcontentloaded' });
         assert.equal(response?.status(), 200, `axe ${profile.name}: ${filename} returns HTTP 200`);
         for (const scan of scans) {
@@ -54,4 +57,4 @@ if (violations.length > 0) {
   assert.fail(`axe found ${violations.length} WCAG 2/2.1 A/AA violation(s):\n${details}`);
 }
 
-console.log(`PASS axe 0 WCAG 2/2.1 A/AA violations across ${managedPages.length * profiles.length * scans.length} scans`);
+console.log(`PASS axe 0 WCAG 2/2.1 A/AA violations across ${auditPages.length * profiles.length * scans.length} scans`);

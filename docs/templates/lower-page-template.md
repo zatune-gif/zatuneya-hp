@@ -12,7 +12,7 @@
 
 - hero：ページ見出し・短い紹介・CTA。冒頭サンプル表示は実際の本文が確定した後に削除します。
 - overview：写真＋文章。写真は既存の仮素材です。正式素材のsrc・alt・実寸width/heightを更新してください。
-- features：PCは3列、900px以下は1列です。枚数は変更できますが、2枚に減らしてもPCの列数は自動で2列にはなりません。2列が必要ならページ専用CSSの `.lp-card-grid` を `grid-template-columns: repeat(2, minmax(0, 1fr))` に変更し、狭幅の1列指定は維持してください。
+- features：PCは3列、900px以下は1列です。2列が必要なら `class="lp-card-grid lp-card-grid--two"` を使います。枚数だけ減らしても列数は自動で変わりません。見出しの意味単位改行には `.lp-title-part`、箇条書きには `.lp-list` を共用できます。
 - pricing：具体的な架空金額は入れていません。料金・税区分・単位・対象・含む作業・除外条件を事実確認して記載します。
 - process：実際の進行順を記載します。番号と部品数を揃えてください。
 - questions：FAQ本文と回答を差し替えます。buttonのaria-controlsと回答のidはページ内で一意にします。

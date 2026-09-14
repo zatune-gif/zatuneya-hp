@@ -26,18 +26,18 @@ const browser = await chromium.launch({ headless: true });
 try {
   const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
   await page.goto(`${server.origin}/404.html`, { waitUntil: 'domcontentloaded' });
-  const button = page.locator('.btn-teal').first();
+  const button = page.locator('main .v3-button--primary').first();
   assert.deepEqual(await button.evaluate((element) => ({ hover: element.matches(':hover'), focus: element.matches(':focus'), active: element.matches(':active') })), { hover: false, focus: false, active: false });
-  assertAa(await colors(button), '404 btn-teal normal');
-  await button.hover(); assert.equal(await button.evaluate((element) => element.matches(':hover')), true); assertAa(await colors(button), '404 btn-teal hover');
+  assertAa(await colors(button), '404 V3 primary normal');
+  await button.hover(); assert.equal(await button.evaluate((element) => element.matches(':hover')), true); assertAa(await colors(button), '404 V3 primary hover');
   await page.mouse.move(1, 1); await button.focus();
   assert.deepEqual(await button.evaluate((element) => ({ hover: element.matches(':hover'), focus: element.matches(':focus') })), { hover: false, focus: true });
-  assertAa(await colors(button), '404 btn-teal focus');
+  assertAa(await colors(button), '404 V3 primary focus');
   const box = await button.boundingBox(); assert.ok(box); await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2); await page.mouse.down();
   assert.equal(await button.evaluate((element) => element.matches(':active')), true);
-  assertAa(await colors(button), '404 btn-teal active'); await page.mouse.up();
+  assertAa(await colors(button), '404 V3 primary active'); await page.mouse.up();
   await page.goto(`${server.origin}/service-training.html`, { waitUntil: 'domcontentloaded' });
-  assertAa(await colors(page.locator('.process-item.last .process-num')), 'service final process marker');
+  assertAa(await colors(page.locator('#pricing .v3-button--primary')), 'training pricing action');
   await page.close();
 } finally { await browser.close(); await server.close(); }
 console.log('PASS computed contrast states browser contract');

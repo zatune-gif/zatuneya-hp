@@ -6,11 +6,13 @@ import { startQaServer } from './qa-server.mjs';
 import { diagnosisUrl, existingLowerPages, managedPages } from './v3-lower-pages-fixture.mjs';
 
 const root = resolve(import.meta.dirname, '..');
-const widths = [375, 768, 1280];
+const widths = [320, 375, 768, 1280];
 const browserTypes = { chromium, firefox, webkit };
 const taskBOnly = process.argv.slice(2).includes('--task-b-only');
 const interactionsOnly = process.argv.slice(2).includes('--interactions-only');
-const pagesUnderTest = taskBOnly ? ['index.html', ...existingLowerPages] : managedPages;
+const selectedPages = process.argv.find(arg => arg.startsWith('--pages='))?.slice(8).split(',');
+const pagesUnderTest = selectedPages || (taskBOnly ? ['index.html', ...existingLowerPages] : managedPages);
+assert.ok(pagesUnderTest.every(page => managedPages.includes(page)), 'selected browser pages are managed pages');
 assert.equal(new Set(pagesUnderTest).size, pagesUnderTest.length, 'browser page inventory has no duplicates');
 for (const filename of pagesUnderTest) assert.ok(existsSync(resolve(root, filename)), `required browser page exists: ${filename}`);
 const failures = [];
@@ -78,17 +80,14 @@ async function verifyInteraction(browser, browserName, width, origin) {
         const sticky = document.querySelector('#sticky-cta');
         return sticky && getComputedStyle(sticky).visibility === 'hidden';
       });
-      // Preserve the old 900px geometry: the centered section still exposes
-      // either the hero diagnosis action or the terminal CTA, so hide the dock.
-      await page.locator('.section.mint').scrollIntoViewIfNeeded();
+      // At 900px, explicitly expose a real terminal CTA, not an obsolete
+      // layout selector. The viewport evidence must prove dock suppression.
+      await page.locator('#final-cta').evaluate(element => scrollTo({ top: scrollY + element.getBoundingClientRect().top - 200, behavior: 'instant' }));
       const blockers = await page.evaluate(() => {
-        const inView = (element) => { const rect = element.getBoundingClientRect(); return rect.bottom > 0 && rect.top < innerHeight; };
-        return {
-          hero: inView(document.querySelector('main > section [data-diagnosis-link]')),
-          terminal: inView(document.querySelector('.svc-cta-band'))
-        };
+        const inView = element => { const rect = element.getBoundingClientRect(); return rect.bottom > 0 && rect.top < innerHeight; };
+        return { terminal: inView(document.querySelector('#final-cta')) };
       });
-      assert.ok(blockers.hero || blockers.terminal, `900px negative case has a visible competing CTA: ${JSON.stringify(blockers)}`);
+      assert.ok(blockers.terminal, '900px negative case exposes terminal CTA: ' + JSON.stringify(blockers));
       await page.waitForFunction(() => {
         const style = getComputedStyle(document.querySelector('#sticky-cta'));
         return style.display === 'none' || style.visibility === 'hidden';
@@ -96,7 +95,7 @@ async function verifyInteraction(browser, browserName, width, origin) {
       // A separate shorter viewport provides a genuine middle state.
       await page.setViewportSize({ width, height: 700 });
       await page.evaluate(() => {
-        const heroAction = document.querySelector('main > section [data-diagnosis-link]');
+        const heroAction = document.querySelector('#hero [data-diagnosis-link]') || document.querySelector('#hero');
         window.scrollTo({ top: scrollY + heroAction.getBoundingClientRect().bottom + 16, behavior: 'instant' });
       });
       await page.waitForFunction(() => {
@@ -256,4 +255,4 @@ if (failures.length) {
   console.error(`FAIL ${failures.length}/${checks} V3 lower-page browser checks`);
   for (const failure of failures) console.error(`- ${failure}`);
   process.exitCode = 1;
-} else console.log(interactionsOnly ? `PASS ${checks} lower-page interaction checks: 3 engines x 2 widths, 900px suppression and 700px display` : `PASS ${checks} browser checks: ${pagesUnderTest.length} required pages x 3 engines x 3 widths plus representative interactions and no-JS visibility`);
+} else console.log(interactionsOnly ? `PASS ${checks} lower-page interaction checks: 3 engines x 2 widths, 900px suppression and 700px display` : `PASS ${checks} browser checks: ${pagesUnderTest.length} required pages x 3 engines x 4 widths plus representative interactions and no-JS visibility`);

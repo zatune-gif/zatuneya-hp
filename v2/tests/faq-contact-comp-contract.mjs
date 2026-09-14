@@ -12,7 +12,8 @@ const check = (condition, message) => { checks += 1; assert.ok(condition, messag
 // ── Shared files ──
 check(existsSync(join(root, 'faq.html')), 'faq.html exists');
 check(existsSync(join(root, 'contact.html')), 'contact.html exists');
-check(existsSync(join(root, 'faq-contact-comp.css')), 'faq-contact-comp.css exists');
+check(existsSync(join(root, 'lower-page-template.css')), 'lower-page-template.css exists');
+check(existsSync(join(root, 'lower-info-pages.css')), 'lower-info-pages.css exists');
 check(existsSync(join(root, 'top-comp.css')), 'top-comp.css exists (shared, must not be edited)');
 check(existsSync(join(root, 'nav.js')), 'nav.js exists (shared, read-only)');
 
@@ -22,7 +23,9 @@ const contact = readFileSync(join(root, 'contact.html'), 'utf8');
 for (const [name, html] of [['faq.html', faq], ['contact.html', contact]]) {
   check(/<html lang="ja">/i.test(html), `${name} declares Japanese`);
   check(html.includes('./top-comp.css'), `${name} links shared top-comp.css`);
-  check(html.includes('./faq-contact-comp.css'), `${name} links dedicated faq-contact-comp.css`);
+  check(/top-comp\.css[\s\S]*lower-page-template\.css[\s\S]*lower-info-pages\.css/.test(html), `${name} loads V3 styles in order`);
+  check(html.includes('<main id="main" class="lp-page">'), `${name} uses lower-page main contract`);
+  check(/<section id="hero" class="lp-hero(?:\s|\")/.test(html), `${name} uses lower-page hero contract`);
   check(!html.includes('./style.css'), `${name} no longer links legacy style.css`);
   check(!/<style[\s>]/.test(html), `${name} has no embedded <style> block`);
   check(!/\sstyle\s*=\s*"/.test(html), `${name} adds no inline styles`);
@@ -36,6 +39,7 @@ for (const [name, html] of [['faq.html', faq], ['contact.html', contact]]) {
   check(/<a\b[^>]*\bdata-diagnosis-link\b/.test(html), `${name} delegates diagnosis links`);
   check(html.includes('site-nav__dropdown-trigger') && html.includes('site-nav__link'), `${name} keeps V3 navigation hooks`);
   for (const href of ['./index.html', './services.html', './works.html', './profile.html', './contact.html']) check(html.includes(`href="${href}"`), `${name} V3 nav includes ${href}`);
+  check(html.includes('href="./index.html#journey"'), `${name} includes journey anchor`);
   for (const match of html.matchAll(/(?:href|src)="(\.\/[^"?#]+)(?:[?#][^"]*)?"/g)) {
     check(existsSync(join(root, match[1].replace(/^\.\//, ''))), `${name} local reference exists: ${match[1]}`);
   }
@@ -44,7 +48,7 @@ for (const [name, html] of [['faq.html', faq], ['contact.html', contact]]) {
 // ── faq.html specific ──
 check(faq.includes(`rel="canonical" href="${origin}faq.html"`), 'faq.html has V2 canonical URL');
 check(faq.includes('はじめる前の'), 'faq.html has camp headline line 1');
-check(faq.includes('「気になる」を、先に。'), 'faq.html has camp headline line 2');
+check(faq.replace(/<[^>]*>/g, '').includes('「気になる」を、先に。'), 'faq.html has camp headline line 2');
 check(faq.includes('必要なところだけ、お気軽にお尋ねください。'), 'faq.html has camp lead copy');
 
 const faqQuestions = [
@@ -53,19 +57,18 @@ const faqQuestions = [
   '研修は何名から受けられますか？',
   '費用の目安を教えてください。',
   '伴走支援とはどのような内容ですか？',
-  '地方でも対応できますか？',
-  '助成金を活用できますか？'
+  '地方でも対応できますか？'
 ];
 for (const q of faqQuestions) check(faq.includes(q), `faq.html preserves existing Q&A copy: ${q}`);
 
 const triggerMatches = [...faq.matchAll(/<button[^>]*class="faq-trigger"[^>]*>/g)];
-check(triggerMatches.length === 7, `faq.html has 7 accordion triggers (found ${triggerMatches.length})`);
+check(triggerMatches.length === 6, `faq.html has 6 accordion triggers (found ${triggerMatches.length})`);
 for (const m of triggerMatches) {
   check(/aria-expanded="false"/.test(m[0]), 'faq trigger starts collapsed (aria-expanded=false)');
   check(/aria-controls="[^"]+"/.test(m[0]), 'faq trigger has aria-controls');
 }
 const controlIds = [...faq.matchAll(/aria-controls="([^"]+)"/g)].map((m) => m[1]);
-check(controlIds.length === 7, 'faq.html has 7 aria-controls references');
+check(controlIds.length === 6, 'faq.html has 6 aria-controls references');
 for (const id of controlIds) {
   const re = new RegExp(`id="${id}"[^>]*class="faq-answer"[^>]*hidden`);
   check(re.test(faq) || new RegExp(`class="faq-answer"[^>]*id="${id}"[^>]*hidden`).test(faq), `faq.html answer #${id} exists and starts hidden`);
@@ -76,12 +79,14 @@ check(contact.includes(`rel="canonical" href="${origin}contact.html"`), 'contact
 check(contact.includes('話すだけでも、'), 'contact.html has camp headline line 1');
 check(contact.includes('大丈夫です。'), 'contact.html has camp headline line 2');
 check(contact.includes('ご相談内容が固まっていなくても構いません。'), 'contact.html has camp lead copy');
-check(contact.includes('CONTACT_EMAIL_INVALID'), 'contact.html shows error identifier example per camp/design-spec');
+check(!contact.includes('CONTACT_EMAIL_INVALID') && !contact.includes('フォームの状態設計'), 'internal developer example is not public copy');
+check(!faq.includes('助成金'), 'no withdrawn subsidy promotion');
 check(contact.includes('ご相談は、無料です。'), 'contact.html has camp closing reassurance headline');
 check(contact.includes('エラーが表示されたら、表示された文章をそのままご連絡ください。'), 'contact.html has camp error-copy guidance');
 check(
   contact.includes('https://docs.google.com/forms/d/e/1FAIpQLSfmX_5vT9A751YBGaCqCsILRk8AQnrD1GlY3GY0Dhfo0-H3kA/viewform?embedded=true'),
   'contact.html preserves the existing Google Forms embed src unchanged'
 );
+check(/<iframe\b[^>]*class="lpi-form-frame"/.test(contact), 'contact.html uses responsive iframe class');
 
 console.log(`PASS ${checks} faq-contact comp contract checks`);

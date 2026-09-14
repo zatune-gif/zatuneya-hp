@@ -1,0 +1,77 @@
+# V3下層14ページ適用・検証記録（2026-09-15）
+
+## 対象と決定
+
+- 対象は `zatuneya-hp` の `codex/v3-lower-pages`、PR #14。TOP＋14下層＝15ページ。公開ルートHTML・index-v2.html・sitemap・親gitlink・共通nav.js・top-comp.css・v3-top-page.cssは変更していません。
+- サービス/実績/代表の本文はd5b9203時点のroot最新確定内容、意匠は承認済みlower-page-template。情報8ページは既存v2追加本文を保持し、下記の承認例外だけ更新しました。
+- 未公開v2/service-order.htmlと全紹介導線を除去。終了案内は作成せず。元root版とGit履歴から復元可能です。
+- TOPは研修／経営改善／伴走の3サービス、5コースへ最小整合。経営改善は税別36万円・期間3か月計16時間、伴走は月2回各60〜90分、研修②〜④は問い合わせ・⑤最大3名を維持。
+- 研修の旧セット推薦2例は人数・料金単位の整合根拠が不足するため掲載から除去しました。①10名受講8,000円/人は保持。料金正本自体を改定したものではありません。13番detailの「10名＋⑤グループ」内訳不整合は未変更・後続です。
+- 代表者枠は既存中立SVGに「代表者写真は準備中です。」を明示。本人の写真と見せかけません。正式写真・実績元データは引き続き未提供です。
+- FAQ助成金項目・特商法助成金注記を確定非掲載方針で除去。FAQ受講人数/月2回は最新サービス条件へ整合。privacyのGoogle Fonts利用記述は実際のGoogleフォーム接続に限定して修正。取得情報/送信先/返金条件等は変更せず、法務専門レビューは実施していません。
+- contactは既存Googleフォームsrcを維持し、直接開くリンクとメールを埋込の前に常設。埋込は任意展開とし、読み込めない場合に大きな空白を強制しません。外部フォームの送信・受信は未検証です。
+- thank-youは完了文・お礼・トップ/サービスへの2導線に整理。重複カード/再勧誘を除去し、追従CTAフックを残して非表示。既存の2営業日/3営業日不一致は新たに決めず、この画面では時間表現を省略しました。サイト全体の返信期限統一は後続確認事項です。
+
+## 実測結果
+
+| 検証 | 結果 |
+| --- | --- |
+| verify-v2 | 580 PASS |
+| TOPコピー/構成 | 50コピー・10セクション・6FAQ PASS |
+| 現行6ページrootコピー | 106 PASS |
+| works/profile契約 | 115 PASS |
+| services契約 | 237 PASS |
+| FAQ/contact契約 | 138 PASS |
+| legal/status契約（最終完了面） | 212 PASS |
+| 情報8ページ旧本文fixture | 8ページPASS（承認例外は置換先も検証） |
+| 共通下層契約 | 479 PASS、15ページmeta/共有DOM/ローカル参照 |
+| 15ページ×3エンジン×4幅（320/375/768/1280） | 991条件中989 PASS、WebKit自然Tab2 FAIL（下記） |
+| 共通本文CSS修正後8ページ再検証 | 571条件中569 PASS、同じWebKit2 FAILのみ |
+| 6ページ画像/axe | 3幅126 PASS、最終trainingは別途21 PASS |
+| 情報8ページ画像/代表axe | 75 PASS・24枚、最終thank-youだけ10 PASS・3枚再撮影 |
+| 情報UIの実CSS/FAQ操作/完了面重複/追従非表示 | 36 PASS |
+| 見出しカード内rect | 12 PASS（320/375/768/1280） |
+| 下層テンプレート | 静的152、ブラウザ136 PASS |
+| TOPブラウザ | 4幅/キーボード/storage拒否/BFCache/reduced-motion PASS |
+| TOPヘッダー文字 | 136 PASS |
+| TOP SP文字 | 199 PASS |
+| TOPクロスブラウザ | 9 PASS |
+| sticky品質 | 15ページ・7幅・表示/抑制/閉じる PASS |
+| axe | 全15ページ60scan違反0、法務/状態最終微修正4ページ16scan違反0、最終thank-you追加axe違反0 |
+| Lighthouse | 代表7ページ×mobile/desktop×2回＝28回すべて90以上。mobile性能98〜100、desktop100、A11y/Best Practices/SEOすべて100 |
+| ボタン状態コントラスト | 通常/hover/active 6.896:1、focus 6.993:1、研修料金CTA 6.896:1 |
+| 差分/安全 | diff --checkエラー0、本番/共通外枠不変更 |
+
+Lighthouse対象：index / growth / tools / services / service-management / faq / works。新しい外部フォントや外部スクリプトは追加していません。
+
+## 合格ではない項目を分離
+
+### 既存のTOP視覚予算3項目
+
+`top-comp-geometry.mjs` のSP総高さ/お悩み/パッケージ高さはFAILのままです。d5b9203のHTMLをメモリで返す対照と作業版を同じCSS/画像で実測し完全一致を確認しました。
+
+| 幅 | 版 | 総高さ | お悩み高さ | パッケージ高さ | サービス高さ |
+| --- | --- | ---: | ---: | ---: | ---: |
+| 375 | d5b9203・作業版とも | 8837 | 902.328125 | 1308.25 | 1736.4375 |
+| 1280 | d5b9203・作業版とも | 4854 | 478.0625 | 574.265625 | 725.390625 |
+
+今回の本文更新による退行ではありません。独立したカンプ予算の閾値を緩めて合格にせず、TOP本文CSSも変更していません。対照は `node v2/tests/top-geometry-baseline-comparison.mjs` で再現できます。
+
+### Windows WebKitの自然Tab2項目
+
+growthのフッターリンクに自然Tabで到達する2幅のテストがFAILです。サイトCSS/JSなしの通常a/button対照でも、Chromium/Firefoxはlinkに到達、WebKitはbutton→BODYだけ巡回しました。focusしたリンクのEnterによる遷移は3エンジンとも成功。HTMLに不自然なtabindexは追加していません。
+
+対照：`node v2/tests/native-link-keyboard-control.mjs`。リンクへのTab対象は[WebKitの設定](https://developer.apple.com/documentation/webkit/wkpreferences/tabfocuseslinks)に依存しますが、このWindows実行環境ではOption-Tabでも変わりませんでした。実Safari・フルキーボード設定ONの実機確認は未検証です。
+
+したがって `npm run qa:all` を全緑とは報告しません。各合格スイート、既存視覚未達、環境制限を分けて扱います。
+
+## 旧フォーム内部仕様の移管
+
+旧画面に出ていた「フォームの状態設計」「入力エラーは項目の近くに原因と識別子を表示」「例：メールアドレスの形式を確認してください［CONTACT_EMAIL_INVALID］」は開発用メモであり、実際のGoogleフォームにこの識別子を実装したことを示しません。HP本文から削除しました。既存フォーム自体の検証・送信機能は変更していません。
+
+## 最適化と後続
+
+- 新規本文CSSの使用クラスを機械照合し、未使用4ルールを除去。残る.lps/.lpiクラスは使用されています。
+- インラインstyle・使い捨てconsole.log・alert/confirm/prompt・外部Webフォント・秘密情報なし。テストのconsole出力は再現用の診断結果です。
+- JavaScript実装の変更がないため返り値規約・API認証は対象外。共通UI CSSの重複は追加していません。4px余白トークン、システムフォント、meta1個＋診断URL委譲を継承。
+- 正式画像/匿名実績・返信期限・セット人数内訳の確定後に別作業で更新。本番昇格、root置換、index-v2削除、ブランチ整理は未実施です。

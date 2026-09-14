@@ -1,6 +1,6 @@
 export const existingLowerPages = [
   '404.html', 'contact.html', 'faq.html', 'privacy.html', 'profile.html',
-  'service-banso.html', 'service-management.html', 'service-order.html',
+  'service-banso.html', 'service-management.html',
   'service-training.html', 'services.html', 'thank-you.html', 'tokusho.html',
   'works.html'
 ];

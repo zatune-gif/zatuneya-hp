@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import { createHash } from 'node:crypto';
+import './lower-pages-current-copy.mjs';
+import './lower-info-pages-contract.mjs';
 import { diagnosisUrl, existingLowerPages, legacyDiagnosisUrl, managedPages } from './v3-lower-pages-fixture.mjs';
 
 const root = resolve(import.meta.dirname, '..');
@@ -19,27 +20,6 @@ function occurrenceCount(source, literal) {
 
 function stylesheetCount(html, filename) {
   return [...html.matchAll(new RegExp(`<link\\b(?=[^>]*\\brel=["']stylesheet["'])(?=[^>]*\\bhref=["'][^"']*${filename.replace('.', '\\.')}(?:[?#][^"']*)?["'])[^>]*>`, 'gi'))].length;
-}
-
-export function normalizedMainDigest(html) {
-  const main = html.match(/<main\b[^>]*>[\s\S]*?<\/main>/i)?.[0];
-  if (!main) return null;
-  const normalized = main
-    .replace(/<a\b[^>]*>[\s\S]*?<\/a>/gi, (anchor) => {
-      if (!/AI活用準備度診断|AI活用診断|無料診断|無料で診断する|診断する/.test(anchor)) return anchor;
-      return anchor.replace(/<a\b([^>]*)>/i, (_tag, attributes) => {
-        const canonicalAttributes = attributes
-          .replace(/\s+href\s*=\s*(["'])https:\/\/han-ai-diagnosis\.netlify\.app\/\1/i, '')
-          .replace(/\s+data-diagnosis-link(?:\s*=\s*(["'])[^"']*\1)?/i, '')
-          .replace(/\s+aria-disabled\s*=\s*(["'])true\1/i, '')
-          .trim();
-        return `<a${canonicalAttributes ? ` ${canonicalAttributes}` : ''} data-diagnosis-link>`;
-      });
-    })
-    .replace(/\r\n?/g, '\n')
-    .replace(/>\s+</g, '><')
-    .trim();
-  return createHash('sha256').update(normalized).digest('hex');
 }
 
 function cssSelectors(css) {
@@ -97,7 +77,8 @@ function metaContent(html, attribute, name) {
   return html.match(new RegExp(`<meta\\b(?=[^>]*\\b${attribute}=["']${name}["'])(?=[^>]*\\bcontent=["']([^"']*)["'])[^>]*>`, 'i'))?.[1];
 }
 
-check(managedPages.length === 16, 'managed inventory is explicitly TOP + 13 existing lower pages + 2 new pages = 16');
+check(managedPages.length === 15, 'managed inventory is TOP + 12 active existing lower pages + growth/tools = 15');
+check(!existsSync(join(root, 'service-order.html')), 'unpublished obsolete order page is removed without a retirement notice');
 
 for (const page of managedPages) {
   const path = join(root, page);
@@ -181,32 +162,18 @@ for (const [page, requiredCopy] of Object.entries(newPageCopy)) {
   }
 }
 
-const lowerPageMainDigests = {
-  // Generated from commit ff8d9e7. Only the diagnosis anchor migration from
-  // legacy href to data-diagnosis-link is normalized as an allowed exception.
-  '404.html': '99a31f0ff6d19af26370d93cdb7316d70c41fb1339ad8281f009318d70f1fb50',
-  'contact.html': 'b99f3d198ceed3fe22f217bcde2f2380abf3c175d56490f86f6a81d5e85d7eef',
-  'faq.html': '9f36b3186755e1e9f83765430b02b5a823338afb57de919a131c8c20ab003822',
-  'privacy.html': '26917fb0bec68e9a04708405d48f7aa04aff3780db984ca88d7de6d9437e8c46',
-  'profile.html': 'be0abae40aaa50d66b527e5985a1bdd2356c1b4e8bd54fde15eb4d4d598241a2',
-  'service-banso.html': 'c1d90427ddf87afb3d97f47db2218b673c80732f2d8055dbab44ce82431dd5c6',
-  'service-management.html': 'bbfe6e76f600de1102c385320bd2faecf2c65d338bb10e3a76e9dbbd027b95a5',
-  'service-order.html': '5d67ed5d0e429c3616dff7ca9256e98b327151a372c3fbde042d837315eb0dc2',
-  'service-training.html': '4c2e2310c6c40237f8eef56aeb3d9d69cd5a0002db561299b999efdf72d25303',
-  'services.html': '19f1e6c213723982524a688c1cd27c7ff4a99de95934c314525856345e6f89ea',
-  'thank-you.html': 'f7bd0ccc00eb967d11a3823e4f7955edf429f8a2a6e48a61d6e9d8584d66a3dc',
-  'tokusho.html': '6c8b145bbf1616602e41992b547c047ec370b771ef22d0cbb36cac83287dc488',
-  'works.html': '800fcf73b8fbe121a453bfc615da90f46dbe1485929ae2546926c9486622417d'
-};
-for (const [page, expectedDigest] of Object.entries(lowerPageMainDigests)) {
-  const path = join(root, page);
-  if (!existsSync(path)) continue;
-  const html = readFileSync(path, 'utf8');
-  check(normalizedMainDigest(html) === expectedDigest, `${page} preserves the ff8d9e7 main DOM except diagnosis href delegation`);
+// Structural hashes of the legacy DOM are no longer appropriate for an approved
+// body redesign. Imported contracts compare factual source copy instead:
+// six business pages against current root; eight information pages against a
+// frozen d5b9203 text fixture, with exact documented service-list exceptions.
+for (const page of managedPages) {
+  const html = readFileSync(join(root, page), 'utf8');
+  check(!/service-order\\.html|個別業務設計|AI業務改善オーダーメイド/.test(html), page + ' exposes no obsolete service or retirement notice');
+  if (page !== 'index.html') {
+    check(stylesheetCount(html, 'lower-page-template.css') === 1, page + ' uses approved shared lower body styles');
+    check(html.includes('<main id="main" class="lp-page">'), page + ' has scoped template body');
+  }
 }
-check(Object.keys(lowerPageMainDigests).length === 13, 'main DOM digest fixture covers 13 pages');
-check(JSON.stringify(Object.keys(lowerPageMainDigests).sort()) === JSON.stringify([...existingLowerPages].sort()), 'main DOM digest keys exactly match existing lower-page inventory');
-for (const page of existingLowerPages) check(existsSync(join(root, page)), `digest fixture path exists: ${page}`);
 
 if (failures.length) {
   console.error(`FAIL ${failures.length}/${checks} V3 lower-page contract checks`);

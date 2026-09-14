@@ -1,119 +1,23 @@
-import assert from 'node:assert/strict';
-import { existsSync, readFileSync } from 'node:fs';
-import { join, resolve } from 'node:path';
-
-const root = resolve(import.meta.dirname, '..');
-const origin = 'https://zatune-gif.github.io/zatuneya-hp/v2/';
-let checks = 0;
-const check = (condition, message) => { checks += 1; assert.ok(condition, message); };
-
-// ---- shared CSS file must exist ----
-check(existsSync(join(root, 'services-comp.css')), 'services-comp.css exists');
-const compCss = readFileSync(join(root, 'services-comp.css'), 'utf8');
-check(!/@import\s+[^;]*top-comp\.css/i.test(compCss), 'services-comp.css does not re-import the shared stylesheet');
-check(/\.assist-card\.accent \.assist-card__link\{color:var\(--orange-ink\)\}/.test(compCss), 'accent service link uses the shared AA orange ink token');
-check(/\.process-item\.last \.process-num\{background:var\(--orange\);color:var\(--orange-ink\)\}/.test(compCss), 'final process marker uses AA orange ink on orange');
-
-const pages = [
-  'services.html',
-  'service-training.html',
-  'service-order.html',
-  'service-management.html',
-  'service-banso.html'
-];
-
-const detailPages = pages.slice(1);
-
+import { check, checks, commonPage, html, text } from './lower-current-contract-helpers.mjs';
+import './lower-pages-current-copy.mjs';
+const pages = ['services.html', 'service-training.html', 'service-management.html', 'service-banso.html'];
 for (const page of pages) {
-  const path = join(root, page);
-  check(existsSync(path), `${page} exists`);
-  const html = readFileSync(path, 'utf8');
-
-  check(/<html lang="ja">/i.test(html), `${page} declares Japanese`);
-  check(html.includes('rel="stylesheet" href="./top-comp.css"'), `${page} loads shared top-comp.css`);
-  check(html.includes('rel="stylesheet" href="./services-comp.css"'), `${page} loads services-comp.css`);
-  check(!html.includes('href="./style.css"'), `${page} no longer loads legacy style.css`);
-  check(!/<style>/.test(html), `${page} has no embedded <style> block`);
-  check(!/\sstyle\s*=/.test(html), `${page} adds no inline styles`);
-  check(!/\balert\(|\bconfirm\(|\bprompt\(/.test(html), `${page} avoids blocking dialogs`);
-  check(html.includes('<script src="./nav.js" defer></script>'), `${page} includes nav.js`);
-  check(html.includes(`rel="canonical" href="${origin}${page}"`), `${page} has correct V2 canonical URL`);
-  check((html.match(/<meta name="zatuneya:diagnosis-url"/g) ?? []).length === 1, `${page} has one diagnosis meta`);
-  check(!html.includes('https://han-ai-diagnosis.netlify.app/'), `${page} removes the legacy diagnosis URL`);
-  check(/<a\b[^>]*\bdata-diagnosis-link\b/.test(html), `${page} delegates diagnosis links`);
-  check(html.includes('href="./contact.html"'), `${page} links the secondary contact CTA`);
-  check(html.includes('© 2026 ざつね屋'), `${page} has the correct copyright notice`);
-  check(html.includes('id="nav-hamburger"') && html.includes('id="site-nav"'), `${page} keeps nav.js DOM contract`);
-  check(html.includes('site-nav__dropdown-trigger') && html.includes('site-nav__link'), `${page} keeps V3 navigation hooks`);
-  for (const href of ['./index.html', './services.html', './works.html', './profile.html', './contact.html']) {
-    check(html.includes(`href="${href}"`), `${page} V3 nav includes ${href}`);
-  }
-  check(/サービス<\/a>/.test(html) && html.includes('aria-current="page"'), `${page} marks サービス nav item as current`);
-  check(!html.includes('href="#prices"'), `${page} does not use a same-page #prices anchor (fixed to index.html#prices)`);
-
-  for (const match of html.matchAll(/(?:href|src)="(\.\/[^"?#]+)(?:[?#][^"]*)?"/g)) {
-    check(existsSync(join(root, match[1].replace(/^\.\//, ''))), `${page} local reference exists: ${match[1]}`);
-  }
-  for (const img of html.matchAll(/<img\b[^>]*>/g)) {
-    check(/\salt="[^"]+"/.test(img[0]), `${page} image has non-empty alt text: ${img[0].slice(0, 60)}`);
-  }
+  const source = commonPage(page);
+  check(/href="\.\/services\.html" aria-current="page"/.test(source), page + ' correct current navigation');
+  check(!/service-order|個別業務設計|オーダーメイド/.test(source), page + ' no obsolete service');
 }
-
-// ---- services.html specific ----
-{
-  const html = readFileSync(join(root, 'services.html'), 'utf8');
-  check(html.includes('「使える」まで、'), 'services.html hero H1 line 1 matches comp');
-  check(html.includes('一緒に整える。'), 'services.html hero H1 line 2 matches comp');
-  check(html.includes('今の困りごとから、選べる4つの入口。'), 'services.html section-2 heading matches comp');
-  check(html.includes('道具より先に、仕事を見ます。'), 'services.html philosophy heading matches comp');
-  check(html.includes('まずは、今の困りごとを聞かせてください。'), 'services.html bottom CTA band heading matches comp');
-  for (const title of ['AI研修・教育', 'オーダーメイド開発', '業務改善・経営支援', '伴走サポート']) {
-    check(html.includes(title), `services.html includes support card: ${title}`);
-  }
-  check((html.match(/class="assist-card(?: accent)?"/g) || []).length === 4, 'services.html has exactly 4 assist cards');
-  check(html.includes('href="./service-training.html"'), 'services.html links service-training.html');
-  check(html.includes('href="./service-order.html"'), 'services.html links service-order.html');
-  check(html.includes('href="./service-management.html"'), 'services.html links service-management.html');
-  check(html.includes('href="./service-banso.html"'), 'services.html links service-banso.html');
-}
-
-// ---- service-detail pages: shared template checks ----
-const detailExpectations = {
-  'service-training.html': {
-    h1: 'AI研修ワークショップ',
-    lead: '自分でAIを使えるようになる',
-    price: '60,000円'
-  },
-  'service-order.html': {
-    h1: 'AI業務改善オーダーメイドサービス',
-    lead: '使える仕組みを手元に残す',
-    price: '50,000円'
-  },
-  'service-management.html': {
-    h1: 'AI経営改善パッケージ',
-    lead: '経営視点で整えてから動かす',
-    price: '360,000円'
-  },
-  'service-banso.html': {
-    h1: 'AI活用伴走サービス',
-    lead: '一緒に走り続ける',
-    price: '60,000円'
-  }
-};
-
-for (const page of detailPages) {
-  const html = readFileSync(join(root, page), 'utf8');
-  const exp = detailExpectations[page];
-  check(html.includes(`SERVICE DETAIL / ${exp.h1}`), `${page} hero eyebrow includes service name`);
-  check(html.includes(`<h1>${exp.h1}</h1>`), `${page} hero H1 matches existing service name (no invented copy)`);
-  check(html.includes(exp.lead), `${page} hero lead reuses existing catch copy`);
-  check(html.includes(exp.price), `${page} keeps existing real price figure`);
-  check(html.includes('こんな時に'), `${page} has こんな時に section (comp template)`);
-  check(html.includes('進め方'), `${page} has 進め方 section (comp template)`);
-  check(html.includes('提供内容'), `${page} has 提供内容 section (comp template)`);
-  check((html.match(/class="pain-card/g) || []).length === 3, `${page} has exactly 3 pain cards (こんな時に)`);
-  check((html.match(/class="process-item/g) || []).length === 3, `${page} has exactly 3 process steps (進め方)`);
-  check(html.includes('AI活用診断（無料）'), `${page} hero CTA is the primary diagnosis CTA`);
-}
-
-console.log(`PASS ${checks} services-comp contract checks`);
+const services = html('services.html');
+check((services.match(/class="lp-card lps-overview-card"/g) || []).length === 3, 'three active service cards');
+for (const name of ['training', 'management', 'banso']) check(services.includes('./service-' + name + '.html'), 'active service link ' + name);
+const training = html('service-training.html');
+check((training.match(/class="lps-course-blurb-item"/g) || []).length === 5, 'five complete course descriptions');
+for (const token of ['①AI活用知識編（90分）', '各120分', 'Claude Code特化（120分）', '②〜④は要お問い合わせ', 'グループ3名まで', '1〜5名・6〜10名', '1人あたり8,000円', '5名 60,000円〜', 'Claude Proプランが必要']) check(training.includes(token), 'current training condition: ' + token);
+for (const id of ['courses', 'course-guide', 'pricing']) check(training.includes('id="' + id + '"') && training.includes('href="#' + id + '"'), 'training table of contents ' + id);
+check(!/20,900|560,000|全コースセット・10名|⑥|全6コース/.test(training), 'no ambiguous old bundle or sixth course');
+const management = text(html('service-management.html'));
+for (const token of ['360,000円', '期間3か月 計16時間分', '手順書']) check(management.includes(token), 'management: ' + token);
+check(!/240,000|480,000|ライト|プレミアム/.test(management), 'management is one current plan');
+const banso = text(html('service-banso.html'));
+for (const token of ['月2回', '60〜90分', '3か月', '無料相談', 'お見積もり']) check(banso.includes(token), 'banso: ' + token);
+check(!/月1回|月額60,000|月額100,000/.test(banso), 'no old fixed-price/one-meeting promotion');
+console.log('PASS ' + checks + ' current services contract checks');

@@ -8,7 +8,7 @@ const root = resolve(import.meta.dirname, '..');
 const screenshotDir = join(root, 'qa-screenshots', 'sticky-cta');
 const pages = [
   '404.html', 'contact.html', 'faq.html', 'growth.html', 'index.html', 'privacy.html',
-  'profile.html', 'service-banso.html', 'service-management.html', 'service-order.html',
+  'profile.html', 'service-banso.html', 'service-management.html',
   'service-training.html', 'services.html', 'thank-you.html', 'tokusho.html',
   'tools.html', 'works.html'
 ];

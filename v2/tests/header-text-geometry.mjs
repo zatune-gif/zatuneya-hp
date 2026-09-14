@@ -1,16 +1,14 @@
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { chromium } from 'playwright';
 import { startQaServer } from './qa-server.mjs';
+import { managedPages } from './v3-lower-pages-fixture.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const desktopWidths = [1280, 1440, 1600, 1920, 2560];
 const responsiveWidths = [375, 768, ...desktopWidths];
-const consultPages = readdirSync(root)
-  .filter((filename) => filename.endsWith('.html'))
-  .filter((filename) => readFileSync(join(root, filename), 'utf8').includes('無料で相談する'))
-  .sort();
+const consultPages = managedPages.filter(filename => filename !== 'index.html');
 const representativeConsultPage = 'services.html';
 
 let checks = 0;
@@ -25,11 +23,11 @@ const baseUrl = server.origin;
 const browser = await chromium.launch();
 
 try {
-  check(consultPages.length === 15, '15 lower pages declare the shared consultation label');
+  check(consultPages.length === 14, '14 active lower pages share the current consultation navigation');
   check(consultPages.every((filename) => {
     const html = readFileSync(join(root, filename), 'utf8');
     return html.includes('nav-diagnosis') && html.includes('nav-contact');
-  }), 'all 15 lower pages declare both shared navigation CTA classes');
+  }), 'all 14 active lower pages declare both shared navigation CTA classes');
 
   for (const width of responsiveWidths) {
     const page = await browser.newPage({ viewport: { width, height: 900 } });
@@ -100,7 +98,7 @@ try {
     check(protectedPhrases.map(({ text }) => text).includes('パッケージの内容を'), 'package CTA preserves its first semantic line');
     check(protectedPhrases.map(({ text }) => text).includes('くわしく見る'), 'package CTA preserves its second semantic line');
     check(protectedPhrases.map(({ text }) => text).includes('候補リスト'), 'package deliverable keeps 候補リスト together');
-    check(protectedPhrases.map(({ text }) => text).includes('作り込みたい'), 'service description keeps 作り込みたい together');
+    check(protectedPhrases.map(({ text }) => text).includes('心当たりがある'), 'current management service phrase stays together');
     check(protectedPhrases.every(({ rectCount }) => rectCount === 1), 'all protected TOP phrases stay on one line at 1280px');
     await page.close();
   }

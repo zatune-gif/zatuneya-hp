@@ -5,6 +5,7 @@
 .lp-page h1 { font-size: clamp(32px, 4vw, 48px); }
 .lp-page h2 { font-size: clamp(24px, 2.6vw, 32px); }
 .lp-page h3 { font-size: 19px; line-height: 1.4; }
+.lp-title-part { display: inline-block; }
 .lp-page p { max-width: 65ch; }
 .lp-stack { display: grid; gap: var(--space-16); align-content: start; }
 .lp-hero { padding-block: var(--space-24) var(--space-64); background: var(--ground); }
@@ -24,6 +25,9 @@
 .lp-media figcaption { padding-top: var(--space-16); color: var(--muted); font-size: 14px; line-height: 1.6; }
 .lp-heading { display: grid; justify-items: center; gap: var(--space-16); text-align: center; }
 .lp-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-24); }
+.lp-card-grid--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.lp-list { display: grid; align-content: start; gap: var(--space-16); margin: 0; padding-left: var(--space-24); }
+.lp-list li::marker { color: var(--teal-dark); }
 .lp-card { display: grid; align-content: start; gap: var(--space-16); padding: var(--space-24); border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--surface); }
 .lp-icon { width: var(--size-icon); height: var(--size-icon); fill: none; stroke: var(--teal-dark); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .lp-price-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-48); padding: var(--space-40); border: 1px solid var(--teal-dark); border-radius: var(--radius-card); }
