@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- COPY: 公開前にrobots/title/description/canonical/og:*を新ページ用に更新。見本自体はnoindexを維持。 -->
+  <meta name="robots" content="noindex,follow">
+  <meta name="zatuneya:diagnosis-url" content="https://ai-shindan-zatuneya.netlify.app/">
+  <title>下層ページのデザイン見本｜ざつね屋</title>
+  <meta name="description" content="ざつね屋の下層ページに使う、写真・カード・料金・進め方・FAQのデザイン見本です。掲載内容はサンプルです。">
+  <link rel="canonical" href="https://zatune-gif.github.io/zatuneya-hp/v2/lower-page-template.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zatune-gif.github.io/zatuneya-hp/v2/lower-page-template.html">
+  <meta property="og:title" content="下層ページのデザイン見本｜ざつね屋">
+  <meta property="og:description" content="写真・カード・料金・進め方・FAQのデザイン見本。掲載内容はサンプルです。">
+  <meta property="og:image" content="https://zatune-gif.github.io/zatuneya-hp/v2/assets/og-image.jpg">
+  <link rel="icon" href="./favicon.ico" sizes="any">
+  <link rel="icon" href="./assets/favicon-32.png" type="image/png">
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="./top-comp.css">
+  <link rel="stylesheet" href="./lower-page-template.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <!-- SHARED: TOPの外枠。本文と分離して保持。 -->
+  <header class="comp-header">
+    <div class="comp-wrap header-inner">
+      <a class="brand" href="./index.html" aria-label="ざつね屋 トップページ">
+        <svg class="brand-mark" aria-hidden="true" viewBox="0 0 48 48"><path d="M29 4C20 10 12 20 12 29c0 8 6 14 14 14 9 0 15-7 15-16 0-8-5-16-12-23Z"/><path d="M18 31c7-1 13-6 17-14-1 8-5 15-12 19"/><path d="M13 16c3-1 6-3 8-6"/></svg>
+        <span class="brand-copy"><strong>ざつね屋</strong><small>地域企業の小さな業務変革屋</small></span>
+      </a>
+      <nav id="site-nav" class="comp-nav site-nav" aria-label="主要ナビゲーション">
+        <a class="site-nav__link" href="./services.html">サービス</a>
+        <a class="site-nav__link" href="./index.html#journey">進め方</a>
+        <a class="site-nav__link" href="./works.html">事例</a>
+        <a class="site-nav__link" href="./tools.html">ツール</a>
+        <span class="site-nav__item--dropdown"><button class="site-nav__dropdown-trigger" type="button" aria-expanded="false">会社案内</button><span class="site-nav__dropdown-menu"><a class="site-nav__link" href="./profile.html">代表について</a><a class="site-nav__link" href="./privacy.html">プライバシー</a></span></span>
+        <a class="site-nav__link" href="./faq.html">よくある質問</a>
+        <a class="nav-diagnosis site-nav__link" data-diagnosis-link aria-disabled="true">無料で診断する</a>
+        <a class="nav-contact site-nav__link" href="./contact.html">お問い合わせ</a>
+      </nav>
+      <button id="nav-hamburger" class="comp-menu" type="button" aria-label="メニューを開く" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <main id="main" class="lp-page">
+    <!-- PART: hero -->
+    <section id="hero" class="lp-hero" aria-labelledby="lp-title">
+      <div class="comp-wrap lp-stack">
+        <nav class="lp-breadcrumb" aria-label="パンくず"><a href="./index.html">ホーム</a><span aria-hidden="true">／</span><span>デザイン見本</span></nav>
+        <p class="lp-sample">下層ページのデザイン見本<span>掲載内容・料金・写真はサンプルです。</span></p>
+        <div class="lp-hero-copy">
+          <p class="lp-eyebrow">サービス紹介のページ例</p>
+          <h1 id="lp-title">このサービスで、<br>何が変わるのか。</h1>
+          <p class="lp-lead">誰の、どのような困りごとを支えるのか。<br>このページで伝えたいことを、短い言葉で紹介します。</p>
+          <div class="lp-actions"><a class="v3-button v3-button--primary" data-diagnosis-link aria-disabled="true">無料でAI活用準備度を診断する</a><a class="v3-button v3-button--secondary" href="./contact.html">お問い合わせ</a></div>
+        </div>
+      </div>
+    </section>
+    <!-- END PART: hero -->
+
+    <!-- PART: overview -->
+    <section id="overview" class="lp-section" aria-labelledby="lp-overview-title">
+      <div class="comp-wrap lp-split fade-in">
+        <figure class="lp-media"><img src="./assets/v3-service-support.jpg" alt="資料を囲んで話し合う場面の仮イメージ" width="1536" height="1024" loading="lazy"><figcaption>写真は仮素材です。紹介する内容に合う写真へ差し替えてください。</figcaption></figure>
+        <div class="lp-stack"><p class="lp-eyebrow">大切にしていること</p><h2 id="lp-overview-title">目の前の困りごとから、<br>取り組むことを伝える。</h2><p>お客様がどんな場面で困っているのか、サービスがどこまでお手伝いするのかを、具体的に記載します。</p><p>専門用語だけで説明せず、相談前に知っておきたいことを順番に伝えます。写真と文章を組み合わせたいページに使える部品です。</p></div>
+      </div>
+    </section>
+    <!-- END PART: overview -->
+
+    <!-- PART: features -->
+    <section id="features" class="lp-section lp-section--wash" aria-labelledby="lp-features-title">
+      <div class="comp-wrap lp-stack">
+        <div class="lp-heading"><p class="lp-eyebrow">サービスの内容</p><h2 id="lp-features-title">お手伝いすること</h2><p>内容がひと目で分かるように、項目ごとに整理します。</p></div>
+        <div class="lp-card-grid">
+          <article class="lp-card fade-in"><svg class="lp-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 7h24v28H8zM14 3v8M26 3v8M14 18h12M14 25h8"/></svg><h3>状況を整理する</h3><p>最初に確認することや、整理する情報を記載します。対象となる業務や、困りごとの例を添えます。</p></article>
+          <article class="lp-card fade-in"><svg class="lp-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M5 30l8-8 7 5 14-17M25 10h9v9M5 35h30"/></svg><h3>取り組みを具体化する</h3><p>どのような方法で進めるか、実施する内容を記載します。含まれる作業の範囲も明確にします。</p></article>
+          <article class="lp-card fade-in"><svg class="lp-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M7 7h26v20H19l-8 7v-7H7zM13 14h14M13 20h9"/></svg><h3>次の一歩につなげる</h3><p>取り組みの後に受け取れるものや、確認することを記載します。未確定の成果を約束しないようにします。</p></article>
+        </div>
+      </div>
+    </section>
+    <!-- END PART: features -->
+
+    <!-- PART: pricing -->
+    <section id="pricing" class="lp-section" aria-labelledby="lp-pricing-title">
+      <div class="comp-wrap lp-price-panel fade-in">
+        <div class="lp-stack"><p class="lp-eyebrow">料金と範囲</p><h2 id="lp-pricing-title">料金のご案内</h2><p class="lp-price">料金を記載</p><p class="lp-note">料金欄はサンプルです。金額・税込／税別・課金単位を確認してから掲載してください。</p></div>
+        <dl class="lp-specs"><div><dt>対象となる方</dt><dd>このサービスの対象を記載します。</dd></div><div><dt>含まれる内容</dt><dd>提供する作業と成果物を記載します。</dd></div><div><dt>期間・回数</dt><dd>実際の提供条件を記載します。</dd></div><div><dt>別途費用</dt><dd>追加費用の条件と、含まれない内容を記載します。</dd></div></dl>
+      </div>
+    </section>
+    <!-- END PART: pricing -->
+
+    <!-- PART: process -->
+    <section id="process" class="lp-section lp-section--wash" aria-labelledby="lp-process-title">
+      <div class="comp-wrap lp-stack">
+        <div class="lp-heading"><p class="lp-eyebrow">ご利用の流れ</p><h2 id="lp-process-title">支援の進め方</h2><p>相談からその後の確認まで、実際の順序に合わせて差し替えます。</p></div>
+        <ol class="lp-steps">
+          <li class="lp-step fade-in"><span class="lp-step-number" aria-hidden="true">01</span><h3>相談する</h3><p>相談時にお聞きすることを記載します。</p></li>
+          <li class="lp-step fade-in"><span class="lp-step-number" aria-hidden="true">02</span><h3>内容を決める</h3><p>範囲・費用などの確認事項を記載します。</p></li>
+          <li class="lp-step fade-in"><span class="lp-step-number" aria-hidden="true">03</span><h3>取り組む</h3><p>実施方法や担当する作業を記載します。</p></li>
+          <li class="lp-step fade-in"><span class="lp-step-number" aria-hidden="true">04</span><h3>振り返る</h3><p>実施後に確認する内容を記載します。</p></li>
+        </ol>
+      </div>
+    </section>
+    <!-- END PART: process -->
+
+    <!-- PART: questions -->
+    <section id="questions" class="lp-section" aria-labelledby="lp-questions-title">
+      <div class="comp-wrap lp-faq-layout">
+        <div class="lp-stack"><p class="lp-eyebrow">相談前に知っておきたいこと</p><h2 id="lp-questions-title">よくある質問</h2><p>この見本では、テンプレートの使い方を質問と回答の例にしています。</p></div>
+        <dl class="lp-faq">
+          <div class="lp-faq-item"><dt><button class="faq-trigger lp-faq-trigger" type="button" aria-expanded="false" aria-controls="lp-answer-1">文章や写真は差し替えられますか？<span aria-hidden="true">＋</span></button></dt><dd id="lp-answer-1" hidden>はい。見出し・本文・画像を差し替えて使います。画像の説明文も内容に合わせて更新してください。</dd></div>
+          <div class="lp-faq-item"><dt><button class="faq-trigger lp-faq-trigger" type="button" aria-expanded="false" aria-controls="lp-answer-2">不要な項目は削除できますか？<span aria-hidden="true">＋</span></button></dt><dd id="lp-answer-2" hidden>HTMLコメントで囲まれた部品単位で削除できます。部品へのページ内リンクが残っていないかも確認します。</dd></div>
+          <div class="lp-faq-item"><dt><button class="faq-trigger lp-faq-trigger" type="button" aria-expanded="false" aria-controls="lp-answer-3">このまま公開できますか？<span aria-hidden="true">＋</span></button></dt><dd id="lp-answer-3" hidden>このページはサンプルです。本文・料金・画像・ページ情報を確定し、利用手順の公開前チェックを終えてから公開します。</dd></div>
+        </dl>
+      </div>
+    </section>
+    <!-- END PART: questions -->
+
+    <!-- PART: final-cta -->
+    <section id="final-cta" class="lp-final" aria-labelledby="lp-final-title"><div class="comp-wrap lp-final-inner"><div class="lp-stack"><h2 id="lp-final-title">お問い合わせはこちらから</h2><p>ボタンは実際のお問い合わせページへ移動します。</p></div><div class="lp-actions"><a class="v3-button v3-button--primary" href="./contact.html">お問い合わせ</a><a class="v3-button v3-button--inverse" data-diagnosis-link aria-disabled="true">無料で診断する</a></div></div></section>
+    <!-- END PART: final-cta -->
+  </main>
+  <!-- SHARED: 追従診断とフッター。表示制御はnav.js。 -->
+<aside id="sticky-cta" class="sticky-cta" aria-label="無料診断へのご案内"><div class="sticky-cta__copy"><p class="sticky-cta__text">まずは無料診断から</p><p class="sticky-cta__description">AI活用の準備度を確認できます。</p></div><a class="sticky-cta__btn" data-diagnosis-link aria-disabled="true">無料で診断する</a><button id="sticky-cta-close" class="sticky-cta__close" type="button" aria-label="無料診断の案内を閉じる"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></aside>
+  <footer class="comp-footer"><div class="comp-wrap footer-row"><div class="footer-brand"><svg aria-hidden="true" viewBox="0 0 48 48"><path d="M29 4C20 10 12 20 12 29c0 8 6 14 14 14 9 0 15-7 15-16 0-8-5-16-12-23Z"/><path d="M18 31c7-1 13-6 17-14-1 8-5 15-12 19"/></svg><div><strong>ざつね屋</strong><p>地域企業の小さな業務変革屋</p></div></div><nav aria-label="フッターナビゲーション"><a href="./services.html">サービス</a><a href="./index.html#journey">進め方</a><a href="./works.html">事例</a><a href="./tools.html">ツール</a><a href="./profile.html">会社案内</a><a href="./faq.html">よくある質問</a></nav><small>© 2026 ざつね屋</small></div></footer>
+  <script src="./nav.js" defer></script>
+</body>
+</html>

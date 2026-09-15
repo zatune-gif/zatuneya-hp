@@ -20,9 +20,18 @@ const profiles = [
   { name: 'mobile', config: undefined },
   { name: 'desktop', config: desktopConfig }
 ];
+const pages = [
+  'index.html',
+  'growth.html',
+  'tools.html',
+  'services.html',
+  'service-management.html',
+  'faq.html',
+  'works.html'
+];
 const repeats = 2;
 const LIGHTHOUSE_RUN_TIMEOUT_MS = 90_000;
-const LIGHTHOUSE_TOTAL_TIMEOUT_MS = 240_000;
+const LIGHTHOUSE_TOTAL_TIMEOUT_MS = 600_000;
 const CHROME_START_TIMEOUT_MS = 20_000;
 const CHROME_STOP_TIMEOUT_MS = 5_000;
 const CHROME_STDERR_LIMIT = 2_000;
@@ -262,40 +271,42 @@ function assertProfileConfiguration(lhr, profileName) {
 
 async function runAudits({ server, chrome, temporaryReportDirectory }) {
   const thresholdFailures = [];
-  for (const profile of profiles) {
-    for (let repeat = 1; repeat <= repeats; repeat += 1) {
-      const result = await completeWithin(
-        lighthouse(`${server.origin}/index.html`, {
+  for (const page of pages) {
+    for (const profile of profiles) {
+      for (let repeat = 1; repeat <= repeats; repeat += 1) {
+        const auditLabel = `${page} ${profile.name} run ${repeat}`;
+        const result = await completeWithin(
+          lighthouse(`${server.origin}/${page}`, {
           port: chrome.port,
           output: 'json',
           logLevel: 'error',
           onlyCategories: categories,
           disableStorageReset: false
-        }, profile.config),
-        LIGHTHOUSE_RUN_TIMEOUT_MS,
-        `Lighthouse ${profile.name} run ${repeat}`
-      );
-      assert.ok(result, `Lighthouse ${profile.name} run ${repeat}: returned a result`);
-      assert.equal(result.lhr.runtimeError, undefined,
-        `Lighthouse ${profile.name} run ${repeat}: completed without runtime error`);
-      assertProfileConfiguration(result.lhr, profile.name);
-      await writeFile(
-        join(temporaryReportDirectory, `${profile.name}-${repeat}.report.json`),
+          }, profile.config),
+          LIGHTHOUSE_RUN_TIMEOUT_MS,
+          `Lighthouse ${auditLabel}`
+        );
+        assert.ok(result, `Lighthouse ${auditLabel}: returned a result`);
+        assert.equal(result.lhr.runtimeError, undefined,
+          `Lighthouse ${auditLabel}: completed without runtime error`);
+        assertProfileConfiguration(result.lhr, profile.name);
+        await writeFile(
+        join(temporaryReportDirectory, `${page.replace(/\.html$/, '')}-${profile.name}-${repeat}.report.json`),
         result.report,
         'utf8'
-      );
+        );
 
       const fontRequests = result.lhr.audits['network-requests']?.details?.items;
       assert.ok(Array.isArray(fontRequests),
-        `Lighthouse ${profile.name} run ${repeat}: reports network requests for font verification`);
+        `Lighthouse ${auditLabel}: reports network requests for font verification`);
       const externalFontRequests = fontRequests.filter(({ url }) => /fonts\.(?:googleapis|gstatic)\.com/i.test(url));
       assert.equal(externalFontRequests.length, 0,
-        `Lighthouse ${profile.name} run ${repeat}: makes no Google Fonts network requests`);
+        `Lighthouse ${auditLabel}: makes no Google Fonts network requests`);
 
       const scoreSummary = categories.map(category => {
         const score = result.lhr.categories[category]?.score;
         assert.equal(typeof score, 'number',
-          `Lighthouse ${profile.name} run ${repeat}: ${category} score is available`);
+          `Lighthouse ${auditLabel}: ${category} score is available`);
         if (score < 0.9) {
           const diagnostics = category === 'performance'
             ? performanceDiagnosticAudits.map(auditId => {
@@ -308,13 +319,14 @@ async function runAudits({ server, chrome, temporaryReportDirectory }) {
               ).join(', ')
             : '';
           thresholdFailures.push(
-            `${profile.name} run ${repeat}: ${category}=${score.toFixed(2)} (minimum 0.90)` +
+            `${auditLabel}: ${category}=${score.toFixed(2)} (minimum 0.90)` +
             (diagnostics ? ` [${diagnostics}]` : '')
           );
         }
         return `${category}=${score.toFixed(2)}`;
       });
-      console.log(`LIGHTHOUSE ${profile.name} run ${repeat}: ${scoreSummary.join(' ')}`);
+        console.log(`LIGHTHOUSE ${page} ${profile.name} run ${repeat}: ${scoreSummary.join(' ')}`);
+      }
     }
   }
 
@@ -382,4 +394,4 @@ async function runLighthouseQa() {
 }
 
 await runLighthouseQa();
-console.log('PASS Lighthouse mobile/default and desktop/preset profiles meet every 0.90 category threshold in both runs');
+console.log('PASS Lighthouse 28 representative-page audits meet every 0.90 category threshold');
