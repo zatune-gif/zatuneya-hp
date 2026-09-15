@@ -177,7 +177,7 @@ button,a{font:inherit}button{color:inherit}img{display:block;max-width:100%}
 .header-inner{display:flex;min-height:80px;align-items:center;justify-content:space-between;gap:var(--space-20);width:min(100% - 64px,1200px)}
 .brand{display:inline-flex;min-width:240px;min-height:var(--size-control);flex:0 0 auto;align-items:center;gap:var(--space-8);color:var(--ink);font-family:var(--font-serif);font-size:20px;font-weight:900;text-decoration:none}
 .brand-mark{display:grid;width:56px;height:56px;padding:4px;place-items:center;border:0;border-radius:16px 20px 16px 22px;background:var(--teal-wash);color:var(--teal-dark);font-family:var(--font-sans);font-size:16px;line-height:1}
-.brand-copy{display:grid;line-height:1.2}.brand-copy strong{font-size:28px}.brand-copy small{margin-top:2px;font-family:var(--font-sans);font-size:10px;font-weight:700;letter-spacing:.04em}
+.brand-copy{display:grid;line-height:1.2}.brand-copy strong{font-size:28px}.brand-copy small{margin-top:2px;font-family:var(--font-sans);font-size:12px;font-weight:700;letter-spacing:.04em}
 .brand-mark path{fill:none;stroke:var(--teal-dark);stroke-linecap:round;stroke-linejoin:round;stroke-width:2.4}.brand-mark path:nth-child(2){stroke-width:2.8}
 .comp-nav{display:flex;align-items:center;gap:var(--space-12);font-size:14px;font-weight:700}
 .site-nav__link,.site-nav__dropdown-trigger{display:inline-flex;min-height:var(--size-control);align-items:center;padding-inline:var(--space-4);border:0;border-bottom:2px solid transparent;background:transparent;color:var(--ink);cursor:pointer;text-decoration:none}

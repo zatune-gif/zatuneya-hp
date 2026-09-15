@@ -19,6 +19,8 @@ check(existsSync(join(root, 'nav.js')), 'nav.js exists (shared, read-only)');
 
 const faq = readFileSync(join(root, 'faq.html'), 'utf8');
 const contact = readFileSync(join(root, 'contact.html'), 'utf8');
+const pageCss = readFileSync(join(root, 'faq-contact-comp.css'), 'utf8');
+check(!/font-family:\s*['"]Noto (?:Sans|Serif) JP['"],\s*(?:sans-)?serif/.test(pageCss), 'FAQ controls use the shared Japanese system fallback stacks');
 
 for (const [name, html] of [['faq.html', faq], ['contact.html', contact]]) {
   check(/<html lang="ja">/i.test(html), `${name} declares Japanese`);

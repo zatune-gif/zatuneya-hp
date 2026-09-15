@@ -40,6 +40,7 @@ const requiredCopy = [
   '3か月でやること', '受け取れるもの', 'こんな会社に向いています',
   '必要なところから始められます', 'AI実務研修', 'AI経営改善パッケージ', 'AI活用伴走',
   'はじめてのご相談から', '無料診断', 'ご相談（30分・無料）', '小さく試す', 'パッケージで変える', '伴走で広げる',
+  '成長段階の考え方をくわしく見る',
   'どの段階からでも始められます。「まず話を聞いてみたい」で構いません。',
   '「教えられる人」が、現場に入ります',
   '教えられる実装者', '現場でのデジタル化推進経験', '業務整理から入れる',
@@ -98,8 +99,7 @@ const expectedImages = [
   ['./assets/comp-parts/package-dashboard.png', '149', '124'],
   ['./assets/comp-parts/service-training.png', '162', '103'],
   ['./assets/comp-parts/service-design.png', '162', '103'],
-  ['./assets/comp-parts/service-support.png', '177', '103'],
-  ['./assets/comp-parts/representative.png', '185', '171']
+  ['./assets/comp-parts/service-support.png', '177', '103']
 ];
 for (const [src, width, height] of expectedImages) {
   const escaped = src.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -108,6 +108,11 @@ for (const [src, width, height] of expectedImages) {
 }
 assert.match(sectionMarkup('hero'), /<source\b(?=[^>]*media="\(max-width: 480px\)")(?=[^>]*srcset="\.\/assets\/comp-parts\/hero-mobile\.png")[^>]*>/, 'Hero uses the dedicated SP crop');
 assert.match(sectionMarkup('why-us'), /data-asset-status="comp-placeholder"/, 'representative crop is marked provisional');
+assert.match(sectionMarkup('why-us'), /src="\.\/assets\/representative-portrait-placeholder\.svg"/, 'TOP uses the same neutral representative placeholder as profile');
+assert.equal(existsSync(resolve(root, 'assets/comp-parts/representative.png')), false, 'misleading unreferenced representative crop is absent from delivery assets');
+assert.match(sectionMarkup('journey'), /href="\.\/growth\.html"[^>]*>成長段階の考え方をくわしく見る<\/a>/, 'TOP provides the approved route to growth details');
+assert.match(sharedCss, /\.brand-copy small\{[^}]*font-size:12px/s, 'brand descriptor respects the 12px text floor');
+assert.match(pageCss, /\.service-price small\{font-size:12px/s, 'service supplemental copy respects the 12px text floor');
 assert.doesNotMatch(html, /\.\/assets\/v3-(?:hero|package|service|representative)[^"']*\.(?:jpg|png)/, 'TOP does not use AI-generated V3 images');
 
 assert.match(html, /<link rel="stylesheet" href="\.\/top-comp\.css">[\s\S]*<link rel="stylesheet" href="\.\/v3-top-page\.css">/, 'shared CSS loads before TOP CSS');

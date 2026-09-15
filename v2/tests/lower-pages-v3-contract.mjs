@@ -79,6 +79,12 @@ function metaContent(html, attribute, name) {
 
 check(managedPages.length === 15, 'managed inventory is TOP + 12 active existing lower pages + growth/tools = 15');
 check(!existsSync(join(root, 'service-order.html')), 'unpublished obsolete order page is removed without a retirement notice');
+for (const asset of [
+  'v3-hero-workflow-640.jpg', 'v3-hero-workflow-768.jpg', 'v3-hero-workflow-960.jpg',
+  'v3-hero-workflow.jpg', 'v3-representative-placeholder.jpg',
+  'v3-service-design.jpg', 'v3-service-training.jpg'
+]) check(!existsSync(join(root, 'assets', asset)), `unreferenced delivery asset is absent: ${asset}`);
+check(!existsSync(join(root, 'qa-screenshots', 'service-order')), 'obsolete service-order screenshot directory is absent');
 
 for (const page of managedPages) {
   const path = join(root, page);

@@ -95,3 +95,20 @@ growthのフッターリンクに自然Tabで到達する2幅のテストがFAIL
 今回再実行した検証は、verify-v2 **580 PASS**、TOP **50コピー・10セクション・6FAQ PASS**、works/profile **115 PASS**、services **237 PASS**、FAQ/contact **138 PASS**、legal/status **212 PASS**、共通下層 **479 PASS**、現行本文 **106 PASS**、情報本文 **8ページPASS**です。各コマンドexit 0、diff --checkもエラー0。検証数の正値は580/212であり、途中版の581/214は採用しません。
 
 上のLighthouse28回・axe・3ブラウザ・画面目視・コントラストの結果は前回実装時の測定です。今回の記録のみの更新では再実行していません。既存TOP寸法3未達、Windows WebKit自然Tab2未達、外部フォーム送受信・実Safari・法務専門レビュー未実施は引き続き明記します。最適化確認：対象項目に追加修正を要する問題なし（実装変更不要）。
+
+## Claude Codeレビュー後の非掲載内容修正
+
+公開前にまとめて確定する掲載文・料金・法務・FAQ本文は変更せず、表示・操作・配信物の指摘だけを修正しました。
+
+- TOPから `growth.html` への承認済み導線「成長段階の考え方をくわしく見る」を進め方の末尾へ復活。
+- TOPの代表者画像を `profile.html` と同じ中立SVGへ統一。実在人物に見えるカンプ切り出し画像を代表者名の横に表示しません。
+- ヘッダーのブランド補足を10pxから12px、TOPサービス料金補足を11pxから12pxへ変更。
+- FAQ操作部とworks/profile見出しの直接フォント指定を、共通の日本語システムフォールバック変数へ統一。
+- WebKitではSafari既定設定により通常の文字リンクが自然Tab順へ入らないため、HTMLへ不自然な`tabindex`を追加せず、対象リンクをフォーカスした状態のEnter遷移を検証する契約へ修正。Chromium/Firefoxは自然Tab到達を引き続き検証。
+- 全ソースと資料からの参照が0件だった配信用画像7点（539,445 bytes）に加え、中立SVGへの統一後に未参照となった旧代表者カンプ切り出し1点（46,714 bytes）を削除。削除済み`service-order.html`のQA画像4点・メモ1点も整理しました。いずれもGit履歴から復元可能です。利用中の`v3-package-dashboard.jpg`と、再利用テンプレートが参照する`v3-service-support.jpg`は保持。
+
+修正後の静的検証はverify-v2 **581 PASS**、TOP **51コピー・10セクション・6FAQ PASS**、works/profile **116 PASS**、services **237 PASS**、FAQ/contact **139 PASS**、legal/status **212 PASS**、共通下層 **487 PASS**。全15ページの3エンジン×4幅ブラウザ検証は **992 PASS**、TOPブラウザは4幅・キーボード・storage拒否・BFCache・reduced-motionをPASS。クロスブラウザ代表検証は3エンジン×3幅の **9 PASS**、CTA状態コントラストは5状態すべて6.896:1以上。axeは15ページ×mobile/desktop×immediate/settledの **60スキャンでWCAG 2/2.1 A/AA違反0**。LighthouseはTOP＋growth＋tools＋services＋service-management＋faq＋worksをmobile/desktop各2回の **28測定**で、performance 0.99〜1.00、accessibility／best practices／SEOはすべて1.00でした。
+
+TOPのSP視覚予算は合格扱いにしていません。375pxの総高は修正前基準8837pxから8899px（+62px）、視覚差分のaspect errorは42.82%から43.82%（+1.00ポイント）です。追加した成長段階導線の表示領域による意図した増加であり、文字サイズ下限と確定本文を犠牲にした圧縮や閾値緩和は行いません。色・輪郭の正規化スコアは0.1748で0.22以内ですが、geometry 3件とaspect 1件は引き続き既知未達として扱います。
+
+本タスクで保留した掲載内容は、特商法キャンセル条項、TOP FAQ2件、税別表記、匿名事例の実データです。本番昇格・root置換・index-v2削除・robots/noindex・sitemap・親gitlink・mainは変更していません。

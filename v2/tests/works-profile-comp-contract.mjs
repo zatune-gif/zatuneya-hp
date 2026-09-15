@@ -1,4 +1,8 @@
 import { check, checks, commonPage, html, text } from './lower-current-contract-helpers.mjs';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+const pageCss = readFileSync(resolve(import.meta.dirname, '..', 'works-profile-comp.css'), 'utf8');
+check(!/font-family:\s*['"]Noto Sans JP['"],\s*sans-serif/.test(pageCss), 'works/profile headings use the shared Japanese system fallback stack');
 for (const page of ['works.html', 'profile.html']) {
   const source = commonPage(page);
   check(source.includes('href="./' + page + '" aria-current="page"'), page + ' current navigation');
