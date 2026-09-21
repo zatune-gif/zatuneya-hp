@@ -1,5 +1,5 @@
 import { createServer } from 'node:http';
-import { existsSync, statSync, createReadStream } from 'node:fs';
+import { existsSync, statSync, createReadStream, readFileSync } from 'node:fs';
 import { extname, resolve, sep } from 'node:path';
 
 const MIME_TYPES = {
@@ -18,7 +18,7 @@ function sendStatus(response, statusCode, message) {
   response.end(message);
 }
 
-export async function startQaServer(rootDirectory) {
+export async function startQaServer(rootDirectory, { stripNoindexForReadiness = false } = {}) {
   const root = resolve(rootDirectory);
   const rootPrefix = `${root}${sep}`;
   const server = createServer((request, response) => {
@@ -53,6 +53,12 @@ export async function startQaServer(rootDirectory) {
     });
     if (request.method === 'HEAD') {
       response.end();
+      return;
+    }
+    if (stripNoindexForReadiness && extname(filePath).toLowerCase() === '.html') {
+      // Explicit localhost-only QA mode. Source files and normal responses retain noindex.
+      const html = readFileSync(filePath, 'utf8');
+      response.end(html.replace(/<meta\s+name="robots"\s+content="noindex,follow">/i, ''));
       return;
     }
     createReadStream(filePath).pipe(response);
