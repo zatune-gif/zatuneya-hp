@@ -8,6 +8,9 @@ import lighthouse, { desktopConfig } from 'lighthouse';
 import { startQaServer } from './qa-server.mjs';
 
 const root = resolve(import.meta.dirname, '..');
+const stagingNoindex = process.argv.includes('--staging-noindex');
+const promotionReadiness = process.argv.includes('--promotion-readiness');
+assert.ok(!(stagingNoindex && promotionReadiness), 'choose only one Lighthouse QA mode');
 const categories = ['performance', 'accessibility', 'best-practices', 'seo'];
 const performanceDiagnosticAudits = [
   'first-contentful-paint',
@@ -29,7 +32,8 @@ const pages = [
   'faq.html',
   'works.html'
 ];
-const repeats = 2;
+const selectedPages = stagingNoindex || promotionReadiness ? ['index.html', 'services.html'] : pages;
+const repeats = stagingNoindex || promotionReadiness ? 1 : 2;
 const LIGHTHOUSE_RUN_TIMEOUT_MS = 90_000;
 const LIGHTHOUSE_TOTAL_TIMEOUT_MS = 600_000;
 const CHROME_START_TIMEOUT_MS = 20_000;
@@ -271,7 +275,7 @@ function assertProfileConfiguration(lhr, profileName) {
 
 async function runAudits({ server, chrome, temporaryReportDirectory }) {
   const thresholdFailures = [];
-  for (const page of pages) {
+  for (const page of selectedPages) {
     for (const profile of profiles) {
       for (let repeat = 1; repeat <= repeats; repeat += 1) {
         const auditLabel = `${page} ${profile.name} run ${repeat}`;
@@ -303,11 +307,20 @@ async function runAudits({ server, chrome, temporaryReportDirectory }) {
       assert.equal(externalFontRequests.length, 0,
         `Lighthouse ${auditLabel}: makes no Google Fonts network requests`);
 
+      if (stagingNoindex) {
+        const crawlable = result.lhr.audits['is-crawlable'];
+        assert.equal(crawlable?.score, 0, `Lighthouse ${auditLabel}: only intentional noindex makes page non-crawlable`);
+        const failedSeoAudits = Object.values(result.lhr.categories.seo.auditRefs)
+          .filter(reference => reference.weight > 0 && typeof result.lhr.audits[reference.id]?.score === 'number' && result.lhr.audits[reference.id].score < 1)
+          .map(reference => reference.id);
+        assert.deepEqual(failedSeoAudits, ['is-crawlable'], `Lighthouse ${auditLabel}: no other SEO audit fails`);
+      }
+
       const scoreSummary = categories.map(category => {
         const score = result.lhr.categories[category]?.score;
         assert.equal(typeof score, 'number',
           `Lighthouse ${auditLabel}: ${category} score is available`);
-        if (score < 0.9) {
+        if (score < 0.9 && !(stagingNoindex && category === 'seo')) {
           const diagnostics = category === 'performance'
             ? performanceDiagnosticAudits.map(auditId => {
                 const audit = result.lhr.audits[auditId];
@@ -325,7 +338,7 @@ async function runAudits({ server, chrome, temporaryReportDirectory }) {
         }
         return `${category}=${score.toFixed(2)}`;
       });
-        console.log(`LIGHTHOUSE ${page} ${profile.name} run ${repeat}: ${scoreSummary.join(' ')}`);
+        console.log(`LIGHTHOUSE ${stagingNoindex ? 'staging-noindex' : promotionReadiness ? 'promotion-readiness-local-only' : 'standard'} ${page} ${profile.name} run ${repeat}: ${scoreSummary.join(' ')}`);
       }
     }
   }
@@ -346,7 +359,7 @@ async function runLighthouseQa() {
 
   try {
     const chromePath = await resolveChromePath();
-    server = await startQaServer(root);
+    server = await startQaServer(root, { stripNoindexForReadiness: promotionReadiness });
     assertLocalhostOrigin(server.origin);
     chrome = await launchChrome({ chromePath, userDataDir: chromeProfileDirectory });
     await completeWithin(
@@ -394,4 +407,8 @@ async function runLighthouseQa() {
 }
 
 await runLighthouseQa();
-console.log('PASS Lighthouse 28 representative-page audits meet every 0.90 category threshold');
+console.log(stagingNoindex
+  ? 'PASS Lighthouse staging noindex: 4 audits; SEO reported as served, only is-crawlable intentionally fails'
+  : promotionReadiness
+    ? 'PASS Lighthouse local-only promotion readiness: 4 audits meet every 0.90 category threshold (not the served SEO score)'
+    : 'PASS Lighthouse 28 representative-page audits meet every 0.90 category threshold');
