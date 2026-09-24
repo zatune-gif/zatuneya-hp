@@ -13,7 +13,9 @@ const faultStyles = {
   'remove-gutter': '.problem-card{transform:translateX(-32px)!important}',
   'image-aspect': '.hero-visual{height:96px!important}',
   'card-columns': '@media(max-width:400px){.problem-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}',
-  'hide-section': '#tools{display:none!important}'
+  'hide-section': '#tools{display:none!important}',
+  'mobile-padding-inflation': '@media(min-width:361px) and (max-width:400px){.section{padding-block:286px!important}}',
+  'second-problem-padding-inflation': '@media(max-width:400px){.problem-card:nth-child(2){padding:80px!important}}'
 };
 if (injectedFault) assert.ok(faultStyles[injectedFault], `known injected fault: ${injectedFault}`);
 
@@ -81,7 +83,12 @@ try {
       const many = selector => [...document.querySelectorAll(selector)].map(rect);
       const fontSizes = selector => [...document.querySelectorAll(selector)].filter(element => element.getClientRects().length).map(element => Number.parseFloat(getComputedStyle(element).fontSize));
       const targetSizes = selector => [...document.querySelectorAll(selector)].filter(element => element.getClientRects().length).map(element => ({ selector: element.className || element.tagName, ...rect(element) }));
+      const spacing = target => {
+        const style = getComputedStyle(typeof target === 'string' ? document.querySelector(target) : target);
+        return { top: parseFloat(style.paddingTop), bottom: parseFloat(style.paddingBottom), left: parseFloat(style.paddingLeft), right: parseFloat(style.paddingRight), rowGap: parseFloat(style.rowGap), columnGap: parseFloat(style.columnGap) };
+      };
       return {
+        totalHeight: document.documentElement.scrollHeight,
         overflow: document.documentElement.scrollWidth > innerWidth,
         sectionIds: [...document.querySelectorAll('main > section[id]')].map(section => section.id),
         sectionBoxes: Object.fromEntries([...document.querySelectorAll('main > section[id]')].map(section => [section.id, rect(section)])),
@@ -99,7 +106,12 @@ try {
         faqItems: many('.faq-item'),
         captions: fontSizes('.brand-copy small,.service-price small,.sticky-cta__description,.footer-row small'),
         mobileBody: fontSizes('.hero-lead,.problem-card p,.package-heading>p:last-child,.package-column li,.service-card p,.journey-steps span,.why-us-points p,.case-card>p:not(.case-type),.tool-card p'),
-        primaryTargets: targetSizes('.v3-button,.service-card .card-link,.tool-action,.faq-trigger,.sticky-cta__btn,.sticky-cta__close')
+        primaryTargets: targetSizes('.v3-button,.service-card .card-link,.tool-action,.faq-trigger,.sticky-cta__btn,.sticky-cta__close'),
+        mobileSpacing: {
+          sections: Object.fromEntries([...document.querySelectorAll('main > section.section[id]')].map(section => [section.id, spacing(`#${section.id}`)])),
+          problemGrid: spacing('.problem-grid'), problemCards: [...document.querySelectorAll('.problem-card')].map(spacing),
+          packagePanel: spacing('.package-panel'), serviceGrid: spacing('.service-grid')
+        }
       };
     });
 
@@ -118,6 +130,12 @@ try {
     check(layout.primaryTargets.every(target => target.width >= 44 && target.height >= 44), `${width}: primary interactive targets stay at least 44x44px`);
 
     if (width <= 400) {
+      const space = layout.mobileSpacing;
+      check(JSON.stringify(Object.keys(space.sections)) === JSON.stringify(expectedSections.slice(1, -1)), `${width}: all eight padded content sections are measured`);
+      check(Object.entries(space.sections).every(([id, section]) => near(section.top, id === 'package' ? 32 : 44) && near(section.bottom, id === 'package' ? 32 : 44)), `${width}: mobile section padding retains the approved 44/32px rhythm (total ${layout.totalHeight}px)`);
+      check(near(space.problemGrid.rowGap, 12) && space.problemCards.length === 4 && space.problemCards.every(card => near(card.top, 20) && near(card.bottom, 20) && near(card.left, 20) && near(card.right, 20)), `${width}: all four problem cards retain 12px gap and 20px inset`);
+      check(near(space.packagePanel.top, 20) && near(space.packagePanel.bottom, 20) && near(space.packagePanel.left, 20) && near(space.packagePanel.right, 20) && near(space.packagePanel.rowGap, 20) && near(layout.packagePhoto.height, 170), `${width}: package retains 20px inset/gap and 170px photograph`);
+      check(near(space.serviceGrid.rowGap, 20) && layout.serviceCards.every(card => card.width >= width - 41), `${width}: services retain 20px gap and content-column width`);
       check(layout.heroPhoto.y < layout.heroCopy.y && Math.abs(layout.heroPhoto.height - mobileHeroHeightAt375) <= tolerance.mobileHeroHeightAt375Px, `${width}: mobile Hero keeps the comp-derived photo-first height`);
       check(Math.abs(layout.heroPhoto.width / width - mobileHeroWidthRatio) <= tolerance.mobileHeroWidthRatio, `${width}: mobile Hero photograph keeps the comp-derived inset width`);
       check(uniqueNear(layout.problemCards.map(card => card.x)).length === 1 && increasing(layout.problemCards.map(card => card.y)), `${width}: four problem cards form one vertical sequence`);

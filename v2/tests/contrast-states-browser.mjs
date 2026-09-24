@@ -33,9 +33,13 @@ try {
   await page.mouse.move(1, 1); await button.focus();
   assert.deepEqual(await button.evaluate((element) => ({ hover: element.matches(':hover'), focus: element.matches(':focus') })), { hover: false, focus: true });
   assertAa(await colors(button), '404 V3 primary focus');
+  await button.evaluate((element) => { element.addEventListener('click', () => { window.__qaActiveLinkClicked = true; }); });
   const box = await button.boundingBox(); assert.ok(box); await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2); await page.mouse.down();
   assert.equal(await button.evaluate((element) => element.matches(':active')), true);
-  assertAa(await colors(button), '404 V3 primary active'); await page.mouse.up();
+  assertAa(await colors(button), '404 V3 primary active');
+  await page.mouse.move(1, 1); await page.mouse.up();
+  assert.equal(page.url(), `${server.origin}/404.html`, 'active style measurement must stay on the 404 document');
+  assert.equal(await page.evaluate(() => window.__qaActiveLinkClicked), undefined, 'active style measurement must not activate the contact link');
   await page.goto(`${server.origin}/service-training.html`, { waitUntil: 'domcontentloaded' });
   assertAa(await colors(page.locator('#pricing .v3-button--primary')), 'training pricing action');
   await page.close();
