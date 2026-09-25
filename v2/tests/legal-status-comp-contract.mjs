@@ -9,11 +9,14 @@ const origin = 'https://zatune-gif.github.io/zatuneya-hp/v2/';
 let checks = 0;
 const check = (condition, message) => { checks += 1; assert.ok(condition, message); };
 
-const cssPath = join(root, 'legal-status-comp.css');
-check(existsSync(cssPath), 'legal-status-comp.css exists');
+const cssPath = join(root, 'lower-info-pages.css');
+check(existsSync(cssPath), 'lower-info-pages.css exists');
 const css = readFileSync(cssPath, 'utf8');
-check(css.includes('.legal-hero'), 'legal-status-comp.css defines the legal/status hero block');
-check(css.includes('.status-band'), 'legal-status-comp.css defines the dark status CTA band');
+const sharedCss = readFileSync(join(root, 'top-comp.css'), 'utf8');
+check(/\.btn-teal\{[^}]*background:var\(--teal\)[^}]*color:var\(--ink\)/.test(sharedCss), 'shared teal button uses AA ink on teal');
+check(/\.btn-teal:hover\{[^}]*background:var\(--teal-dk\)[^}]*color:var\(--surface\)/.test(sharedCss), 'shared teal button hover uses AA surface text on dark teal');
+check(css.includes('.lpi-hero'), 'lower-info-pages.css defines the info-page hero block');
+check(css.includes('.lpi-legal-table'), 'lower-info-pages.css defines the responsive legal table');
 
 const pages = {
   'privacy.html': {
@@ -25,8 +28,8 @@ const pages = {
     bodyTokens: ['販売業者', '運営統括責任者', '支払方法', 'キャンセル・返品について'],
   },
   'thank-you.html': {
-    headings: ['送信が完了しました', 'STATUS / ページ状態'],
-    bodyTokens: ['3営業日以内', 'トップへ戻る', '無料相談'],
+    headings: ['送信が完了しました'],
+    bodyTokens: ['内容を確認してご連絡いたします。', 'トップへ戻る', 'サービスを見る'],
   },
   '404.html': {
     headings: ['ページが見つかりません', 'STATUS / ページ状態', '404'],
@@ -45,13 +48,21 @@ for (const [page, spec] of Object.entries(pages)) {
     `${page} has the V2 canonical URL`
   );
   check(!/style\s*=/.test(html), `${page} adds no inline styles`);
-  check(html.includes('legal-status-comp.css'), `${page} loads the dedicated page-group stylesheet`);
+  check(/top-comp\.css[\s\S]*lower-page-template\.css[\s\S]*lower-info-pages\.css/.test(html), `${page} loads V3 styles in order`);
+  check(html.includes('<main id="main" class="lp-page">'), `${page} uses lower-page main contract`);
+  check(/<section id="hero" class="lp-hero(?:\s|\")/.test(html), `${page} uses lower-page hero contract`);
   check(html.includes('top-comp.css'), `${page} loads the shared TOP comp stylesheet`);
   check(html.includes('<script src="./nav.js" defer></script>'), `${page} includes nav.js`);
-  check(html.includes('class="comp-header"'), `${page} reuses the confirmed TOP header block`);
+  check(html.includes('class="comp-header"'), `${page} reuses the V3 header block without reveal animation`);
   check(html.includes('class="comp-footer"'), `${page} reuses the confirmed TOP footer block`);
   check(html.includes('© 2026 ざつね屋'), `${page} shows the 2026 copyright notice`);
   check(!html.includes('style.css'), `${page} no longer links the legacy shared stylesheet`);
+  check((html.match(/<meta name="zatuneya:diagnosis-url"/g) ?? []).length === 1, `${page} has one diagnosis meta`);
+  check(!html.includes('https://han-ai-diagnosis.netlify.app/'), `${page} removes the legacy diagnosis URL`);
+  check(/<a\b[^>]*\bdata-diagnosis-link\b/.test(html), `${page} delegates diagnosis links`);
+  check(html.includes('site-nav__dropdown-trigger') && html.includes('site-nav__link'), `${page} keeps V3 navigation hooks`);
+  check(html.includes('href="./index.html#journey"'), `${page} includes journey anchor`);
+  for (const href of ['./index.html', './services.html', './works.html', './profile.html', './contact.html']) check(html.includes(`href="${href}"`), `${page} V3 nav includes ${href}`);
 
   for (const heading of spec.headings) {
     check(html.includes(heading), `${page} contains comp heading text: ${heading}`);

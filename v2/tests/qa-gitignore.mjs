@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { execFileSync, spawnSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const repositoryRoot = resolve(import.meta.dirname, '..', '..');
@@ -21,6 +22,10 @@ for (const manifest of ['package.json', 'package-lock.json']) {
     stdio: 'ignore'
   });
 }
+const packageJson = JSON.parse(readFileSync(resolve(repositoryRoot, 'package.json'), 'utf8'));
+assert.equal(packageJson.scripts?.['qa:contrast-states'], 'node ./v2/tests/contrast-states-browser.mjs', 'package exposes computed contrast state QA');
+assert.ok(packageJson.scripts?.qa?.includes('npm run qa:contrast-states'), 'standard qa includes computed contrast states');
+assert.ok(packageJson.scripts?.['qa:all']?.includes('npm run qa'), 'qa:all reaches computed contrast states through the standard qa gate');
 assertIgnoreStatus('node_modules/qa-gitignore-sentinel.js', true, 'node_modules remains ignored');
 assertIgnoreStatus('shoot.mjs', true, 'the local screenshot helper remains ignored');
 assertIgnoreStatus('.worktrees/qa-gitignore-sentinel', true, 'local worktrees remain ignored');

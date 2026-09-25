@@ -2,3 +2,4 @@
 node_modules/
 shoot.mjs
 /.worktrees/
+/.pages-artifact/
