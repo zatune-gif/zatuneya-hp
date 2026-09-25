@@ -23,8 +23,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build and verify publication package
+        run: node tools/publication-package.mjs build
+      - name: Require staging noindex before upload
+        run: node tools/publication-package.mjs staging-gate
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: .pages-artifact
       - id: deployment
         uses: actions/deploy-pages@v4

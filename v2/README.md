@@ -25,7 +25,9 @@ npm run qa:lighthouse
 
 `qa:lower-pages-browser` は320/375/768/1280×3ブラウザで確認します。最終微修正だけ再確認する場合は `--pages=faq.html,contact.html` のように対象を指定できます。axeも同じ指定が可能です。全ページ指定を外すと既定の全管理ページが対象です。
 
-`qa:all` には既存TOP寸法予算3項目とWindows WebKitの自然Tab2項目に未達があります。閾値を緩和せず、上記記録に対照証拠を残しています。全緑との誤認に注意してください。
+2026-09-24のQA安定化後、Windowsでの `qa:all` はPASSしています。実GitHub Actionsのフォント・ブラウザ環境ではまだ未実測のため、初回PR CIの結果は別途確認してください。閾値は緩和していません。
+
+公開物の差分を確認するときはリポジトリルートで `npm run qa:publication-test`、`npm run publication:build`、`npm run qa:publication-browser` を実行します。生成先は `.pages-artifact/` です。内部資料・QA画像はGitに保持し、Pages配信から除外します。公開ファイルの追加時は `tools/publication-files.txt` の明示一覧とHTML許可一覧をレビューして更新してください。GitHub ActionsのPR QAは `main` または `codex/v3-lower-pages` をbaseにするPRだけが対象です。公開フローは従来どおりmainへのpushで動き、v2直下16ページの `noindex,follow` が揃わなければアップロード前に停止します。
 
 ## 画像と問い合わせ
 

@@ -1,6 +1,6 @@
 # HP公開物とCIの設計提案（2026-09-24）
 
-状態：承認前の設計案。実装、PRマージ、本番公開を許可する文書ではない。
+状態：HP公開物パッケージとHP用PR CIは2026-09-24にユーザー承認済み。ローカル実装・検証の記録は`docs/qa/2026-09-24-publication-package.md`。PRマージ、本番公開、診断ツール側の変更はこの承認に含まれない。
 
 ## 目的と変更境界
 
@@ -9,7 +9,7 @@ GitHub Pagesで現在配信しているルートページと`v2/`のURL、HTML�
 ## 現状
 
 - HPの`.github/workflows/pages.yml`は`main`へのpushで`actions/upload-pages-artifact@v3`の`path: .`を公開する。ルートには現行公開HTML、CSS、JavaScript、`assets/`、`robots.txt`、`sitemap.xml`、`.nojekyll`があり、`v2/`には次期ページとその素材がある。同じ公開アーティファクトに`docs/`、`v2/tests/`、`v2/qa-screenshots/`も入る。
-- PR #14のHEADは`71612aab6caf60e78fbfa877bffb754df078b828`。PR #15はPR #14をbaseとするstacked PRで、HEAD `bd7cf19b663410f9d2326670b7a10f30b5b6c56b`の`v2/`直下16 HTMLに`noindex,follow`を追加する。PR #14だけを`main`へマージすると、Pagesが`v2/`を検索可能な状態で直ちに公開する。
+- HP公開物作業の開始時PR #14のHEADは`c522593b0ea685ef54757f7b04668ac5acba432d`。PR #15はPR #14をbaseとするstacked PRで、HEAD `bd7cf19b663410f9d2326670b7a10f30b5b6c56b`の`v2/`直下16 HTMLに`noindex,follow`を追加する。PR #14だけを`main`へマージすると、Pagesが`v2/`を検索可能な状態で直ちに公開するため、実装ではアップロード前に16 HTMLのnoindex gateを追加した。
 - HPの`npm run qa:all`はリポジトリ内のカンプ画像とQA画像を相対パスで参照し、実行中に`v2/qa-screenshots/index/`の画像を更新する。ブラウザ検査、Lighthouse、画像比較には日本語フォントとChromeの実行環境が影響する。
 - 診断ツールの`netlify.toml`は`publish = "."`、`functions = "netlify/functions"`。`index.html`は`diagnosis-simple.html`へのリダイレクトを担い、3つのFunctionは`@anthropic-ai/sdk`、`googleapis`、`nodemailer`を使用する。診断ツールの公開物変更はHPとは別段階で扱う。
 

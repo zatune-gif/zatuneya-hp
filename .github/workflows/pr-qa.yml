@@ -1,0 +1,32 @@
+name: HP pull request QA
+
+on:
+  pull_request:
+    branches: [main, codex/v3-lower-pages]
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: windows-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Install Playwright browsers
+        run: npx playwright install chromium firefox webkit
+      - name: Locate Google Chrome for Lighthouse
+        shell: pwsh
+        run: |
+          $chromePath = Join-Path ${env:ProgramFiles} 'Google\Chrome\Application\chrome.exe'
+          if (-not (Test-Path -LiteralPath $chromePath)) { throw "Google Chrome missing: $chromePath" }
+          "CHROME_PATH=$chromePath" >> $env:GITHUB_ENV
+      - run: npm run qa:all
+      - run: npm run qa:publication-test
+      - run: npm run publication:build
+      - run: npm run qa:publication-browser

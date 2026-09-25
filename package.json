@@ -5,6 +5,10 @@
   "type": "module",
   "description": "Reproducible static, browser, accessibility, and performance QA gates for all Zatuneya HP V3 staging pages.",
   "scripts": {
+    "publication:build": "node ./tools/publication-package.mjs build",
+    "publication:verify": "node ./tools/publication-package.mjs verify",
+    "qa:publication-test": "node --test ./v2/tests/publication-package.test.mjs",
+    "qa:publication-browser": "node ./v2/tests/publication-browser.mjs",
     "qa:lower-pages-contract": "node ./v2/tests/lower-pages-v3-contract.mjs",
     "qa:lower-pages-browser": "node ./v2/tests/lower-pages-v3-browser.mjs",
     "qa:verify": "node ./v2/tests/verify-v2.mjs",
