@@ -26,6 +26,8 @@ jobs:
           $chromePath = Join-Path ${env:ProgramFiles} 'Google\Chrome\Application\chrome.exe'
           if (-not (Test-Path -LiteralPath $chromePath)) { throw "Google Chrome missing: $chromePath" }
           "CHROME_PATH=$chromePath" >> $env:GITHUB_ENV
+      - name: Diagnose 320px Hero font before QA
+        run: node v2/tests/hero-font-diagnostic.mjs
       - run: npm run qa:all
       - run: npm run qa:publication-test
       - run: npm run publication:build
