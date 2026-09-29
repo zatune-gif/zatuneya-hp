@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, writeFile, readFile, rm, symlink, access } from 'node:fs/promises';
+import { mkdtemp, mkdir, writeFile, readFile, rm, symlink, access, realpath } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { buildPublication, verifyPublication, verifyStagingNoindex, stagingPages } from '../../tools/publication-package.mjs';
@@ -12,7 +12,7 @@ const buildFixture = (source, output) => buildPublication(source, output, option
 const verifyFixture = (source, output) => verifyPublication(source, output, options);
 
 async function fixture(fn) {
-  const dir = await mkdtemp(path.join(tmpdir(), 'hp-publish-test-'));
+  const dir = await realpath(await mkdtemp(path.join(tmpdir(), 'hp-publish-test-')));
   const source = path.join(dir, 'source');
   const output = path.join(dir, '.pages-artifact');
   await mkdir(path.join(source, 'assets'), { recursive: true });

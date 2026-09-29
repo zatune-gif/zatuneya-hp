@@ -142,7 +142,7 @@ async function assertSafeDestination(source, output) {
   const fixtureParent = path.dirname(absoluteSource);
   const fixtureAllowed = path.basename(absoluteSource) === 'source' &&
     path.basename(fixtureParent).startsWith('hp-publish-test-') &&
-    samePath(path.dirname(fixtureParent), path.resolve(tmpdir()));
+    samePath(path.dirname(fixtureParent), await realpath(tmpdir()));
   if (!samePath(absoluteSource, repo) && !fixtureAllowed) throw new Error(`unsafe publication destination: ${absoluteOutput}`);
   const allowedParent = samePath(absoluteSource, repo) ? repo : fixtureParent;
   if (path.basename(absoluteOutput) !== '.pages-artifact' || !samePath(parent, allowedParent) || samePath(absoluteOutput, absoluteSource)) {

@@ -18,6 +18,8 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
+      - run: npm run qa:publication-test
+      - run: npm run publication:build
       - name: Install Playwright browsers
         run: npx playwright install chromium firefox webkit
       - name: Locate Google Chrome for Lighthouse
@@ -28,7 +30,5 @@ jobs:
           "CHROME_PATH=$chromePath" >> $env:GITHUB_ENV
       - name: Diagnose 320px Hero font before QA
         run: node v2/tests/hero-font-diagnostic.mjs
-      - run: npm run qa:all
-      - run: npm run qa:publication-test
-      - run: npm run publication:build
       - run: npm run qa:publication-browser
+      - run: npm run qa:all
