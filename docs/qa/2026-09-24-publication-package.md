@@ -25,3 +25,9 @@
 PR用CIはWindows、Node 22、`npm ci`、Chromium/Firefox/WebKit、Chrome実行パス確認、`qa:all`、公開物契約、生成、生成物ブラウザを順に実行する。Pages workflowはmain push/手動起動のまま、生成後に限りアップロードする。実GitHub Actions環境、実Pagesアップロード・デプロイは未検証。フォント環境差による`qa:all`の結果は初回CIで確認し、閾値は緩和しない。
 
 公式参照: [GitHub Pages custom workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)、[Playwright CI](https://playwright.dev/docs/ci)。
+
+## 初回PR CIで判明したHero行数計測の環境差（2026-09-25）
+
+- [初回CI](https://github.com/zatune-gif/zatuneya-hp/actions/runs/36093632112)は`qa:all`内の320px Hero見出し検査で、期待2行に対し4行と判定され失敗。直前の静的581件、下層契約487件、下層ブラウザ992件はPASS。後続の公開物テスト・生成・ブラウザ検査はCI上ではskipされた。表示ファイルの差分は0件。
+- [診断CI](https://github.com/zatune-gif/zatuneya-hp/actions/runs/36094142998)のChromium 151では320pxの見出し・強調部幅が共に288px、文字は27px/800。CIの実使用フォントは`Yu Gothic`、ローカルは`Noto Serif JP`。CIの`Range.getClientRects()`は4件を返したが、上端と高さは(437,39)、(439,35)、(476,39)、(478,35)pxで、同一の視覚行に属するrectの上端が2pxずれていた。旧QAは上端値の集合数を行数とし、視覚上2行を4行と誤判定した。診断CIも同じ箇所で失敗した。
+- 修正はQAの行数測定に限定。rectの高さ比が1.5以内、縦区間が最小高さの半分以上重なり、中心差が最小高さの1/4以内なら同一視覚行とする。比較先は各行の最初のrectに固定し、背の高いfont runによる隣行との推移結合を防ぐ。期待2行と表示用HTML/CSS/フォントは変更しない。CI診断は既存QAサーバーのHTTP配信へ揃え、計測値だけを記録する。

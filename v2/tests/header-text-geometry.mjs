@@ -4,6 +4,7 @@ import { join, resolve } from 'node:path';
 import { chromium } from 'playwright';
 import { startQaServer } from './qa-server.mjs';
 import { managedPages } from './v3-lower-pages-fixture.mjs';
+import { countVisualLines } from './visual-line-boxes.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const desktopWidths = [1280, 1440, 1600, 1920, 2560];
@@ -41,8 +42,7 @@ try {
         const rects = [...range.getClientRects()].filter(({ width: rectWidth }) => rectWidth > 0);
         return {
           text: node.textContent,
-          lineCount: new Set(rects.map(({ top }) => Math.round(top))).size,
-          rects: rects.map(({ left, right, top, width: rectWidth }) => ({ left, right, top, width: rectWidth })),
+          rects: rects.map(({ left, right, top, height, width: rectWidth }) => ({ left, right, top, height, width: rectWidth })),
           viewportWidth: innerWidth
         };
       };
@@ -51,6 +51,7 @@ try {
         accentParts: [...heading.querySelectorAll('.hero-accent-part')].map(rangesFor)
       };
     });
+    for (const phrase of phrases.phrases) phrase.lineCount = countVisualLines(phrase.rects);
     check(phrases.phrases[0].text === 'AIを入れることより、', `${width}px Hero first phrase keeps canonical text`);
     check(phrases.phrases[0].lineCount === 1, `${width}px Hero first phrase stays on one meaningful line`);
     check(phrases.phrases[0].rects.every((rect) => rect.left >= 0 && rect.right <= phrases.phrases[0].viewportWidth), `${width}px Hero first phrase remains inside the viewport`);

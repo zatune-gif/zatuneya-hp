@@ -4,6 +4,7 @@ import { createServer } from 'node:http';
 import { existsSync, mkdirSync, readFileSync, renameSync, rmSync } from 'node:fs';
 import { extname, join, resolve, sep } from 'node:path';
 import { chromium } from 'playwright';
+import { countVisualLines } from './visual-line-boxes.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const screenshotDir = join(root, 'qa-screenshots', 'index');
@@ -144,7 +145,7 @@ async function assertHeroPhraseLines(targetPage, viewportWidth) {
       const rects = [...range.getClientRects()].filter((rect) => rect.width > 0);
       return {
         text: node.textContent,
-        lineCount: new Set(rects.map((rect) => Math.round(rect.top))).size,
+        rects: rects.map(({ top, height, width }) => ({ top, height, width })),
         top: Math.round(rects[0]?.top ?? -1),
         rectCount: rects.length,
         whiteSpace: node.nodeType === Node.ELEMENT_NODE ? getComputedStyle(node).whiteSpace : null
@@ -152,6 +153,7 @@ async function assertHeroPhraseLines(targetPage, viewportWidth) {
     };
     return [rectFor(first), rectFor(accent)];
   });
+  for (const phrase of layout) phrase.lineCount = countVisualLines(phrase.rects);
   assert.deepEqual(layout.map(({ text }) => text),
     ['AIを入れることより、', '仕事がよくなることから。'],
     `hero phrase text is exact at ${viewportWidth}px`);
