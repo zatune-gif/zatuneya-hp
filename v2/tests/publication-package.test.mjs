@@ -113,7 +113,7 @@ test('staging gate requires one noindex meta per v2 page', async () => fixture(a
   for (const name of stagingPages) {
     await writeFile(path.join(output, 'v2', name), '<html><head><meta name="robots" content="noindex,follow"></head><body></body></html>');
   }
-  assert.deepEqual(await verifyStagingNoindex(output), { pages: 16 });
+  assert.deepEqual(await verifyStagingNoindex(output), { pages: 17 });
   const page = path.join(output, 'v2', 'index.html');
   await writeFile(page, '<html><head></head><body><img src="./assets/pic.svg"></body></html>');
   await assert.rejects(verifyStagingNoindex(output), /noindex/);

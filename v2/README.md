@@ -1,36 +1,33 @@
-# V3下層ページ（レビュー用）
+# Ver.5 LP（レビュー用）
 
-TOPは `index.html`、14下層はサービス一覧・研修・経営改善・伴走・実績・代表・FAQ・contact・privacy・tokusho・thank-you・404・growth・toolsです。ここは `/v2/` のレビュー用で、本番ルートは変更していません。
+`index.html` に「業務の見直し支援（業務改善）」と「個別実装」を集約した13セクションのLPです。各サービスのオプションは「AI活用設計」「運用保守」です。現在の公開トップはルート直下の `index.html` であり、`/v2/` のLPは本番へ昇格していません。
 
-## 編集する場所
+## ページと導線
 
-- 外枠：`top-comp.css` と `nav.js`（TOPと共有）。
-- 共通本文：`lower-page-template.css`。サービス/実績/代表の差分は `lower-service-pages.css`、情報ページ差分は `lower-info-pages.css`。
-- ページ追加：[下層テンプレートの使い方](../docs/templates/lower-page-template.md)。
-- 本文の確定条件・例外・未検証範囲：[今回の実装・検証記録](../docs/qa/2026-09-15-lower-pages-v3.md)。
+- LPの見出し・料金・FAQは `v2/index.html` を確認してください。
+- 旧詳細ページからの案内は5秒後の移動と手動リンクを使います。移動先はLP内の該当アンカーです。
+- `service-banso.html` はリンクを外してファイルを残し、`noindex` を維持します。
+- 相談ボタンの実際の問い合わせ先は `contact.html` です。無料診断は `https://ai-shindan-zatuneya.netlify.app/` に接続します。
+- `v2/tokusho.html` はこのLP作業の変更対象外です。公開サイトの法定価格はルート直下の `tokusho.html` で先行更新します。
 
-## 確認する
+## デザインと編集
 
-リポジトリルートで実行します。初回は `npm install` と `npx playwright install chromium firefox webkit` が必要です。
+LPは既存V3の `top-comp.css`、`v3-top-page.css`、`lower-info-pages.css`、`nav.js` と既存のセクション・カード・表・折りたたみを使います。現V3の見出しフォントを維持します。`style.css` と `nav.js` のDOM契約は変更しません。
+
+## 確認
+
+リポジトリルートで依存を `npm ci` により導入してから、次を実行します。
 
 ```powershell
-npm run qa:verify
-npm run qa:comp-contracts
-npm run qa:lower-pages-contract
-node v2/tests/info-visual-interaction.mjs
-npm run qa:lower-pages-browser
-npm run qa:axe
-npm run qa:lighthouse
+npm run qa:all
 ```
 
-`qa:lower-pages-browser` は320/375/768/1280×3ブラウザで確認します。最終微修正だけ再確認する場合は `--pages=faq.html,contact.html` のように対象を指定できます。axeも同じ指定が可能です。全ページ指定を外すと既定の全管理ページが対象です。
+`qa:all` はVer.5の静的契約、公開パッケージ、375/768/1280px×Chromium・Firefox・WebKitの表示と操作、axe、Lighthouseを順に検査します。旧V3本文・画像に固定した検査は `qa:v3-legacy` として保持します。Ver.5のブラウザ検証はセクション・アンカー・横スクロール・ハンバーガー・ドロップダウン・FAQ開閉・6ページの5秒転送を確認し、Chromiumの全ページ画像を `qa-screenshots/ver5-lp/` に保存します。画像は実際のスクロールでアニメーションを発火させた後に撮影します。代表的な保持ページ（profile/contact/tokusho）のナビ操作とaxeも確認します。
 
-2026-09-24のQA安定化後、Windowsでの `qa:all` はPASSしています。実GitHub Actionsのフォント・ブラウザ環境ではまだ未実測のため、初回PR CIの結果は別途確認してください。閾値は緩和していません。
+旧ページの5秒 `meta refresh` は指定された案内方式ですが、axeはこの要素自体を `meta-refresh`（critical）として検出します。このため `qa:all` のaxeはLPと保持3ページを対象にし、案内ページは静的な転送先・手動リンクと実ブラウザでの5秒後の遷移を別途検証します。旧全ページ用の `qa:axe` を単独実行すると、この既知の違反で失敗します。
 
-公開物の差分を確認するときはリポジトリルートで `npm run qa:publication-test`、`npm run publication:build`、`npm run qa:publication-browser` を実行します。生成先は `.pages-artifact/` です。内部資料・QA画像はGitに保持し、Pages配信から除外します。公開ファイルの追加時は `tools/publication-files.txt` の明示一覧とHTML許可一覧をレビューして更新してください。GitHub ActionsのPR QAは `main` または `codex/v3-lower-pages` をbaseにするPRだけが対象です。公開フローは従来どおりmainへのpushで動き、v2直下16ページの `noindex,follow` が揃わなければアップロード前に停止します。
+Lighthouseはモバイル・デスクトップ各2回で4指標を実測します。レビュー用の全17ページが `noindex,follow` のとき、LPのSEOに限り `is-crawlable` 監査による減点だけを閾値判定から除き、実測スコアは表示します。Performance、Accessibility、Best Practicesは90以上を維持します。本番用の監査ではこの例外を使わず、SEOを含む4指標90以上を確認します。
 
-## 画像と問い合わせ
+公開物の許可リストは `tools/publication-files.txt` です。新規ファイルの配信が必要な場合だけ更新してください。`/v2/` はレビュー用のため、公開パッケージのnoindexゲートを通します。ルート本番への切り替えと旧ルートページからLPへの転送は、昇格判断後に別途行います。
 
-画像は `qa-screenshots/lower-pages-current/` と `qa-screenshots/lower-info-pages/` にあります。代表者写真は準備中で、正式素材ではありません。未公開orderページはユーザー指示で削除済みです（Git履歴・root版から復旧可能）。
-
-contactはGoogleフォームの直接リンク・メール・任意展開の埋込があります。フォーム送信の実通信は今回試していません。エラーが表示されたら、表示された文章をそのままご連絡ください。
+Googleフォーム送信や診断結果ページの遷移は、このLP検証では実通信していません。エラーが表示されたら、表示された文章をそのままご連絡ください。
