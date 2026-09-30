@@ -69,6 +69,7 @@ v2/privacy.html
 v2/profile.html
 v2/service-banso.html
 v2/service-management.html
+v2/service-order.html
 v2/service-training.html
 v2/services-comp.css
 v2/services.html

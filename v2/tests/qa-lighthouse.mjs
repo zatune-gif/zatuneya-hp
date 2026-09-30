@@ -20,7 +20,7 @@ const profiles = [
   { name: 'mobile', config: undefined },
   { name: 'desktop', config: desktopConfig }
 ];
-const pages = [
+const defaultPages = [
   'index.html',
   'growth.html',
   'tools.html',
@@ -29,6 +29,9 @@ const pages = [
   'faq.html',
   'works.html'
 ];
+const selectedPages = process.argv.find(arg => arg.startsWith('--pages='))?.slice(8).split(',');
+const pages = selectedPages ?? defaultPages;
+assert.ok(pages.every(page => defaultPages.includes(page)), 'selected Lighthouse pages are managed pages');
 const repeats = 2;
 const LIGHTHOUSE_RUN_TIMEOUT_MS = 90_000;
 const LIGHTHOUSE_TOTAL_TIMEOUT_MS = 600_000;
@@ -394,4 +397,4 @@ async function runLighthouseQa() {
 }
 
 await runLighthouseQa();
-console.log('PASS Lighthouse 28 representative-page audits meet every 0.90 category threshold');
+console.log(`PASS Lighthouse ${pages.length * profiles.length * repeats} representative-page audits meet every 0.90 category threshold`);

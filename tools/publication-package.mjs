@@ -10,7 +10,7 @@ const rootExact = new Set(['.nojekyll', 'CNAME']);
 const blockedNames = /^(?:readme|agents|claude|package(?:-lock)?)\.(?:md|json)$/i;
 const publicHtml = {
   '': new Set(['404.html', 'contact.html', 'faq.html', 'index-v2.html', 'index.html', 'privacy.html', 'profile.html', 'service-banso.html', 'service-management.html', 'service-order.html', 'service-training.html', 'services.html', 'thank-you.html', 'tokusho.html', 'works.html']),
-  v2: new Set(['404.html', 'contact.html', 'faq.html', 'growth.html', 'index.html', 'lower-page-template.html', 'privacy.html', 'profile.html', 'service-banso.html', 'service-management.html', 'service-training.html', 'services.html', 'thank-you.html', 'tokusho.html', 'tools.html', 'works.html'])
+  v2: new Set(['404.html', 'contact.html', 'faq.html', 'growth.html', 'index.html', 'lower-page-template.html', 'privacy.html', 'profile.html', 'service-banso.html', 'service-management.html', 'service-order.html', 'service-training.html', 'services.html', 'thank-you.html', 'tokusho.html', 'tools.html', 'works.html'])
 };
 export const stagingPages = Object.freeze([...publicHtml.v2]);
 const manifest = (await readFile(new URL('./publication-files.txt', import.meta.url), 'utf8')).trim().split(/\r?\n/);

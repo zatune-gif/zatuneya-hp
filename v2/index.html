@@ -3,20 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,follow">
   <meta name="zatuneya:diagnosis-url" content="https://ai-shindan-zatuneya.netlify.app/">
   <title>ざつね屋｜地域企業の小さな業務変革屋</title>
-  <meta name="description" content="ざつね屋は、地域企業の困りごとを起点に、業務整理・人の育成・小さな仕組みづくりまで伴走する業務変革屋です。">
+  <meta name="description" content="広島県府中市の地域企業向けに、業務改善から個別のシステム開発・運用保守まで、現場に入って一緒に進める支援を行っています。">
   <link rel="canonical" href="https://zatune-gif.github.io/zatuneya-hp/v2/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zatune-gif.github.io/zatuneya-hp/v2/">
   <meta property="og:title" content="ざつね屋｜地域企業の小さな業務変革屋">
-  <meta property="og:description" content="ざつね屋は、地域企業の困りごとを起点に、業務整理・人の育成・小さな仕組みづくりまで伴走する業務変革屋です。">
+  <meta property="og:description" content="広島県府中市の地域企業向けに、業務改善から個別のシステム開発・運用保守まで、現場に入って一緒に進める支援を行っています。">
   <meta property="og:image" content="https://zatune-gif.github.io/zatuneya-hp/v2/assets/og-image.jpg">
   <link rel="icon" href="./favicon.ico" sizes="any">
   <link rel="icon" href="./assets/favicon-32.png" type="image/png">
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
   <link rel="stylesheet" href="./top-comp.css">
   <link rel="stylesheet" href="./v3-top-page.css">
+  <link rel="stylesheet" href="./lower-info-pages.css">
 </head>
 <body>
   <a class="skip-link" href="#main">本文へ移動</a>
@@ -27,38 +29,35 @@
         <span class="brand-copy"><strong>ざつね屋</strong><small>地域企業の小さな業務変革屋</small></span>
       </a>
       <nav id="site-nav" class="comp-nav site-nav" aria-label="主要ナビゲーション">
-        <a class="site-nav__link" href="./services.html">サービス</a>
-        <a class="site-nav__link" href="#journey">進め方</a>
-        <a class="site-nav__link" href="./works.html">事例</a>
-        <a class="site-nav__link" href="./tools.html">ツール</a>
-        <span class="site-nav__item--dropdown"><button class="site-nav__dropdown-trigger" type="button" aria-expanded="false">会社案内</button><span class="site-nav__dropdown-menu"><a class="site-nav__link" href="./profile.html">代表について</a><a class="site-nav__link" href="./privacy.html">プライバシー</a></span></span>
-        <a class="site-nav__link" href="./faq.html">よくある質問</a>
-        <a class="nav-diagnosis site-nav__link" data-diagnosis-link aria-disabled="true">無料で診断する</a>
-        <a class="nav-contact site-nav__link" href="./contact.html">お問い合わせ</a>
+        <span class="site-nav__item--dropdown"><button class="site-nav__dropdown-trigger" type="button" aria-expanded="false">サービス</button><span class="site-nav__dropdown-menu"><a class="site-nav__link" href="#kaizen">業務の見直し支援</a><a class="site-nav__link" href="#jisso">個別実装</a></span></span>
+        <a class="site-nav__link" href="#price">料金</a>
+        <a class="site-nav__link" href="#works">実績</a>
+        <span class="site-nav__item--dropdown"><button class="site-nav__dropdown-trigger" type="button" aria-expanded="false">無料ツール</button><span class="site-nav__dropdown-menu"><a class="site-nav__link" data-diagnosis-link>業務の現在地チェック</a><a class="site-nav__link" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/15_prompt-library/">プロンプトライブラリ</a></span></span>
+        <a class="site-nav__link" href="./profile.html">代表について</a>
+        <a class="nav-contact site-nav__link" href="#contact">お問い合わせ</a>
       </nav>
       <button id="nav-hamburger" class="comp-menu" type="button" aria-label="メニューを開く" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </header>
 
   <main id="main">
-    <section id="hero" class="hero v3-hero" aria-labelledby="hero-title">
+<section id="hero" class="hero v3-hero" aria-labelledby="hero-title">
       <div class="comp-wrap hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">地域企業の小さな業務変革屋 ／ ざつね屋</p>
-          <h1 id="hero-title"><span class="hero-intro">AIを入れることより、</span><br><span class="hero-accent"><span class="hero-accent-part">仕事がよくなる</span><span class="hero-accent-part">ことから。</span></span></h1>
-          <p class="hero-lead">数十名規模の会社で、「人が足りない」「引き継ぎが回らない」「同じ説明を何度もしている」。その一つひとつを、現場に入って一緒にほどいていきます。ツールの導入は、そのあとの話です。</p>
-          <div class="hero-actions"><a class="v3-button v3-button--primary" data-diagnosis-link aria-disabled="true">無料でAI活用準備度を診断する</a><a class="v3-button v3-button--secondary" href="./contact.html">まず30分、話を聞かせてください</a></div>
-          <p class="hero-locale"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12Z"/><circle cx="12" cy="9" r="2"/></svg>広島県府中市を拠点に、近隣の地域企業を訪問して支援しています。</p>
+          <h1 id="hero-title">業務を見直し、<br><span class="hero-accent">現場で使える仕組みまで。</span></h1>
+          <p class="hero-lead">作業の流れを一緒に整理し、やめられる作業を見つけ、必要なところだけ仕組みを作ります。<br>AIを入れることが目的ではありません。手順を変えるだけで済むなら、そうお伝えします。</p>
+          <div class="hero-actions"><a class="v3-button v3-button--primary" href="#contact">まず30分、話を聞かせてください</a><a class="v3-button v3-button--secondary" data-diagnosis-link>自分で現在地を確かめる</a></div>
+          <a class="card-link section-link" href="#service">支援の中身を見る →</a>
+          <p class="hero-locale">広島県府中市を拠点に、近隣の地域企業を訪問して支援しています。</p>
         </div>
-        <figure class="hero-visual">
-          <picture><source media="(max-width: 480px)" srcset="./assets/comp-parts/hero-mobile.png"><img src="./assets/comp-parts/hero-desktop.png" data-asset-role="hero-meeting" width="316" height="229" alt="業務資料を囲み、二人で業務を整理する様子" fetchpriority="high"></picture>
-        </figure>
+        <figure class="hero-visual"><picture><source media="(max-width: 480px)" srcset="./assets/comp-parts/hero-mobile.png"><img src="./assets/comp-parts/hero-desktop.png" data-asset-role="hero-meeting" width="316" height="229" alt="業務資料を囲み、二人で業務を整理する様子" fetchpriority="high"></picture></figure>
       </div>
     </section>
 
-    <section id="problems" class="section section--problems" aria-labelledby="problems-title">
+<section id="problems" class="section section--problems" aria-labelledby="problems-title">
       <div class="comp-wrap">
-        <h2 id="problems-title" class="section-title"><span class="top-title-part">こんな詰まり方を、</span><span class="top-title-part">していませんか</span></h2>
+        <h2 id="problems-title" class="section-title">こんな詰まり方をしていませんか</h2>
         <div class="problem-grid fade-in">
           <article class="problem-card"><svg class="line-icon" aria-hidden="true" viewBox="0 0 48 48"><circle cx="17" cy="17" r="6"/><circle cx="32" cy="17" r="6"/><path d="M5 40v-5c0-6 5-10 12-10s12 4 12 10v5M27 27c8 0 16 3 16 10v3"/></svg><h3>人が足りず、改善に手が回らない</h3><p>日々の業務で手一杯。「やった方がいい」と分かっていることが、いつまでも後回しになる。</p></article>
           <article class="problem-card"><svg class="line-icon" aria-hidden="true" viewBox="0 0 48 48"><path d="M9 8h23l7 7v25H9Z"/><path d="M32 8v8h7M15 22h12M15 29h9"/><rect x="28" y="27" width="14" height="13" rx="2"/><path d="M32 27v-3a3 3 0 0 1 6 0v3"/></svg><h3>特定の人しか分からない仕事がある</h3><p>その人が休むと止まる。引き継ぎ資料を作る時間も取れない。</p></article>
@@ -69,95 +68,141 @@
       </div>
     </section>
 
-    <section id="package" class="section section--package" aria-labelledby="package-title">
+<section id="thinking" class="section section--package" aria-labelledby="thinking-title">
       <div class="comp-wrap package-panel fade-in">
-        <figure class="package-visual"><img src="./assets/comp-parts/package-dashboard.png" data-asset-role="package-onsite" width="149" height="124" alt="分析画面を表示したパソコンで改善の成果を確認する様子" loading="lazy"></figure>
-        <div class="package-heading"><p class="package-kicker">まず3か月、</p><h2 id="package-title"><span class="top-title-part">一つの業務を</span><span class="top-title-part">確実に変える</span></h2><p class="package-price">AI経営改善パッケージ ／ <strong>360,000円</strong><span class="package-duration top-nowrap-part">（3か月）</span></p><p>「どこから手をつけるか」を一緒に決め、3か月で一つの業務を選んで、目に見えて軽くします。やり方は手順書にして残すので、期間が終わったあとも社内で続けられます。</p></div>
-        <div class="package-detail">
-          <div class="package-column"><h3>3か月でやること</h3><ol class="package-steps"><li><strong>01</strong><span>業務の棚卸しと、取り組む一つの業務の選定</span></li><li><strong>02</strong><span>手順の設計と、AIを使った試作・改善</span></li><li><strong>03</strong><span>社内への引き渡し（手順書・運用ルール）と効果の確認</span></li></ol></div>
-          <div class="package-column"><h3>受け取れるもの</h3><ul><li>対象業務の新しい手順書</li><li>運用ルール（使う場面・使わない場面・注意点）</li><li>次に取り組むべき業務の<span class="top-nowrap-part">候補リスト</span></li></ul></div>
-          <div class="package-column"><h3>こんな会社に向いています</h3><ul><li>数十名規模で、改善したい業務の心当たりはあるが、着手できていない</li><li>一度きりの研修ではなく、実際に業務が変わるところまでやりたい</li></ul></div>
-          <a class="v3-button v3-button--primary package-action" href="./service-management.html"><span class="top-nowrap-part">パッケージの内容を</span><span class="top-nowrap-part">くわしく見る</span></a>
-        </div>
+        <div class="package-heading"><h2 id="thinking-title">AIを入れることが目的ではありません</h2><p>運用や手順を少し変えるだけで解決するなら、そうご提案します。AIやシステムの出番は、業務を見直したあとに考えるものです。</p></div>
       </div>
     </section>
 
-    <section id="services" class="section section--services" aria-labelledby="services-title">
+<section id="service" class="section section--journey" aria-labelledby="service-title">
       <div class="comp-wrap">
-        <h2 id="services-title" class="section-title"><span class="top-title-part">必要なところから</span><span class="top-title-part">始められます</span></h2>
+        <h2 id="service-title" class="section-title">見直して、必要なら作る</h2>
         <div class="service-grid fade-in">
-          <article class="service-card"><figure><img src="./assets/comp-parts/service-training.png" data-asset-role="service-training" width="162" height="103" alt="研修で業務の進め方を確認する様子" loading="lazy"></figure><p class="service-number">01</p><h3>AI実務研修</h3><p class="service-lead">「知る・わかる」を、実務に落ちる形で。</p><p><b>向いている場面:</b> まず社内の共通理解をつくりたい</p><p class="service-price">価格: 5名 60,000円〜<br><small>（コースにより異なる。②〜④は要お問い合わせ）</small></p><a class="card-link" href="./service-training.html">研修の内容を見る</a></article>
-          <article class="service-card"><figure><img src="./assets/comp-parts/service-design.png" data-asset-role="service-management" width="162" height="103" alt="現場で業務の流れを一緒に整理する様子" loading="lazy"></figure><p class="service-number">02</p><h3>AI経営改善パッケージ</h3><p class="service-lead">まず3か月、一つの業務を確実に変える。</p><p><b>向いている場面:</b> 改善したい業務の<span class="top-nowrap-part">心当たりがある</span></p><p class="service-price">価格: 360,000円（税別）<br><small>期間3か月・計16時間分</small></p><a class="card-link" href="./service-management.html">パッケージの内容を見る</a></article>
-          <article class="service-card"><figure><img src="./assets/comp-parts/service-support.png" data-asset-role="service-banso" width="177" height="103" alt="書類を前に相談しながら進める様子" loading="lazy"></figure><p class="service-number">03</p><h3>AI活用伴走</h3><p class="service-lead">広げる・定着させるフェーズを、並走する。</p><p><b>向いている場面:</b> 一つうまくいったので、他の業務にも広げたい</p><p class="service-price">価格: 内容に応じてお見積もり</p><a class="card-link" href="./service-banso.html">伴走支援を見る</a></article>
+          <article class="service-card"><p class="service-number">① →</p><h3>ご相談・現在地の確認</h3><p>無料相談／無料診断</p></article>
+          <article class="service-card"><p class="service-number">② →</p><h3><a href="#kaizen">業務の見直し支援（業務改善） →</a></h3><p>一つの業務を見直し、小さく試す（2か月）</p><p>オプション：AI活用設計（AIが役に立つと分かった場合に追加）</p></article>
+          <article class="service-card"><p class="service-number">③</p><h3><a href="#jisso">個別実装 →</a></h3><p>仕組みが必要と分かったら、同じ担当者がそのまま続けます。決まった仕組みを作る（お見積り）</p><p>オプション：運用保守（作ったあとの面倒を見る）</p></article>
         </div>
-        <p class="section-closing">研修は全5コース構成です。コース一覧と料金は研修ページをご覧ください。</p>
+        <p class="section-closing">どの段階からでも始められます。「作るものはもう決まっている」という場合は、③からのご相談も承ります。</p>
       </div>
     </section>
 
-    <section id="journey" class="section section--journey" aria-labelledby="journey-title">
-      <div class="comp-wrap"><h2 id="journey-title" class="section-title">はじめてのご相談から</h2>
-        <ol class="journey-steps fade-in">
-          <li><svg class="journey-icon" aria-hidden="true" viewBox="0 0 48 48"><path d="M8 19h32v21H8Z"/><path d="M16 19v-5h16v5M15 27h18M15 33h12"/></svg><div><strong>無料診断</strong><span>AI活用準備度を10問ほどで確認（Web・その場で結果）</span></div></li>
-          <li><svg class="journey-icon" aria-hidden="true" viewBox="0 0 48 48"><circle cx="22" cy="20" r="10"/><path d="m29 28 10 10M18 20h8M22 16v8"/></svg><div><strong>ご相談（30分・無料）</strong><span>困りごとと、今の状況をお聞きします</span></div></li>
-          <li><svg class="journey-icon" aria-hidden="true" viewBox="0 0 48 48"><path d="M13 8h22v32H13Z"/><path d="M19 5h10v6H19ZM19 20h10M19 27h10M19 34h6"/></svg><div><strong>小さく試す</strong><span>一つの業務で、効果が見える形を一緒に作ります</span></div></li>
-          <li><svg class="journey-icon" aria-hidden="true" viewBox="0 0 48 48"><path d="M9 32c5-7 10-7 15 0 5-7 10-7 15 0"/><circle cx="16" cy="17" r="5"/><circle cx="32" cy="17" r="5"/><path d="M24 7v9M20 11h8"/></svg><div><strong>パッケージで変える</strong><span>3か月で、対象業務を手順ごと入れ替えます</span></div></li>
-          <li><svg class="journey-icon" aria-hidden="true" viewBox="0 0 48 48"><path d="M8 40V25h7v15M20 40V17h7v23M32 40V8h7v32M6 40h36"/></svg><div><strong>伴走で広げる</strong><span>他の業務・他の部署へ、社内主導で展開します</span></div></li>
-        </ol>
-        <p class="section-closing">どの段階からでも始められます。「まず話を聞いてみたい」で構いません。</p>
-        <a class="card-link section-link" href="./growth.html">成長段階の考え方をくわしく見る</a>
-      </div>
-    </section>
-
-    <section id="why-us" class="section section--why-us" aria-labelledby="why-us-title">
-      <div class="comp-wrap why-us-layout fade-in">
-        <aside class="representative-card"><img src="./assets/representative-portrait-placeholder.svg" data-asset-role="representative-portrait" data-asset-status="comp-placeholder" width="400" height="500" alt="" loading="lazy"><p class="representative-summary">大音 晃司（おおと こうじ）。広島県府中市を拠点に、地域企業のAI活用を支援しています。</p></aside>
-        <div class="why-us-copy"><h2 id="why-us-title"><span class="top-title-part">「教えられる人」が、</span><span class="top-title-part">現場に入ります</span></h2><div class="why-us-points">
-          <article><svg class="line-icon" aria-hidden="true" viewBox="0 0 48 48"><circle cx="18" cy="17" r="6"/><path d="M7 39v-4c0-7 5-11 11-11s11 4 11 11v4M31 11h10v19H30M34 17h4M34 22h4"/></svg><div><h3>教えられる実装者</h3><p>自分で作れて、かつ社内の人に手順で渡せる</p></div></article>
-          <article><svg class="line-icon" aria-hidden="true" viewBox="0 0 48 48"><path d="M8 7h32v34H8Z"/><path d="M15 15h18M15 22h12M14 34l7-7 6 5 7-10"/></svg><div><h3>現場でのデジタル化推進経験</h3><p>ツール導入・業務標準化を、現場で回してきた（補助金の申請書作成支援の経験もあります）</p></div></article>
-          <article><svg class="line-icon" aria-hidden="true" viewBox="0 0 48 48"><path d="M24 43s15-13 15-25a15 15 0 1 0-30 0c0 12 15 25 15 25Z"/><circle cx="24" cy="18" r="5"/></svg><div><h3>業務整理から入れる</h3><p>「AIをどう使うか」の前に、「どの業務を変えるか」を一緒に決められる</p></div></article>
+<section id="kaizen" class="section section--package" aria-labelledby="kaizen-title">
+      <div class="comp-wrap">
+        <h2 id="kaizen-title" class="section-title">業務の見直し支援（業務改善）</h2>
+        <p class="section-closing">一つの業務・一つの現場を、2か月で見直します。</p>
+        <div class="package-panel fade-in"><div class="package-detail">
+          <div class="package-column"><h3>こんな状態の会社向けです</h3><ul><li>同じ情報を、何度も入力している</li><li>担当者が休むと止まる業務がある</li><li>紙とパソコンの両方に同じことを書いている</li><li>AIを試してはみたが、どこに使うか分からず続かなかった</li></ul><p>作るものがもう決まっている場合は、<a href="#jisso">個別実装</a>をご覧ください。</p></div>
+          <div class="package-column"><h3>何をするか</h3><ol class="package-steps"><li><strong>01</strong><span>対象業務の現状分析（作業の洗い出し、かかっている時間の把握）</span></li><li><strong>02</strong><span>改善案の検討</span></li><li><strong>03</strong><span>必要に応じたAI候補の比較</span></li><li><strong>04</strong><span>簡易設定と小規模な試行</span></li><li><strong>05</strong><span>運用ルールの素案づくりと、次段階で検討する事項の整理</span></li></ol><p>各工程で、現場担当者の方に実際の作業を見せていただく・試していただく場面があります。</p></div>
+          <div class="package-column"><h3>終わったときに手元に残るもの</h3><ul><li>業務の一覧と改善前の数値 — どの作業にどれだけ時間がかかっているかが、社内の共通認識になります</li><li>改善案と選んだ理由 — なぜその案にしたかを、後任の方にも説明できます</li><li>（必要なら）AI候補の比較資料</li><li>試した記録 — 実際にやってみて何が起きたかが残るので、広げるか止めるかを判断できます</li><li>現場の運用ルール素案 — 誰が・どこまで・何を確認するかの下書きとして使えます</li><li>測り方と次の一手 — 期間が終わったあと、社内だけで続きを進められます</li></ul></div>
+          <div class="package-column"><h3>含まないこと</h3><ul><li>本番用の個別システム開発は含みません。仕組みを作る必要があると分かった場合は、仕様を決めてから個別実装として別途お見積りします</li><li>対象業務でのAI活用の詳細設計（入力・出力・人が確認する場所・例外時の対応まで詰めた設計）は含みません。AIが役に立つと分かった場合は、オプションのAI活用設計でお受けします</li></ul></div>
+          <div class="package-column"><h3>費用と期間</h3><p class="package-price"><strong>320,000円（税別）</strong></p><p>期間2か月／ざつね屋の作業時間 16時間</p><p>会議・調査・資料作成・試行・ご説明のすべてを、この16時間に含みます。</p><p>お見積りが変わる場合：対象の業務が増えるとき、対象の現場が複数になるとき、本番用の仕組みの開発が必要になったとき。</p><p>別途ご負担いただくもの：AIサービス等の利用料（お客様が直接ご契約いただきます。導入前に費用をお示しします）／訪問が必要な場合の交通費（回数・上限を見積時に明記します）。</p></div>
+          <div class="package-column"><h3>オプション：AI活用設計</h3><p>業務を見直した結果、AIが役に立つと分かった場合に、追加でお選びいただけます。対象業務でのAI活用の詳細設計・利用ルール・手順書の整備などが含まれます。価格は個別にお見積りします。</p></div>
         </div></div>
+        <a class="v3-button v3-button--primary section-link" href="#contact">まず30分、話を聞かせてください</a>
       </div>
     </section>
 
-    <section id="cases" class="section section--cases" aria-labelledby="cases-title">
-      <div class="comp-wrap"><h2 id="cases-title" class="section-title"><span class="top-title-part">これまでに</span><span class="top-title-part">お手伝いしたこと</span></h2><p class="case-disclosure">以下は仮データです。事実確認済みの匿名事例に差し替え予定です。</p>
-        <div class="case-grid fade-in">
-          <article class="case-card" data-case-status="placeholder"><svg class="case-icon" aria-hidden="true" viewBox="0 0 48 48"><path d="M8 42V15l16-9 16 9v27Z"/><path d="M18 42V31h12v11M15 20h4M29 20h4M15 26h4M29 26h4"/></svg><p class="case-type">匿名事例（仮）</p><h3>従業員◯名規模の◯◯業</h3><p>属人化していた◯◯業務の手順を整理し、引き継ぎできる状態にした。</p><a class="card-link case-link" href="./works.html">詳しく見る</a></article>
-          <article class="case-card" data-case-status="placeholder"><svg class="case-icon" aria-hidden="true" viewBox="0 0 48 48"><path d="M8 12h32v29H8Z"/><path d="M16 12V7h16v5M16 23h16M16 30h11"/></svg><p class="case-type">匿名事例（仮）</p><h3>◯◯の問い合わせ対応</h3><p>よくある質問への自動応答で下支えする仕組みを設計・導入した。</p><a class="card-link case-link" href="./works.html">詳しく見る</a></article>
-          <article class="case-card" data-case-status="placeholder"><svg class="case-icon" aria-hidden="true" viewBox="0 0 48 48"><path d="M10 6h22l6 6v30H10Z"/><path d="M32 6v7h6M17 21h14M17 28h14M17 35h9"/></svg><p class="case-type">匿名事例（仮）</p><h3>定型の◯◯作成</h3><p>ひな型＋チェック手順の形に整え、担当者以外でも作れるようにした。</p><a class="card-link case-link" href="./works.html">詳しく見る</a></article>
-        </div>
-        <a class="card-link section-link" href="./works.html">ほかの事例を見る</a>
+<section id="jisso" class="section section--services" aria-labelledby="jisso-title">
+      <div class="comp-wrap">
+        <h2 id="jisso-title" class="section-title">個別実装</h2><p class="section-closing">仕様が決まった仕組みを、設計・開発します。</p>
+        <div class="package-panel fade-in"><div class="package-detail">
+          <div class="package-column"><h3>こんな状態の会社向けです</h3><ul><li>業務の見直しは済んでいて、あとは仕組みを作るだけ</li><li>既存のサービスと社内のデータをつなぎたい</li><li>業務改善の中で、仕組みづくりが必要だと分かった</li></ul><p>業務の見直しがまだの場合は、<a href="#kaizen">業務改善</a>から始めることをおすすめします。</p></div>
+          <div class="package-column"><h3>お見積りの出し方</h3><p>個別実装は、作るものが決まってからお見積りします。お見積りの前に、次のことを書面で決めます。</p><ul><li>何を作るか</li><li>既存のどのサービスとつなぐか</li><li>どのデータを扱うか</li><li>誰が何をできる権限を持つか</li><li>人が確認する場所はどこか</li><li>例外が起きたときどうするか</li><li>作ったあとの保守はどうするか（→運用保守へ接続）</li><li>お客様側で確認していただくこと</li></ul><p>この8点が決まってから、作業時間を積算してお見積りをお出しします。仕様を決める作業自体は、業務改善の中で行います。</p><p>なお、実装を進める中で、当初の前提（データの形式、連携するサービスの仕様等）が異なることが分かる場合があります。その場合は影響範囲をご説明し、必要であれば追加のお見積りをご案内します。</p></div>
+          <div class="package-column"><h3>終わったときに手元に残るもの</h3><ul><li>仕様書</li><li>作った仕組み</li><li>操作手順</li><li>検証結果</li><li>引き継ぎ資料</li></ul></div>
+          <div class="package-column"><h3>含まないこと</h3><p>契約ごとに明記します。</p><p>納品後の運用保守は含みません。ご希望の場合は「運用保守」を別途ご用意します。</p></div>
+          <div class="package-column"><h3>費用と期間</h3><p>仕様が決まってからのお見積り</p><p>期間・作業時間は仕様によります</p></div>
+          <div class="package-column"><h3>オプション：運用保守</h3><p>作った仕組みの規模（外部サービスとの連携の数・扱うデータ量・利用される方の人数など）に応じて、個別にお見積りします。</p><p>対応は平日日中です（24時間対応は承っておりません）。</p></div>
+        </div></div>
+        <a class="v3-button v3-button--primary section-link" href="#contact">まず30分、話を聞かせてください</a>
       </div>
     </section>
 
-    <section id="tools" class="section section--tools" aria-labelledby="tools-title">
-      <div class="comp-wrap"><h2 id="tools-title" class="section-title"><span class="top-title-part">まず、</span><span class="top-title-part">無料のツールから</span></h2>
+<section id="choose" class="section section--journey" aria-labelledby="choose-title">
+      <div class="comp-wrap">
+        <h2 id="choose-title" class="section-title">どちらから始めればよいですか</h2>
+        <p class="section-closing">作るもの（仕組み・ツール）は、もう決まっていますか？</p>
         <div class="tool-grid fade-in">
-          <article class="tool-card"><div><h3>AI活用準備度診断 <small>（無料）</small></h3><p>10問ほどで、自社が今どの段階にいるかが分かります。</p><a class="tool-action" data-diagnosis-link aria-disabled="true">無料で診断する</a></div><svg class="tool-icon" aria-hidden="true" viewBox="0 0 96 96"><path d="M22 10h42l14 14v61H22Z"/><path d="M64 10v16h14M34 38h30M34 49h30M34 60h18"/><path d="m55 76 15-30 7 4-15 30-10 5Z"/><path d="m68 50 7 4M52 85l4-9M13 25h9M13 35h9M13 45h9"/></svg></article>
+          <article class="tool-card"><div><h3>まだ決まっていない</h3><p>そもそも何を変えるべきか分からない → <a href="#kaizen">業務改善から</a></p></div></article>
+          <article class="tool-card"><div><h3>決まっている</h3><p>何を作るか・何とつなぐかを説明できる → <a href="#jisso">個別実装のご相談から</a></p></div></article>
+        </div>
+        <p class="section-closing">迷われる場合は、無料のご相談でお伺いします。どちらにも当てはまらない、運用を少し変えるだけで済む場合は、そのようにお伝えします。</p>
+        <a class="v3-button v3-button--primary section-link" href="#contact">まず30分、話を聞かせてください</a>
+        <a class="card-link section-link" data-diagnosis-link>迷ったら、まず無料の診断で現在地を確かめる</a>
+      </div>
+    </section>
+
+<section id="check" class="section section--tools" aria-labelledby="check-title">
+      <div class="comp-wrap">
+        <h2 id="check-title" class="section-title">まず自分で現在地を確かめる</h2>
+        <div class="tool-grid fade-in">
+          <article class="tool-card"><div><h3>業務の現在地チェック <small>（無料・12問）</small></h3><p>約7分で、自社が今どの段階にいるかが分かります。</p><a class="tool-action" data-diagnosis-link>無料でチェックする</a></div><svg class="tool-icon" aria-hidden="true" viewBox="0 0 96 96"><path d="M22 10h42l14 14v61H22Z"/><path d="M64 10v16h14M34 38h30M34 49h30M34 60h18"/><path d="m55 76 15-30 7 4-15 30-10 5Z"/><path d="m68 50 7 4M52 85l4-9M13 25h9M13 35h9M13 45h9"/></svg></article>
           <article class="tool-card"><div><h3>プロンプトライブラリ <small>（無料）</small></h3><p>そのまま使える指示文を、業務別にまとめています。</p><a class="tool-action" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/15_prompt-library/">ライブラリを見る</a></div><svg class="tool-icon" aria-hidden="true" viewBox="0 0 96 96"><path d="M13 18h43v57H13Z"/><path d="M21 10h43v57M25 30h20M25 41h20M25 52h14"/><path d="M50 54h34v24H64l-9 8v-8h-5Z"/><path d="M59 64h16M59 70h11"/><circle cx="77" cy="64" r="1.5"/></svg></article>
         </div>
       </div>
     </section>
 
-    <section id="faq" class="section section--faq" aria-labelledby="faq-title">
-      <div class="comp-wrap faq-layout"><h2 id="faq-title" class="section-title">よくある質問</h2>
-        <div class="faq-list fade-in">
-          <article class="faq-item"><h3><button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-answer-ai">Q. AIのことがまったく分からなくても大丈夫ですか。</button></h3><div id="faq-answer-ai" class="faq-answer" hidden><p>A. はい。むしろ「触ったことはあるが続かなかった」という状態からのご相談が多いです。業務の中身をお聞きするところから始めます。</p></div></article>
-          <article class="faq-item"><h3><button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-answer-size">Q. どのくらいの規模の会社が対象ですか。</button></h3><div id="faq-answer-size" class="faq-answer" hidden><p>A. 数十名規模の地域企業を主な対象にしています。管理職・実務責任者の方からのご相談を想定しています。</p></div></article>
-          <article class="faq-item"><h3><button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-answer-distance">Q. 遠方でも対応してもらえますか。</button></h3><div id="faq-answer-distance" class="faq-answer" hidden><p>A. 広島県府中市と近隣が中心です。オンラインを併用しますが、訪問できる範囲を優先しています。</p></div></article>
-          <article class="faq-item"><h3><button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-answer-training">Q. 研修は何名から受けられますか？</button></h3><div id="faq-answer-training" class="faq-answer" hidden><p>A. 3名から承っております。少人数でも対応可能ですので、まずはお気軽にご相談ください。</p></div></article>
-          <article class="faq-item"><h3><button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-answer-price">Q. 費用の目安を教えてください。</button></h3><div id="faq-answer-price" class="faq-answer" hidden><p>A. サービスの内容・期間によって異なります。詳しくは<a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html">料金ページ</a>をご覧ください。また、初回のご相談は無料で承っております。</p></div></article>
-          <article class="faq-item"><h3><button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-answer-support">Q. 伴走支援とはどのような内容ですか？</button></h3><div id="faq-answer-support" class="faq-answer" hidden><p>A. 月次のオンラインミーティングを基本に、AI活用の進捗確認・課題整理・ツール選定のアドバイスなどを継続的に行います。研修で終わりではなく、現場への定着まで一緒に取り組みます。</p></div></article>
+<section id="works" class="section section--cases" aria-labelledby="works-title">
+      <div class="comp-wrap">
+        <h2 id="works-title" class="section-title">これまでの仕事</h2>
+        <p class="section-closing">掲載できる事例はまだ多くありません。件数ではなく、実際に何をどこまでやったかと、確認できていないことを、そのままお伝えします。</p>
+        <div class="case-grid fade-in">
+          <article class="case-card"><svg class="case-icon" aria-hidden="true" viewBox="0 0 48 48"><path d="M8 42V15l16-9 16 9v27Z"/><path d="M18 42V31h12v11M15 20h4M29 20h4M15 26h4M29 26h4"/></svg><p class="case-type">技術実績</p><h3>883品番・24,923件のデータを扱う、見積・請求の仕組みを設計し、配布しました</h3><p>複数の仕入先の商品データと、印刷の種類ごとの単価計算を扱う仕組みを、お客様の業務手順に合わせて設計・開発しました。</p><p><strong>確認できていること：</strong>Windows・Mac（2種類）の3つの配布物が、実際に動作する状態で公開されている／自動テスト1,260件、画面の確認57件が合格している／配布物の中に、883品番・24,923件の商品データが入っていることを実物で確認した</p><p><strong>確認できていないこと：</strong>お客様の本番環境での外部サービスとの実通信／本番運用（現在は検証段階のバージョンです）</p></article>
+          <article class="case-card"><svg class="case-icon" aria-hidden="true" viewBox="0 0 48 48"><path d="M8 12h32v29H8Z"/><path d="M16 12V7h16v5M16 23h16M16 30h11"/></svg><p class="case-type">支援実績</p><h3>2つのサイトの役割分担とSEO・AIOの進め方を設計しました</h3><p>既存の複数サイトの役割が重複していた状態を整理し、相互の導線・計測方針・1か月の試行計画を設計しました。</p><p><strong>確認できていること：</strong>キックオフ面談を実施し、役割分担・導線・計測方針について合意した</p><p><strong>確認できていないこと：</strong>施策実行後の効果（試行はこれから）</p></article>
+          <article class="case-card"><svg class="case-icon" aria-hidden="true" viewBox="0 0 48 48"><path d="M10 6h22l6 6v30H10Z"/><path d="M32 6v7h6M17 21h14M17 28h14M17 35h9"/></svg><p class="case-type">進行中</p><h3>地域の商工会議所を通じたご相談の窓口をいただいています。</h3></article>
         </div>
-        <a class="card-link faq-more" href="./faq.html">質問一覧を見る</a>
       </div>
     </section>
 
-    <section id="final-cta" class="final-cta" aria-labelledby="final-cta-title"><div class="comp-wrap final-cta-inner fade-in"><div><h2 id="final-cta-title"><span class="top-title-part">まず30分、</span><span class="top-title-part">話を聞かせてください</span></h2><p>「何から手をつけるか」から一緒に考えます。売り込みはしません。</p></div><div class="final-cta-actions"><a class="v3-button v3-button--primary" data-diagnosis-link aria-disabled="true">無料でAI活用準備度を診断する</a><a class="v3-button v3-button--inverse" href="./contact.html">お問い合わせ</a></div></div></section>
+<section id="profile" class="section section--why-us" aria-labelledby="profile-title">
+      <div class="comp-wrap why-us-layout fade-in">
+        <aside class="representative-card"><img src="./assets/profile-portrait-2.jpg" width="400" height="500" alt="大音 晃司" loading="lazy"></aside>
+        <div class="why-us-copy"><h2 id="profile-title">誰が担当するか</h2><p>大音 晃司（おおと こうじ）。広島県府中市を拠点に、地域企業のAI活用を支援しています。</p><div class="why-us-points">
+          <article><svg class="line-icon" aria-hidden="true" viewBox="0 0 48 48"><circle cx="18" cy="17" r="6"/><path d="M7 39v-4c0-7 5-11 11-11s11 4 11 11v4M31 11h10v19H30M34 17h4M34 22h4"/></svg><div><h3>教えられる実装者</h3><p>自分で作れて、かつ社内の人に手順で渡せる</p></div></article>
+          <article><svg class="line-icon" aria-hidden="true" viewBox="0 0 48 48"><path d="M8 7h32v34H8Z"/><path d="M15 15h18M15 22h12M14 34l7-7 6 5 7-10"/></svg><div><h3>現場でのデジタル化推進経験</h3><p>ツール導入・業務標準化を、現場で回してきた</p></div></article>
+          <article><svg class="line-icon" aria-hidden="true" viewBox="0 0 48 48"><path d="M24 43s15-13 15-25a15 15 0 1 0-30 0c0 12 15 25 15 25Z"/><circle cx="24" cy="18" r="5"/></svg><div><h3>業務整理から入れる</h3><p>「AIをどう使うか」の前に、「どの業務を変えるか」を一緒に決められる</p></div></article>
+        </div><a class="card-link section-link" href="./profile.html">代表について詳しく見る →</a></div>
+      </div>
+    </section>
+
+<section id="price" class="section section--package" aria-labelledby="price-title">
+      <div class="comp-wrap">
+        <h2 id="price-title" class="section-title">料金</h2>
+        <div class="table-wrap"><table class="lpi-legal-table"><thead><tr><th scope="col">サービス</th><th scope="col">内容</th><th scope="col">費用（税別）</th></tr></thead><tbody>
+          <tr><th scope="row">業務の見直し支援（業務改善）</th><td>一つの業務・一つの現場を2か月で見直します（ざつね屋の作業時間16時間）</td><td>320,000円</td></tr>
+          <tr><th scope="row">オプション：AI活用設計</th><td>業務改善の中で、AIが役に立つと分かった場合に追加できます</td><td>個別にお見積り</td></tr>
+          <tr><th scope="row">個別実装</th><td>仕様が決まった仕組みを設計・開発します</td><td>個別にお見積り</td></tr>
+          <tr><th scope="row">オプション：運用保守</th><td>作った仕組みの規模に応じて対応します（対応は平日日中です）</td><td>個別にお見積り</td></tr>
+          <tr><th scope="row">上記以外のご相談（複数の部署にまたがる見直しなど）</th><td>内容を伺ってから、範囲と費用を個別にご提案します</td><td>—</td></tr>
+        </tbody></table></div>
+        <details class="faq-item"><summary class="faq-trigger">契約条件（支払・更新・解約）</summary><div class="faq-answer"><p>支払時期やキャンセル条件は<a href="./tokusho.html">特定商取引法に基づく表記</a>をご確認ください。個別実装・運用保守の条件は、仕様と契約内容を確認したうえで書面でご案内します。</p></div></details>
+        <a class="v3-button v3-button--primary section-link" href="#contact">まず30分、話を聞かせてください</a>
+      </div>
+    </section>
+
+<section id="faq" class="section section--faq" aria-labelledby="faq-title">
+      <div class="comp-wrap faq-layout">
+        <h2 id="faq-title" class="section-title">よくある質問</h2>
+        <div class="faq-list fade-in">
+          <details class="faq-item"><summary class="faq-trigger">AIのことがまったく分からなくても大丈夫ですか。</summary><div class="faq-answer"><p>はい。むしろ「触ったことはあるが続かなかった」という状態からのご相談が多いです。業務の中身をお聞きするところから始めます。</p></div></details>
+          <details class="faq-item"><summary class="faq-trigger">どのくらいの規模の会社が対象ですか。</summary><div class="faq-answer"><p>数十名規模の地域企業を主な対象にしています。管理職・実務責任者の方からのご相談を想定しています。</p></div></details>
+          <details class="faq-item"><summary class="faq-trigger">遠方でも対応してもらえますか。</summary><div class="faq-answer"><p>広島県府中市と近隣が中心です。オンラインを併用しますが、訪問できる範囲を優先しています。</p></div></details>
+          <details class="faq-item"><summary class="faq-trigger">AIを使わない結論になることはありますか。</summary><div class="faq-answer"><p>あります。運用や手順を変えるだけで解決する場合は、そのようにご提案します。</p></div></details>
+          <details class="faq-item"><summary class="faq-trigger">16時間で、専用のアプリまで作ってもらえますか。</summary><div class="faq-answer"><p>含みません。仕組みを作る必要があると分かった場合は、仕様を決めてから個別実装として別途お見積りします。</p></div></details>
+          <details class="faq-item"><summary class="faq-trigger">業務改善のあと、そのまま仕組みづくりまで頼めますか。</summary><div class="faq-answer"><p>はい。同じ担当者がそのまま個別実装まで続けて担当します。あらためて別の依頼先を探す必要はありません。</p></div></details>
+          <details class="faq-item"><summary class="faq-trigger">個別実装の見積り後に、仕様が変わることはありますか。</summary><div class="faq-answer"><p>あります。その場合は影響範囲をご説明し、必要であれば追加のお見積りをご案内します。</p></div></details>
+          <details class="faq-item"><summary class="faq-trigger">AI活用設計は、最初から申し込む必要がありますか。</summary><div class="faq-answer"><p>いいえ。業務を見直した結果、AIが役に立つと分かった場合に、追加でお選びいただけます。</p></div></details>
+          <details class="faq-item"><summary class="faq-trigger">個別実装で作ったものの、運用や保守もお願いできますか。</summary><div class="faq-answer"><p>承ります。「運用保守」として、個別実装のオプションでご用意しています。対応は平日日中です（24時間対応は承っておりません）。</p></div></details>
+          <details class="faq-item"><summary class="faq-trigger">研修だけを個別に依頼できますか。</summary><div class="faq-answer"><p>承ります。個別にご相談ください。</p></div></details>
+          <details class="faq-item"><summary class="faq-trigger">何をもって成果とみなしますか。</summary><div class="faq-answer"><p>着手前に、何をどう測るかを決めます。取得できない数値がある場合は、その限界もお伝えします。</p></div></details>
+        </div>
+      </div>
+    </section>
+
+<section id="contact" class="final-cta" aria-labelledby="contact-title"><div class="comp-wrap final-cta-inner fade-in"><div><h2 id="contact-title">まず30分、話を聞かせてください</h2><p>「何から手をつけるか」から一緒に考えます。売り込みはしません。</p></div><div class="final-cta-actions"><a class="v3-button v3-button--primary" href="./contact.html">まず30分、話を聞かせてください</a><a class="v3-button v3-button--inverse" data-diagnosis-link>自分で現在地を確かめる</a></div></div></section>
   </main>
 
-<aside id="sticky-cta" class="sticky-cta" aria-label="無料診断へのご案内"><div class="sticky-cta__copy"><p class="sticky-cta__text">まずは無料診断から</p><p class="sticky-cta__description">AI活用の準備度を確認できます。</p></div><a class="sticky-cta__btn" data-diagnosis-link aria-disabled="true">無料で診断する</a><button id="sticky-cta-close" class="sticky-cta__close" type="button" aria-label="無料診断の案内を閉じる"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></aside>
-  <footer class="comp-footer"><div class="comp-wrap footer-row"><div class="footer-brand"><svg aria-hidden="true" viewBox="0 0 48 48"><path d="M29 4C20 10 12 20 12 29c0 8 6 14 14 14 9 0 15-7 15-16 0-8-5-16-12-23Z"/><path d="M18 31c7-1 13-6 17-14-1 8-5 15-12 19"/></svg><div><strong>ざつね屋</strong><p>地域企業の小さな業務変革屋</p></div></div><nav aria-label="フッターナビゲーション"><a href="./services.html">サービス</a><a href="#journey">進め方</a><a href="./works.html">事例</a><a href="./tools.html">ツール</a><a href="./profile.html">会社案内</a><a href="./faq.html">よくある質問</a></nav><small>© 2026 ざつね屋</small></div></footer>
+<aside id="sticky-cta" class="sticky-cta" aria-label="ご相談へのご案内"><div class="sticky-cta__copy"><p class="sticky-cta__text">まず、どこから手をつけるかを一緒に決めませんか</p></div><a class="sticky-cta__btn" href="#contact">相談する</a><button id="sticky-cta-close" class="sticky-cta__close" type="button" aria-label="ご相談の案内を閉じる"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></aside>
+  <footer class="comp-footer"><div class="comp-wrap footer-row"><div class="footer-brand"><svg aria-hidden="true" viewBox="0 0 48 48"><path d="M29 4C20 10 12 20 12 29c0 8 6 14 14 14 9 0 15-7 15-16 0-8-5-16-12-23Z"/><path d="M18 31c7-1 13-6 17-14"/></svg><div><strong>ざつね屋</strong><p>地域企業の小さな業務変革屋</p></div></div><nav aria-label="フッターナビゲーション"><div><strong>サービス</strong><a href="#kaizen">業務の見直し支援</a><a href="#jisso">個別実装</a><a href="#price">料金</a></div><div><strong>無料ツール</strong><a data-diagnosis-link>業務の現在地チェック</a><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/15_prompt-library/">プロンプトライブラリ</a></div><div><strong>ざつね屋について</strong><a href="./profile.html">代表について</a><a href="#works">実績</a><a href="#contact">お問い合わせ</a><a href="./privacy.html">プライバシーポリシー</a><a href="./tokusho.html">特定商取引法に基づく表記</a></div></nav><small>© 2026 ざつね屋</small></div></footer>
   <script src="./nav.js" defer></script>
 </body>
 </html>
