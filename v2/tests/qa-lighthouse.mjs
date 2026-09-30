@@ -1,11 +1,13 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
+import { readFileSync } from 'node:fs';
 import { access, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { getChromePath, Launcher } from 'chrome-launcher';
 import lighthouse, { desktopConfig } from 'lighthouse';
 import { startQaServer } from './qa-server.mjs';
+import { stagingPages } from '../../tools/publication-package.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const categories = ['performance', 'accessibility', 'best-practices', 'seo'];
@@ -32,6 +34,16 @@ const defaultPages = [
 const selectedPages = process.argv.find(arg => arg.startsWith('--pages='))?.slice(8).split(',');
 const pages = selectedPages ?? defaultPages;
 assert.ok(pages.every(page => defaultPages.includes(page)), 'selected Lighthouse pages are managed pages');
+const reviewNoindexSeo = process.argv.includes('--review-noindex-seo');
+if (reviewNoindexSeo) {
+  assert.deepEqual(pages, ['index.html'], 'noindex SEO exception is limited to the V2 review LP');
+  for (const page of stagingPages) {
+    const head = readFileSync(resolve(root, page), 'utf8').split(/<\/head>/i)[0];
+    const robots = [...head.matchAll(/<meta\b[^>]*\bname\s*=\s*["']robots["'][^>]*>/gi)];
+    assert.equal(robots.length, 1, `v2/${page} has one robots meta`);
+    assert.match(robots[0][0], /\bcontent\s*=\s*["']noindex,follow["']/i, `v2/${page} is review-only`);
+  }
+}
 const repeats = 2;
 const LIGHTHOUSE_RUN_TIMEOUT_MS = 90_000;
 const LIGHTHOUSE_TOTAL_TIMEOUT_MS = 600_000;
@@ -310,7 +322,13 @@ async function runAudits({ server, chrome, temporaryReportDirectory }) {
         const score = result.lhr.categories[category]?.score;
         assert.equal(typeof score, 'number',
           `Lighthouse ${auditLabel}: ${category} score is available`);
-        if (score < 0.9) {
+        if (score < 0.9 && reviewNoindexSeo && category === 'seo') {
+          const failedSeoAudits = result.lhr.categories.seo.auditRefs
+            .filter(ref => ref.weight > 0 && result.lhr.audits[ref.id]?.score !== 1)
+            .map(ref => ref.id);
+          assert.deepEqual(failedSeoAudits, ['is-crawlable'],
+            `Lighthouse ${auditLabel}: only deliberate noindex may reduce SEO`);
+        } else if (score < 0.9) {
           const diagnostics = category === 'performance'
             ? performanceDiagnosticAudits.map(auditId => {
                 const audit = result.lhr.audits[auditId];
@@ -397,4 +415,8 @@ async function runLighthouseQa() {
 }
 
 await runLighthouseQa();
-console.log(`PASS Lighthouse ${pages.length * profiles.length * repeats} representative-page audits meet every 0.90 category threshold`);
+if (reviewNoindexSeo) {
+  console.log(`PASS Lighthouse ${pages.length * profiles.length * repeats} V2 review audits: Performance, Accessibility and Best Practices meet 0.90; SEO reports deliberate noindex separately`);
+} else {
+  console.log(`PASS Lighthouse ${pages.length * profiles.length * repeats} representative-page audits meet every 0.90 category threshold`);
+}

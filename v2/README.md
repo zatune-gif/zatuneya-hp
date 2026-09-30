@@ -19,15 +19,14 @@ LPは既存V3の `top-comp.css`、`v3-top-page.css`、`lower-info-pages.css`、`
 リポジトリルートで依存を `npm ci` により導入してから、次を実行します。
 
 ```powershell
-node v2/tests/ver5-lp-browser.mjs
-node v2/tests/qa-axe.mjs --pages=index.html
-node v2/tests/qa-lighthouse.mjs --pages=index.html
-npm run qa:publication-test
-npm run publication:build
-npm run qa:publication-browser
+npm run qa:all
 ```
 
-`ver5-lp-browser.mjs` は375/768/1280pxをChromium・Firefox・WebKitで確認し、セクション・アンカー・横スクロール・診断リンクを検査して、Chromiumの全ページ画像を `qa-screenshots/ver5-lp/` に保存します。画像は実際のスクロールでアニメーションを発火させた後に撮影します。
+`qa:all` はVer.5の静的契約、公開パッケージ、375/768/1280px×Chromium・Firefox・WebKitの表示と操作、axe、Lighthouseを順に検査します。旧V3本文・画像に固定した検査は `qa:v3-legacy` として保持します。Ver.5のブラウザ検証はセクション・アンカー・横スクロール・ハンバーガー・ドロップダウン・FAQ開閉・6ページの5秒転送を確認し、Chromiumの全ページ画像を `qa-screenshots/ver5-lp/` に保存します。画像は実際のスクロールでアニメーションを発火させた後に撮影します。代表的な保持ページ（profile/contact/tokusho）のナビ操作とaxeも確認します。
+
+旧ページの5秒 `meta refresh` は指定された案内方式ですが、axeはこの要素自体を `meta-refresh`（critical）として検出します。このため `qa:all` のaxeはLPと保持3ページを対象にし、案内ページは静的な転送先・手動リンクと実ブラウザでの5秒後の遷移を別途検証します。旧全ページ用の `qa:axe` を単独実行すると、この既知の違反で失敗します。
+
+Lighthouseはモバイル・デスクトップ各2回で4指標を実測します。レビュー用の全17ページが `noindex,follow` のとき、LPのSEOに限り `is-crawlable` 監査による減点だけを閾値判定から除き、実測スコアは表示します。Performance、Accessibility、Best Practicesは90以上を維持します。本番用の監査ではこの例外を使わず、SEOを含む4指標90以上を確認します。
 
 公開物の許可リストは `tools/publication-files.txt` です。新規ファイルの配信が必要な場合だけ更新してください。`/v2/` はレビュー用のため、公開パッケージのnoindexゲートを通します。ルート本番への切り替えと旧ルートページからLPへの転送は、昇格判断後に別途行います。
 

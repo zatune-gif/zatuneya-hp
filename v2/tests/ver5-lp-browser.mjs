@@ -38,6 +38,30 @@ try {
         }
         assert.equal(await page.locator('a[data-diagnosis-link][href="https://ai-shindan-zatuneya.netlify.app/"]').count() >= 4, true, name + '/' + width + ' diagnosis links');
         checks++;
+        if (width <= 768) {
+          await page.locator('#nav-hamburger').click();
+          assert.equal(await page.locator('#nav-hamburger').getAttribute('aria-expanded'), 'true', name + '/' + width + ' hamburger opens');
+          checks++;
+        }
+        const servicesMenu = page.locator('.site-nav__dropdown-trigger').first();
+        await servicesMenu.click();
+        assert.equal(await servicesMenu.getAttribute('aria-expanded'), 'true', name + '/' + width + ' service menu opens');
+        checks++;
+        await servicesMenu.click();
+        assert.equal(await servicesMenu.getAttribute('aria-expanded'), 'false', name + '/' + width + ' service menu closes');
+        checks++;
+        if (width <= 768) {
+          await page.locator('#nav-hamburger').click();
+          assert.equal(await page.locator('#nav-hamburger').getAttribute('aria-expanded'), 'false', name + '/' + width + ' hamburger closes');
+          checks++;
+        }
+        const faq = page.locator('#faq details').first();
+        await faq.locator('summary').click();
+        assert.equal(await faq.evaluate(element => element.open), true, name + '/' + width + ' FAQ opens');
+        checks++;
+        await faq.locator('summary').click();
+        assert.equal(await faq.evaluate(element => element.open), false, name + '/' + width + ' FAQ closes');
+        checks++;
         if (name === 'chromium') {
           for (const id of ids) {
             await page.locator('#' + id).scrollIntoViewIfNeeded();
@@ -48,6 +72,41 @@ try {
           await page.screenshot({ path: join(screenshots, width + '.png'), fullPage: true });
         }
         await page.close();
+      }
+      if (name === 'chromium') {
+        for (const [pageName, anchor] of Object.entries({
+          'services.html': 'service',
+          'service-training.html': 'faq',
+          'works.html': 'works',
+          'faq.html': 'faq',
+          'service-management.html': 'kaizen',
+          'service-order.html': 'kaizen'
+        })) {
+          const redirectPage = await browser.newPage();
+          await redirectPage.goto(server.origin + '/' + pageName, { waitUntil: 'domcontentloaded' });
+          await redirectPage.waitForURL(server.origin + '/index.html#' + anchor, { timeout: 8000 });
+          assert.equal(new URL(redirectPage.url()).hash, '#' + anchor, pageName + ' reaches intended anchor');
+          checks++;
+          await redirectPage.close();
+        }
+        for (const pageName of ['profile.html', 'contact.html', 'tokusho.html']) {
+          for (const width of [375, 1280]) {
+            const keptPage = await browser.newPage({ viewport: { width, height: 900 } });
+            await keptPage.goto(server.origin + '/' + pageName, { waitUntil: 'networkidle' });
+            assert.equal(await keptPage.locator('#site-nav').count(), 1, pageName + ' shared navigation');
+            checks++;
+            if (width === 375) {
+              await keptPage.locator('#nav-hamburger').click();
+              assert.equal(await keptPage.locator('#nav-hamburger').getAttribute('aria-expanded'), 'true', pageName + ' mobile menu');
+              checks++;
+            }
+            const dropdown = keptPage.locator('.site-nav__dropdown-trigger').first();
+            await dropdown.click();
+            assert.equal(await dropdown.getAttribute('aria-expanded'), 'true', pageName + ' dropdown');
+            checks++;
+            await keptPage.close();
+          }
+        }
       }
     } finally {
       await browser.close();
