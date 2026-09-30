@@ -56,7 +56,7 @@
 .tl-dot{position:relative;z-index:1;flex:none;width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--teal),var(--teal-dk));color:#fff;display:flex;align-items:center;justify-content:center;font:900 17px 'Roboto',sans-serif;box-shadow:var(--shadow)}
 .tl-item.accent .tl-dot{background:linear-gradient(135deg,var(--orange),#E28511)}
 .tl-card{flex:1;background:#fff;border:1px solid #e7f0f0;border-radius:16px;padding:16px 20px;box-shadow:0 7px 20px rgba(18,63,70,.06);margin-top:4px}
-.tl-card h3{margin:0;font-size:16.5px;color:var(--ink);font-family:'Noto Sans JP',sans-serif;font-weight:900}
+.tl-card h3{margin:0;font-size:16.5px;color:var(--ink);font-family:var(--font-sans);font-weight:900}
 .tl-card p{margin:6px 0 0;font-size:14px;line-height:1.75;color:var(--muted)}
 .tl-card p .arrow{color:var(--teal-dk);font-weight:900;margin-right:4px}
 .tl-item.accent .tl-card p .arrow{color:var(--orange-text)}
@@ -66,7 +66,7 @@
 .trio-card{padding:30px 26px;text-align:center}
 .trio-icon{width:56px;height:56px;margin:0 auto;border-radius:16px;background:var(--mint);display:flex;align-items:center;justify-content:center;color:var(--teal-dk)}
 .trio-icon svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.trio-card h3{margin:16px 0 0;font-size:17px;color:var(--ink);font-family:'Noto Sans JP',sans-serif;font-weight:900}
+.trio-card h3{margin:16px 0 0;font-size:17px;color:var(--ink);font-family:var(--font-sans);font-weight:900}
 .trio-card p{margin:10px 0 0;font-size:13.5px;line-height:1.8;color:var(--muted)}
 .trio-src{display:inline-block;margin-top:14px;font-size:11.5px;font-weight:800;letter-spacing:.02em;color:var(--teal-dk);background:var(--mint);padding:6px 14px;border-radius:999px}
 

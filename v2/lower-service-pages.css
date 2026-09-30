@@ -1,0 +1,69 @@
+/* Scoped adaptations of current service/profile copy. Shared shell is not duplicated. */
+.lps-container { display: grid; gap: var(--space-24); }
+.lps-detail-grid { display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr); align-items: start; gap: var(--space-40); }
+.lps-detail-grid > div:first-child { display: grid; gap: var(--space-24); }
+.lps-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-16); }
+.lps-svc-hero-icon { width: var(--size-icon); height: var(--size-icon); color: var(--teal-dark); }
+.lps-container svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: 0 0 auto; }
+.lps-svc-hero-icon svg, .lps-container .lp-icon svg { width: 100%; height: 100%; }
+.lps-small-icon { display: none; }
+.lps-price { border-color: var(--teal-dark); }
+.lps-price-box__label { color: var(--teal-dark); font-weight: 800; }
+.lps-price small { display: block; padding-top: var(--space-8); font-size: 14px; line-height: 1.6; font-weight: 400; }
+.lps-price .lp-price { font-size: 26px; }
+.lps-price .lp-actions > a { width: 100%; }
+.lps-course-blurb-list, .lps-guide-list { display: grid; gap: var(--space-16); margin: 0; padding: 0; list-style: none; }
+.lps-courses-section, .lps-guide { display: grid; gap: var(--space-24); }
+.lps-course-blurb-item { display: flex; align-items: start; gap: var(--space-16); padding: var(--space-24); border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--surface); }
+.lps-course-blurb-num { flex: 0 0 auto; color: var(--teal-dark); font-size: 24px; }
+.lps-course-blurb-text { display: grid; gap: var(--space-8); }
+.lps-course-blurb-text strong { font-size: 18px; }
+.lps-guide-row { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: var(--space-16); padding: var(--space-24); border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--ground); }
+.lps-guide-row__rec { display: grid; gap: var(--space-8); }
+.lps-guide-row__rec-name, .lps-guide-service { font-weight: 700; }
+.lps-guide-row__rec-note, .lps-guide-note { font-size: 14px; color: var(--muted); }
+.lps-guide-link { display: inline-flex; min-height: var(--size-control); align-items: center; text-underline-offset: var(--space-4); }
+.lps-toc { display: flex; flex-wrap: wrap; gap: var(--space-16); }
+.lps-toc a { display: inline-flex; min-height: var(--size-control); align-items: center; padding: var(--space-8) var(--space-16); border: 1px solid var(--teal-dark); border-radius: var(--radius-card); background: var(--surface); color: var(--teal-dark); text-underline-offset: var(--space-4); }
+.lps-related { text-decoration: none; }
+.lps-related-title { font-size: 20px; font-weight: 800; }
+.lps-related-arrow { color: var(--teal-dark); text-decoration: underline; text-underline-offset: var(--space-4); }
+.lps-related-title, .lps-related-desc, .lps-related-arrow { display: block; }
+.lps-related-title + .lps-related-desc { margin-top: var(--space-16); }
+.lps-related-title ~ .lps-related-arrow { margin-top: var(--space-16); }
+.lps-related-title { line-height: 1.4; }
+.lps-related-title, .lps-card-price { overflow-wrap: anywhere; }
+.lps-cta-inner { display: grid; gap: var(--space-24); }
+.lps-cta-tag { display: flex; align-items: center; gap: var(--space-8); font-size: 14px; }
+.lps-cta-inner .lps-inverse-note { color: var(--surface); }
+.lps-cta-inner :focus-visible { outline-color: var(--surface); }
+.lps-overview-card { display: flex; flex-direction: column; }
+.lps-card-heading { display: flex; align-items: center; justify-content: space-between; gap: var(--space-16); }
+.lps-card-price { margin-top: auto; padding-top: var(--space-16); color: var(--teal-dark); font-weight: 800; }
+.lps-svc-card__catch { font-weight: 700; }
+.lps-overview-card .lps-svc-card__title { font-size: 28px; }
+.lps-svc-card__target { color: var(--muted); font-size: 14px; }
+.lps-artcard { display: grid; gap: var(--space-16); justify-items: center; }
+.lps-artcard img { width: min(100%, 320px); height: auto; border-radius: var(--radius-card); }
+.lps-container.lp-split { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+.lps-pull { color: var(--teal-dark); font-size: 24px; font-weight: 800; }
+.lps-placeholder { max-width: 800px; }
+.lps-placeholder-state__lead { font-family: var(--font-serif); font-size: 28px; font-weight: 800; }
+.lps-training-layout { grid-template-columns: 1fr; }
+.lps-training-layout .lps-course-blurb-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.lps-training-layout .lps-course-blurb-item:last-child { grid-column: 1 / -1; }
+.lps-training-layout .lps-price { width: 100%; grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+.lps-price-summary { display: grid; gap: var(--space-8); }
+@media (max-width: 1000px) {
+  .lps-detail-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .lps-training-layout .lps-price { grid-template-columns: 1fr; }
+  .lps-training-layout .lps-course-blurb-list { grid-template-columns: 1fr; }
+  .lps-container.lp-split { grid-template-columns: 1fr; }
+  .lps-guide-row { grid-template-columns: 1fr; gap: var(--space-8); }
+  .lps-guide-row__arrow { display: none; }
+  .lps-toc { gap: var(--space-8); }
+  .lps-toc a { flex: 1 1 auto; justify-content: center; padding-inline: var(--space-8); font-size: 14px; }
+  .lps-course-blurb-item { padding: var(--space-16); }
+}

@@ -1,0 +1,51 @@
+{
+  "sources": {
+    "desktop": { "file": "comp-desktop-reference.png", "width": 588, "height": 2178 },
+    "mobile": { "file": "comp-mobile-reference.png", "width": 132, "height": 2178 }
+  },
+  "crops": {
+    "desktop": {
+      "hero": { "x": 0, "y": 40, "width": 588, "height": 300 },
+      "problems": { "x": 0, "y": 340, "width": 588, "height": 210 },
+      "package": { "x": 0, "y": 550, "width": 588, "height": 260 },
+      "services": { "x": 0, "y": 810, "width": 588, "height": 270 },
+      "journey": { "x": 0, "y": 1080, "width": 588, "height": 200 }
+    },
+    "mobile": {
+      "hero": { "x": 0, "y": 45, "width": 132, "height": 365 },
+      "problems": { "x": 0, "y": 410, "width": 132, "height": 250 },
+      "package": { "x": 0, "y": 660, "width": 132, "height": 240 },
+      "services": { "x": 0, "y": 900, "width": 132, "height": 405 },
+      "journey": { "x": 0, "y": 1305, "width": 132, "height": 545 }
+    }
+  },
+  "measuredAnchors": {
+    "desktop": {
+      "contentGutter": { "crop": "problems", "x": 19 },
+      "heroPhoto": { "crop": "hero", "x": 200, "y": 0, "width": 388, "height": 288 },
+      "servicePhoto": { "crop": "services", "x": 19, "y": 52, "width": 173, "height": 110 }
+    },
+    "mobile": {
+      "contentGutter": { "crop": "problems", "x": 7 },
+      "heroPhoto": { "crop": "hero", "x": 12, "y": 0, "width": 108, "height": 92 },
+      "servicePhoto": { "crop": "services", "x": 12, "y": 95, "width": 108, "height": 68 }
+    }
+  },
+  "tolerances": {
+    "gutterRatio": 0.005,
+    "desktopHeroRatio": 0.02,
+    "mobileHeroWidthRatio": 0.05,
+    "mobileHeroHeightAt375Px": 12,
+    "desktopServiceAspect": 0.03,
+    "mobileServiceAspect": 0.18
+  },
+  "toleranceRationale": {
+    "gutterRatio": "0.005 equals 0.66px in the 132px mobile source and 2.94px in the 588px desktop source; it covers anti-aliased edge selection without accepting a missing gutter.",
+    "desktopHeroRatio": "0.02 equals 11.76px in the desktop source; the photo's left edge is partially obscured by the white gradient, so this covers the ambiguous blended boundary.",
+    "mobileHeroWidthRatio": "0.05 equals 6.6px in the mobile source and covers the 320px/375px responsive inset change while preserving an obviously inset photograph.",
+    "mobileHeroHeightAt375Px": "12px equals 4.22px in the mobile source after scaling to 375px; this is the low-resolution boundary uncertainty plus one 4px layout-grid step, not the prior 46px production-following allowance.",
+    "desktopServiceAspect": "0.03 changes the measured 173:110 crop by about 2%; it catches portrait/square or visibly over-wide regressions while allowing pixel-boundary rounding.",
+    "mobileServiceAspect": "0.18 is 11.3% around the measured 108:68 crop. It covers the approved fixed-height crop across both 320px and 375px widths, while rejecting square, portrait, or panoramic substitutions."
+  },
+  "rationale": "The five crops are the sections present in both approved desktop and mobile comps. Coordinates follow visible section background and heading boundaries in the source PNGs. Text pixels are not compared because the approved canonical copy is longer than the comp copy. Neutral representative placeholders and replaceable photos are outside this gate; only their layout contracts remain in DOM tests."
+}
