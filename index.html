@@ -239,25 +239,8 @@ img,svg{display:block;max-width:100%}
 }
 
 /* ============ 5. CV (most prominent) ============ */
-.cv-section{background:var(--bg);position:relative}
-.cv-card{position:relative;max-width:940px;margin:0 auto;background:#fff;border-radius:34px;padding:16px 16px 0;box-shadow:var(--sh-3);overflow:hidden}
-.cv-topbar{height:6px;border-radius:99px;background:linear-gradient(90deg,var(--orange),var(--orange-d));margin:0 0 0}
-.cv-inner{padding:40px 48px 48px;position:relative}
-.cv-card .glow{position:absolute;top:-120px;right:-80px;width:360px;height:360px;background:radial-gradient(circle,rgba(248,152,29,.16),rgba(248,152,29,0) 70%);border-radius:50%;pointer-events:none}
-.cv-head{position:relative;text-align:center}
-.cv-tag{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font:700 12.5px/1 'Roboto',sans-serif;letter-spacing:.16em;color:var(--orange-text);background:var(--orange-pale);border:1px solid var(--orange-line);padding:8px 16px;border-radius:999px}
-.cv-tag svg{width:15px;height:15px;stroke:var(--orange-d);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.cv-head h2{font-size:clamp(26px,3.8vw,34px);margin:16px 0 0;letter-spacing:.01em}
-.cv-head p{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:1.9;color:var(--body);max-width:640px;margin:16px auto 0}
-.cv-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
-.cv-opt{background:var(--orange-pale);border:1px solid var(--orange-line);border-radius:22px;padding:32px;text-align:center;display:flex;flex-direction:column;transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
-.cv-opt:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
-.cv-opt .ic{width:56px;height:56px;border-radius:16px;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto;box-shadow:var(--sh-1)}
-.cv-opt .ic svg{width:28px;height:28px;stroke:var(--orange-d)}
-.cv-opt h3{font-size:20px;margin:16px 0 0}
-.cv-opt p{font:400 13px/1.8 'Noto Sans JP',sans-serif;color:var(--body);margin:12px 0 0;flex:1}
-.cv-opt .btn{margin-top:24px;font-size:15px;padding:16px}
-.cv-foot{position:relative;text-align:center;font:400 13px/1.6 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-top:24px}
+/* .cv-section/.cv-card/.cv-topbar/.cv-inner/.glow/.cv-tag/.cv-cta-row/.cv-foot は
+   全ページ共通のため style.css 側へ統一済み（このページでの重複定義は削除） */
 
 /* ============ 6. FREE TOOLS ============ */
 .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
@@ -308,11 +291,6 @@ img,svg{display:block;max-width:100%}
 .tool-card.tool-featured{border:2px solid var(--teal);background:linear-gradient(135deg,var(--teal-pale) 0%,#fff 70%)}
 .tool-featured-badge{display:inline-block;font:700 11px 'Noto Sans JP',sans-serif;color:#fff;background:var(--teal);padding:5px 14px;border-radius:999px;letter-spacing:.04em;margin-bottom:6px}
 
-/* ============ CTA 統合セクション ============ */
-.cv-cta-row{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:24px}
-.cv-foot a{color:var(--teal-text);text-decoration:none}
-.cv-foot a:hover{text-decoration:underline}
-
 /* ============ 8. FLOW ============ */
 .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
 .step{position:relative;text-align:center;padding:0 16px}
@@ -338,8 +316,8 @@ img,svg{display:block;max-width:100%}
 @media (max-width:680px){
   :root{--s24:64px;--s20:48px;--s16:40px;--s12:32px}
   .container{padding:0 20px}
-  .worry-grid,.cv-grid,.tools-grid,.svc-grid{grid-template-columns:1fr}
-  .cv-inner,.contact-card{padding:32px 24px}
+  .worry-grid,.tools-grid,.svc-grid{grid-template-columns:1fr}
+  .contact-card{padding:32px 24px}
   .subsidy-card{padding:24px 20px}
   .answer{padding:32px 24px}
   .answer-in{flex-direction:column;gap:16px}
@@ -713,11 +691,9 @@ img,svg{display:block;max-width:100%}
       <div class="cv-topbar"></div>
       <div class="cv-inner">
         <span class="glow"></span>
-        <div class="cv-head">
-          <span class="cv-tag"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>CONTACT ─ 無料</span>
-          <h2>まず30分、話を聞かせてください</h2>
-          <p>「何から手をつけるか」から一緒に考えます。売り込みはしません。</p>
-        </div>
+        <span class="cv-tag"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>CONTACT ─ 無料</span>
+        <h2>まず30分、話を聞かせてください</h2>
+        <p class="lead">「何から手をつけるか」から一緒に考えます。売り込みはしません。</p>
         <div class="cv-cta-row">
           <a class="btn btn-primary" href="./contact.html">
             <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
