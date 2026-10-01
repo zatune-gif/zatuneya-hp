@@ -59,9 +59,15 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 .btn-ghost{background:#fff;color:var(--teal-text);box-shadow:var(--sh-1)}
 .btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
 
-/* PAGE HERO（背景・斜めカット写真は style.css の .hero-diagonal / .hero-photo-panel） */
-.page-hero{padding:56px 0 64px}
-@media(max-width:960px){.page-hero{padding-bottom:0}}
+/* PAGE HERO（背景・斜めカット写真は style.css の .hero-diagonal / .hero-photo-panel／山並みシルエットは .skyline-illust）
+   hero-photo-panel は position:absolute;inset で「最も近い position:relative 祖先」いっぱいに伸びる。
+   ヒーロー下部に他ページ共通の skyline-illust を敷くため、写真パネル用の padding-bottom は
+   .page-hero（section）ではなく内側の .page-hero__inner に持たせ、写真の伸びる範囲を
+   skyline の手前までに限定する（works.html 等と同じ「写真の下に山並み帯→白背景」の見え方に揃える） */
+.page-hero{padding:56px 0 0}
+.page-hero__inner{position:relative;padding-bottom:64px}
+@media(max-width:960px){.page-hero__inner{padding-bottom:0}}
+.page-hero .skyline-illust{margin-top:32px}
 
 /* BREADCRUMB */
 .breadcrumb{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font:400 13px 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-bottom:28px}
@@ -173,24 +179,27 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 
 <main>
 <section class="page-hero hero-diagonal">
-  <span class="hero-photo-panel__edge" aria-hidden="true"></span>
-  <div class="container">
-    <nav class="breadcrumb" aria-label="パンくずリスト">
-      <a href="./index.html">トップ</a><span class="breadcrumb-sep">›</span>
-      <span>業務の見直し支援（業務改善）</span>
-    </nav>
-    <span class="icon-badge-circle icon-badge-circle--hero" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21H11"/><path d="M13 3l5 5h-5V3Z"/><path d="M8 9.5h3M8 13h4.5M8 16.5h2"/><circle cx="16" cy="16" r="3.2"/><path d="M18.4 18.4 21 21"/></svg></span>
-    <div class="svc-hero-meta">
-      <span class="svc-hero-num">SERVICE 01</span>
-      <span class="svc-hero-target">この作業だけ手間がかかる／何を変えるか決めきれていない企業向け</span>
+  <div class="page-hero__inner">
+    <span class="hero-photo-panel__edge" aria-hidden="true"></span>
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="./index.html">トップ</a><span class="breadcrumb-sep">›</span>
+        <span>業務の見直し支援（業務改善）</span>
+      </nav>
+      <span class="icon-badge-circle icon-badge-circle--hero" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21H11"/><path d="M13 3l5 5h-5V3Z"/><path d="M8 9.5h3M8 13h4.5M8 16.5h2"/><circle cx="16" cy="16" r="3.2"/><path d="M18.4 18.4 21 21"/></svg></span>
+      <div class="svc-hero-meta">
+        <span class="svc-hero-num">SERVICE 01</span>
+        <span class="svc-hero-target">この作業だけ手間がかかる／何を変えるか決めきれていない企業向け</span>
+      </div>
+      <span class="rule-accent" aria-hidden="true"></span>
+      <h1 class="svc-hero-h1"><span class="nw">業務の<span class="headline-accent">見直し</span>支援</span><span class="nw">（業務改善）</span></h1>
+      <p class="svc-hero-catch">一つの業務・一つの現場を、2か月で見直します。</p>
     </div>
-    <span class="rule-accent" aria-hidden="true"></span>
-    <h1 class="svc-hero-h1"><span class="nw">業務の<span class="headline-accent">見直し</span>支援</span><span class="nw">（業務改善）</span></h1>
-    <p class="svc-hero-catch">一つの業務・一つの現場を、2か月で見直します。</p>
+    <div class="hero-photo-panel" aria-hidden="true">
+      <img src="./assets/hero-desk.jpg" alt="" width="585" height="490" loading="eager">
+    </div>
   </div>
-  <div class="hero-photo-panel" aria-hidden="true">
-    <img src="./assets/hero-desk.jpg" alt="" width="585" height="490" loading="eager">
-  </div>
+  <img class="skyline-illust" src="./assets/skyline.svg" alt="" width="1440" height="140" aria-hidden="true">
 </section>
 
 <section class="section bg-white">
