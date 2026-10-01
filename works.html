@@ -22,8 +22,13 @@
 <link rel="stylesheet" href="./style.css">
 <style>
 /* ─── Page Hero ─── */
-.page-hero{padding:64px 0 56px;text-align:left}
+.page-hero{padding:64px 0 0;text-align:left}
+.page-hero .skyline-illust{margin-top:32px}
 .page-hero .container{text-align:left}
+.works-section{padding:64px 24px}
+.works-section--own{background:var(--bg);padding-top:72px;padding-bottom:80px}
+.works-section .container{max-width:1040px}
+.works-section--own + .cv-section{padding-top:24px}
 .page-hero .eyebrow{display:block;margin-bottom:12px}
 .page-hero h1{font-size:clamp(28px,4vw,38px);line-height:1.3;margin:0 0 16px}
 .page-hero__lead{font-family:'Noto Sans JP',sans-serif;font-size:16px;line-height:1.9;color:var(--body,#575757);max-width:640px;margin:0;word-break:keep-all;overflow-wrap:anywhere}
@@ -82,65 +87,475 @@
 </div>
 
 <main>
-  <section class="page-hero">
+  <section class="page-hero hero-diagonal">
+    <img class="corner-diagonal" src="./assets/corner-diagonal.svg" alt="" width="400" height="260" aria-hidden="true">
     <div class="container">
       <span class="eyebrow">Works</span>
       <h1>開発<span class="headline-accent">実績</span></h1>
       <p class="page-hero__lead">守秘義務のため、企業名は伏せて掲載しています。</p>
       <span class="rule-split" aria-hidden="true"></span>
     </div>
+    <img class="skyline-illust" src="./assets/skyline.svg" alt="" width="1440" height="140" aria-hidden="true">
   </section>
 
-  <section class="section-padded">
+  <section class="works-section">
     <div class="container">
-      <div class="work-card-grid">
-        <div class="work-card">
-          <div class="work-card__head">
-            <span class="work-card__badge">01</span>
-            <span class="work-tag work-tag--client">クライアントの依頼で開発</span>
-          </div>
-          <h2 class="work-card__title">見積づくりが、毎回一苦労。</h2>
-          <p class="work-card__meta">アパレル資材卸・OEM業者向け 見積・請求管理システム</p>
-          <div class="work-card__block">
-            <span class="work-label work-label--content">内容</span>
-            <p class="work-card__body">複数の仕入れ先（6社）の商品データ（883品番・24,923件のバリエーション）を統合管理。品番を選ぶだけで単価・加工費（印刷単価・製版費等）を自動算出する見積作成の仕組みを構築。会計ソフトと連携し、見積書・請求書の下書きを自動作成。自動テスト1,260件PASSで品質を確認しています。</p>
-          </div>
-          <div class="work-card__block">
-            <span class="work-label work-label--issue">解決した課題</span>
-            <p class="work-card__body">見積を作るたびに、6社分の仕入れ先ごとに紙の指示書とExcelを見比べながら、883品番・24,923件にのぼる色・サイズごとの単価を一つずつ手作業で拾っていた状態から脱却。</p>
-          </div>
-        </div>
+      <div class="work-feature-list">
 
-        <div class="work-card">
-          <div class="work-card__head">
-            <span class="work-card__badge">02</span>
-            <span class="work-tag work-tag--client">クライアントの依頼で開発</span>
+        <article class="work-feature" id="work-01">
+          <div class="work-feature__head">
+            <span class="step-badge-solid">01</span>
+            <h2 class="work-feature__catch">見積づくりが、<span class="headline-accent--orange">毎回一苦労。</span></h2>
           </div>
-          <h2 class="work-card__title">資金繰りが、いつも「なんとなく」頼み。</h2>
-          <p class="work-card__meta">卸売業向け 資金繰り管理ツール</p>
-          <div class="work-card__block">
-            <span class="work-label work-label--content">内容</span>
-            <p class="work-card__body">会計ソフトと連携し、資金繰りの予測・損益分岐点を自動で可視化する仕組みを構築。</p>
+          <div class="work-feature__tag-row"><span class="work-tag work-tag--client">クライアントの依頼で開発</span></div>
+          <p class="work-feature__name">アパレル資材卸・OEM業者向け 見積・請求管理システム</p>
+          <div class="work-feature__body">
+            <div class="work-feature__content">
+              <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21H11"/><path d="M13 3l5 5h-5V3Z"/><path d="M8 9.5h3M8 13h4.5M8 16.5h2"/><circle cx="16" cy="16" r="3.2"/><path d="M18.4 18.4 21 21"/></svg></span>
+              <div class="work-feature__content-text">
+                <span class="work-feature__label">開発内容</span>
+                <p class="work-feature__text">複数の仕入れ先（6社）の商品データ（883品番・24,923件のバリエーション）を統合管理。品番を選ぶだけで単価・加工費（印刷単価・製版費等）を自動算出する見積作成の仕組みを構築。会計ソフトと連携し、見積書・請求書の下書きを自動作成。自動テスト1,260件PASSで品質を確認しています。</p>
+              </div>
+            </div>
+            <div class="work-feature__visual mock-stage" aria-hidden="true">
+              <div class="mock-laptop">
+                <div class="mock-laptop__screen">
+                  <svg viewBox="0 0 320 200" focusable="false">
+                    <rect class="mk-side" width="58" height="200"/>
+                    <rect class="mk-deep" x="10" y="14" width="38" height="8" rx="2"/>
+                    <rect class="mk-teal" x="7" y="34" width="44" height="14" rx="3"/>
+                    <rect class="mk-line" x="12" y="58" width="32" height="6" rx="3"/>
+                    <rect class="mk-line" x="12" y="74" width="26" height="6" rx="3"/>
+                    <rect class="mk-line" x="12" y="90" width="34" height="6" rx="3"/>
+                    <rect class="mk-line" x="12" y="106" width="28" height="6" rx="3"/>
+                    <rect class="mk-dark" x="70" y="14" width="96" height="9" rx="2"/>
+                    <rect class="mk-frame" x="214" y="10" width="94" height="16" rx="8"/>
+                    <rect class="mk-soft" x="70" y="36" width="238" height="14" rx="3"/>
+                    <rect class="mk-deep mk-faint" x="76" y="40" width="30" height="6" rx="3"/>
+                    <rect class="mk-deep mk-faint" x="122" y="40" width="46" height="6" rx="3"/>
+                    <rect class="mk-deep mk-faint" x="210" y="40" width="30" height="6" rx="3"/>
+                    <rect class="mk-deep mk-faint" x="262" y="40" width="30" height="6" rx="3"/>
+                    <rect class="mk-line" x="76" y="59" width="34" height="6" rx="3"/><rect class="mk-line" x="122" y="59" width="70" height="6" rx="3"/><rect class="mk-mute" x="210" y="59" width="36" height="6" rx="3"/><rect class="mk-mute" x="262" y="59" width="38" height="6" rx="3"/>
+                    <rect class="mk-side" x="70" y="71" width="238" height="1"/>
+                    <rect class="mk-line" x="76" y="77" width="30" height="6" rx="3"/><rect class="mk-line" x="122" y="77" width="58" height="6" rx="3"/><rect class="mk-mute" x="210" y="77" width="36" height="6" rx="3"/><rect class="mk-mute" x="262" y="77" width="38" height="6" rx="3"/>
+                    <rect class="mk-osoft" x="70" y="89" width="238" height="16" rx="3"/>
+                    <rect class="mk-line" x="76" y="94" width="34" height="6" rx="3"/><rect class="mk-line" x="122" y="94" width="76" height="6" rx="3"/><rect class="mk-mute" x="210" y="94" width="36" height="6" rx="3"/><rect class="mk-orange" x="262" y="94" width="38" height="6" rx="3"/>
+                    <rect class="mk-line" x="76" y="113" width="34" height="6" rx="3"/><rect class="mk-line" x="122" y="113" width="64" height="6" rx="3"/><rect class="mk-mute" x="210" y="113" width="36" height="6" rx="3"/><rect class="mk-mute" x="262" y="113" width="38" height="6" rx="3"/>
+                    <rect class="mk-side" x="70" y="125" width="238" height="1"/>
+                    <rect class="mk-line" x="76" y="131" width="28" height="6" rx="3"/><rect class="mk-line" x="122" y="131" width="72" height="6" rx="3"/><rect class="mk-mute" x="210" y="131" width="36" height="6" rx="3"/><rect class="mk-mute" x="262" y="131" width="38" height="6" rx="3"/>
+                    <rect class="mk-side" x="70" y="143" width="238" height="1"/>
+                    <rect class="mk-line" x="76" y="149" width="34" height="6" rx="3"/><rect class="mk-line" x="122" y="149" width="54" height="6" rx="3"/><rect class="mk-mute" x="210" y="149" width="36" height="6" rx="3"/><rect class="mk-mute" x="262" y="149" width="38" height="6" rx="3"/>
+                    <rect class="mk-line" x="70" y="175" width="62" height="6" rx="3"/>
+                    <rect class="mk-teal" x="206" y="168" width="102" height="22" rx="4"/>
+                    <rect class="mk-white" x="214" y="176" width="34" height="6" rx="3"/>
+                    <rect class="mk-white" x="264" y="174" width="36" height="10" rx="2"/>
+                  </svg>
+                </div>
+                <div class="mock-laptop__base"></div>
+              </div>
+            </div>
           </div>
-          <div class="work-card__block">
-            <span class="work-label work-label--issue">解決した課題</span>
-            <p class="work-card__body">資金繰りの状況は「なんとなく大丈夫だろう」という感覚頼り。会計ソフトと別の表計算シートに数字が分かれていて、同じ内容を何度も入力し直す二重管理が常態化し、月々の数字を計画と照らし合わせる習慣もなかった状態を解消。</p>
+          <div class="work-solved">
+            <span class="icon-badge-circle icon-badge-circle--md icon-badge-circle--orange" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.5 18h5M10.5 21h3"/><path d="M12 4.5a5 5 0 0 0-3 9c.5.4.8 1 .8 1.6V16h4.4v-.9c0-.6.3-1.2.8-1.6a5 5 0 0 0-3-9Z"/><path d="M12 1v1.2M4.6 4.2l.9.9M19.4 4.2l-.9.9M2 11h1.3M20.7 11H22"/></svg></span>
+            <div class="work-solved__text">
+              <span class="work-solved__label">解決した課題</span>
+              <p class="work-solved__body">見積を作るたびに、6社分の仕入れ先ごとに紙の指示書とExcelを見比べながら、883品番・24,923件にのぼる色・サイズごとの単価を一つずつ手作業で拾っていた状態から脱却。</p>
+            </div>
           </div>
-        </div>
+        </article>
 
-        <div class="work-card work-card--product">
-          <div class="work-card__head">
-            <span class="work-card__badge">03</span>
-            <span class="work-tag work-tag--product">ざつね屋発案の自社プロダクト（提供準備中）</span>
+        <article class="work-feature" id="work-02">
+          <div class="work-feature__head">
+            <span class="step-badge-solid">02</span>
+            <h2 class="work-feature__catch">資金繰りが、いつも<span class="headline-accent--orange">「なんとなく」頼み。</span></h2>
           </div>
-          <h2 class="work-card__title">一人で回すWeb制作、抜け漏れの不安は尽きない。</h2>
-          <p class="work-card__meta">Web制作事業者向け 業務管理プロダクト</p>
-          <div class="work-card__block">
-            <span class="work-label work-label--content">内容</span>
-            <p class="work-card__body">一人で運営する小規模なWeb制作事業者への提供を見据えて開発中です。</p>
-            <p class="work-card__body">コードが書けなくても、受注前のヒアリングから見積・請求書作成、デザイン案・テストサイト案のAI自動生成、公開前チェック、月次レポートまでを一つのアプリで完結できる業務管理ツールを開発。単体テスト374件・E2Eテスト21件を実施。</p>
+          <div class="work-feature__tag-row"><span class="work-tag work-tag--client">クライアントの依頼で開発</span></div>
+          <p class="work-feature__name">卸売業向け 資金繰り管理ツール</p>
+          <div class="work-feature__body">
+            <div class="work-feature__content">
+              <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/><path d="M7 12.5l3-3 2.5 2 4-4.5"/></svg></span>
+              <div class="work-feature__content-text">
+                <span class="work-feature__label">開発内容</span>
+                <p class="work-feature__text">会計ソフトと連携し、資金繰りの予測・損益分岐点を自動で可視化する仕組みを構築。</p>
+              </div>
+            </div>
+            <div class="work-feature__visual mock-stage" aria-hidden="true">
+              <div class="mock-laptop">
+                <div class="mock-laptop__screen">
+                  <svg viewBox="0 0 320 200" focusable="false">
+                    <rect class="mk-side" width="320" height="26"/>
+                    <rect class="mk-deep" x="12" y="9" width="70" height="8" rx="2"/>
+                    <rect class="mk-teal" x="250" y="7" width="58" height="12" rx="6"/>
+                    <rect class="mk-frame" x="12" y="36" width="92" height="34" rx="5"/><rect class="mk-line" x="20" y="44" width="40" height="5" rx="2.5"/><rect class="mk-deep" x="20" y="55" width="56" height="8" rx="2"/>
+                    <rect class="mk-frame" x="114" y="36" width="92" height="34" rx="5"/><rect class="mk-line" x="122" y="44" width="34" height="5" rx="2.5"/><rect class="mk-deep" x="122" y="55" width="48" height="8" rx="2"/>
+                    <rect class="mk-frame" x="216" y="36" width="92" height="34" rx="5"/><rect class="mk-line" x="224" y="44" width="44" height="5" rx="2.5"/><rect class="mk-orange" x="224" y="55" width="52" height="8" rx="2"/>
+                    <rect class="mk-frame" x="12" y="80" width="186" height="108" rx="6"/>
+                    <rect class="mk-side" x="22" y="102" width="166" height="1"/>
+                    <rect class="mk-side" x="22" y="126" width="166" height="1"/>
+                    <rect class="mk-side" x="22" y="150" width="166" height="1"/>
+                    <path class="mk-soft" d="M22 168 L48 150 L74 156 L100 132 L126 138 L152 112 L188 96 L188 178 L22 178Z"/>
+                    <path class="mk-stroke mk-stroke--orange mk-stroke--dash" d="M22 160 L188 112"/>
+                    <path class="mk-stroke" d="M22 168 L48 150 L74 156 L100 132 L126 138 L152 112 L188 96"/>
+                    <rect class="mk-frame" x="208" y="80" width="100" height="56" rx="6"/>
+                    <rect class="mk-soft" x="218" y="112" width="10" height="16" rx="1.5"/>
+                    <rect class="mk-soft" x="234" y="104" width="10" height="24" rx="1.5"/>
+                    <rect class="mk-teal" x="250" y="108" width="10" height="20" rx="1.5"/>
+                    <rect class="mk-teal" x="266" y="98" width="10" height="30" rx="1.5"/>
+                    <rect class="mk-orange" x="282" y="92" width="10" height="36" rx="1.5"/>
+                    <rect class="mk-frame" x="208" y="144" width="100" height="44" rx="6"/>
+                    <circle class="mk-ring" cx="232" cy="166" r="12"/>
+                    <circle class="mk-ring mk-ring--on" cx="232" cy="166" r="12" transform="rotate(-90 232 166)"/>
+                    <rect class="mk-line" x="254" y="158" width="44" height="5" rx="2.5"/>
+                    <rect class="mk-line" x="254" y="170" width="32" height="5" rx="2.5"/>
+                  </svg>
+                </div>
+                <div class="mock-laptop__base"></div>
+              </div>
+            </div>
           </div>
-        </div>
+          <div class="work-solved">
+            <span class="icon-badge-circle icon-badge-circle--md icon-badge-circle--orange" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.5 18h5M10.5 21h3"/><path d="M12 4.5a5 5 0 0 0-3 9c.5.4.8 1 .8 1.6V16h4.4v-.9c0-.6.3-1.2.8-1.6a5 5 0 0 0-3-9Z"/><path d="M12 1v1.2M4.6 4.2l.9.9M19.4 4.2l-.9.9M2 11h1.3M20.7 11H22"/></svg></span>
+            <div class="work-solved__text">
+              <span class="work-solved__label">解決した課題</span>
+              <p class="work-solved__body">資金繰りの状況は「なんとなく大丈夫だろう」という感覚頼り。会計ソフトと別の表計算シートに数字が分かれていて、同じ内容を何度も入力し直す二重管理が常態化し、月々の数字を計画と照らし合わせる習慣もなかった状態を解消。</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-feature work-feature--product" id="work-03">
+          <div class="work-feature__head">
+            <span class="step-badge-solid">03</span>
+            <h2 class="work-feature__catch">一人で回すWeb制作、<span class="headline-accent--orange">抜け漏れの不安は尽きない。</span></h2>
+          </div>
+          <div class="work-feature__tag-row"><span class="work-tag work-tag--product">ざつね屋発案の自社プロダクト（提供準備中）</span></div>
+          <p class="work-feature__name">Web制作事業者向け 業務管理プロダクト</p>
+          <div class="work-feature__body">
+            <div class="work-feature__content">
+              <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 8.5h18"/><path d="M6 6.3h.01M8.5 6.3h.01"/><path d="M8 14l2.5 2.5L16 11"/></svg></span>
+              <div class="work-feature__content-text">
+                <span class="work-feature__label">開発内容</span>
+                <p class="work-feature__text">一人で運営する小規模なWeb制作事業者への提供を見据えて開発中です。</p>
+                <p class="work-feature__text">コードが書けなくても、受注前のヒアリングから見積・請求書作成、デザイン案・テストサイト案のAI自動生成、公開前チェック、月次レポートまでを一つのアプリで完結できる業務管理ツールを開発。単体テスト374件・E2Eテスト21件を実施。</p>
+              </div>
+            </div>
+            <div class="work-feature__visual mock-stage" aria-hidden="true">
+              <div class="mock-laptop">
+                <div class="mock-laptop__screen">
+                  <svg viewBox="0 0 320 200" focusable="false">
+                    <rect class="mk-side" width="64" height="200"/>
+                    <rect class="mk-soft" x="6" y="12" width="52" height="18" rx="4"/>
+                    <rect class="mk-teal" x="11" y="16" width="10" height="10" rx="2"/><rect class="mk-teal" x="26" y="18" width="26" height="6" rx="3"/>
+                    <rect class="mk-mute" x="11" y="38" width="10" height="10" rx="2"/><rect class="mk-line" x="26" y="40" width="24" height="6" rx="3"/>
+                    <rect class="mk-mute" x="11" y="60" width="10" height="10" rx="2"/><rect class="mk-line" x="26" y="62" width="20" height="6" rx="3"/>
+                    <rect class="mk-mute" x="11" y="82" width="10" height="10" rx="2"/><rect class="mk-line" x="26" y="84" width="26" height="6" rx="3"/>
+                    <rect class="mk-mute" x="11" y="104" width="10" height="10" rx="2"/><rect class="mk-line" x="26" y="106" width="22" height="6" rx="3"/>
+                    <rect class="mk-mute" x="11" y="126" width="10" height="10" rx="2"/><rect class="mk-line" x="26" y="128" width="18" height="6" rx="3"/>
+                    <rect class="mk-dark" x="76" y="14" width="70" height="8" rx="2"/>
+                    <rect class="mk-line" x="96" y="44.5" width="190" height="3" rx="1.5"/>
+                    <rect class="mk-teal" x="96" y="44.5" width="142" height="3" rx="1.5"/>
+                    <circle class="mk-teal" cx="96" cy="46" r="9"/><path class="mk-check" d="M92 46l3 3 5-6"/>
+                    <circle class="mk-teal" cx="143" cy="46" r="9"/><path class="mk-check" d="M139 46l3 3 5-6"/>
+                    <circle class="mk-teal" cx="190" cy="46" r="9"/><path class="mk-check" d="M186 46l3 3 5-6"/>
+                    <circle class="mk-orange" cx="238" cy="46" r="9"/><circle class="mk-white" cx="238" cy="46" r="3"/>
+                    <circle class="mk-frame" cx="286" cy="46" r="8"/>
+                    <rect class="mk-line" x="82" y="62" width="28" height="5" rx="2.5"/><rect class="mk-line" x="129" y="62" width="28" height="5" rx="2.5"/><rect class="mk-line" x="176" y="62" width="28" height="5" rx="2.5"/><rect class="mk-line" x="224" y="62" width="28" height="5" rx="2.5"/><rect class="mk-line" x="272" y="62" width="28" height="5" rx="2.5"/>
+                    <rect class="mk-frame" x="76" y="80" width="232" height="108" rx="6"/>
+                    <rect class="mk-deep" x="86" y="91" width="50" height="7" rx="2"/>
+                    <rect class="mk-side" x="86" y="108" width="104" height="24" rx="4"/><rect class="mk-teal" x="93" y="114" width="9" height="12" rx="1.5"/><rect class="mk-line" x="108" y="117" width="62" height="6" rx="3"/>
+                    <rect class="mk-side" x="198" y="108" width="100" height="24" rx="4"/><rect class="mk-teal" x="205" y="114" width="9" height="12" rx="1.5"/><rect class="mk-line" x="220" y="117" width="56" height="6" rx="3"/>
+                    <rect class="mk-side" x="86" y="140" width="104" height="24" rx="4"/><rect class="mk-orange" x="93" y="146" width="9" height="12" rx="1.5"/><rect class="mk-line" x="108" y="149" width="52" height="6" rx="3"/>
+                    <rect class="mk-side" x="198" y="140" width="100" height="24" rx="4"/><rect class="mk-teal" x="205" y="146" width="9" height="12" rx="1.5"/><rect class="mk-line" x="220" y="149" width="60" height="6" rx="3"/>
+                    <rect class="mk-line" x="86" y="174" width="70" height="5" rx="2.5"/>
+                  </svg>
+                </div>
+                <div class="mock-laptop__base"></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="works-section works-section--own" id="own-products">
+    <div class="container">
+      <div class="flyer-section-head">
+        <span class="rule-accent" aria-hidden="true"></span>
+        <h2 class="flyer-section-head__title">自社開発<span class="headline-accent">実績</span></h2>
+        <p class="flyer-section-head__lead">ざつね屋の開発力を示すため、自社で企画・開発したプロダクトも紹介します。</p>
+      </div>
+      <div class="own-grid">
+
+        <article class="own-card">
+          <div class="own-card__head">
+            <span class="icon-badge-circle icon-badge-circle--md icon-badge-circle--white" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5.5c2.5-1 5.5-1 9 1 3.5-2 6.5-2 9-1v13c-2.5-1-5.5-1-9 1-3.5-2-6.5-2-9-1v-13Z"/><path d="M12 6.5v13"/></svg></span>
+            <div class="own-card__text">
+              <h3 class="own-card__title">漢字学習アプリ</h3>
+              <span class="own-card__status">公開中</span>
+              <p class="own-card__desc">小学校で習う漢字の書き順を、なぞって練習できるWebアプリ。</p>
+            </div>
+          </div>
+          <div class="own-card__visual" aria-hidden="true">
+            <div class="mock-laptop">
+              <div class="mock-laptop__screen">
+                <svg viewBox="0 0 320 200" focusable="false">
+                  <rect class="mk-side" width="70" height="200"/>
+                  <rect class="mk-deep" x="10" y="12" width="44" height="7" rx="2"/>
+                  <rect class="mk-soft" x="6" y="28" width="58" height="18" rx="3"/>
+                  <rect class="mk-frame" x="11" y="31" width="12" height="12" rx="2"/><rect class="mk-teal" x="28" y="34" width="30" height="6" rx="3"/>
+                  <rect class="mk-frame" x="11" y="53" width="12" height="12" rx="2"/><rect class="mk-line" x="28" y="56" width="26" height="6" rx="3"/>
+                  <rect class="mk-frame" x="11" y="73" width="12" height="12" rx="2"/><rect class="mk-line" x="28" y="76" width="30" height="6" rx="3"/>
+                  <rect class="mk-frame" x="11" y="93" width="12" height="12" rx="2"/><rect class="mk-line" x="28" y="96" width="24" height="6" rx="3"/>
+                  <rect class="mk-frame" x="11" y="113" width="12" height="12" rx="2"/><rect class="mk-line" x="28" y="116" width="28" height="6" rx="3"/>
+                  <rect class="mk-frame" x="11" y="133" width="12" height="12" rx="2"/><rect class="mk-line" x="28" y="136" width="22" height="6" rx="3"/>
+                  <rect class="mk-frame" x="11" y="153" width="12" height="12" rx="2"/><rect class="mk-line" x="28" y="156" width="30" height="6" rx="3"/>
+                  <rect class="mk-dark" x="84" y="13" width="96" height="8" rx="2"/>
+                  <rect class="mk-frame mk-frame--orange" x="84" y="32" width="130" height="152" rx="6"/>
+                  <path class="mk-guide" d="M149 38v140M90 108h118"/>
+                  <path class="mk-stroke mk-stroke--brush" d="M116 78c16-5 40-6 62-2"/>
+                  <path class="mk-stroke mk-stroke--brush" d="M150 58c3 32 1 72-6 104"/>
+                  <path class="mk-stroke mk-stroke--brush mk-faint" d="M122 124c12 5 34 7 56 2"/>
+                  <circle class="mk-orange" cx="122" cy="124" r="5"/>
+                  <rect class="mk-teal" x="226" y="32" width="82" height="20" rx="4"/>
+                  <path class="mk-white" d="M262 37v10l8-5Z"/>
+                  <rect class="mk-frame" x="226" y="62" width="82" height="70" rx="5"/>
+                  <rect class="mk-soft" x="248" y="80" width="38" height="34" rx="3"/>
+                  <circle class="mk-orange" cx="267" cy="160" r="15"/>
+                  <path class="mk-white" d="M263 153v14l11-7Z"/>
+                </svg>
+              </div>
+              <div class="mock-laptop__base"></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="own-card">
+          <div class="own-card__head">
+            <span class="icon-badge-circle icon-badge-circle--md icon-badge-circle--white" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 5c-1.6-1.4-.4-3 1.2-2.4"/><path d="M9 12.2h.01M15 12.2h.01"/><path d="M9.5 15.8c1.4 1.2 3.6 1.2 5 0"/></svg></span>
+            <div class="own-card__text">
+              <h3 class="own-card__title">育児サポートアプリ</h3>
+              <span class="own-card__status">公開中</span>
+              <p class="own-card__desc">離乳食のレシピ提案と、予防接種のスケジュール管理ができる生成AI連携アプリ。</p>
+            </div>
+          </div>
+          <div class="own-card__visual" aria-hidden="true">
+            <div class="mock-laptop">
+              <div class="mock-laptop__screen">
+                <svg viewBox="0 0 320 200" focusable="false">
+                  <rect class="mk-side" width="62" height="200"/>
+                  <circle class="mk-osoft" cx="31" cy="26" r="13"/>
+                  <circle class="mk-orange" cx="31" cy="26" r="4"/>
+                  <rect class="mk-teal" x="6" y="52" width="50" height="14" rx="3"/>
+                  <rect class="mk-line" x="12" y="76" width="36" height="6" rx="3"/>
+                  <rect class="mk-line" x="12" y="92" width="30" height="6" rx="3"/>
+                  <rect class="mk-line" x="12" y="108" width="34" height="6" rx="3"/>
+                  <rect class="mk-frame" x="74" y="14" width="120" height="174" rx="6"/>
+                  <rect class="mk-dark" x="84" y="24" width="70" height="7" rx="2"/>
+                  <rect class="mk-osoft" x="84" y="40" width="100" height="70" rx="5"/>
+                  <circle class="mk-orange" cx="122" cy="76" r="7"/>
+                  <circle class="mk-teal" cx="136" cy="72" r="7"/>
+                  <circle class="mk-orange" cx="150" cy="77" r="6"/>
+                  <path class="mk-white" d="M104 78h64c-2 16-15 24-32 24s-30-8-32-24Z"/>
+                  <rect class="mk-line" x="84" y="122" width="90" height="6" rx="3"/>
+                  <rect class="mk-line" x="84" y="134" width="64" height="6" rx="3"/>
+                  <rect class="mk-teal" x="84" y="158" width="100" height="18" rx="9"/>
+                  <rect class="mk-white" x="114" y="164" width="40" height="6" rx="3"/>
+                  <rect class="mk-frame" x="204" y="14" width="104" height="174" rx="6"/>
+                  <rect class="mk-dark" x="214" y="24" width="64" height="7" rx="2"/>
+                  <rect class="mk-line" x="214" y="42" width="36" height="5" rx="2.5"/>
+                  <rect class="mk-teal" x="214" y="58" width="12" height="12" rx="2"/><path class="mk-check" d="M217 64l2.2 2.2 4-4.4"/><rect class="mk-line" x="232" y="61" width="40" height="6" rx="3"/><rect class="mk-mute" x="278" y="61" width="22" height="6" rx="3"/>
+                  <rect class="mk-frame" x="214" y="82" width="12" height="12" rx="2"/><rect class="mk-line" x="232" y="85" width="36" height="6" rx="3"/><rect class="mk-mute" x="278" y="85" width="22" height="6" rx="3"/>
+                  <rect class="mk-frame mk-frame--orange" x="214" y="106" width="12" height="12" rx="2"/><rect class="mk-line" x="232" y="109" width="42" height="6" rx="3"/><rect class="mk-mute" x="278" y="109" width="22" height="6" rx="3"/>
+                  <rect class="mk-frame" x="214" y="130" width="12" height="12" rx="2"/><rect class="mk-line" x="232" y="133" width="34" height="6" rx="3"/><rect class="mk-mute" x="278" y="133" width="22" height="6" rx="3"/>
+                </svg>
+              </div>
+              <div class="mock-laptop__base"></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="own-card">
+          <div class="own-card__head">
+            <span class="icon-badge-circle icon-badge-circle--md icon-badge-circle--white" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M10 9.5v5l4.5-2.5-4.5-2.5Z"/></svg></span>
+            <div class="own-card__text">
+              <h3 class="own-card__title">動画自動生成ツール</h3>
+              <span class="own-card__status">自社運用中</span>
+              <p class="own-card__desc">AIによる音声・画像生成を組み合わせ、ショート動画を自動で作るデスクトップツール。</p>
+            </div>
+          </div>
+          <div class="own-card__visual" aria-hidden="true">
+            <div class="mock-laptop">
+              <div class="mock-laptop__screen">
+                <svg viewBox="0 0 320 200" focusable="false">
+                  <rect class="mk-side" width="58" height="200"/>
+                  <rect class="mk-mute" x="10" y="18" width="10" height="10" rx="2"/><rect class="mk-line" x="24" y="20" width="24" height="6" rx="3"/>
+                  <rect class="mk-mute" x="10" y="40" width="10" height="10" rx="2"/><rect class="mk-line" x="24" y="42" width="22" height="6" rx="3"/>
+                  <rect class="mk-mute" x="10" y="62" width="10" height="10" rx="2"/><rect class="mk-line" x="24" y="64" width="26" height="6" rx="3"/>
+                  <rect class="mk-mute" x="10" y="84" width="10" height="10" rx="2"/><rect class="mk-line" x="24" y="86" width="22" height="6" rx="3"/>
+                  <rect class="mk-teal" x="10" y="106" width="10" height="10" rx="2"/><rect class="mk-teal" x="24" y="108" width="24" height="6" rx="3"/>
+                  <rect class="mk-dark" x="70" y="14" width="156" height="100" rx="6"/>
+                  <circle class="mk-osoft" cx="200" cy="36" r="8"/>
+                  <path class="mk-deep" d="M70 100l38-32 24 18 30-30 64 50v2a6 6 0 0 1-6 6H76a6 6 0 0 1-6-6Z"/>
+                  <circle class="mk-white" cx="148" cy="64" r="14"/>
+                  <path class="mk-dark" d="M144 57v14l11-7Z"/>
+                  <rect class="mk-line" x="70" y="122" width="156" height="4" rx="2"/>
+                  <rect class="mk-teal" x="70" y="122" width="64" height="4" rx="2"/>
+                  <rect class="mk-soft" x="70" y="134" width="35" height="34" rx="3"/>
+                  <rect class="mk-soft" x="110" y="134" width="35" height="34" rx="3"/>
+                  <rect class="mk-frame mk-frame--orange" x="150" y="134" width="35" height="34" rx="3"/>
+                  <rect class="mk-soft" x="190" y="134" width="35" height="34" rx="3"/>
+                  <rect class="mk-frame" x="236" y="14" width="72" height="174" rx="6"/>
+                  <rect class="mk-dark" x="244" y="24" width="40" height="6" rx="2"/>
+                  <rect class="mk-soft" x="244" y="40" width="24" height="40" rx="3"/>
+                  <rect class="mk-side" x="274" y="48" width="26" height="24" rx="3"/>
+                  <rect class="mk-line" x="244" y="98" width="56" height="3" rx="1.5"/>
+                  <circle class="mk-teal" cx="268" cy="99.5" r="4"/>
+                  <rect class="mk-teal" x="244" y="160" width="56" height="18" rx="9"/>
+                </svg>
+              </div>
+              <div class="mock-laptop__base"></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="own-card">
+          <div class="own-card__head">
+            <span class="icon-badge-circle icon-badge-circle--md icon-badge-circle--white" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h16"/><rect x="6" y="12" width="3" height="8"/><rect x="11" y="8" width="3" height="12"/><rect x="16" y="4" width="3" height="16"/></svg></span>
+            <div class="own-card__text">
+              <h3 class="own-card__title">工数・予算管理ツール</h3>
+              <span class="own-card__status">自社運用中</span>
+              <p class="own-card__desc">Googleスプレッドシート＋Google Apps Script製。工数と単価を入力するだけで予算を自動計算し、営業日ベースのスケジュールとガントチャートも自動で作成。遅れが出たときは再スケジュールを提案します。</p>
+            </div>
+          </div>
+          <div class="own-card__visual" aria-hidden="true">
+            <div class="mock-laptop">
+              <div class="mock-laptop__screen">
+                <svg viewBox="0 0 320 200" focusable="false">
+                  <rect class="mk-frame" x="10" y="14" width="134" height="174" rx="6"/>
+                  <rect class="mk-dark" x="20" y="24" width="54" height="7" rx="2"/>
+                  <rect class="mk-soft" x="16" y="40" width="122" height="14" rx="2"/>
+                  <rect class="mk-line" x="22" y="64" width="36" height="6" rx="3"/><rect class="mk-mute" x="74" y="64" width="24" height="6" rx="3"/><rect class="mk-mute" x="106" y="64" width="28" height="6" rx="3"/>
+                  <rect class="mk-side" x="16" y="78" width="122" height="1"/>
+                  <rect class="mk-line" x="22" y="88" width="30" height="6" rx="3"/><rect class="mk-mute" x="74" y="88" width="24" height="6" rx="3"/><rect class="mk-mute" x="106" y="88" width="28" height="6" rx="3"/>
+                  <rect class="mk-side" x="16" y="102" width="122" height="1"/>
+                  <rect class="mk-line" x="22" y="112" width="34" height="6" rx="3"/><rect class="mk-mute" x="74" y="112" width="24" height="6" rx="3"/><rect class="mk-mute" x="106" y="112" width="28" height="6" rx="3"/>
+                  <rect class="mk-side" x="16" y="126" width="122" height="1"/>
+                  <rect class="mk-line" x="22" y="136" width="28" height="6" rx="3"/><rect class="mk-mute" x="74" y="136" width="24" height="6" rx="3"/><rect class="mk-mute" x="106" y="136" width="28" height="6" rx="3"/>
+                  <rect class="mk-side" x="16" y="150" width="122" height="1"/>
+                  <rect class="mk-line" x="22" y="160" width="32" height="6" rx="3"/><rect class="mk-mute" x="74" y="160" width="24" height="6" rx="3"/><rect class="mk-mute" x="106" y="160" width="28" height="6" rx="3"/>
+                  <rect class="mk-frame" x="154" y="14" width="156" height="174" rx="6"/>
+                  <rect class="mk-dark" x="164" y="24" width="50" height="7" rx="2"/>
+                  <rect class="mk-line" x="200" y="42" width="16" height="5" rx="2.5"/><rect class="mk-line" x="227" y="42" width="16" height="5" rx="2.5"/><rect class="mk-line" x="254" y="42" width="16" height="5" rx="2.5"/><rect class="mk-line" x="281" y="42" width="16" height="5" rx="2.5"/>
+                  <rect class="mk-side" x="196" y="54" width="1" height="124"/><rect class="mk-side" x="223" y="54" width="1" height="124"/><rect class="mk-side" x="250" y="54" width="1" height="124"/><rect class="mk-side" x="277" y="54" width="1" height="124"/>
+                  <rect class="mk-line" x="164" y="64" width="24" height="6" rx="3"/><rect class="mk-teal" x="198" y="62" width="22" height="10" rx="3"/>
+                  <rect class="mk-line" x="164" y="88" width="24" height="6" rx="3"/><rect class="mk-orange" x="214" y="86" width="34" height="10" rx="3"/>
+                  <rect class="mk-line" x="164" y="112" width="24" height="6" rx="3"/><rect class="mk-teal" x="238" y="110" width="38" height="10" rx="3"/>
+                  <rect class="mk-line" x="164" y="136" width="24" height="6" rx="3"/><rect class="mk-deep" x="262" y="134" width="22" height="10" rx="3"/>
+                  <rect class="mk-line" x="164" y="160" width="24" height="6" rx="3"/><rect class="mk-teal" x="278" y="158" width="24" height="10" rx="3"/>
+                </svg>
+              </div>
+              <div class="mock-laptop__base"></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="own-card">
+          <div class="own-card__head">
+            <span class="icon-badge-circle icon-badge-circle--md icon-badge-circle--white" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="7.5" r="3"/><path d="M6.5 19.5c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5"/><circle cx="5" cy="10" r="2.2"/><path d="M1.8 18c0-2.2 1.4-4 3.4-4.4"/><circle cx="19" cy="10" r="2.2"/><path d="M22.2 18c0-2.2-1.4-4-3.4-4.4"/></svg></span>
+            <div class="own-card__text">
+              <h3 class="own-card__title">人員管理リマインダーBot</h3>
+              <span class="own-card__status">自社運用中</span>
+              <p class="own-card__desc">チャットツール（Slack）と連携し、定期的なチェックインでチームメンバーの状態を把握。AIが分析し、アラートの度合いに応じて管理者へ通知するBot。</p>
+            </div>
+          </div>
+          <div class="own-card__visual" aria-hidden="true">
+            <div class="mock-laptop">
+              <div class="mock-laptop__screen">
+                <svg viewBox="0 0 320 200" focusable="false">
+                  <rect class="mk-dark" width="74" height="200"/>
+                  <rect class="mk-white mk-faint" x="10" y="16" width="40" height="6" rx="3"/>
+                  <rect class="mk-white mk-faint" x="12" y="38" width="44" height="6" rx="3"/>
+                  <rect class="mk-white mk-faint" x="12" y="56" width="36" height="6" rx="3"/>
+                  <rect class="mk-teal" x="6" y="70" width="62" height="16" rx="3"/>
+                  <rect class="mk-white" x="12" y="75" width="38" height="6" rx="3"/>
+                  <rect class="mk-white mk-faint" x="12" y="96" width="30" height="6" rx="3"/>
+                  <circle class="mk-teal" cx="94" cy="28" r="9"/>
+                  <rect class="mk-dark" x="110" y="22" width="50" height="6" rx="2"/>
+                  <rect class="mk-line" x="166" y="22" width="16" height="6" rx="3"/>
+                  <rect class="mk-line" x="110" y="36" width="100" height="5" rx="2.5"/>
+                  <rect class="mk-line" x="110" y="46" width="84" height="5" rx="2.5"/>
+                  <rect class="mk-side" x="110" y="58" width="100" height="46" rx="4"/>
+                  <circle class="mk-mute" cx="119" cy="69" r="2.5"/><rect class="mk-line" x="126" y="66" width="56" height="5" rx="2.5"/>
+                  <circle class="mk-mute" cx="119" cy="81" r="2.5"/><rect class="mk-line" x="126" y="78" width="48" height="5" rx="2.5"/>
+                  <circle class="mk-mute" cx="119" cy="93" r="2.5"/><rect class="mk-line" x="126" y="90" width="60" height="5" rx="2.5"/>
+                  <rect class="mk-teal" x="110" y="112" width="70" height="16" rx="8"/>
+                  <circle class="mk-osoft" cx="94" cy="152" r="9"/>
+                  <rect class="mk-line" x="110" y="146" width="90" height="5" rx="2.5"/>
+                  <rect class="mk-line" x="110" y="156" width="70" height="5" rx="2.5"/>
+                  <rect class="mk-frame" x="222" y="14" width="88" height="174" rx="6"/>
+                  <rect class="mk-dark" x="230" y="24" width="56" height="6" rx="2"/>
+                  <rect class="mk-soft" x="232" y="66" width="8" height="20" rx="1.5"/>
+                  <rect class="mk-soft" x="244" y="58" width="8" height="28" rx="1.5"/>
+                  <rect class="mk-soft" x="256" y="64" width="8" height="22" rx="1.5"/>
+                  <rect class="mk-teal" x="268" y="50" width="8" height="36" rx="1.5"/>
+                  <rect class="mk-teal" x="280" y="42" width="8" height="44" rx="1.5"/>
+                  <rect class="mk-orange" x="292" y="56" width="8" height="30" rx="1.5"/>
+                  <circle class="mk-teal" cx="236" cy="110" r="5.5"/><path class="mk-check" d="M233.5 110l1.8 1.8 3.2-3.6"/><rect class="mk-line" x="246" y="107" width="52" height="6" rx="3"/>
+                  <circle class="mk-teal" cx="236" cy="132" r="5.5"/><path class="mk-check" d="M233.5 132l1.8 1.8 3.2-3.6"/><rect class="mk-line" x="246" y="129" width="46" height="6" rx="3"/>
+                  <circle class="mk-teal" cx="236" cy="154" r="5.5"/><path class="mk-check" d="M233.5 154l1.8 1.8 3.2-3.6"/><rect class="mk-line" x="246" y="151" width="50" height="6" rx="3"/>
+                </svg>
+              </div>
+              <div class="mock-laptop__base"></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="own-card">
+          <div class="own-card__head">
+            <span class="icon-badge-circle icon-badge-circle--md icon-badge-circle--white" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 8.5h18"/><path d="M6 6.3h.01M8.5 6.3h.01"/></svg></span>
+            <div class="own-card__text">
+              <h3 class="own-card__title">Web制作事業運営管理プロダクト</h3>
+              <span class="own-card__status own-card__status--prep">提供準備中</span>
+              <p class="own-card__desc">コードが書けなくても、受注前のヒアリングから見積・請求書作成、デザイン案・テストサイト案のAI自動生成、公開前チェック、月次レポートまでを一つのアプリで完結できる業務管理ツールを開発。</p>
+              <a class="own-card__link" href="#work-03">開発の詳細は「03」をご覧ください</a>
+            </div>
+          </div>
+          <div class="own-card__visual" aria-hidden="true">
+            <div class="mock-laptop">
+              <div class="mock-laptop__screen">
+                <svg viewBox="0 0 320 200" focusable="false">
+                  <rect class="mk-side" width="64" height="200"/>
+                  <rect class="mk-soft" x="6" y="12" width="52" height="18" rx="4"/>
+                  <rect class="mk-teal" x="11" y="16" width="10" height="10" rx="2"/><rect class="mk-teal" x="26" y="18" width="26" height="6" rx="3"/>
+                  <rect class="mk-mute" x="11" y="38" width="10" height="10" rx="2"/><rect class="mk-line" x="26" y="40" width="24" height="6" rx="3"/>
+                  <rect class="mk-mute" x="11" y="60" width="10" height="10" rx="2"/><rect class="mk-line" x="26" y="62" width="20" height="6" rx="3"/>
+                  <rect class="mk-mute" x="11" y="82" width="10" height="10" rx="2"/><rect class="mk-line" x="26" y="84" width="26" height="6" rx="3"/>
+                  <rect class="mk-mute" x="11" y="104" width="10" height="10" rx="2"/><rect class="mk-line" x="26" y="106" width="22" height="6" rx="3"/>
+                  <rect class="mk-mute" x="11" y="126" width="10" height="10" rx="2"/><rect class="mk-line" x="26" y="128" width="18" height="6" rx="3"/>
+                  <rect class="mk-dark" x="76" y="14" width="70" height="8" rx="2"/>
+                  <rect class="mk-line" x="96" y="44.5" width="190" height="3" rx="1.5"/>
+                  <rect class="mk-teal" x="96" y="44.5" width="142" height="3" rx="1.5"/>
+                  <circle class="mk-teal" cx="96" cy="46" r="9"/><path class="mk-check" d="M92 46l3 3 5-6"/>
+                  <circle class="mk-teal" cx="143" cy="46" r="9"/><path class="mk-check" d="M139 46l3 3 5-6"/>
+                  <circle class="mk-teal" cx="190" cy="46" r="9"/><path class="mk-check" d="M186 46l3 3 5-6"/>
+                  <circle class="mk-orange" cx="238" cy="46" r="9"/><circle class="mk-white" cx="238" cy="46" r="3"/>
+                  <circle class="mk-frame" cx="286" cy="46" r="8"/>
+                  <rect class="mk-line" x="82" y="62" width="28" height="5" rx="2.5"/><rect class="mk-line" x="129" y="62" width="28" height="5" rx="2.5"/><rect class="mk-line" x="176" y="62" width="28" height="5" rx="2.5"/><rect class="mk-line" x="224" y="62" width="28" height="5" rx="2.5"/><rect class="mk-line" x="272" y="62" width="28" height="5" rx="2.5"/>
+                  <rect class="mk-frame" x="76" y="80" width="232" height="108" rx="6"/>
+                  <rect class="mk-deep" x="86" y="91" width="50" height="7" rx="2"/>
+                  <rect class="mk-side" x="86" y="108" width="104" height="24" rx="4"/><rect class="mk-teal" x="93" y="114" width="9" height="12" rx="1.5"/><rect class="mk-line" x="108" y="117" width="62" height="6" rx="3"/>
+                  <rect class="mk-side" x="198" y="108" width="100" height="24" rx="4"/><rect class="mk-teal" x="205" y="114" width="9" height="12" rx="1.5"/><rect class="mk-line" x="220" y="117" width="56" height="6" rx="3"/>
+                  <rect class="mk-side" x="86" y="140" width="104" height="24" rx="4"/><rect class="mk-orange" x="93" y="146" width="9" height="12" rx="1.5"/><rect class="mk-line" x="108" y="149" width="52" height="6" rx="3"/>
+                  <rect class="mk-side" x="198" y="140" width="100" height="24" rx="4"/><rect class="mk-teal" x="205" y="146" width="9" height="12" rx="1.5"/><rect class="mk-line" x="220" y="149" width="60" height="6" rx="3"/>
+                  <rect class="mk-line" x="86" y="174" width="70" height="5" rx="2.5"/>
+                </svg>
+              </div>
+              <div class="mock-laptop__base"></div>
+            </div>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
