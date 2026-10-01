@@ -14,27 +14,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
+    /* ─── Page Hero（他ページ共通の斜めカット装飾・山並みシルエットに統一） ─── */
+    .page-hero { padding: 64px 0 0; text-align: left; }
+    .page-hero .skyline-illust { margin-top: 32px; }
+    .page-hero .container { text-align: left; }
+    .eyebrow {
+      display: inline-block;
+      font: 700 12.5px/1 'Roboto', 'Noto Sans JP', sans-serif;
+      letter-spacing: .22em;
+      color: var(--teal-text);
+      text-transform: uppercase;
+    }
+    .page-hero .eyebrow { display: block; margin-bottom: 12px; }
+    .page-hero h1 {
+      font: 900 clamp(28px, 4vw, 38px)/1.3 'Noto Sans JP', sans-serif;
+      color: var(--heading);
+      margin: 0 0 16px;
+    }
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      font: 400 13px 'Noto Sans JP', sans-serif;
+      color: var(--sub-text);
+      margin-bottom: 20px;
+    }
+    .breadcrumb a { color: var(--sub-text); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb-sep { color: var(--card-line); }
+
     .pp-wrap {
       max-width: 720px;
       margin: 0 auto;
-      padding: 64px 24px 96px;
-    }
-    .pp-eyebrow {
-      font: 700 11.5px/1 'Roboto', sans-serif;
-      letter-spacing: .2em;
-      color: var(--teal-text);
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-    .pp-title {
-      font: 900 32px/1.3 'Noto Sans JP', sans-serif;
-      color: var(--heading);
-      margin-bottom: 8px;
-    }
-    .pp-date {
-      font-size: 13px;
-      color: var(--sub-text);
-      margin-bottom: 48px;
+      padding: 56px 24px 96px;
     }
     .pp-section {
       margin-bottom: 40px;
@@ -186,11 +199,21 @@
 </header>
 
 <main>
-  <div class="pp-wrap">
+  <section class="page-hero hero-diagonal">
+    <img class="corner-diagonal" src="./assets/corner-diagonal.svg" alt="" width="400" height="260" aria-hidden="true">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="./index.html">トップ</a><span class="breadcrumb-sep">›</span>
+        <span>特定商取引法に基づく表記</span>
+      </nav>
+      <span class="eyebrow">Specified Commercial Transactions Act</span>
+      <h1>特定商取引法に基づく表記</h1>
+      <p class="page-hero__lead">最終更新日：2026年9月3日</p>
+    </div>
+    <img class="skyline-illust" src="./assets/skyline.svg" alt="" width="1440" height="140" aria-hidden="true">
+  </section>
 
-    <p class="pp-eyebrow">Specified Commercial Transactions Act</p>
-    <h1 class="pp-title">特定商取引法に基づく表記</h1>
-    <p class="pp-date">最終更新日：2026年9月3日</p>
+  <div class="pp-wrap">
 
     <table class="pp-table">
       <tr>
