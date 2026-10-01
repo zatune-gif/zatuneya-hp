@@ -116,18 +116,8 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 /* CTA ROW */
 .svc-cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
 
-/* CV SECTION */
-.cv-section{background:var(--bg);padding:var(--s24) 0}
-.cv-card{position:relative;max-width:820px;margin:0 auto;background:#fff;border-radius:34px;padding:16px 16px 0;box-shadow:var(--sh-3);overflow:hidden}
-.cv-topbar{height:6px;border-radius:99px;background:linear-gradient(90deg,var(--orange),var(--orange-d))}
-.cv-inner{position:relative;padding:48px;text-align:center}
-.cv-card .glow{position:absolute;top:-120px;right:-80px;width:360px;height:360px;background:radial-gradient(circle,rgba(248,152,29,.16),rgba(248,152,29,0) 70%);border-radius:50%;pointer-events:none}
-.cv-tag{display:inline-flex;align-items:center;gap:8px;font:700 12.5px/1 'Roboto',sans-serif;letter-spacing:.16em;color:var(--orange-text);background:var(--orange-pale);border:1px solid var(--orange-line);padding:8px 16px;border-radius:999px}
-.cv-tag svg{width:15px;height:15px;stroke:var(--orange-d);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.cv-inner h2{font-size:clamp(24px,3.5vw,32px);margin:16px 0 0}
-.cv-inner .lead{font-family:'Noto Sans JP',sans-serif;font-size:15px;line-height:1.9;color:var(--body);max-width:540px;margin:14px auto 0;word-break:keep-all;overflow-wrap:anywhere}
-.cv-cta-row{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:32px}
-.cv-foot{font:400 13px/1.6 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-top:20px}
+/* CV SECTION: .cv-section/.cv-card/.cv-topbar/.cv-inner/.glow/.cv-tag/.cv-cta-row/.cv-foot は
+   全ページ共通のため style.css 側へ統一済み（このページでの重複定義は削除） */
 
 /* RELATED SERVICES */
 .related-section{padding:64px 0}
@@ -142,7 +132,7 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 
 /* RESPONSIVE */
 @media(max-width:960px){.svc-hero-grid{grid-template-columns:1fr}.related-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:680px){:root{--s24:64px;--s20:48px;--s16:40px}.container{padding:0 20px}.related-grid{grid-template-columns:1fr}.price-box__cta .btn{width:100%}.cv-inner{padding:32px 24px}}
+@media(max-width:680px){:root{--s24:64px;--s20:48px;--s16:40px}.container{padding:0 20px}.related-grid{grid-template-columns:1fr}.price-box__cta .btn{width:100%}}
 </style>
 </head>
 <body>

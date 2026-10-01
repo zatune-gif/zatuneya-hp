@@ -259,45 +259,42 @@ body {
 .price-cautions li { font-size: 13px; color: var(--sub-text); padding-left: 18px; position: relative; }
 .price-cautions li::before { content: '※'; position: absolute; left: 0; color: var(--sub-text); }
 
-/* ── CV（1b: 白スポットライトパネル＋温かいオレンジカード） ── */
-.cv-panel {
-  position: relative; max-width: 900px; margin: 0 auto;
-  background: #fff; border-radius: 32px; padding: 52px 48px;
-  box-shadow: 0 24px 60px rgba(40,60,70,0.16); overflow: hidden; text-align: center;
-}
-@media (max-width: 640px) { .cv-panel { padding: 40px 20px; border-radius: 26px; } }
-.cv-panel::before {
-  content: ''; position: absolute; top: -100px; right: -70px;
-  width: 300px; height: 300px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(248,152,29,0.14), rgba(248,152,29,0) 70%);
-  pointer-events: none;
-}
-.cv-eyebrow {
-  display: inline-block; font-family: 'Roboto', sans-serif; font-size: 12.5px; font-weight: 700;
-  letter-spacing: 0.16em; color: var(--orange-text); background: var(--orange-soft);
-  padding: 8px 16px; border-radius: 999px; position: relative;
-}
-.cv-panel .section-title { font-size: 28px; margin-top: 16px; position: relative; }
-@media (max-width: 640px) { .cv-panel .section-title { font-size: 21px; } }
-.cv-panel .section-lead { max-width: 640px; margin-top: 14px; position: relative; }
-.cv-grid { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 36px; text-align: center; }
-@media (max-width: 640px) { .cv-grid { grid-template-columns: 1fr; } }
+/* ── CV（全ページ共通：相談・申込みセクション。旧 .cv-panel/.cv-grid はどのページからも参照されなくなったため、各ページ個別の <style> にあった最新版へ統一） ── */
+.cv-section { background: var(--bg); padding: 96px 0; position: relative; }
+@media (max-width: 680px) { .cv-section { padding: 64px 0; } }
 .cv-card {
-  background: var(--warm-bg); border: 1px solid var(--warm-line); border-radius: 22px;
-  padding: 30px 28px; display: flex; flex-direction: column;
+  position: relative; max-width: 940px; margin: 0 auto;
+  background: #fff; border-radius: 34px; padding: 16px 16px 0;
+  box-shadow: 0 6px 14px rgba(40,60,70,0.10), 0 30px 60px rgba(40,60,70,0.18);
+  overflow: hidden;
 }
-.cv-icon {
-  width: 54px; height: 54px; border-radius: 16px; background: #fff;
-  display: flex; align-items: center; justify-content: center; margin: 0 auto;
-  box-shadow: 0 4px 12px rgba(226,133,17,0.16); color: var(--orange-text);
+.cv-topbar { height: 6px; border-radius: 99px; background: linear-gradient(90deg, var(--orange), var(--orange-dk)); }
+.cv-inner { position: relative; padding: 48px; text-align: center; }
+@media (max-width: 680px) { .cv-inner { padding: 32px 24px; } }
+.cv-card .glow {
+  position: absolute; top: -120px; right: -80px; width: 360px; height: 360px;
+  background: radial-gradient(circle, rgba(248,152,29,0.16), rgba(248,152,29,0) 70%);
+  border-radius: 50%; pointer-events: none;
 }
-.cv-icon svg { width: 28px; height: 28px; }
-.cv-name { font-size: 19px; font-weight: 900; color: var(--heading); margin-top: 14px; }
-.cv-desc { font-size: 13px; color: var(--text); line-height: 1.8; margin-top: 10px; flex: 1; }
-.cv-card .btn { margin-top: 20px; padding: 15px; font-size: 15px; box-shadow: 0 8px 20px rgba(248,152,29,0.32); }
-.cv-note { position: relative; font-size: 13px; color: var(--sub-text); margin-top: 22px; }
-.cv-note a { color: inherit; font-weight: 700; text-decoration: none; }
-.cv-panel .btn-row { position: relative; margin-top: 28px; }
+.cv-tag {
+  position: relative; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+  font: 700 12.5px/1 'Roboto', sans-serif; letter-spacing: 0.16em; color: var(--orange-text);
+  background: var(--orange-soft); border: 1px solid var(--warm-line); padding: 8px 16px; border-radius: 999px;
+}
+.cv-tag svg { width: 15px; height: 15px; stroke: var(--orange-dk); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+.cv-inner h2 {
+  position: relative; font-size: clamp(25px, 3.6vw, 34px); margin: 16px 0 0; letter-spacing: 0.01em;
+  color: var(--heading); font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
+}
+.cv-inner .lead {
+  position: relative; font-family: 'Noto Sans JP', sans-serif; font-size: 15px; line-height: 1.9;
+  color: var(--text); max-width: 560px; margin: 16px auto 0; word-break: keep-all; overflow-wrap: anywhere;
+}
+.cv-cta-row { position: relative; display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 32px; }
+@media (max-width: 680px) { .cv-cta-row .btn { width: 100%; } }
+.cv-foot { position: relative; font-size: 13px; line-height: 1.6; color: var(--sub-text); margin-top: 24px; }
+.cv-foot a { color: var(--teal-text); font-weight: 700; text-decoration: none; }
+.cv-foot a:hover { text-decoration: underline; }
 
 /* ── 無料ツール ── */
 .tool-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; text-align: left; }
@@ -921,6 +918,85 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   margin-bottom: 12px;
   letter-spacing: 0.02em;
 }
+
+/* ── 開発実績カード（works.html専用：番号バッジ・ステータスタグ・ラベルチップ） ── */
+.work-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+.work-card {
+  position: relative;
+  background: #fff;
+  padding: 36px 32px 32px;
+  border-radius: 16px;
+  border-top: 4px solid var(--teal);
+  box-shadow: 0 1px 3px rgba(40,60,70,0.06), 0 14px 30px rgba(40,60,70,0.08);
+  text-align: left;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.work-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 2px 6px rgba(40,60,70,0.08), 0 18px 36px rgba(40,60,70,0.12);
+}
+.work-card--product { border-top-color: var(--orange); }
+.work-card__head { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.work-card__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--teal-soft);
+  color: var(--teal-dk);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+}
+.work-tag {
+  display: inline-block;
+  max-width: 100%;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.work-tag--client { background: var(--teal-soft2); color: var(--teal-text); border: 1px solid var(--card-line); }
+.work-tag--product { background: var(--orange-soft); color: var(--orange-text); border: 1px solid var(--warm-line); }
+.work-card__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--heading);
+  margin: 16px 0 0;
+  letter-spacing: 0.02em;
+}
+.work-card__meta {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--sub-text);
+  margin-top: 10px;
+}
+.work-card__block { margin-top: 20px; }
+.work-card__body {
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: var(--text);
+  margin-top: 8px;
+}
+.work-label {
+  display: inline-block;
+  padding: 3px 11px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.work-label--content { background: var(--card-tint); color: var(--teal-text); border: 1px solid var(--card-line); }
+.work-label--issue { background: var(--orange-soft); color: var(--orange-text); border: 1px solid var(--warm-line); }
 
 .card__body {
   line-height: 1.7;
