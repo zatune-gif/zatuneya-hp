@@ -804,73 +804,97 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   }
 }
 
-/* ── D. 追従スティッキーCTAバナー ── */
+/* ── D. 追従スティッキーCTAバナー（V3 v2/v3-top-page.css の構成を既存トークンで再現：
+       濃いティール面＋ピル型オレンジボタン＋円形枠線の閉じるボタン） ── */
 .sticky-cta {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 200;
-  background: var(--teal);
-  padding: 12px 24px;
   display: flex;
   align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  box-shadow: 0 -4px 16px rgba(40, 60, 70, 0.16);
+  justify-content: center;
+  gap: 24px;
+  min-height: 80px;
+  padding: 12px 80px 12px 24px;
+  background: var(--teal-deep);
+  border-top: 1px solid rgba(255, 255, 255, .12);
+  box-shadow: 0 -12px 32px rgba(36, 86, 92, .22);
 }
+.sticky-cta.is-closed { display: none; } /* nav.js が閉じるボタン押下時に付与 */
 
 .sticky-cta__text {
-  color: #fff;
-  font-size: 0.875rem;
-  flex: 1;
   margin: 0;
-  letter-spacing: 0.02em;
-  line-height: 1.6;
+  color: #fff;
+  font: 700 14px/1.6 'Noto Sans JP', sans-serif;
+  letter-spacing: .02em;
 }
 
 .sticky-cta__btn {
-  background: #fff;
-  color: var(--teal-text);
-  padding: 8px 20px;
-  border-radius: 4px;
-  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: #332211; /* オレンジ上の濃色文字 6.90:1（.btn-primary と同じ） */
+  font: 900 14px/1.4 'Noto Sans JP', sans-serif;
+  letter-spacing: .02em;
   text-decoration: none;
-  font-size: 0.875rem;
   white-space: nowrap;
-  letter-spacing: 0.02em;
-  transition: background 0.2s;
+  box-shadow: 0 8px 20px rgba(248, 152, 29, .34);
+  transition: background .2s, transform .2s, box-shadow .2s;
 }
-
 .sticky-cta__btn:hover {
-  background: var(--teal-soft);
+  background: var(--orange-dk);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(248, 152, 29, .42);
 }
+.sticky-cta__btn:focus-visible,
+.sticky-cta__close:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
 
 .sticky-cta__close {
-  background: none;
-  border: none;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  transform: translateY(-50%);
+  border: 1px solid rgba(255, 255, 255, .48);
+  border-radius: 50%;
+  background: transparent;
   color: #fff;
-  font-size: 1.25rem;
-  padding: 4px 8px;
+  font: 400 15px/1 'Noto Sans JP', sans-serif;
   cursor: pointer;
-  opacity: 0.8;
-  transition: opacity 0.2s;
-  font-family: inherit;
-  line-height: 1;
+  transition: background .2s, border-color .2s;
 }
-
 .sticky-cta__close:hover {
-  opacity: 1;
+  background: rgba(255, 255, 255, .12);
+  border-color: #fff;
 }
 
-@media (max-width: 320px) {
+/* バナーがページ末尾（フッター）を隠さないよう、表示中だけ下余白を確保 */
+@media (min-width: 769px) {
+  body:has(.sticky-cta:not(.is-closed)) { padding-bottom: 80px; }
+}
+@media (max-width: 768px) {
+  /* スマホ固定CTAバー（.mobile-cta-bar）があるページでは同じ導線が二重になるため隠す */
+  body:has(.mobile-cta-bar) .sticky-cta { display: none; }
   .sticky-cta {
     flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px 12px;
+    min-height: 0;
+    padding: 12px 68px 14px 16px;
   }
-
-  .sticky-cta__text {
-    width: 100%;
-  }
+  .sticky-cta__text { width: 100%; font-size: 12px; text-wrap: balance; }
+  .sticky-cta__btn { min-height: 40px; padding: 9px 20px; font-size: 13px; }
+  .sticky-cta__close { right: 12px; }
+  body:not(:has(.mobile-cta-bar)):has(.sticky-cta:not(.is-closed)) { padding-bottom: 112px; }
 }
 
 /* ── E. 新規ページ用の追加スタイル ── */
@@ -1298,6 +1322,23 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   .icon-flow__label { font-size: 12px; }
 }
 
+/* ジグザグ版（サービス紹介資料の表紙：円形アイコンを曲線の点線で上から下へつなぐ）
+   961px以上で縦ジグザグ。960px以下は通常の横並び .icon-flow（矢印つなぎ）に戻す */
+.icon-flow-zigzag { position: relative; }
+.icon-flow-zigzag__line { display: none; }
+.icon-flow-zigzag__path { fill: none; stroke: var(--teal); stroke-width: 2; stroke-linecap: round; stroke-dasharray: .5 7; }
+@media (min-width: 961px) {
+  .icon-flow-zigzag { width: 300px; height: 470px; }
+  .icon-flow-zigzag__line { display: block; position: absolute; inset: 0; width: 100%; height: 100%; }
+  .icon-flow--zigzag { position: absolute; inset: 0; display: block; --badge-size: 88px; }
+  .icon-flow--zigzag .icon-flow__item { position: absolute; width: 140px; }
+  .icon-flow--zigzag .icon-flow__item:nth-child(1) { left: 40px; top: 16px; }
+  .icon-flow--zigzag .icon-flow__item:nth-child(2) { left: 120px; top: 181px; }
+  .icon-flow--zigzag .icon-flow__item:nth-child(3) { left: 40px; top: 346px; }
+  .icon-flow--zigzag .icon-flow__item:not(:last-child)::after { display: none; }
+  .icon-flow--zigzag .icon-flow__label { font-size: 15px; }
+}
+
 /* ── 3. 塗りつぶし円の番号バッジ（進行フロー用） ── */
 .step-badge-solid {
   --step-size: 44px;
@@ -1579,3 +1620,52 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   .price-box__head { padding: 22px 20px 18px; }
   .price-box__inner { padding: 0 20px; }
 }
+
+/* ── 15. 開発実績ページのリズム（カードごとの背景・配置の切り替え／大きな番号の透かし／セクション間の斜め区切り） ── */
+.work-feature-list { counter-reset: work; gap: 48px; }
+.work-feature { counter-increment: work; isolation: isolate; overflow: hidden; }
+/* 右上に大きな番号の透かし（装飾。番号自体は見出し横のバッジで読める） */
+.work-feature::before {
+  content: counter(work, decimal-leading-zero);
+  position: absolute; top: 12px; right: 28px; z-index: -1;
+  font: 900 clamp(96px, 12vw, 150px)/1 'Roboto', sans-serif; letter-spacing: -.02em;
+  color: var(--teal-soft); pointer-events: none;
+}
+/* 偶数カード：淡いティール地＋モックアップを左に置いてジグザグに */
+.work-feature .work-feature__catch { flex: 0 1 auto; margin-right: clamp(0px, 14vw, 180px); }
+.work-feature:nth-child(even) {
+  background: linear-gradient(160deg, var(--card-tint) 0%, var(--teal-soft) 100%);
+  border-color: var(--teal-soft2);
+}
+.work-feature:nth-child(even)::before { color: #fff; }
+.work-feature:nth-child(even) .mock-stage { background: radial-gradient(120% 90% at 30% 20%, #fff 0%, #fff 40%, var(--teal-soft2) 100%); }
+@media (min-width: 861px) {
+  .work-feature:nth-child(even) .work-feature__body { grid-template-columns: minmax(0, .92fr) minmax(0, 1fr); }
+  .work-feature:nth-child(even) .work-feature__visual { order: -1; }
+}
+/* 自社プロダクト系のカード：上端にオレンジの帯で「クライアント依頼」と区別 */
+.work-feature--product { background: linear-gradient(180deg, var(--warm-bg) 0%, #fff 38%); }
+.work-feature--product::before { color: var(--orange-soft); }
+.work-feature--product::after {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+  background: linear-gradient(90deg, var(--orange), var(--orange-dk));
+}
+@media (max-width: 560px) {
+  .work-feature-list { gap: 32px; }
+  .work-feature::before { display: none; } /* 狭幅では見出しと重なるため透かし番号は出さない */
+  .work-feature .work-feature__catch { margin-right: 0; }
+}
+
+/* クライアント実績 → 自社開発実績：斜めの区切り＋オレンジの細線（トップのヒーロー写真と同じ斜めカットの語彙） */
+.works-section--own { position: relative; }
+.works-section--own::before {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: clamp(40px, 6vw, 80px);
+  background: var(--bg); clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  pointer-events: none;
+}
+.works-section--own::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: clamp(40px, 6vw, 80px);
+  background: var(--orange); clip-path: polygon(0 calc(100% - 3px), 38% 62%, 38% calc(62% + 3px), 0 100%);
+  pointer-events: none;
+}
+.works-section--own .flyer-section-head { position: relative; padding-left: 20px; border-left: 4px solid var(--teal-strong); }
