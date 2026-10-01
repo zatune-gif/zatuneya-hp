@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 140" width="1440" height="140" aria-hidden="true">
+  <!-- 広島県府中市をイメージした山並み・街並み・橋のシルエット（装飾用） -->
+  <!-- 遠景の山 -->
+  <path fill="#D2EBEF" d="M0 140V82C70 66 120 44 196 46C262 48 300 70 352 64C420 56 452 22 532 18C604 14 650 50 712 56C776 62 812 34 880 28C950 22 1000 52 1060 60C1120 68 1168 38 1236 34C1300 30 1356 52 1440 58V140Z"/>
+  <!-- 中景の山 -->
+  <path fill="#B9DFE5" d="M0 140V104C60 92 104 78 168 80C236 82 270 100 330 98C390 96 430 74 494 72C556 70 596 94 660 98C730 102 772 86 830 84C896 82 940 102 1004 104C1070 106 1120 88 1184 86C1250 84 1300 100 1360 102C1400 103 1424 98 1440 96V140Z"/>
+  <!-- 街並み（左） -->
+  <g fill="#9BCDD5">
+    <rect x="84" y="104" width="22" height="36"/>
+    <rect x="110" y="92" width="16" height="48"/>
+    <rect x="130" y="110" width="28" height="30"/>
+    <path d="M162 140V112l14-10 14 10v28Z"/>
+    <rect x="196" y="98" width="14" height="42"/>
+    <rect x="214" y="114" width="24" height="26"/>
+  </g>
+  <!-- 橋と川 -->
+  <path fill="#E2F2F4" d="M280 140C360 130 470 130 580 140Z"/>
+  <path fill="none" stroke="#88C3CC" stroke-width="3" stroke-linecap="round" d="M300 118H560"/>
+  <path fill="none" stroke="#88C3CC" stroke-width="2.5" d="M312 140C312 126 334 122 346 122C358 122 380 126 380 140M380 140C380 126 402 122 414 122C426 122 448 126 448 140M448 140C448 126 470 122 482 122C494 122 516 126 516 140"/>
+  <!-- 街並み（中央・右） -->
+  <g fill="#9BCDD5">
+    <rect x="640" y="108" width="20" height="32"/>
+    <rect x="664" y="96" width="18" height="44"/>
+    <path d="M686 140V114l16-12 16 12v26Z"/>
+    <rect x="722" y="86" width="20" height="54"/>
+    <rect x="746" y="104" width="30" height="36"/>
+    <rect x="780" y="112" width="18" height="28"/>
+    <rect x="1012" y="102" width="18" height="38"/>
+    <rect x="1034" y="90" width="22" height="50"/>
+    <path d="M1060 140V112l15-11 15 11v28Z"/>
+    <rect x="1094" y="106" width="26" height="34"/>
+    <rect x="1124" y="96" width="14" height="44"/>
+    <rect x="1142" y="114" width="30" height="26"/>
+  </g>
+  <!-- 窓 -->
+  <g fill="#FFFFFF" opacity=".6">
+    <rect x="114" y="98" width="3" height="4"/><rect x="120" y="98" width="3" height="4"/><rect x="114" y="108" width="3" height="4"/><rect x="120" y="108" width="3" height="4"/>
+    <rect x="727" y="94" width="3" height="4"/><rect x="734" y="94" width="3" height="4"/><rect x="727" y="104" width="3" height="4"/><rect x="734" y="104" width="3" height="4"/><rect x="727" y="114" width="3" height="4"/><rect x="734" y="114" width="3" height="4"/>
+    <rect x="1039" y="98" width="3" height="4"/><rect x="1046" y="98" width="3" height="4"/><rect x="1039" y="108" width="3" height="4"/><rect x="1046" y="108" width="3" height="4"/>
+  </g>
+  <!-- 木 -->
+  <g fill="#8CC6CF">
+    <circle cx="40" cy="122" r="12"/><rect x="38.5" y="128" width="3" height="12"/>
+    <circle cx="60" cy="126" r="9"/><rect x="58.5" y="130" width="3" height="10"/>
+    <circle cx="600" cy="124" r="11"/><rect x="598.5" y="130" width="3" height="10"/>
+    <circle cx="830" cy="124" r="11"/><rect x="828.5" y="130" width="3" height="10"/>
+    <circle cx="852" cy="128" r="8"/><rect x="850.5" y="132" width="3" height="8"/>
+    <circle cx="1210" cy="122" r="12"/><rect x="1208.5" y="128" width="3" height="12"/>
+    <circle cx="1232" cy="126" r="9"/><rect x="1230.5" y="130" width="3" height="10"/>
+    <circle cx="1390" cy="124" r="11"/><rect x="1388.5" y="130" width="3" height="10"/>
+  </g>
+</svg>

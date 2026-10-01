@@ -949,12 +949,13 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--teal-soft);
-  color: var(--teal-dk);
+  background: var(--teal-strong);
+  color: #fff;
   font-family: 'Roboto', sans-serif;
   font-weight: 900;
   font-size: 15px;
   letter-spacing: 0.02em;
+  box-shadow: 0 0 0 4px var(--teal-soft), 0 6px 14px rgba(51,127,136,.25);
 }
 .work-tag {
   display: inline-block;
@@ -1261,4 +1262,148 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 2px 12px rgba(40,60,70,.08);
+}
+
+/* ============================================================
+   チラシ準拠デザイン言語（営業資料 docs/営業資料/PNG 準拠）
+   - 円形アイコンバッジ／ソリッド番号バッジ／斜めカット写真／
+     山並み・街並みシルエット／見出しキーワード強調／短い横罫線
+   - 色は既存トーンから導出した3変数のみ追加
+   ============================================================ */
+:root {
+  --teal-strong:   #337F88; /* 既存ティールの濃色。白文字 4.64:1／白地上の文字 4.64:1（番号バッジ・見出し強調） */
+  --teal-deep:     #24565C; /* 装飾の濃色面（index の --band-b と同値） */
+  --orange-strong: #C26B06; /* 見出し強調（24px以上の大きい文字専用。白地 3.89:1） */
+}
+
+/* ── 1. ヒーロー共通：白→淡ティールの斜めグラデーション ── */
+.hero-diagonal {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(165deg, #fff 0%, #fff 40%, var(--bg) 78%, var(--teal-soft2) 100%);
+}
+.hero-diagonal > .container { position: relative; z-index: 1; }
+
+/* 右上コーナーの斜めカット装飾（img: assets/corner-diagonal.svg） */
+.corner-diagonal {
+  position: absolute; top: 0; right: 0; z-index: 0;
+  width: clamp(150px, 28vw, 380px); height: auto;
+  pointer-events: none; user-select: none;
+}
+
+/* 斜めカット写真パネル（サービス詳細ヒーロー右側）。960px以下はヒーロー下部の斜め帯に切り替え */
+.hero-photo-panel {
+  position: absolute; top: 0; right: 0; bottom: 0; z-index: 0;
+  width: min(40%, 500px);
+  clip-path: polygon(34% 0, 100% 0, 100% 100%, 0 100%);
+  pointer-events: none;
+}
+.hero-photo-panel img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.hero-photo-panel::before {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(90deg, rgba(255,255,255,.55), rgba(255,255,255,0) 42%);
+}
+.hero-photo-panel::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(162deg, rgba(91,189,200,0) 72%, rgba(91,189,200,.38) 72.4%, rgba(70,166,177,.6) 100%);
+}
+.hero-photo-panel__edge {
+  position: absolute; top: 0; bottom: 0; right: 14px; z-index: 0;
+  width: min(40%, 500px);
+  background: var(--orange);
+  clip-path: polygon(34% 0, calc(34% + 2px) 0, 2px 100%, 0 100%);
+  pointer-events: none;
+}
+@media (max-width: 960px) {
+  .hero-photo-panel {
+    position: relative; inset: auto; width: 100%; height: 170px; margin-top: 32px;
+    clip-path: polygon(0 42%, 100% 0, 100% 100%, 0 100%);
+  }
+  .hero-photo-panel::before { display: none; }
+  .hero-photo-panel__edge { display: none; }
+}
+
+/* ── 2. 円形ソフト背景つきアイコンバッジ ── */
+.icon-badge-circle {
+  position: relative; flex: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: var(--badge-size, 88px); height: var(--badge-size, 88px);
+  border-radius: 50%; background: var(--teal-soft); color: var(--teal-deep);
+}
+.icon-badge-circle svg {
+  display: block; width: 52%; height: 52%;
+  stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; fill: none;
+}
+.icon-badge-circle--ring { background: #fff; box-shadow: inset 0 0 0 2px var(--teal), 0 8px 20px rgba(40,60,70,.10); }
+.icon-badge-circle--hero { --badge-size: 92px; margin-bottom: 24px; }
+.icon-badge-circle > .step-badge-solid { position: absolute; top: -2px; left: -4px; }
+
+/* 円形アイコンを矢印でつなぐフロー（整理する → やめる → 仕組みをつくる 等） */
+.icon-flow {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; justify-content: center; align-items: flex-start;
+  gap: var(--flow-gap, 36px);
+}
+.icon-flow__item { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 0; }
+.icon-flow__label {
+  margin-top: 10px; font: 700 14px/1.4 'Noto Sans JP', sans-serif;
+  color: var(--heading); white-space: nowrap; letter-spacing: .02em;
+}
+.icon-flow__item:not(:last-child)::after {
+  content: ""; position: absolute;
+  top: calc(var(--badge-size, 88px) / 2 - 6px);
+  right: calc(var(--flow-gap, 36px) / -2 - 10px);
+  width: 20px; height: 12px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 12' fill='none' stroke='%235BBDC8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 6h17M13 1l5 5-5 5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.icon-flow-caption {
+  font: 700 12.5px/1 'Roboto', 'Noto Sans JP', sans-serif; letter-spacing: .16em;
+  color: var(--teal-text); margin: 0 0 14px;
+}
+@media (max-width: 680px) {
+  .icon-flow { --flow-gap: 22px; }
+  .icon-flow__label { font-size: 12px; }
+}
+
+/* ── 3. 塗りつぶし円の番号バッジ（進行フロー用） ── */
+.step-badge-solid {
+  --step-size: 44px;
+  flex: none; display: inline-flex; align-items: center; justify-content: center;
+  width: var(--step-size); height: var(--step-size); border-radius: 50%;
+  background: var(--teal-strong); color: #fff;
+  font-family: 'Roboto', sans-serif; font-weight: 900; font-size: calc(var(--step-size) * .44); line-height: 1;
+  box-shadow: 0 0 0 4px #fff, 0 6px 14px rgba(51,127,136,.28);
+}
+.step-badge-solid--sm { --step-size: 28px; box-shadow: 0 0 0 3px #fff, 0 3px 8px rgba(51,127,136,.25); }
+.step-badge-solid--lg { --step-size: 68px; }
+
+/* 縦方向の工程フロー（番号バッジ＋点線コネクタ） */
+.step-flow-vertical { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+.step-flow-vertical__item { position: relative; display: flex; align-items: flex-start; gap: 16px; }
+.step-flow-vertical__item:not(:last-child)::before {
+  content: ""; position: absolute; left: 21px; top: 50px; bottom: -12px; width: 2px;
+  background: repeating-linear-gradient(180deg, var(--teal) 0 4px, transparent 4px 9px);
+}
+.step-flow-vertical__text {
+  flex: 1; min-width: 0; padding: 9px 18px; border-radius: 14px; background: var(--bg);
+  font: 500 15px/1.75 'Noto Sans JP', sans-serif; color: var(--text); text-wrap: pretty;
+}
+
+/* ── 4. 山並み・街並みシルエット（img: assets/skyline.svg） ── */
+.skyline-illust {
+  display: block; width: 100%; height: clamp(64px, 9vw, 120px);
+  object-fit: cover; object-position: center bottom;
+  pointer-events: none; user-select: none;
+}
+
+/* ── 5. 見出し内のキーワード色分け強調 ── */
+.headline-accent { color: var(--teal-strong); }
+.headline-accent--orange { color: var(--orange-strong); }
+
+/* ── 6. 細い横罫線（見出し前の短いアクセント線／見出し下の2トーン罫線） ── */
+.rule-accent { display: block; width: 56px; height: 3px; border-radius: 2px; background: var(--teal); margin: 0 0 20px; }
+.rule-accent--center { margin-left: auto; margin-right: auto; }
+.rule-split {
+  display: block; width: min(240px, 70%); height: 3px; border-radius: 2px; margin: 14px 0 0;
+  background: linear-gradient(90deg, var(--teal) 0 42%, var(--card-line) 42% 100%);
 }

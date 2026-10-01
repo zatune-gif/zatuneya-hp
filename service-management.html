@@ -59,26 +59,9 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 .btn-ghost{background:#fff;color:var(--teal-text);box-shadow:var(--sh-1)}
 .btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
 
-/* PAGE HERO */
-.page-hero{position:relative;background:var(--bg);overflow:hidden;background-image:radial-gradient(rgba(131,156,170,.16) 1.1px,transparent 1.1px);background-size:22px 22px;padding:56px 0 48px}
-.page-hero .blob{position:absolute;pointer-events:none}
-.page-hero .b1{top:-150px;right:-90px;width:500px;height:440px;background:rgba(91,189,200,.16);border-radius:60% 40% 55% 45%/55% 50% 50% 45%;filter:blur(3px)}
-.page-hero .b3{bottom:-130px;left:-110px;width:360px;height:360px;background:rgba(248,152,29,.07);border-radius:50%}
-
-/* HERO ILLUSTRATION (checklist + graph, decorative) */
-.hero-illustration{position:absolute;top:40px;right:56px;width:184px;height:184px;pointer-events:none}
-.hero-illustration svg{width:100%;height:100%}
-.hi-card{fill:#fff;stroke:var(--teal-d);stroke-width:2}
-.hi-tab{fill:var(--teal-pale);stroke:var(--teal-d);stroke-width:2}
-.hi-dot{fill:#fff;stroke:var(--teal-line);stroke-width:2}
-.hi-dot--done{fill:var(--teal-pale);stroke:none}
-.hi-check{fill:none;stroke:var(--orange-d);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-.hi-line{stroke:var(--line);stroke-width:6;stroke-linecap:round}
-.hi-line--short{opacity:.7}
-.hi-graph-card rect{fill:#fff;stroke:var(--teal-line);stroke-width:2}
-.hi-graph-line{fill:none;stroke:var(--orange-d);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.hi-graph-point{fill:var(--orange-d)}
-@media(max-width:960px){.hero-illustration{display:none}}
+/* PAGE HERO（背景・斜めカット写真は style.css の .hero-diagonal / .hero-photo-panel） */
+.page-hero{padding:56px 0 64px}
+@media(max-width:960px){.page-hero{padding-bottom:0}}
 
 /* BREADCRUMB */
 .breadcrumb{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font:400 13px 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-bottom:28px}
@@ -91,10 +74,11 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 .svc-hero-meta{display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .svc-hero-num{font:900 13px/1 'Roboto',sans-serif;letter-spacing:.1em;color:var(--teal-text);background:var(--teal-pale);padding:6px 14px;border-radius:99px}
 .svc-hero-target{font:700 13px/1 'Noto Sans JP',sans-serif;color:var(--sub-text);background:#fff;border:1px solid var(--line);padding:6px 14px;border-radius:99px}
+.svc-hero-meta{flex-wrap:wrap}
+.svc-hero-target{line-height:1.5}
 .svc-hero-h1{font-size:clamp(28px,4vw,40px);line-height:1.3;margin:0 0 16px}
 .svc-hero-catch{font:700 18px/1.6 'Noto Sans JP',sans-serif;color:var(--teal-text)}
-.svc-hero-icon{width:72px;height:72px;border-radius:22px;background:linear-gradient(135deg,var(--teal-pale),var(--teal-pale2));display:flex;align-items:center;justify-content:center;margin-bottom:24px}
-.svc-hero-icon svg{width:38px;height:38px;stroke:var(--teal-d);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.page-hero .container>*{max-width:620px}
 .svc-hero-grid{display:grid;grid-template-columns:1fr 360px;gap:48px;align-items:start}
 .svc-hero-grid>div{min-width:0}
 
@@ -189,42 +173,24 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 </header>
 
 <main>
-<section class="page-hero">
-  <span class="blob b1"></span><span class="blob b3"></span>
-  <div class="hero-illustration" aria-hidden="true">
-    <svg viewBox="0 0 220 220" focusable="false">
-      <rect class="hi-card" x="34" y="26" width="118" height="156" rx="14"/>
-      <rect class="hi-tab" x="70" y="14" width="46" height="20" rx="7"/>
-      <circle class="hi-dot hi-dot--done" cx="58" cy="76" r="10"/>
-      <path class="hi-check" d="M53 76l4 4 8-8"/>
-      <line class="hi-line" x1="78" y1="76" x2="134" y2="76"/>
-      <circle class="hi-dot hi-dot--done" cx="58" cy="108" r="10"/>
-      <path class="hi-check" d="M53 108l4 4 8-8"/>
-      <line class="hi-line" x1="78" y1="108" x2="134" y2="108"/>
-      <circle class="hi-dot" cx="58" cy="140" r="10"/>
-      <line class="hi-line hi-line--short" x1="78" y1="140" x2="120" y2="140"/>
-      <g class="hi-graph-card" transform="translate(104,118)">
-        <rect x="0" y="0" width="92" height="76" rx="14"/>
-        <polyline class="hi-graph-line" points="12,56 32,38 50,46 70,20"/>
-        <circle class="hi-graph-point" cx="12" cy="56" r="3.5"/>
-        <circle class="hi-graph-point" cx="32" cy="38" r="3.5"/>
-        <circle class="hi-graph-point" cx="50" cy="46" r="3.5"/>
-        <circle class="hi-graph-point" cx="70" cy="20" r="3.5"/>
-      </g>
-    </svg>
-  </div>
+<section class="page-hero hero-diagonal">
+  <span class="hero-photo-panel__edge" aria-hidden="true"></span>
   <div class="container">
     <nav class="breadcrumb" aria-label="パンくずリスト">
       <a href="./index.html">トップ</a><span class="breadcrumb-sep">›</span>
       <span>業務の見直し支援（業務改善）</span>
     </nav>
-    <div class="svc-hero-icon ic"><svg viewBox="0 0 24 24"><path d="M3 17l4-8 4 4 4-6 4 8"/><path d="M3 20h18"/></svg></div>
+    <span class="icon-badge-circle icon-badge-circle--hero" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21H11"/><path d="M13 3l5 5h-5V3Z"/><path d="M8 9.5h3M8 13h4.5M8 16.5h2"/><circle cx="16" cy="16" r="3.2"/><path d="M18.4 18.4 21 21"/></svg></span>
     <div class="svc-hero-meta">
       <span class="svc-hero-num">SERVICE 01</span>
       <span class="svc-hero-target">この作業だけ手間がかかる／何を変えるか決めきれていない企業向け</span>
     </div>
-    <h1 class="svc-hero-h1">業務の見直し支援（業務改善）</h1>
+    <span class="rule-accent" aria-hidden="true"></span>
+    <h1 class="svc-hero-h1"><span class="nw">業務の<span class="headline-accent">見直し</span>支援</span><span class="nw">（業務改善）</span></h1>
     <p class="svc-hero-catch">一つの業務・一つの現場を、2か月で見直します。</p>
+  </div>
+  <div class="hero-photo-panel" aria-hidden="true">
+    <img src="./assets/hero-desk.jpg" alt="" width="585" height="490" loading="eager">
   </div>
 </section>
 
@@ -245,13 +211,13 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 
         <div class="points-section">
           <div class="points-section__title"><span class="bar"></span><span>何をするか（5工程）</span></div>
-          <ul class="point-list">
-            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">① 対象業務の現状分析（作業の洗い出し、かかっている時間の把握）</span></li>
-            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">② 改善案の検討</span></li>
-            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">③ 必要に応じたAI候補の比較</span></li>
-            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">④ 簡易設定と小規模な試行</span></li>
-            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">⑤ 運用ルールの素案づくりと、次段階で検討する事項の整理</span></li>
-          </ul>
+          <ol class="step-flow-vertical">
+            <li class="step-flow-vertical__item"><span class="step-badge-solid">1</span><span class="step-flow-vertical__text">対象業務の現状分析（作業の洗い出し、かかっている時間の把握）</span></li>
+            <li class="step-flow-vertical__item"><span class="step-badge-solid">2</span><span class="step-flow-vertical__text">改善案の検討</span></li>
+            <li class="step-flow-vertical__item"><span class="step-badge-solid">3</span><span class="step-flow-vertical__text">必要に応じたAI候補の比較</span></li>
+            <li class="step-flow-vertical__item"><span class="step-badge-solid">4</span><span class="step-flow-vertical__text">簡易設定と小規模な試行</span></li>
+            <li class="step-flow-vertical__item"><span class="step-badge-solid">5</span><span class="step-flow-vertical__text">運用ルールの素案づくりと、次段階で検討する事項の整理</span></li>
+          </ol>
         </div>
         <p class="body-text">各工程で、現場担当者の方に実際の作業を見せていただく・試していただく場面があります。</p>
 

@@ -81,12 +81,8 @@ img,svg{display:block;max-width:100%}
 .btn-outline:hover{background:var(--teal-pale);transform:translateY(-2px)}
 .btn-outline:active{transform:translateY(0)}
 
-/* PAGE HERO */
-.page-hero{position:relative;background:var(--bg);overflow:hidden;background-image:radial-gradient(rgba(131,156,170,.16) 1.1px,transparent 1.1px);background-size:22px 22px}
-.page-hero .blob{position:absolute;pointer-events:none}
-.page-hero .b1{top:-150px;right:-90px;width:500px;height:440px;background:rgba(91,189,200,.16);border-radius:60% 40% 55% 45%/55% 50% 50% 45%;filter:blur(3px)}
-.page-hero .b2{top:-20px;right:120px;width:320px;height:300px;background:rgba(91,189,200,.10);border-radius:52% 48% 60% 40%/50% 55% 45% 50%}
-.page-hero .b3{bottom:-130px;left:-110px;width:360px;height:360px;background:rgba(248,152,29,.07);border-radius:50%}
+/* PAGE HERO（背景・右上の斜めカット装飾・山並みシルエットは style.css の .hero-diagonal / .corner-diagonal / .skyline-illust） */
+.page-hero{padding:0}
 .badge{display:inline-flex;align-items:center;gap:8px;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-text);background:#fff;padding:8px 16px;border-radius:999px;box-shadow:var(--sh-1)}
 .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
 /* PATTERN C — 左に素材丸ごと、右にテキスト（Claude Design案・services.htmlと同一トークン） */
@@ -187,15 +183,15 @@ img,svg{display:block;max-width:100%}
 <main>
 
 <!-- ================= PAGE HERO ================= -->
-<section class="page-hero heroC">
-  <span class="blob b1"></span><span class="blob b3"></span>
+<section class="page-hero heroC hero-diagonal">
+  <img class="corner-diagonal" src="./assets/corner-diagonal.svg" alt="" width="400" height="260" aria-hidden="true">
   <div class="container ph-inner">
     <div class="artcard">
       <img src="./assets/profile-portrait-2.jpg" alt="ざつね屋 代表者のイラスト" width="900" height="1349" loading="eager">
     </div>
     <div class="txt">
       <span class="badge"><span class="dot"></span>PROFILE ─ 代表について</span>
-      <h1>「難しそう」を、<br>いっしょに越えていく。</h1>
+      <h1>「難しそう」を、<br><span class="headline-accent">いっしょに</span>越えていく。</h1>
       <span class="role-tag">ざつね屋 代表 ／ 地域企業の小さな業務変革屋</span>
       <p class="lead">多様な現場での経験を経て、地域企業が「AIを知っている」から「実際に使える」へ変わっていく場面を一緒に作りたいと、ざつね屋を立ち上げました。広島県府中市を拠点に、近隣の地域企業の業務変革に伴走しています。</p>
       <div class="hero-cta">
@@ -204,6 +200,7 @@ img,svg{display:block;max-width:100%}
       </div>
     </div>
   </div>
+  <img class="skyline-illust" src="./assets/skyline.svg" alt="" width="1440" height="140" aria-hidden="true">
 </section>
 
 <!-- ================= 事業を始めた理由 ================= -->
