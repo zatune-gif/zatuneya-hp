@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" width="400" height="260" aria-hidden="true">
+  <!-- 右上コーナーの斜めカット装飾（営業資料の右上装飾に準拠） -->
+  <path fill="#5BBDC8" fill-opacity=".14" d="M120 0H260L400 150V250Z"/>
+  <path fill="#5BBDC8" fill-opacity=".38" d="M232 0H330L400 72V170Z"/>
+  <path fill="#24565C" d="M300 0H400V104Z"/>
+  <path fill="none" stroke="#FFFFFF" stroke-opacity=".75" stroke-width="1.5" d="M336 0L400 66"/>
+  <path fill="none" stroke="#F8981D" stroke-width="3" stroke-linecap="round" d="M286 46L384 146"/>
+</svg>

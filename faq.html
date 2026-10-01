@@ -22,7 +22,8 @@
 <link rel="stylesheet" href="./style.css">
 <style>
 /* ─── Page Hero ─── */
-.page-hero{padding:64px 0 56px;text-align:left}
+.page-hero{padding:64px 0 0;text-align:left}
+.page-hero .skyline-illust{margin-top:32px}
 .page-hero .container{text-align:left}
 .page-hero .eyebrow{display:block;margin-bottom:12px}
 .page-hero h1{font-size:clamp(28px,4vw,38px);line-height:1.3;margin:0 0 16px}
@@ -89,17 +90,19 @@
 </div>
 
 <main>
-  <section class="page-hero">
+  <section class="page-hero hero-diagonal">
+    <img class="corner-diagonal" src="./assets/corner-diagonal.svg" alt="" width="400" height="260" aria-hidden="true">
     <div class="container">
       <div class="page-hero__row">
         <div class="page-hero__text">
           <span class="eyebrow">FAQ</span>
-          <h1>よくある質問</h1>
+          <h1>よくある<span class="headline-accent">質問</span></h1>
           <p class="page-hero__lead">サービスや料金・進め方についてよくいただくご質問をまとめました。解決しない場合はお気軽にお問い合わせください。</p>
         </div>
         <img class="page-hero__portrait" src="./assets/portrait-illustration.jpg" alt="代表 大音のイラスト" width="96" height="96" loading="lazy">
       </div>
     </div>
+    <img class="skyline-illust" src="./assets/skyline.svg" alt="" width="1440" height="140" aria-hidden="true">
   </section>
 
   <section class="section-padded">

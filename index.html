@@ -103,61 +103,27 @@ img,svg{display:block;max-width:100%}
 .arrowlink:hover{color:var(--orange-text)}
 .arrowlink:hover svg{transform:translateX(4px)}
 
-/* ============ 1. HERO ============ */
-.hero{position:relative;overflow:hidden;
-  background:
-    radial-gradient(rgba(131,156,170,.13) 1.1px,transparent 1.1px),
-    radial-gradient(ellipse 68% 80% at 78% 42%, rgba(91,189,200,.22) 0%, transparent 62%),
-    radial-gradient(ellipse 50% 60% at 15% 85%, rgba(248,152,29,.09) 0%, transparent 55%),
-    linear-gradient(148deg, #ffffff 0%, #EFF4F5 42%, #DCF0F2 100%);
-  background-size:22px 22px, auto, auto, auto}
-.hero .blob{position:absolute;pointer-events:none}
-.hero .b1{top:-160px;right:-110px;width:560px;height:500px;background:rgba(91,189,200,.15);border-radius:60% 40% 55% 45%/55% 50% 50% 45%;filter:blur(3px)}
-.hero .b2{top:-30px;right:80px;width:380px;height:360px;background:rgba(91,189,200,.10);border-radius:52% 48% 60% 40%/50% 55% 45% 50%}
-.hero .b3{bottom:-140px;left:-120px;width:420px;height:420px;background:rgba(248,152,29,.07);border-radius:50%}
-.hero-grid{position:relative;display:grid;grid-template-columns:.62fr 1.38fr;gap:48px;align-items:center;padding-top:var(--s16);padding-bottom:var(--s20)}
+/* ============ 1. HERO（営業資料の表紙に準拠：斜めカット写真＋円形アイコンの流れ＋山並みシルエット） ============ */
+/* 背景・position・overflow は style.css の .hero-diagonal（全ページ共通） */
+.hero.hero-diagonal{padding:0}/* style.css .hero の左右24px＋上64pxを打ち消し、.container の余白に一本化 */
+.hero-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding-top:var(--s16);padding-bottom:var(--s4);text-align:left}
 .badge{display:inline-flex;align-items:center;gap:8px;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-text);background:#fff;padding:8px 16px;border-radius:999px;box-shadow:var(--sh-1)}
 .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
-.hero h1{font-size:clamp(31px,4.7vw,47px);line-height:1.3;letter-spacing:.005em;margin:24px 0 0}
-.hl{position:relative;color:#3B8B95;white-space:nowrap}/* hero背景 #EFF4F5 上で 3:1 を満たす見出し専用ティール = 3.56:1（--teal-d #46A6B1 は 2.58:1 で不合格）*/
-.hl::after{content:"";position:absolute;left:-2px;right:-2px;bottom:3px;height:12px;background:rgba(91,189,200,.26);border-radius:6px;z-index:-1}
-.hero-sub{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);max-width:430px;margin:24px 0 0}
+.hero-grid .hero-copy h1{font-size:clamp(28px,3.3vw,40px);line-height:1.35;letter-spacing:.005em;margin:24px 0 0}/* style.css の同セレクタ（33px/24px固定）を上書き */
+.hero .rule-split{margin-top:20px}
+.hero-sub{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);max-width:470px;margin:20px 0 0}
 .cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:32px}
 .hero-note{font:400 13px/1.6 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-top:16px}
-/* hero visual */
-.hero-visual{position:relative;height:600px}
-.hero-photo{position:absolute;inset:0;border-radius:48px 48px 150px 48px;overflow:hidden;box-shadow:var(--sh-3)}
-.hero-photo img{width:100%;height:100%;object-fit:cover}
-.hero-photo .tint{position:absolute;inset:0;background:linear-gradient(150deg,rgba(70,166,177,.34),rgba(91,189,200,.06) 48%,rgba(248,152,29,.05)),radial-gradient(120% 92% at 6% 100%,rgba(34,68,76,.44),rgba(34,68,76,0) 46%)}
-.hero-photo .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.10) 1.1px,transparent 1.1px);background-size:20px 20px;mix-blend-mode:overlay}
-/* チップ3枚: c-ai=タグピル（左上）/ c-sum=右サマリー/ c-chart=主役（左下）。枠からはみ出させて奥行きを出す */
-.chip{position:absolute;background:#fff;box-shadow:var(--sh-3);animation:float 6.5s var(--ease) infinite;z-index:2}
-.chip.c-ai{left:-18px;top:30px;display:inline-flex;align-items:center;gap:12px;padding:8px 20px 8px 8px;border-radius:999px;animation-delay:.2s}
-.chip.c-ai .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-d));display:flex;align-items:center;justify-content:center}
-.chip.c-ai .av svg{width:22px;height:22px;fill:#fff;stroke:none}
-.chip.c-ai span{font:700 15px 'Noto Sans JP',sans-serif;color:var(--head);white-space:nowrap}
-.chip.c-sum{right:-30px;top:14%;width:250px;padding:20px;border-radius:20px;animation-delay:1.5s}
-.chip.c-sum .row{display:flex;align-items:center;gap:16px}
-.chip.c-sum .ic{flex:none;width:48px;height:48px;border-radius:14px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center}
-.chip.c-sum .ic svg{stroke:var(--teal-d);width:25px;height:25px;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.chip.c-sum b{display:block;font:700 15.5px 'Noto Sans JP',sans-serif;color:var(--head);line-height:1.3}
-.chip.c-chart{left:-46px;bottom:8%;width:288px;padding:24px;border-radius:26px;animation-delay:2.8s}
-.chip.c-chart .top{display:flex;align-items:center;gap:12px}
-.chip.c-chart .ic{flex:none;width:40px;height:40px;border-radius:13px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center}
-.chip.c-chart .ic svg{stroke:var(--teal-d);width:23px;height:23px;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.chip.c-chart .lbl{font:900 18px 'Noto Sans JP',sans-serif;color:var(--head);letter-spacing:.01em}
-.chip.c-chart .trend{margin-left:auto;flex:none;width:30px;height:30px;border-radius:9px;background:var(--orange-pale);display:flex;align-items:center;justify-content:center}
-.chip.c-chart .trend svg{width:16px;height:16px;stroke:var(--orange-d);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.chip.c-chart .bars{display:flex;align-items:flex-end;gap:12px;height:80px;margin-top:20px}
-.chip.c-chart .bars span{flex:1;border-radius:6px}
-.chip.c-chart .bars .b1{height:34%;background:#E4EFF1}
-.chip.c-chart .bars .b2{height:50%;background:#BFE3E8}
-.chip.c-chart .bars .b3{height:68%;background:#8DD2DA}
-.chip.c-chart .bars .b4{height:84%;background:#5BBDC8}
-.chip.c-chart .bars .b5{height:100%;background:#F8981D}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-@media (prefers-reduced-motion:reduce){.chip{animation:none}}
-.wave{display:block;width:100%;height:70px;margin-top:-1px;position:relative;z-index:1}
+/* hero visual：斜めカット写真（上）＋濃色の三角ブロックと細線（左下）＋円形アイコンの流れカード（下） */
+.hero-visual{position:relative;height:540px}
+.photo-diagonal{position:absolute;top:0;left:0;right:0;height:440px;clip-path:polygon(24% 0,100% 0,100% 100%,0 100%)}
+.photo-diagonal img{width:100%;height:100%;object-fit:cover}
+.photo-diagonal::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(91,189,200,.18),rgba(91,189,200,0) 55%)}
+.photo-diagonal__block{position:absolute;top:0;left:0;right:0;height:440px;pointer-events:none;background:var(--teal-deep);clip-path:polygon(0 58%,40% 100%,0 100%)}
+.photo-diagonal__stripe{position:absolute;top:0;left:0;right:0;height:440px;pointer-events:none;background:var(--orange);clip-path:polygon(0 47%,52% 100%,50.6% 100%,0 49%)}
+.photo-diagonal__stripe--white{background:rgba(255,255,255,.85);clip-path:polygon(0 66%,30% 100%,29.4% 100%,0 67%)}
+.flow-card{position:absolute;right:0;bottom:0;width:80%;background:#fff;border-radius:24px;padding:20px 16px 16px;box-shadow:var(--sh-3);--badge-size:76px;--flow-gap:30px}
+.flow-card .icon-flow-caption{text-align:center}
 
 /* ============ 2. WORRIES ============ */
 .worry-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
@@ -294,21 +260,21 @@ img,svg{display:block;max-width:100%}
 /* ============ 8. FLOW ============ */
 .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
 .step{position:relative;text-align:center;padding:0 16px}
-.step:not(:last-child)::after{content:"";position:absolute;top:34px;left:calc(50% + 42px);right:calc(-50% + 42px);height:2px;background:repeating-linear-gradient(90deg,var(--teal-line) 0 6px,transparent 6px 13px)}
-.step-num{position:relative;width:68px;height:68px;border-radius:50%;background:#fff;border:2px solid var(--teal);display:flex;align-items:center;justify-content:center;font:900 27px 'Roboto',sans-serif;color:var(--teal-text);margin:0 auto;box-shadow:var(--sh-1);z-index:1}
+.step:not(:last-child)::after{content:"";position:absolute;top:33px;left:calc(50% + 44px);right:calc(-50% + 44px);height:2px;background:repeating-linear-gradient(90deg,var(--teal) 0 6px,transparent 6px 13px)}
+.step:not(:last-child)::before{content:"";position:absolute;top:28px;right:calc(-50% + 40px);width:8px;height:8px;border-top:2px solid var(--teal);border-right:2px solid var(--teal);transform:rotate(45deg)}
+.step .step-badge-solid{position:relative;z-index:1}
 .step h4{font-size:16px;margin:20px 0 0;letter-spacing:.01em}
 .step p{font:400 13px/1.8 'Noto Sans JP',sans-serif;color:var(--body);margin:12px 0 0}
 
 /* ============ RESPONSIVE ============ */
 @media (max-width:960px){
   .hero-grid{grid-template-columns:1fr;gap:40px;padding-top:var(--s16)}
-  .hero-visual{height:440px;max-width:540px;margin:0 auto;width:100%}
-  .chip.c-chart{left:-8px}
+  .hero-visual{height:500px;max-width:560px;margin:0 auto;width:100%}
 
   .hero-sub{max-width:none}
   .why-grid{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}
   .flow{grid-template-columns:1fr 1fr;gap:40px 0}
-  .step:not(:last-child)::after{display:none}
+  .step:not(:last-child)::after,.step:not(:last-child)::before{display:none}
   .why-band .veil{background:linear-gradient(160deg,rgba(52,90,98,.94),rgba(70,166,177,.7))}
   .band .veil,.band.flip .veil{background:linear-gradient(160deg,rgba(52,90,98,.94),rgba(70,166,177,.7))}
   .band.flip .bcontent{margin-left:0;text-align:left}
@@ -324,22 +290,18 @@ img,svg{display:block;max-width:100%}
   .tool-card{flex-direction:column;gap:16px}
   .flow{grid-template-columns:1fr;gap:32px 0}
   .why-band .bcontent{padding:32px 24px}
-  .hero-visual{height:400px}
-  .chip.c-ai{left:-4px;top:18px;padding:8px 16px 8px 8px}
-  .chip.c-ai .av{width:36px;height:36px}
-  .chip.c-ai span{font-size:13.5px}
-
-  .chip.c-chart{left:-6px;bottom:6%;width:236px;padding:16px 20px}
-  .chip.c-chart .lbl{font-size:16px}
-  .chip.c-chart .bars{height:60px;gap:8px;margin-top:16px}
+  .hero-grid{padding-top:var(--s10);padding-bottom:var(--s4)}/* 直前の .container{padding:0 20px} が上下を0に戻すため再指定 */
+  .hero-visual{height:420px}
+  .photo-diagonal,.photo-diagonal__block,.photo-diagonal__stripe{height:320px}
+  .flow-card{width:90%;--badge-size:62px;padding:16px 12px 14px}
 }
 @media (max-width:400px){
   body{font-size:15px}
   .hero .badge{font-size:11px;padding:8px 12px}
-  .hero h1{line-height:1.3}
-  .hl{white-space:normal}
-  .hero-visual{height:360px}
-  .chip.c-chart{width:212px}
+  .hero-grid .hero-copy h1{font-size:27px;line-height:1.4}
+  .hero-visual{height:380px}
+  .photo-diagonal,.photo-diagonal__block,.photo-diagonal__stripe{height:280px}
+  .flow-card{width:100%}
 
   .btn{padding:16px 24px;font-size:15px}
   .cta-row .btn{width:100%}
@@ -403,12 +365,12 @@ img,svg{display:block;max-width:100%}
 <main id="top">
 
 <!-- ================= 1. HERO ================= -->
-<section class="hero">
-  <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+<section class="hero hero-diagonal">
   <div class="container hero-grid">
     <div class="hero-copy">
       <span class="badge badge--region"><span class="dot"></span>地域企業の小さな業務変革屋 ／ ざつね屋</span>
-      <h1>業務を見直し、<span class="hl">現場で使える仕組み</span>まで。</h1>
+      <h1><span class="headline-accent">業務を見直し、</span><br>現場で使える仕組みまで。</h1>
+      <span class="rule-split" aria-hidden="true"></span>
       <p class="hero-sub">作業の流れを一緒に整理し、やめられる作業を見つけ、必要なところだけ仕組みを作ります。AIを入れることが目的ではありません。手順を変えるだけで済むなら、そうお伝えします。</p>
       <div class="cta-row">
         <a class="btn btn-teal" href="./contact.html"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>まず30分、話を聞かせてください</a>
@@ -417,20 +379,32 @@ img,svg{display:block;max-width:100%}
       <p class="hero-note">広島県府中市を拠点に、近隣の地域企業を訪問して支援しています。</p>
     </div>
     <div class="hero-visual">
-      <div class="hero-photo">
-        <img src="./assets/hero-photo.jpg" alt="ノートパソコンと資料を持ち寄って打ち合わせをする手元" width="1400" height="934" loading="eager">
+      <div class="photo-diagonal">
+        <img src="./assets/hero-desk.jpg" alt="窓辺の机に置かれたノートパソコンと資料" width="585" height="490" loading="eager">
       </div>
-      <div class="chip c-ai"><span class="av"><svg viewBox="0 0 24 24"><path d="M12 3.2l1.9 5.4 5.4 1.9-5.4 1.9L12 17.8l-1.9-5.4L4.7 10.5l5.4-1.9L12 3.2Z"/><circle cx="18.5" cy="5.5" r="1.3"/></svg></span><span>AIの安心活用</span></div>
-      <div class="chip c-sum">
-        <div class="row"><span class="ic"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v4h-4"/></svg></span><div><b>効率化の再提案</b></div></div>
-      </div>
-      <div class="chip c-chart">
-        <div class="top"><span class="ic"><svg viewBox="0 0 24 24"><path d="M13 3 5 13h5l-1 8 8-11h-5l1-7Z"/></svg></span><span class="lbl">DX化の加速</span><span class="trend"><svg viewBox="0 0 24 24"><path d="M4 15l6-6 4 4 6-7"/><path d="M20 6v5M20 6h-5"/></svg></span></div>
-        <div class="bars"><span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span><span class="b5"></span></div>
+      <span class="photo-diagonal__block" aria-hidden="true"></span>
+      <span class="photo-diagonal__stripe" aria-hidden="true"></span>
+      <span class="photo-diagonal__stripe photo-diagonal__stripe--white" aria-hidden="true"></span>
+      <div class="flow-card">
+        <p class="icon-flow-caption">ざつね屋の進め方</p>
+        <ol class="icon-flow">
+          <li class="icon-flow__item">
+            <span class="icon-badge-circle icon-badge-circle--ring" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21H11"/><path d="M13 3l5 5h-5V3Z"/><path d="M8 9.5h3M8 13h4.5M8 16.5h2"/><circle cx="16" cy="16" r="3.2"/><path d="M18.4 18.4 21 21"/></svg></span>
+            <span class="icon-flow__label">整理する</span>
+          </li>
+          <li class="icon-flow__item">
+            <span class="icon-badge-circle icon-badge-circle--ring" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6.5h16"/><path d="M9.5 6.5V4h5v2.5"/><path d="M6 6.5l1 14h10l1-14"/><path d="M10 10.5v6.5M14 10.5v6.5"/></svg></span>
+            <span class="icon-flow__label">やめる</span>
+          </li>
+          <li class="icon-flow__item">
+            <span class="icon-badge-circle icon-badge-circle--ring" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="14" r="2.4"/><path d="M9 8.5v1.6M9 17.9v1.6M3.5 14h1.6M12.9 14h1.6M5.1 10.1l1.1 1.1M11.8 16.8l1.1 1.1M5.1 17.9l1.1-1.1M11.8 11.2l1.1-1.1"/><circle cx="9" cy="14" r="4.6"/><circle cx="17" cy="7" r="1.7"/><circle cx="17" cy="7" r="3.4"/><path d="M17 2.4v1.2M17 10.4v1.2M12.4 7h1.2M20.4 7h1.2"/></svg></span>
+            <span class="icon-flow__label">仕組みをつくる</span>
+          </li>
+        </ol>
       </div>
     </div>
   </div>
-  <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none"><path d="M0 40 C 280 6 480 68 720 40 C 960 10 1180 62 1440 32 L1440 70 L0 70 Z" fill="#fff"/></svg>
+  <img class="skyline-illust" src="./assets/skyline.svg" alt="" width="1440" height="140" aria-hidden="true">
 </section>
 
 <!-- ================= 2. WORRIES ================= -->
@@ -604,22 +578,22 @@ img,svg{display:block;max-width:100%}
     </div>
     <div class="flow">
       <div class="step">
-        <div class="step-num">1</div>
+        <span class="step-badge-solid step-badge-solid--lg">1</span>
         <h4>無料相談・お見積り・お問い合わせ</h4>
         <p>お問い合わせフォーム、またはメールでご連絡ください。返信は2営業日以内です。</p>
       </div>
       <div class="step">
-        <div class="step-num">2</div>
+        <span class="step-badge-solid step-badge-solid--lg">2</span>
         <h4>ヒアリング（無料）</h4>
         <p>現在の業務・困りごとをお聞きします。オンラインまたは広島県府中市と近隣は訪問も可能です。</p>
       </div>
       <div class="step">
-        <div class="step-num">3</div>
+        <span class="step-badge-solid step-badge-solid--lg">3</span>
         <h4>ご提案・正式お見積り</h4>
         <p>最適なサービスとプランをご提案します。この時点まで費用はかかりません。</p>
       </div>
       <div class="step">
-        <div class="step-num">4</div>
+        <span class="step-badge-solid step-badge-solid--lg">4</span>
         <h4>実施開始</h4>
         <p>業務の見直し、または個別実装を開始します。</p>
       </div>

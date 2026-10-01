@@ -73,7 +73,10 @@ img,svg{display:block;max-width:100%}
 .btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
 
 /* ============ CONTACT ============ */
-.contact-hero{padding:64px 0 48px;text-align:center}
+.contact-hero{padding:64px 0 0;text-align:center}
+.contact-hero .skyline-illust{margin-top:32px}
+.contact-hero .rule-accent{margin:18px auto 0}
+.contact-form-section{padding-top:40px}
 .contact-hero h1{font-size:clamp(28px,4vw,36px);margin:12px 0 0}
 .contact-hero p{margin:16px auto 0;max-width:560px;color:var(--body);line-height:1.9;font-family:'Noto Sans JP',sans-serif}
 .contact-form-section{padding:0 0 96px}
@@ -133,12 +136,15 @@ img,svg{display:block;max-width:100%}
 </header>
 
 <main>
-  <section class="contact-hero">
+  <section class="contact-hero hero-diagonal">
+    <img class="corner-diagonal" src="./assets/corner-diagonal.svg" alt="" width="400" height="260" aria-hidden="true">
     <div class="container tight">
       <span class="eyebrow">Contact</span>
-      <h1>お問い合わせ・無料相談</h1>
+      <h1>お問い合わせ・<span class="headline-accent">無料相談</span></h1>
+      <span class="rule-accent rule-accent--center" aria-hidden="true"></span>
       <p>「うちの業務でも使えるか？」の段階で大丈夫です。相談・お見積りはすべて無料です。返信は2営業日以内です。</p>
     </div>
+    <img class="skyline-illust" src="./assets/skyline.svg" alt="" width="1440" height="140" aria-hidden="true">
   </section>
   <section class="contact-form-section">
     <div class="container tight">
