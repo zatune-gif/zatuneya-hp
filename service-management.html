@@ -65,6 +65,21 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 .page-hero .b1{top:-150px;right:-90px;width:500px;height:440px;background:rgba(91,189,200,.16);border-radius:60% 40% 55% 45%/55% 50% 50% 45%;filter:blur(3px)}
 .page-hero .b3{bottom:-130px;left:-110px;width:360px;height:360px;background:rgba(248,152,29,.07);border-radius:50%}
 
+/* HERO ILLUSTRATION (checklist + graph, decorative) */
+.hero-illustration{position:absolute;top:40px;right:56px;width:184px;height:184px;pointer-events:none}
+.hero-illustration svg{width:100%;height:100%}
+.hi-card{fill:#fff;stroke:var(--teal-d);stroke-width:2}
+.hi-tab{fill:var(--teal-pale);stroke:var(--teal-d);stroke-width:2}
+.hi-dot{fill:#fff;stroke:var(--teal-line);stroke-width:2}
+.hi-dot--done{fill:var(--teal-pale);stroke:none}
+.hi-check{fill:none;stroke:var(--orange-d);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.hi-line{stroke:var(--line);stroke-width:6;stroke-linecap:round}
+.hi-line--short{opacity:.7}
+.hi-graph-card rect{fill:#fff;stroke:var(--teal-line);stroke-width:2}
+.hi-graph-line{fill:none;stroke:var(--orange-d);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.hi-graph-point{fill:var(--orange-d)}
+@media(max-width:960px){.hero-illustration{display:none}}
+
 /* BREADCRUMB */
 .breadcrumb{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font:400 13px 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-bottom:28px}
 .breadcrumb span:last-child{min-width:0;word-break:keep-all;overflow-wrap:anywhere}
@@ -176,6 +191,28 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 <main>
 <section class="page-hero">
   <span class="blob b1"></span><span class="blob b3"></span>
+  <div class="hero-illustration" aria-hidden="true">
+    <svg viewBox="0 0 220 220" focusable="false">
+      <rect class="hi-card" x="34" y="26" width="118" height="156" rx="14"/>
+      <rect class="hi-tab" x="70" y="14" width="46" height="20" rx="7"/>
+      <circle class="hi-dot hi-dot--done" cx="58" cy="76" r="10"/>
+      <path class="hi-check" d="M53 76l4 4 8-8"/>
+      <line class="hi-line" x1="78" y1="76" x2="134" y2="76"/>
+      <circle class="hi-dot hi-dot--done" cx="58" cy="108" r="10"/>
+      <path class="hi-check" d="M53 108l4 4 8-8"/>
+      <line class="hi-line" x1="78" y1="108" x2="134" y2="108"/>
+      <circle class="hi-dot" cx="58" cy="140" r="10"/>
+      <line class="hi-line hi-line--short" x1="78" y1="140" x2="120" y2="140"/>
+      <g class="hi-graph-card" transform="translate(104,118)">
+        <rect x="0" y="0" width="92" height="76" rx="14"/>
+        <polyline class="hi-graph-line" points="12,56 32,38 50,46 70,20"/>
+        <circle class="hi-graph-point" cx="12" cy="56" r="3.5"/>
+        <circle class="hi-graph-point" cx="32" cy="38" r="3.5"/>
+        <circle class="hi-graph-point" cx="50" cy="46" r="3.5"/>
+        <circle class="hi-graph-point" cx="70" cy="20" r="3.5"/>
+      </g>
+    </svg>
+  </div>
   <div class="container">
     <nav class="breadcrumb" aria-label="パンくずリスト">
       <a href="./index.html">トップ</a><span class="breadcrumb-sep">›</span>
