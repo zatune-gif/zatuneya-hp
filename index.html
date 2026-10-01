@@ -107,7 +107,7 @@ img,svg{display:block;max-width:100%}
 /* 背景・position・overflow は style.css の .hero-diagonal（全ページ共通） */
 .hero.hero-diagonal{padding:0}/* style.css .hero の左右24px＋上64pxを打ち消し、.container の余白に一本化 */
 /* 構図：左＝見出し・リード／右上の白い余白＝「整理する→やめる→仕組みをつくる」のジグザグフロー／右下＝斜めカット写真（フローと写真は重ねない） */
-.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px 48px;align-items:center;padding-top:var(--s16);padding-bottom:0;text-align:left}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:16px 48px;align-items:center;padding-top:var(--s16);padding-bottom:0;text-align:left}
 .badge{display:inline-flex;align-items:center;gap:8px;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-text);background:#fff;padding:8px 16px;border-radius:999px;box-shadow:var(--sh-1)}
 .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
 .hero-grid .hero-copy h1{font-size:clamp(28px,3.3vw,40px);line-height:1.35;letter-spacing:.005em;margin:24px 0 0}/* style.css の同セレクタ（33px/24px固定）を上書き */
@@ -115,10 +115,7 @@ img,svg{display:block;max-width:100%}
 .hero-sub{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);max-width:470px;margin:20px 0 0}
 .cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:32px}
 .hero-note{font:400 13px/1.6 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-top:16px}
-/* 右上：進め方フロー（ジグザグ本体は style.css の .icon-flow-zigzag） */
-.hero-flow{justify-self:end;align-self:start}
-.hero-flow .icon-flow-caption{text-align:center}
-/* 右下：斜めカット写真（チラシ下部の写真＋濃色三角＋細線を、フローと重ならない独立した行に配置） */
+/* 斜めカット写真（チラシ下部の写真＋濃色三角＋細線） */
 .hero-photo{grid-column:1/-1;position:relative;width:100%;height:320px;margin-top:-8px}
 .photo-diagonal{position:absolute;inset:0;clip-path:polygon(30% 0,100% 0,100% 100%,0 100%)}
 .photo-diagonal img{width:100%;height:100%;object-fit:cover;object-position:center 72%}
@@ -283,8 +280,6 @@ img,svg{display:block;max-width:100%}
 /* ============ RESPONSIVE ============ */
 @media (max-width:960px){
   .hero-grid{grid-template-columns:1fr;gap:40px;padding-top:var(--s16)}
-  .hero-flow{justify-self:center}
-  .hero-flow .icon-flow{--badge-size:76px}
   .hero-photo{width:100%;height:260px}
 
   .hero-sub{max-width:none}
@@ -322,7 +317,6 @@ img,svg{display:block;max-width:100%}
   .hero .badge{font-size:11px;padding:8px 12px}
   .hero-grid .hero-copy h1{font-size:27px;line-height:1.4}
   .hero-photo{height:180px}
-  .hero-flow .icon-flow{--badge-size:66px;--flow-gap:18px}
 
   .btn{padding:16px 24px;font-size:15px}
   .cta-row .btn{width:100%}
@@ -398,31 +392,6 @@ img,svg{display:block;max-width:100%}
         <a class="btn btn-primary" href="https://ai-shindan-zatuneya.netlify.app/"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>自分で現在地を確かめる</a>
       </div>
       <p class="hero-note">広島県府中市を拠点に、近隣の地域企業を訪問して支援しています。</p>
-    </div>
-    <div class="hero-flow">
-      <p class="icon-flow-caption">ざつね屋の進め方</p>
-      <div class="icon-flow-zigzag">
-        <svg class="icon-flow-zigzag__line" viewBox="0 0 300 470" aria-hidden="true" focusable="false">
-          <path class="icon-flow-zigzag__path" d="M152 68C235 78 250 150 222 190"/>
-          <path class="icon-flow-zigzag__path" d="M147 238C70 250 55 320 79 360"/>
-          <circle class="mk-orange" cx="229" cy="118" r="6"/>
-          <circle class="mk-teal" cx="75" cy="289" r="5"/>
-        </svg>
-        <ol class="icon-flow icon-flow--zigzag">
-          <li class="icon-flow__item">
-            <span class="icon-badge-circle icon-badge-circle--ring" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21H11"/><path d="M13 3l5 5h-5V3Z"/><path d="M8 9.5h3M8 13h4.5M8 16.5h2"/><circle cx="16" cy="16" r="3.2"/><path d="M18.4 18.4 21 21"/></svg></span>
-            <span class="icon-flow__label">整理する</span>
-          </li>
-          <li class="icon-flow__item">
-            <span class="icon-badge-circle icon-badge-circle--ring" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6.5h16"/><path d="M9.5 6.5V4h5v2.5"/><path d="M6 6.5l1 14h10l1-14"/><path d="M10 10.5v6.5M14 10.5v6.5"/></svg></span>
-            <span class="icon-flow__label">やめる</span>
-          </li>
-          <li class="icon-flow__item">
-            <span class="icon-badge-circle icon-badge-circle--ring" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="14" r="2.4"/><path d="M9 8.5v1.6M9 17.9v1.6M3.5 14h1.6M12.9 14h1.6M5.1 10.1l1.1 1.1M11.8 16.8l1.1 1.1M5.1 17.9l1.1-1.1M11.8 11.2l1.1-1.1"/><circle cx="9" cy="14" r="4.6"/><circle cx="17" cy="7" r="1.7"/><circle cx="17" cy="7" r="3.4"/><path d="M17 2.4v1.2M17 10.4v1.2M12.4 7h1.2M20.4 7h1.2"/></svg></span>
-            <span class="icon-flow__label">仕組みをつくる</span>
-          </li>
-        </ol>
-      </div>
     </div>
     <div class="hero-photo">
       <div class="photo-diagonal">
