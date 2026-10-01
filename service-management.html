@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI経営改善パッケージ｜ざつね屋</title>
-<meta name="description" content="まず3か月、一つの業務を確実に変える主力パッケージ。業務の棚卸しから手順の設計・試作・社内引き渡しまで一貫して提供。360,000円（税別・期間3か月　計16時間分）。広島県府中市を拠点に、地域企業向け。">
+<title>業務の見直し支援（業務改善）｜ざつね屋</title>
+<meta name="description" content="一つの業務・一つの現場を、2か月で見直します。320,000円（税別）。広島県府中市を拠点に、地域企業向け。">
 <link rel="icon" href="./favicon.ico" sizes="any">
 <link rel="icon" href="./assets/favicon-32.png" type="image/png">
 <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
 <link rel="canonical" href="https://zatune-gif.github.io/zatuneya-hp/service-management.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ざつね屋">
-<meta property="og:title" content="AI経営改善パッケージ｜ざつね屋">
-<meta property="og:description" content="まず3か月、一つの業務を確実に変える主力パッケージ。360,000円（税別・期間3か月　計16時間分）。広島県府中市を拠点に、地域企業向け。">
+<meta property="og:title" content="業務の見直し支援（業務改善）｜ざつね屋">
+<meta property="og:description" content="一つの業務・一つの現場を、2か月で見直します。320,000円（税別）。広島県府中市を拠点に、地域企業向け。">
 <meta property="og:url" content="https://zatune-gif.github.io/zatuneya-hp/service-management.html">
 <meta property="og:image" content="https://zatune-gif.github.io/zatuneya-hp/assets/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -66,7 +66,8 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 .page-hero .b3{bottom:-130px;left:-110px;width:360px;height:360px;background:rgba(248,152,29,.07);border-radius:50%}
 
 /* BREADCRUMB */
-.breadcrumb{display:flex;align-items:center;gap:6px;font:400 13px 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-bottom:28px}
+.breadcrumb{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font:400 13px 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-bottom:28px}
+.breadcrumb span:last-child{min-width:0;word-break:keep-all;overflow-wrap:anywhere}
 .breadcrumb a{color:var(--sub-text);text-decoration:none}
 .breadcrumb a:hover{color:var(--teal-text)}
 .breadcrumb-sep{opacity:.5;font-size:11px}
@@ -80,6 +81,7 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 .svc-hero-icon{width:72px;height:72px;border-radius:22px;background:linear-gradient(135deg,var(--teal-pale),var(--teal-pale2));display:flex;align-items:center;justify-content:center;margin-bottom:24px}
 .svc-hero-icon svg{width:38px;height:38px;stroke:var(--teal-d);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
 .svc-hero-grid{display:grid;grid-template-columns:1fr 360px;gap:48px;align-items:start}
+.svc-hero-grid>div{min-width:0}
 
 /* PRICE BOX */
 .price-box{background:#fff;border-radius:24px;padding:32px;box-shadow:var(--sh-2);border:1px solid var(--teal-line)}
@@ -159,32 +161,24 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
     <nav class="site-nav" id="site-nav" aria-label="グローバルナビゲーション">
       <ul class="site-nav__list">
         <li class="site-nav__item site-nav__item--dropdown">
-          <button class="site-nav__dropdown-trigger site-nav__link" aria-expanded="false" aria-haspopup="true" aria-current="page">
+          <button class="site-nav__dropdown-trigger site-nav__link" aria-expanded="false" aria-haspopup="true">
             サービス<span class="site-nav__caret" aria-hidden="true">▾</span>
           </button>
           <ul class="site-nav__dropdown">
-            <li><a href="./services.html" class="site-nav__dropdown-link">サービス一覧</a></li>
-            <li><a href="./service-training.html" class="site-nav__dropdown-link">AI実務研修</a></li>
-            <li><a href="./service-management.html" class="site-nav__dropdown-link">AI経営改善パッケージ</a></li>
-            <li><a href="./service-banso.html" class="site-nav__dropdown-link">AI活用伴走</a></li>
+            <li><a href="./service-management.html" class="site-nav__dropdown-link">業務の見直し支援</a></li>
+            <li><a href="./service-order.html" class="site-nav__dropdown-link">個別実装</a></li>
           </ul>
         </li>
-        <li class="site-nav__item"><a href="./works.html" class="site-nav__link">実績</a></li>
+        <li class="site-nav__item"><a href="./works.html" class="site-nav__link">開発実績</a></li>
         <li class="site-nav__item"><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html" class="site-nav__link">料金</a></li>
-        <li class="site-nav__item site-nav__item--dropdown">
-          <button class="site-nav__dropdown-trigger site-nav__link" aria-expanded="false" aria-haspopup="true">無料ツール<span class="site-nav__caret" aria-hidden="true">▾</span></button>
-          <ul class="site-nav__dropdown">
-            <li><a href="https://ai-shindan-zatuneya.netlify.app/" class="site-nav__dropdown-link">AI活用準備度診断</a></li>
-            <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/ai-literacy-test/" class="site-nav__dropdown-link">AIツール理解度テスト</a></li>
-            <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/15_prompt-library/" class="site-nav__dropdown-link">プロンプトライブラリ</a></li>
-          </ul>
-        </li>
         <li class="site-nav__item"><a href="./profile.html" class="site-nav__link">代表について</a></li>
       </ul>
       <a href="./contact.html" class="site-nav__cta">お問い合わせ</a>
     </nav>
     <button class="site-nav__hamburger" id="nav-hamburger" aria-label="メニューを開閉する" aria-controls="site-nav" aria-expanded="false">
-      <span class="site-nav__hamburger-line"></span><span class="site-nav__hamburger-line"></span><span class="site-nav__hamburger-line"></span>
+      <span class="site-nav__hamburger-line"></span>
+      <span class="site-nav__hamburger-line"></span>
+      <span class="site-nav__hamburger-line"></span>
     </button>
   </div>
 </header>
@@ -195,16 +189,15 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
   <div class="container">
     <nav class="breadcrumb" aria-label="パンくずリスト">
       <a href="./index.html">トップ</a><span class="breadcrumb-sep">›</span>
-      <a href="./services.html">サービス</a><span class="breadcrumb-sep">›</span>
-      <span>AI経営改善パッケージ</span>
+      <span>業務の見直し支援（業務改善）</span>
     </nav>
-    <div class="svc-hero-icon ic"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3ZM3 9h18M9 3v18"/></svg></div>
+    <div class="svc-hero-icon ic"><svg viewBox="0 0 24 24"><path d="M3 17l4-8 4 4 4-6 4 8"/><path d="M3 20h18"/></svg></div>
     <div class="svc-hero-meta">
-      <span class="svc-hero-num">SERVICE 02 ─ 主力</span>
-      <span class="svc-hero-target">改善したい業務の心当たりがある企業向け</span>
+      <span class="svc-hero-num">SERVICE 01</span>
+      <span class="svc-hero-target">この作業だけ手間がかかる／何を変えるか決めきれていない企業向け</span>
     </div>
-    <h1 class="svc-hero-h1">AI経営改善パッケージ</h1>
-    <p class="svc-hero-catch">まず3か月、一つの業務を確実に変える</p>
+    <h1 class="svc-hero-h1">業務の見直し支援（業務改善）</h1>
+    <p class="svc-hero-catch">一つの業務・一つの現場を、2か月で見直します。</p>
   </div>
 </section>
 
@@ -212,42 +205,78 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
   <div class="container">
     <div class="svc-hero-grid">
       <div>
-        <p class="body-text">「AI活用で何か変えたいが、何から手をつければいいか分からない」という経営者・管理職層へ。「どこから手をつけるか」を一緒に決め、3か月で一つの業務を選んで、目に見えて軽くします。</p>
-        <p class="body-text">やり方は手順書にして残すので、期間が終わったあとも社内で続けられます。実装だけの支援ではなく、「どう測るか」「社内に浸透させるにはどうするか」まで整えます。</p>
+        <div class="points-section">
+          <div class="points-section__title"><span class="bar"></span><span>こんな状態の会社向けです</span></div>
+          <ul class="point-list">
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">同じ情報を、何度も入力している</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">担当者が休むと止まる業務がある</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">紙とパソコンの両方に同じことを書いている</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">AIを試してはみたが、どこに使うか分からず続かなかった</span></li>
+          </ul>
+        </div>
+        <p class="body-text">作るものがもう決まっている場合は、<a href="./service-order.html">個別実装</a>をご覧ください。</p>
 
         <div class="points-section">
-          <div class="points-section__title"><span class="bar"></span><span>このパッケージのポイント</span></div>
+          <div class="points-section__title"><span class="bar"></span><span>何をするか（5工程）</span></div>
           <ul class="point-list">
-            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">経営課題の特定から始めるため、「AIのための活用」にならない</span></li>
-            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">KPI・成果指標を最初に設計するので、何が改善したか見えます</span></li>
-            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">現場スタッフへの展開・定着まで支援範囲に含まれます</span></li>
-            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">期間3か月　計16時間分・360,000円（税別）の単一プランです</span></li>
-            <li class="point-item accent"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">パッケージ終了後もAI活用伴走に移行でき、改善を継続できます</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">① 対象業務の現状分析（作業の洗い出し、かかっている時間の把握）</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">② 改善案の検討</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">③ 必要に応じたAI候補の比較</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">④ 簡易設定と小規模な試行</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">⑤ 運用ルールの素案づくりと、次段階で検討する事項の整理</span></li>
+          </ul>
+        </div>
+        <p class="body-text">各工程で、現場担当者の方に実際の作業を見せていただく・試していただく場面があります。</p>
+
+        <div class="points-section">
+          <div class="points-section__title"><span class="bar"></span><span>終わったときに手元に残るもの</span></div>
+          <ul class="point-list">
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">業務の一覧と改善前の数値 — どの作業にどれだけ時間がかかっているかが、社内の共通認識になります</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">改善案と選んだ理由 — なぜその案にしたかを、後任の方にも説明できます</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">（必要なら）AI候補の比較資料</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">試した記録 — 実際にやってみて何が起きたかが残るので、広げるか止めるかを判断できます</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">現場の運用ルール素案 — 誰が・どこまで・何を確認するかの下書きとして使えます</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">測り方と次の一手 — 期間が終わったあと、社内だけで続きを進められます</span></li>
           </ul>
         </div>
 
         <div class="points-section">
-          <div class="points-section__title"><span class="bar"></span><span>成果物</span></div>
+          <div class="points-section__title"><span class="bar"></span><span>含まないこと</span></div>
           <ul class="point-list">
-            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">現状診断レポート</span></li>
-            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">組織改善計画書</span></li>
-            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">実装マニュアル</span></li>
-            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">KPI設計書</span></li>
+            <li class="point-item accent"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">本番用の個別システム開発は含みません。仕組みを作る必要があると分かった場合は、仕様を決めてから個別実装として別途お見積りします</span></li>
+            <li class="point-item accent"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">対象業務でのAI活用の詳細設計（入力・出力・人が確認する場所・例外時の対応まで詰めた設計）は含みません。AIが役に立つと分かった場合は、オプションのAI活用設計でお受けします</span></li>
+          </ul>
+        </div>
+
+        <div class="points-section">
+          <div class="points-section__title"><span class="bar"></span><span>業務改善イメージの一例</span></div>
+          <p class="body-text">※仮のモデルケースです。効果を保証するものではありません。実際の削減時間・効果は業務内容により異なります。</p>
+          <ul class="point-list">
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">モデルケースA：見積・請求業務に週5時間ほど取られていた場合 → 仕組み化により週1〜2時間程度に圧縮できれば、年間150〜200時間ほどの余力が生まれるイメージです。</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">モデルケースB：資金繰りの確認作業に週2時間ほどかけていた場合 → 自動レポート化により、月1回の確認で済む状態を目指せます。</span></li>
+          </ul>
+        </div>
+
+        <div class="points-section">
+          <div class="points-section__title"><span class="bar"></span><span>オプション：AI活用設計</span></div>
+          <ul class="point-list">
+            <li class="point-item accent"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">業務を見直した結果、AIが役に立つと分かった場合に、追加でお選びいただけます。対象業務でのAI活用の詳細設計・利用ルール・手順書の整備などが含まれます。価格は個別にお見積りします。</span></li>
           </ul>
         </div>
 
         <div class="svc-cta-row">
-          <a class="btn btn-primary" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/estimate.html"><svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6Z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg>お見積りへ進む</a>
-          <a class="btn btn-outline" href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html#management-pkg"><svg viewBox="0 0 24 24"><path d="M12 3v18M8 7h6a2.5 2.5 0 0 1 0 5H8m0 0h8"/></svg>料金の詳細を見る</a>
+          <a class="btn btn-primary" href="./contact.html"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>まず30分、話を聞かせてください</a>
         </div>
       </div>
 
       <div class="price-box">
         <span class="price-box__label">PRICE</span>
-        <span class="price-box__amount">360,000円<br><small>（税別・期間3か月　計16時間分）</small></span>
-        <span class="price-box__note">初回相談・現状診断は無料</span>
+        <span class="price-box__amount">320,000円<br><small>（税別）</small></span>
+        <span class="price-box__sub">期間2か月／ざつね屋の作業時間 16時間<br>会議・調査・資料作成・試行・ご説明のすべてを、この16時間に含みます。</span>
+        <span class="price-box__note">お見積りが変わる場合：対象の業務が増えるとき、対象の現場が複数になるとき、本番用の仕組みの開発が必要になったとき。</span>
+        <span class="price-box__sub">別途ご負担いただくもの：AIサービス等の利用料（お客様が直接ご契約いただきます。導入前に費用をお示しします）／訪問が必要な場合の交通費（回数・上限を見積時に明記します）。</span>
         <div class="price-box__cta">
-          <a class="btn btn-primary" href="https://ai-shindan-zatuneya.netlify.app/"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>AI活用診断（無料）</a>
+          <a class="btn btn-primary" href="./contact.html"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>まず30分、話を聞かせてください</a>
         </div>
       </div>
     </div>
@@ -259,16 +288,10 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
   <div class="container">
     <p class="related-title">Other Services</p>
     <div class="related-grid">
-      <a class="related-card" href="./service-training.html">
-        <div class="related-card__num">SERVICE 01</div>
-        <div class="related-card__title">AI実務研修</div>
-        <div class="related-card__desc">受講当日から業務でAIを使い始められる実践型研修。5コース体系から選択。</div>
-        <span class="related-card__arrow">詳しく見る →</span>
-      </a>
-      <a class="related-card" href="./service-banso.html">
-        <div class="related-card__num">SERVICE 03</div>
-        <div class="related-card__title">AI活用伴走</div>
-        <div class="related-card__desc">月2回のミーティングで知見を統合しながら継続的に改善を続ける伴走型契約。</div>
+      <a class="related-card" href="./service-order.html">
+        <div class="related-card__num">SERVICE 02</div>
+        <div class="related-card__title">個別実装</div>
+        <div class="related-card__desc">仕様が決まった仕組みを、設計・開発します。</div>
         <span class="related-card__arrow">詳しく見る →</span>
       </a>
     </div>
@@ -283,11 +306,10 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
       <div class="cv-inner">
         <span class="glow"></span>
         <span class="cv-tag"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>CONTACT ─ 無料</span>
-        <h2>まずはお気軽にご相談ください</h2>
+        <h2>まず30分、話を聞かせてください</h2>
         <p class="lead">「うちの業務でも使えるか？」の段階で大丈夫です。相談・お見積りはすべて無料です。</p>
         <div class="cv-cta-row">
-          <a class="btn btn-primary" href="https://ai-shindan-zatuneya.netlify.app/"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>AI活用診断（無料）</a>
-          <a class="btn btn-ghost" href="./contact.html"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>お問い合わせ・無料相談をする</a>
+          <a class="btn btn-primary" href="./contact.html"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>まず30分、話を聞かせてください</a>
         </div>
         <p class="cv-foot">返信は2営業日以内です。しつこい営業連絡はいたしません。</p>
       </div>
@@ -306,24 +328,21 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
       <div class="site-footer__col">
         <span class="site-footer__col-title">サービス</span>
         <ul>
-          <li><a href="./services.html">サービス一覧</a></li>
-          <li><a href="./service-training.html">AI実務研修</a></li>
-          <li><a href="./service-management.html">AI経営改善パッケージ</a></li>
-          <li><a href="./service-banso.html">AI活用伴走</a></li>
+          <li><a href="./service-management.html">業務の見直し支援</a></li>
+          <li><a href="./service-order.html">個別実装</a></li>
+          <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html">料金</a></li>
         </ul>
       </div>
       <div class="site-footer__col">
         <span class="site-footer__col-title">無料ツール</span>
         <ul>
           <li><a href="https://ai-shindan-zatuneya.netlify.app/">AI活用準備度診断</a></li>
-          <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/ai-literacy-test/">AIツール理解度テスト</a></li>
-          <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/15_prompt-library/">プロンプトライブラリ</a></li>
         </ul>
       </div>
       <div class="site-footer__col">
         <span class="site-footer__col-title">ざつね屋について</span>
         <ul>
-          <li><a href="./works.html">支援実績</a></li>
+          <li><a href="./works.html">開発実績</a></li>
           <li><a href="./profile.html">代表について</a></li>
           <li><a href="./faq.html">よくある質問</a></li>
           <li><a href="./contact.html">相談・お見積もり</a></li>

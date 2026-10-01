@@ -3,23 +3,146 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>個別業務設計は終了しました｜ざつね屋</title>
-<meta name="robots" content="noindex">
-<meta http-equiv="refresh" content="5;url=./service-management.html">
-<meta name="description" content="個別業務設計サービスはAI経営改善パッケージへ統合されました。広島県府中市を拠点に、地域企業向け。">
+<title>個別実装｜ざつね屋</title>
+<meta name="description" content="仕様が決まった仕組みを、設計・開発します。仕様確定後の個別お見積り。広島県府中市を拠点に、地域企業向け。">
 <link rel="icon" href="./favicon.ico" sizes="any">
 <link rel="icon" href="./assets/favicon-32.png" type="image/png">
 <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
-<link rel="canonical" href="https://zatune-gif.github.io/zatuneya-hp/service-management.html">
+<link rel="canonical" href="https://zatune-gif.github.io/zatuneya-hp/service-order.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ざつね屋">
+<meta property="og:title" content="個別実装｜ざつね屋">
+<meta property="og:description" content="仕様が決まった仕組みを、設計・開発します。仕様確定後の個別お見積り。広島県府中市を拠点に、地域企業向け。">
+<meta property="og:url" content="https://zatune-gif.github.io/zatuneya-hp/service-order.html">
+<meta property="og:image" content="https://zatune-gif.github.io/zatuneya-hp/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./style.css">
 <style>
-  .nf-wrap { max-width: 640px; margin: 0 auto; padding: 96px 24px 120px; text-align: center; }
-  .nf-title { font: 900 24px/1.5 'Noto Sans JP', sans-serif; color: var(--heading); }
-  .nf-lead { font: 400 15px/1.9 'Noto Sans JP', sans-serif; color: var(--text); margin-top: 14px; }
-  .nf-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+:root{
+  --bg:#EFF4F5;--card:#fff;
+  --teal:#5BBDC8;--teal-d:#46A6B1;--teal-pale:#EAF6F8;--teal-pale2:#DCF0F2;--teal-line:#D3E7EA;
+  --orange:#F8981D;--orange-d:#E28511;--orange-pale:#FFF8EF;--orange-line:#F6E4C8;
+  --sub:#839CAA;--head:#3C3C3C;--body:#575757;--line:#E1EAEC;
+  --teal-text:#31747C;--sub-text:#556E7C;--orange-text:#9C5C0C;
+  --sh-1:0 1px 3px rgba(40,60,70,.05),0 4px 12px rgba(40,60,70,.05);
+  --sh-2:0 2px 6px rgba(40,60,70,.06),0 14px 30px rgba(40,60,70,.10);
+  --sh-3:0 6px 14px rgba(40,60,70,.10),0 30px 60px rgba(40,60,70,.18);
+  --sh-orange:0 10px 24px rgba(248,152,29,.34);
+  --sh-orange-h:0 16px 32px rgba(248,152,29,.44);
+  --s2:8px;--s3:12px;--s4:16px;--s6:24px;--s8:32px;--s10:40px;--s12:48px;--s16:64px;--s20:80px;--s24:96px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--body);font-family:'Roboto','Noto Sans JP',system-ui,sans-serif;font-size:16px;line-height:1.9;letter-spacing:0.02em;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--head);margin:0;text-wrap:balance}
+p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--teal-text);outline-offset:3px;border-radius:6px}
+.container{max-width:1120px;margin:0 auto;padding:0 32px;text-align:left}
+.container.narrow{max-width:800px}
+.section{padding:var(--s24) 0}
+.bg-white{background:#fff}.bg-tint{background:var(--bg)}
+.eyebrow{display:inline-block;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.22em;color:var(--teal-text);text-transform:uppercase}
+.ic{display:inline-flex;align-items:center;justify-content:center}
+.ic svg{width:100%;height:100%;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
+
+/* BUTTONS */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease);cursor:pointer;white-space:nowrap}
+.btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
+.btn-primary{background:var(--orange);color:#332211;box-shadow:var(--sh-orange)}
+.btn-primary:hover{background:var(--orange-d);transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
+.btn-outline{background:transparent;color:var(--teal-text);border-color:var(--teal)}
+.btn-outline:hover{background:var(--teal-pale);transform:translateY(-2px)}
+.btn-ghost{background:#fff;color:var(--teal-text);box-shadow:var(--sh-1)}
+.btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
+
+/* PAGE HERO */
+.page-hero{position:relative;background:var(--bg);overflow:hidden;background-image:radial-gradient(rgba(131,156,170,.16) 1.1px,transparent 1.1px);background-size:22px 22px;padding:56px 0 48px}
+.page-hero .blob{position:absolute;pointer-events:none}
+.page-hero .b1{top:-150px;right:-90px;width:500px;height:440px;background:rgba(91,189,200,.16);border-radius:60% 40% 55% 45%/55% 50% 50% 45%;filter:blur(3px)}
+.page-hero .b3{bottom:-130px;left:-110px;width:360px;height:360px;background:rgba(248,152,29,.07);border-radius:50%}
+
+/* BREADCRUMB */
+.breadcrumb{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font:400 13px 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-bottom:28px}
+.breadcrumb span:last-child{min-width:0;word-break:keep-all;overflow-wrap:anywhere}
+.breadcrumb a{color:var(--sub-text);text-decoration:none}
+.breadcrumb a:hover{color:var(--teal-text)}
+.breadcrumb-sep{opacity:.5;font-size:11px}
+
+/* SERVICE HERO CONTENT */
+.svc-hero-meta{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.svc-hero-num{font:900 13px/1 'Roboto',sans-serif;letter-spacing:.1em;color:var(--teal-text);background:var(--teal-pale);padding:6px 14px;border-radius:99px}
+.svc-hero-target{font:700 13px/1 'Noto Sans JP',sans-serif;color:var(--sub-text);background:#fff;border:1px solid var(--line);padding:6px 14px;border-radius:99px}
+.svc-hero-h1{font-size:clamp(28px,4vw,40px);line-height:1.3;margin:0 0 16px}
+.svc-hero-catch{font:700 18px/1.6 'Noto Sans JP',sans-serif;color:var(--teal-text)}
+.svc-hero-icon{width:72px;height:72px;border-radius:22px;background:linear-gradient(135deg,var(--teal-pale),var(--teal-pale2));display:flex;align-items:center;justify-content:center;margin-bottom:24px}
+.svc-hero-icon svg{width:38px;height:38px;stroke:var(--teal-d);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.svc-hero-grid{display:grid;grid-template-columns:1fr 360px;gap:48px;align-items:start}
+.svc-hero-grid>div{min-width:0}
+
+/* PRICE BOX */
+.price-box{background:#fff;border-radius:24px;padding:32px;box-shadow:var(--sh-2);border:1px solid var(--teal-line)}
+.price-box__label{font:700 11px/1 'Noto Sans JP',sans-serif;letter-spacing:.1em;color:var(--sub-text);text-transform:uppercase}
+.price-box__amount{font:900 clamp(20px,3vw,28px)/1.3 'Roboto','Noto Sans JP',sans-serif;color:var(--head);margin-top:12px;display:block}
+.price-box__sub{font:400 13.5px/1.8 'Noto Sans JP',sans-serif;color:var(--body);margin-top:10px;display:block}
+.price-box__note{display:inline-block;font:700 12.5px/1.6 'Noto Sans JP',sans-serif;color:var(--orange-text);background:var(--orange-pale);border-radius:10px;padding:10px 16px;margin-top:16px}
+.price-box__cta{margin-top:24px;display:flex;flex-direction:column;gap:12px}
+.price-box__cta .btn{justify-content:center}
+.price-box__amount small{font-size:.65em;font-weight:400}
+
+/* BODY SECTION */
+.body-section{padding:48px 0 0}
+.body-text{font-family:'Noto Sans JP',sans-serif;font-size:16.5px;line-height:2;color:var(--body)}
+.body-text+.body-text{margin-top:16px}
+
+/* POINTS SECTION */
+.points-section{background:#fff;border-radius:24px;padding:40px;margin-top:40px;box-shadow:var(--sh-1)}
+.points-section__title{display:flex;align-items:center;gap:10px;margin-bottom:24px}
+.points-section__title .bar{width:24px;height:3px;border-radius:99px;background:var(--teal)}
+.points-section__title span{font:700 14px 'Noto Sans JP',sans-serif;letter-spacing:.06em;color:var(--head)}
+.point-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px}
+.point-item{display:flex;gap:14px;align-items:flex-start;padding:16px 20px;background:var(--bg);border-radius:14px}
+.point-item.accent{background:var(--orange-pale)}
+.point-icon{flex:none;width:28px;height:28px;border-radius:50%;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;margin-top:1px}
+.point-icon svg{width:15px;height:15px;stroke:var(--teal-d);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.point-item.accent .point-icon{background:#fff}
+.point-item.accent .point-icon svg{stroke:var(--orange-d)}
+.point-text{font:500 15px/1.75 'Noto Sans JP',sans-serif;color:var(--body);flex:1;min-width:0;text-wrap:pretty}
+.point-item.accent .point-text{font-weight:700;color:var(--head)}
+
+/* CTA ROW */
+.svc-cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
+
+/* CV SECTION */
+.cv-section{background:var(--bg);padding:var(--s24) 0}
+.cv-card{position:relative;max-width:820px;margin:0 auto;background:#fff;border-radius:34px;padding:16px 16px 0;box-shadow:var(--sh-3);overflow:hidden}
+.cv-topbar{height:6px;border-radius:99px;background:linear-gradient(90deg,var(--orange),var(--orange-d))}
+.cv-inner{position:relative;padding:48px;text-align:center}
+.cv-card .glow{position:absolute;top:-120px;right:-80px;width:360px;height:360px;background:radial-gradient(circle,rgba(248,152,29,.16),rgba(248,152,29,0) 70%);border-radius:50%;pointer-events:none}
+.cv-tag{display:inline-flex;align-items:center;gap:8px;font:700 12.5px/1 'Roboto',sans-serif;letter-spacing:.16em;color:var(--orange-text);background:var(--orange-pale);border:1px solid var(--orange-line);padding:8px 16px;border-radius:999px}
+.cv-tag svg{width:15px;height:15px;stroke:var(--orange-d);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.cv-inner h2{font-size:clamp(24px,3.5vw,32px);margin:16px 0 0}
+.cv-inner .lead{font-family:'Noto Sans JP',sans-serif;font-size:15px;line-height:1.9;color:var(--body);max-width:540px;margin:14px auto 0;word-break:keep-all;overflow-wrap:anywhere}
+.cv-cta-row{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:32px}
+.cv-foot{font:400 13px/1.6 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-top:20px}
+
+/* RELATED SERVICES */
+.related-section{padding:64px 0}
+.related-title{font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.18em;color:var(--sub-text);text-transform:uppercase;margin-bottom:24px}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.related-card{display:block;background:#fff;border-radius:18px;padding:24px;box-shadow:var(--sh-1);text-decoration:none;color:inherit;transition:transform .18s var(--ease),box-shadow .18s;border:1px solid transparent}
+.related-card:hover{transform:translateY(-3px);box-shadow:var(--sh-2);border-color:var(--teal-line)}
+.related-card__num{font:900 11px/1 'Roboto',sans-serif;letter-spacing:.1em;color:var(--sub-text)}
+.related-card__title{font:700 16px/1.4 'Noto Sans JP',sans-serif;color:var(--head);margin-top:8px}
+.related-card__desc{font:400 13px/1.7 'Noto Sans JP',sans-serif;color:var(--body);margin-top:8px}
+.related-card__arrow{font:700 13px 'Noto Sans JP',sans-serif;color:var(--teal-text);margin-top:14px;display:block}
+
+/* RESPONSIVE */
+@media(max-width:960px){.svc-hero-grid{grid-template-columns:1fr}.related-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){:root{--s24:64px;--s20:48px;--s16:40px}.container{padding:0 20px}.related-grid{grid-template-columns:1fr}.price-box__cta .btn{width:100%}.cv-inner{padding:32px 24px}}
 </style>
 </head>
 <body>
@@ -34,41 +157,163 @@
             サービス<span class="site-nav__caret" aria-hidden="true">▾</span>
           </button>
           <ul class="site-nav__dropdown">
-            <li><a href="./services.html" class="site-nav__dropdown-link">サービス一覧</a></li>
-            <li><a href="./service-training.html" class="site-nav__dropdown-link">AI実務研修</a></li>
-            <li><a href="./service-management.html" class="site-nav__dropdown-link">AI経営改善パッケージ</a></li>
-            <li><a href="./service-banso.html" class="site-nav__dropdown-link">AI活用伴走</a></li>
+            <li><a href="./service-management.html" class="site-nav__dropdown-link">業務の見直し支援</a></li>
+            <li><a href="./service-order.html" class="site-nav__dropdown-link">個別実装</a></li>
           </ul>
         </li>
-        <li class="site-nav__item"><a href="./works.html" class="site-nav__link">実績</a></li>
+        <li class="site-nav__item"><a href="./works.html" class="site-nav__link">開発実績</a></li>
         <li class="site-nav__item"><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html" class="site-nav__link">料金</a></li>
-        <li class="site-nav__item site-nav__item--dropdown">
-          <button class="site-nav__dropdown-trigger site-nav__link" aria-expanded="false" aria-haspopup="true">無料ツール<span class="site-nav__caret" aria-hidden="true">▾</span></button>
-          <ul class="site-nav__dropdown">
-            <li><a href="https://ai-shindan-zatuneya.netlify.app/" class="site-nav__dropdown-link">AI活用準備度診断</a></li>
-            <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/ai-literacy-test/" class="site-nav__dropdown-link">AIツール理解度テスト</a></li>
-            <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/15_prompt-library/" class="site-nav__dropdown-link">プロンプトライブラリ</a></li>
-          </ul>
-        </li>
         <li class="site-nav__item"><a href="./profile.html" class="site-nav__link">代表について</a></li>
       </ul>
       <a href="./contact.html" class="site-nav__cta">お問い合わせ</a>
     </nav>
     <button class="site-nav__hamburger" id="nav-hamburger" aria-label="メニューを開閉する" aria-controls="site-nav" aria-expanded="false">
-      <span class="site-nav__hamburger-line"></span><span class="site-nav__hamburger-line"></span><span class="site-nav__hamburger-line"></span>
+      <span class="site-nav__hamburger-line"></span>
+      <span class="site-nav__hamburger-line"></span>
+      <span class="site-nav__hamburger-line"></span>
     </button>
   </div>
 </header>
 
 <main>
-  <div class="nf-wrap">
-    <h1 class="nf-title">個別業務設計は、AI経営改善パッケージへ統合されました</h1>
-    <p class="nf-lead">単発の業務改善のご相談は、現在AI経営改善パッケージで承っています。5秒後に自動的に移動します。</p>
-    <div class="nf-actions">
-      <a class="btn btn-fill" href="./service-management.html">AI経営改善パッケージを見る</a>
-      <a class="btn btn-white" href="./services.html">サービス一覧へ戻る</a>
+<section class="page-hero">
+  <span class="blob b1"></span><span class="blob b3"></span>
+  <div class="container">
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+      <a href="./index.html">トップ</a><span class="breadcrumb-sep">›</span>
+      <span>個別実装</span>
+    </nav>
+    <div class="svc-hero-icon ic"><svg viewBox="0 0 24 24"><path d="M12 4 22 9 12 14 2 9 12 4Z"/><path d="M6 11v5c0 1 2.7 2.4 6 2.4s6-1.4 6-2.4v-5"/></svg></div>
+    <div class="svc-hero-meta">
+      <span class="svc-hero-num">SERVICE 02</span>
+      <span class="svc-hero-target">作るものが決まっている企業向け</span>
+    </div>
+    <h1 class="svc-hero-h1">個別実装</h1>
+    <p class="svc-hero-catch">仕様が決まった仕組みを、設計・開発します。</p>
+  </div>
+</section>
+
+<section class="section bg-white">
+  <div class="container">
+    <div class="svc-hero-grid">
+      <div>
+        <div class="points-section">
+          <div class="points-section__title"><span class="bar"></span><span>こんな状態の会社向けです</span></div>
+          <ul class="point-list">
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">業務の見直しは済んでいて、あとは仕組みを作るだけ</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">既存のサービスと社内のデータをつなぎたい</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">業務改善の中で、仕組みづくりが必要だと分かった</span></li>
+          </ul>
+        </div>
+        <p class="body-text">業務の見直しがまだの場合は、<a href="./service-management.html">業務改善</a>から始めることをおすすめします。</p>
+
+        <div class="points-section">
+          <div class="points-section__title"><span class="bar"></span><span>お見積りの出し方</span></div>
+          <p class="body-text">個別実装は、作るものが決まってからお見積りします。お見積りの前に、次のことを書面で決めます。</p>
+          <ul class="point-list">
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">何を作るか</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">既存のどのサービスとつなぐか</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">どのデータを扱うか</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">誰が何をできる権限を持つか</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">人が確認する場所はどこか</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">例外が起きたときどうするか</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">作ったあとの保守はどうするか（→運用保守へ接続）</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">お客様側で確認していただくこと</span></li>
+          </ul>
+          <p class="body-text">この8点が決まってから、作業時間を積算してお見積りをお出しします。仕様を決める作業自体は、業務改善の中で行います。</p>
+          <p class="body-text">なお、実装を進める中で、当初の前提（データの形式、連携するサービスの仕様等）が異なることが分かる場合があります。その場合は影響範囲をご説明し、必要であれば追加のお見積りをご案内します。</p>
+        </div>
+
+        <div class="points-section">
+          <div class="points-section__title"><span class="bar"></span><span>終わったときに手元に残るもの</span></div>
+          <ul class="point-list">
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">仕様書</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">作った仕組み</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">操作手順</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">検証結果</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">引き継ぎ資料</span></li>
+          </ul>
+        </div>
+
+        <div class="points-section">
+          <div class="points-section__title"><span class="bar"></span><span>含まないこと</span></div>
+          <ul class="point-list">
+            <li class="point-item accent"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">契約ごとに明記します。</span></li>
+            <li class="point-item accent"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">納品後の運用保守は含みません。ご希望の場合は「運用保守」を別途ご用意します。</span></li>
+          </ul>
+        </div>
+
+        <div class="points-section">
+          <div class="points-section__title"><span class="bar"></span><span>技術力・実績</span></div>
+          <ul class="point-list">
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">Electron（デスクトップアプリ）による業務システム開発（見積・請求管理、資金繰り管理など複数実績）</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">生成AI（Claude/Anthropic）のAPIを組み込んだ機能開発（文章生成・デザイン案自動生成など）</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">会計ソフトfreeeとのAPI連携（OAuth2.0認証によるセキュアな自動連携）</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">APIキーなどの機密情報はサーバー側でのみ管理し、画面や通信に露出させない設計</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">AIと外部システム（クラウドの資料管理・メール・デザインツール等）を安全に連携させる最新の技術規格「MCP」を日々の開発・情報整理に活用</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">自動テストを整備した開発（自動テスト1,260件PASSなどの実施実績）</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">Windows／Mac両OS対応のビルド・自動配信の仕組み化</span></li>
+            <li class="point-item"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">Googleアナリティクスと連携したレポート自動作成</span></li>
+          </ul>
+        </div>
+
+        <div class="points-section">
+          <div class="points-section__title"><span class="bar"></span><span>オプション：運用保守</span></div>
+          <ul class="point-list">
+            <li class="point-item accent"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">作った仕組みの規模（外部サービスとの連携の数・扱うデータ量・利用される方の人数など）に応じて、個別にお見積りします。対応は平日日中です（24時間対応は承っておりません）。</span></li>
+          </ul>
+        </div>
+
+        <div class="svc-cta-row">
+          <a class="btn btn-primary" href="./contact.html"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>まず30分、話を聞かせてください</a>
+        </div>
+      </div>
+
+      <div class="price-box">
+        <span class="price-box__label">PRICE</span>
+        <span class="price-box__amount">仕様が決まってから<br><small>のお見積り</small></span>
+        <span class="price-box__sub">期間・作業時間は仕様によります</span>
+        <div class="price-box__cta">
+          <a class="btn btn-primary" href="./contact.html"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>まず30分、話を聞かせてください</a>
+        </div>
+      </div>
     </div>
   </div>
+</section>
+
+<!-- RELATED SERVICES -->
+<section class="related-section bg-tint">
+  <div class="container">
+    <p class="related-title">Other Services</p>
+    <div class="related-grid">
+      <a class="related-card" href="./service-management.html">
+        <div class="related-card__num">SERVICE 01</div>
+        <div class="related-card__title">業務の見直し支援（業務改善）</div>
+        <div class="related-card__desc">一つの業務・一つの現場を、2か月で見直します。</div>
+        <span class="related-card__arrow">詳しく見る →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cv-section">
+  <div class="container">
+    <div class="cv-card">
+      <div class="cv-topbar"></div>
+      <div class="cv-inner">
+        <span class="glow"></span>
+        <span class="cv-tag"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>CONTACT ─ 無料</span>
+        <h2>まず30分、話を聞かせてください</h2>
+        <p class="lead">「うちの業務でも使えるか？」の段階で大丈夫です。相談・お見積りはすべて無料です。</p>
+        <div class="cv-cta-row">
+          <a class="btn btn-primary" href="./contact.html"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>まず30分、話を聞かせてください</a>
+        </div>
+        <p class="cv-foot">返信は2営業日以内です。しつこい営業連絡はいたしません。</p>
+      </div>
+    </div>
+  </div>
+</section>
 </main>
 
 <footer class="site-footer">
@@ -81,24 +326,21 @@
       <div class="site-footer__col">
         <span class="site-footer__col-title">サービス</span>
         <ul>
-          <li><a href="./services.html">サービス一覧</a></li>
-          <li><a href="./service-training.html">AI実務研修</a></li>
-          <li><a href="./service-management.html">AI経営改善パッケージ</a></li>
-          <li><a href="./service-banso.html">AI活用伴走</a></li>
+          <li><a href="./service-management.html">業務の見直し支援</a></li>
+          <li><a href="./service-order.html">個別実装</a></li>
+          <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/13_ai-diagnosis-tool/prices.html">料金</a></li>
         </ul>
       </div>
       <div class="site-footer__col">
         <span class="site-footer__col-title">無料ツール</span>
         <ul>
           <li><a href="https://ai-shindan-zatuneya.netlify.app/">AI活用準備度診断</a></li>
-          <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/ai-literacy-test/">AIツール理解度テスト</a></li>
-          <li><a href="https://zatune-gif.github.io/kurashi-no-dodai-log/00-01_han-ai/15_prompt-library/">プロンプトライブラリ</a></li>
         </ul>
       </div>
       <div class="site-footer__col">
         <span class="site-footer__col-title">ざつね屋について</span>
         <ul>
-          <li><a href="./works.html">支援実績</a></li>
+          <li><a href="./works.html">開発実績</a></li>
           <li><a href="./profile.html">代表について</a></li>
           <li><a href="./faq.html">よくある質問</a></li>
           <li><a href="./contact.html">相談・お見積もり</a></li>
