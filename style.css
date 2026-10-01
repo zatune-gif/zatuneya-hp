@@ -1556,6 +1556,9 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 .need-card .icon-badge-circle { --badge-size: 60px; }
 .need-card__text { flex: 1; min-width: 0; font: 700 15px/1.7 'Noto Sans JP', sans-serif; color: var(--heading); text-wrap: pretty; }
 .need-grid > .need-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+/* アクセント強調（対象企業など、特に強く示したい1枚だけ色を変える） */
+.need-card--accent { background: var(--orange-soft); border-color: var(--warm-line); }
+.need-card--accent .icon-badge-circle { background: #fff; color: var(--orange-dk); }
 @media (max-width: 680px) {
   .need-grid { grid-template-columns: 1fr; }
   .need-card { padding: 14px 16px; }
@@ -1605,7 +1608,7 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 }
 
 /* ── 14. 価格パネルの強調（チラシ2ページの価格：アイコン＋縦罫線＋大きな金額） ── */
-.price-box.price-box--flyer { position: relative; overflow: hidden; padding: 0 0 28px; border: 1px solid var(--card-line); }
+.price-box.price-box--flyer { position: sticky; top: 96px; overflow: hidden; padding: 0 0 28px; border: 1px solid var(--card-line); }
 .price-box--flyer::before { content: ""; display: block; height: 6px; background: linear-gradient(90deg, var(--teal-strong), var(--teal)); }
 .price-box__head { display: flex; align-items: center; gap: 16px; padding: 24px 28px 20px; border-bottom: 1px solid var(--card-line); background: linear-gradient(180deg, var(--teal-soft) 0%, #fff 100%); }
 .price-box__head .icon-badge-circle { --badge-size: 64px; }
@@ -1669,3 +1672,17 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   pointer-events: none;
 }
 .works-section--own .flyer-section-head { position: relative; padding-left: 20px; border-left: 4px solid var(--teal-strong); }
+
+/* ── 16. よくある質問カード（faq.html：角丸の白カード＋アイコン円で、質問・回答を視覚的に区別） ── */
+.faq-list { display: flex; flex-direction: column; gap: 16px; list-style: none; margin: 0; padding: 0; }
+.faq-card { background: #fff; border: 1px solid var(--card-line); border-radius: 18px; box-shadow: var(--sh-1); padding: 24px 28px; }
+.faq-question { display: flex; align-items: flex-start; gap: 16px; margin: 0; font: 700 16px/1.7 'Noto Sans JP', sans-serif; color: var(--heading); }
+.faq-card__icon { --badge-size: 40px; margin-top: 2px; }
+.faq-card__icon svg { stroke-width: 1.8; }
+.faq-question__text { flex: 1; min-width: 0; padding-top: 4px; text-wrap: pretty; }
+.faq-answer { margin: 14px 0 0; padding-left: 56px; font: 400 14.5px/1.9 'Noto Sans JP', sans-serif; color: var(--text); text-wrap: pretty; }
+@media (max-width: 680px) {
+  .faq-card { padding: 20px 20px; }
+  .faq-card__icon { --badge-size: 34px; }
+  .faq-answer { padding-left: 0; margin-top: 12px; }
+}
