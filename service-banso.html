@@ -59,27 +59,26 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 .btn-ghost{background:#fff;color:var(--teal-text);box-shadow:var(--sh-1)}
 .btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
 
-/* PAGE HERO */
-.page-hero{position:relative;background:var(--bg);overflow:hidden;background-image:radial-gradient(rgba(131,156,170,.16) 1.1px,transparent 1.1px);background-size:22px 22px;padding:56px 0 48px}
-.page-hero .blob{position:absolute;pointer-events:none}
-.page-hero .b1{top:-150px;right:-90px;width:500px;height:440px;background:rgba(91,189,200,.16);border-radius:60% 40% 55% 45%/55% 50% 50% 45%;filter:blur(3px)}
-.page-hero .b3{bottom:-130px;left:-110px;width:360px;height:360px;background:rgba(248,152,29,.07);border-radius:50%}
+/* PAGE HERO（背景・右側の斜めカット写真パネルは style.css の .hero-diagonal / .hero-photo-panel） */
+.page-hero{padding:56px 0 64px}
+@media(max-width:960px){.page-hero{padding-bottom:0}}
 
 /* BREADCRUMB */
-.breadcrumb{display:flex;align-items:center;gap:6px;font:400 13px 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-bottom:28px}
+.breadcrumb{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font:400 13px 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-bottom:28px}
+.breadcrumb span:last-child{min-width:0;word-break:keep-all;overflow-wrap:anywhere}
 .breadcrumb a{color:var(--sub-text);text-decoration:none}
 .breadcrumb a:hover{color:var(--teal-text)}
 .breadcrumb-sep{opacity:.5;font-size:11px}
 
 /* SERVICE HERO CONTENT */
-.svc-hero-meta{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.svc-hero-meta{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
 .svc-hero-num{font:900 13px/1 'Roboto',sans-serif;letter-spacing:.1em;color:var(--teal-text);background:var(--teal-pale);padding:6px 14px;border-radius:99px}
-.svc-hero-target{font:700 13px/1 'Noto Sans JP',sans-serif;color:var(--sub-text);background:#fff;border:1px solid var(--line);padding:6px 14px;border-radius:99px}
+.svc-hero-target{font:700 13px/1 'Noto Sans JP',sans-serif;color:var(--sub-text);background:#fff;border:1px solid var(--line);padding:6px 14px;border-radius:99px;line-height:1.5}
 .svc-hero-h1{font-size:clamp(28px,4vw,40px);line-height:1.3;margin:0 0 16px}
 .svc-hero-catch{font:700 18px/1.6 'Noto Sans JP',sans-serif;color:var(--teal-text)}
-.svc-hero-icon{width:72px;height:72px;border-radius:22px;background:linear-gradient(135deg,var(--teal-pale),var(--teal-pale2));display:flex;align-items:center;justify-content:center;margin-bottom:24px}
-.svc-hero-icon svg{width:38px;height:38px;stroke:var(--teal-d);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.page-hero .container>*{max-width:620px}
 .svc-hero-grid{display:grid;grid-template-columns:1fr 360px;gap:48px;align-items:start}
+.svc-hero-grid>div{min-width:0}
 
 /* PRICE BOX */
 .price-box{background:#fff;border-radius:24px;padding:32px;box-shadow:var(--sh-2);border:1px solid var(--teal-line)}
@@ -163,21 +162,25 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 </header>
 
 <main>
-<section class="page-hero">
-  <span class="blob b1"></span><span class="blob b3"></span>
+<section class="page-hero hero-diagonal">
+  <span class="hero-photo-panel__edge" aria-hidden="true"></span>
   <div class="container">
     <nav class="breadcrumb" aria-label="パンくずリスト">
       <a href="./index.html">トップ</a><span class="breadcrumb-sep">›</span>
       <a href="./index.html">サービス</a><span class="breadcrumb-sep">›</span>
       <span>AI活用伴走</span>
     </nav>
-    <div class="svc-hero-icon ic"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0"/><path d="M12 7v5l3 3"/><path d="M7 20l1-4m9 4l-1-4"/></svg></div>
+    <span class="icon-badge-circle icon-badge-circle--hero" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0"/><path d="M12 7v5l3 3"/><path d="M7 20l1-4m9 4l-1-4"/></svg></span>
     <div class="svc-hero-meta">
       <span class="svc-hero-num">SERVICE 03</span>
       <span class="svc-hero-target">一つうまくいったので、他の業務にも広げたい企業向け</span>
     </div>
-    <h1 class="svc-hero-h1">AI活用伴走</h1>
+    <span class="rule-accent" aria-hidden="true"></span>
+    <h1 class="svc-hero-h1"><span class="headline-accent">AI活用</span>伴走</h1>
     <p class="svc-hero-catch">広げる・定着させるフェーズを、並走する</p>
+  </div>
+  <div class="hero-photo-panel" aria-hidden="true">
+    <img src="./assets/hero-desk.jpg" alt="" width="585" height="490" loading="eager">
   </div>
 </section>
 

@@ -919,44 +919,7 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   letter-spacing: 0.02em;
 }
 
-/* ── 開発実績カード（works.html専用：番号バッジ・ステータスタグ・ラベルチップ） ── */
-.work-card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
-}
-.work-card {
-  position: relative;
-  background: #fff;
-  padding: 36px 32px 32px;
-  border-radius: 16px;
-  border-top: 4px solid var(--teal);
-  box-shadow: 0 1px 3px rgba(40,60,70,0.06), 0 14px 30px rgba(40,60,70,0.08);
-  text-align: left;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-.work-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 2px 6px rgba(40,60,70,0.08), 0 18px 36px rgba(40,60,70,0.12);
-}
-.work-card--product { border-top-color: var(--orange); }
-.work-card__head { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
-.work-card__badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--teal-strong);
-  color: #fff;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 900;
-  font-size: 15px;
-  letter-spacing: 0.02em;
-  box-shadow: 0 0 0 4px var(--teal-soft), 0 6px 14px rgba(51,127,136,.25);
-}
+/* ── 開発実績のステータスタグ（works.html。カード本体は末尾の .work-feature） ── */
 .work-tag {
   display: inline-block;
   max-width: 100%;
@@ -968,36 +931,6 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 }
 .work-tag--client { background: var(--teal-soft2); color: var(--teal-text); border: 1px solid var(--card-line); }
 .work-tag--product { background: var(--orange-soft); color: var(--orange-text); border: 1px solid var(--warm-line); }
-.work-card__title {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--heading);
-  margin: 16px 0 0;
-  letter-spacing: 0.02em;
-}
-.work-card__meta {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--sub-text);
-  margin-top: 10px;
-}
-.work-card__block { margin-top: 20px; }
-.work-card__body {
-  font-size: 13.5px;
-  line-height: 1.85;
-  color: var(--text);
-  margin-top: 8px;
-}
-.work-label {
-  display: inline-block;
-  padding: 3px 11px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-}
-.work-label--content { background: var(--card-tint); color: var(--teal-text); border: 1px solid var(--card-line); }
-.work-label--issue { background: var(--orange-soft); color: var(--orange-text); border: 1px solid var(--warm-line); }
 
 .card__body {
   line-height: 1.7;
@@ -1406,4 +1339,243 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 .rule-split {
   display: block; width: min(240px, 70%); height: 3px; border-radius: 2px; margin: 14px 0 0;
   background: linear-gradient(90deg, var(--teal) 0 42%, var(--card-line) 42% 100%);
+}
+
+/* ============================================================
+   チラシ準拠デザイン言語 第2弾（個別実装サービス紹介資料 2・4〜6ページ準拠）
+   - 抽象ノートPCモックアップ／実績カード（2カラム＋解決した課題ボックス）／
+     自社開発グリッド／対象企業アイコンカード／成果物カード／価格パネル強調
+   - 実際のアプリ画面は模倣しない。画面内は表の行・グラフの棒等の抽象図形のみ
+   ============================================================ */
+
+/* ── 7. 円形アイコンバッジのサイズ・色バリエーション ── */
+.icon-badge-circle--md { --badge-size: 64px; }
+.icon-badge-circle--white { background: #fff; box-shadow: 0 6px 16px rgba(40,60,70,.08); }
+.icon-badge-circle--orange { background: var(--orange-soft); color: var(--orange-dk); }
+
+/* ── 8. 抽象ノートPCモックアップ（CSSのフレーム＋SVGの抽象UI） ── */
+.mock-stage {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  padding: 22px 18px 18px; border-radius: 22px;
+  background: radial-gradient(120% 90% at 70% 20%, #fff 0%, var(--teal-soft) 55%, var(--teal-soft2) 100%);
+}
+.mock-laptop { position: relative; width: 100%; max-width: 360px; margin: 0 auto; }
+.mock-laptop__screen {
+  position: relative; padding: 7px 7px 9px; border-radius: 12px 12px 3px 3px;
+  background: var(--teal-deep); box-shadow: 0 14px 28px rgba(36,86,92,.22);
+}
+.mock-laptop__screen svg { display: block; width: 100%; height: auto; border-radius: 4px; background: #fff; }
+.mock-laptop__base {
+  position: relative; height: 11px; margin: 0 -5%;
+  border-radius: 2px 2px 10px 10px;
+  background: linear-gradient(180deg, #E4ECEE 0%, #C3D2D6 100%);
+  box-shadow: 0 8px 14px rgba(40,60,70,.14);
+}
+.mock-laptop__base::before {
+  content: ""; position: absolute; left: 50%; top: 0; width: 16%; height: 4px;
+  transform: translateX(-50%); border-radius: 0 0 6px 6px; background: #B3C4C9;
+}
+/* 抽象UIの塗り（SVG内で使用） */
+.mk-side   { fill: var(--bg); }
+.mk-line   { fill: var(--card-line); }
+.mk-mute   { fill: #C9D7DB; }
+.mk-soft   { fill: var(--teal-soft2); }
+.mk-teal   { fill: var(--teal); }
+.mk-deep   { fill: var(--teal-strong); }
+.mk-dark   { fill: var(--teal-deep); }
+.mk-orange { fill: var(--orange); }
+.mk-osoft  { fill: var(--orange-soft); }
+.mk-white  { fill: #fff; }
+.mk-frame  { fill: #fff; stroke: var(--card-line); stroke-width: 1.5; }
+.mk-stroke { fill: none; stroke: var(--teal); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.mk-stroke--orange { stroke: var(--orange); }
+.mk-stroke--line { stroke: var(--card-line); stroke-width: 2; }
+.mk-stroke--brush { stroke: var(--heading); stroke-width: 7; }
+.mk-stroke--dash { stroke-width: 2; stroke-dasharray: 5 5; }
+.mk-frame--orange { stroke: var(--orange); stroke-width: 2; }
+.mk-check  { fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.mk-ring   { fill: none; stroke: var(--teal-soft2); stroke-width: 7; }
+.mk-ring--on { stroke: var(--teal); stroke-dasharray: 48 100; }
+.mk-guide  { fill: none; stroke: var(--card-line); stroke-width: 1.2; stroke-dasharray: 4 4; }
+.mk-faint  { opacity: .35; }
+
+/* ── 9. 実績カード（チラシ4ページ：番号バッジ＋吹き出し見出し＋開発内容／モックアップ＋解決した課題） ── */
+.work-feature-list { display: flex; flex-direction: column; gap: 32px; }
+.work-feature {
+  position: relative; text-align: left;
+  background: #fff; border: 1px solid var(--card-line); border-radius: 26px;
+  padding: 32px 36px 36px;
+  box-shadow: 0 1px 3px rgba(40,60,70,.05), 0 16px 36px rgba(40,60,70,.08);
+}
+.work-feature--product { border-color: var(--warm-line); }
+.work-feature__head { display: flex; align-items: center; gap: 16px; }
+.work-feature__head .step-badge-solid { --step-size: 52px; }
+.work-feature--product .work-feature__head .step-badge-solid { background: var(--orange-text); box-shadow: 0 0 0 4px #fff, 0 6px 14px rgba(156,92,12,.25); }
+.work-feature__catch {
+  position: relative; flex: 1 1 auto; min-width: 0;
+  margin: 0; padding: 12px 24px; border-radius: 999px;
+  background: var(--teal-soft); color: var(--heading);
+  font: 900 clamp(19px, 2.4vw, 23px)/1.5 'Noto Sans JP', sans-serif; letter-spacing: .02em;
+  text-wrap: balance;
+}
+.work-feature__catch::before {
+  content: ""; position: absolute; left: -9px; top: 50%; width: 14px; height: 16px;
+  transform: translateY(-50%);
+  background: inherit; clip-path: polygon(100% 0, 100% 100%, 0 50%);
+}
+.work-feature--product .work-feature__catch { background: var(--orange-soft); }
+.work-feature__tag-row { margin-top: 18px; }
+.work-feature__name {
+  margin: 10px 0 0; color: var(--heading);
+  font: 900 clamp(20px, 2.6vw, 26px)/1.5 'Noto Sans JP', sans-serif; letter-spacing: .02em;
+  text-wrap: balance;
+}
+.work-feature__body {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .92fr);
+  gap: 28px 36px; align-items: center; margin-top: 24px;
+}
+.work-feature__content { display: flex; gap: 18px; align-items: flex-start; min-width: 0; }
+.work-feature__content-text { flex: 1; min-width: 0; }
+.work-feature__label {
+  display: block; color: var(--heading);
+  font: 900 17px/1.4 'Noto Sans JP', sans-serif; letter-spacing: .04em;
+}
+.work-feature__text { margin-top: 8px; font: 400 14.5px/1.95 'Noto Sans JP', sans-serif; color: var(--text); text-wrap: pretty; }
+.work-feature__text + .work-feature__text { margin-top: 10px; }
+.work-solved {
+  display: flex; gap: 18px; align-items: flex-start;
+  margin-top: 28px; padding: 22px 26px; border-radius: 20px;
+  background: var(--warm-bg); border: 1px solid var(--warm-line);
+}
+.work-solved__text { flex: 1; min-width: 0; }
+.work-solved__label {
+  display: block; color: var(--orange-text);
+  font: 900 17px/1.4 'Noto Sans JP', sans-serif; letter-spacing: .04em;
+}
+.work-solved__body { margin-top: 6px; font: 500 14.5px/1.95 'Noto Sans JP', sans-serif; color: var(--heading); text-wrap: pretty; }
+@media (max-width: 860px) {
+  .work-feature__body { grid-template-columns: 1fr; }
+  .work-feature__visual { max-width: 460px; width: 100%; margin: 0 auto; }
+}
+@media (max-width: 560px) {
+  .work-feature { padding: 24px 18px 24px; border-radius: 22px; }
+  .work-feature__head { gap: 14px; }
+  .work-feature__head .step-badge-solid { --step-size: 42px; }
+  .work-feature__catch { padding: 10px 16px; border-radius: 16px; }
+  .work-feature__content { gap: 14px; }
+  .work-feature__content .icon-badge-circle { --badge-size: 52px; }
+  .work-solved { gap: 14px; padding: 18px 16px; }
+  .work-solved .icon-badge-circle { --badge-size: 44px; }
+  .mock-stage { padding: 16px 14px 14px; }
+}
+
+/* ── 10. セクション見出し（チラシ準拠：短い罫線＋大見出し＋リード） ── */
+.flyer-section-head { text-align: left; margin-bottom: 32px; }
+.flyer-section-head__title {
+  margin: 0; color: var(--heading);
+  font: 900 clamp(26px, 3.6vw, 36px)/1.3 'Noto Sans JP', sans-serif; letter-spacing: .02em;
+}
+.flyer-section-head__lead { margin-top: 12px; font: 500 15.5px/1.9 'Noto Sans JP', sans-serif; color: var(--text); text-wrap: pretty; }
+
+/* ── 11. 自社開発グリッド（チラシ5ページ：アイコン円＋タイトル＋説明＋モックアップ） ── */
+.own-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; text-align: left; }
+@media (max-width: 760px) { .own-grid { grid-template-columns: 1fr; } }
+.own-card {
+  display: flex; flex-direction: column; gap: 22px;
+  padding: 26px 26px 24px; border-radius: 24px;
+  background: linear-gradient(180deg, var(--card-tint) 0%, var(--teal-soft) 100%);
+  border: 1px solid var(--card-line);
+}
+.own-card__head { display: flex; gap: 18px; align-items: flex-start; }
+.own-card__text { flex: 1; min-width: 0; }
+.own-card__title { margin: 0; color: var(--heading); font: 900 19px/1.45 'Noto Sans JP', sans-serif; letter-spacing: .02em; }
+.own-card__status {
+  display: inline-block; margin-top: 8px; padding: 3px 12px; border-radius: 999px;
+  font: 700 11.5px/1.6 'Noto Sans JP', sans-serif; letter-spacing: .04em;
+  background: #fff; color: var(--teal-text); border: 1px solid var(--card-line);
+}
+.own-card__status--prep { background: var(--orange-soft); color: var(--orange-text); border-color: var(--warm-line); }
+.own-card__desc { margin-top: 10px; font: 400 14px/1.9 'Noto Sans JP', sans-serif; color: var(--text); text-wrap: pretty; }
+.own-card__link { display: inline-block; margin-top: 6px; font: 700 13px/1.6 'Noto Sans JP', sans-serif; color: var(--teal-text); }
+.own-card__visual { margin-top: auto; }
+.own-card .mock-laptop { max-width: 320px; }
+@media (max-width: 560px) {
+  .own-card { padding: 22px 18px 20px; }
+  .own-card__head { gap: 14px; }
+  .own-card__head .icon-badge-circle { --badge-size: 52px; }
+}
+
+/* ── 12. 対象企業カード（チラシ2ページ「対応範囲」：アイコン円＋文言の角丸ソフト背景カード） ── */
+.need-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.need-card {
+  display: flex; align-items: center; gap: 16px; min-width: 0;
+  padding: 18px 20px; border-radius: 18px;
+  background: var(--teal-soft); border: 1px solid var(--card-line);
+}
+.need-card .icon-badge-circle { --badge-size: 60px; }
+.need-card__text { flex: 1; min-width: 0; font: 700 15px/1.7 'Noto Sans JP', sans-serif; color: var(--heading); text-wrap: pretty; }
+.need-grid > .need-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+@media (max-width: 680px) {
+  .need-grid { grid-template-columns: 1fr; }
+  .need-card { padding: 14px 16px; }
+  .need-card .icon-badge-circle { --badge-size: 52px; }
+}
+
+/* ── 13. 成果物カード（終わったときに手元に残るもの：見出し＋説明の2段） ── */
+.deliv-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.deliv-card { display: flex; gap: 14px; align-items: flex-start; min-width: 0; padding: 18px 18px 18px 20px; border-radius: 16px; background: var(--bg); }
+.deliv-card .step-badge-solid { --step-size: 34px; box-shadow: 0 0 0 3px #fff; }
+.deliv-card__text { flex: 1; min-width: 0; }
+.deliv-card__title { display: block; font: 900 15px/1.6 'Noto Sans JP', sans-serif; color: var(--heading); text-wrap: pretty; }
+.deliv-card__desc { display: block; margin-top: 4px; font: 400 13.5px/1.85 'Noto Sans JP', sans-serif; color: var(--text); text-wrap: pretty; }
+@media (max-width: 680px) { .deliv-grid { grid-template-columns: 1fr; } }
+
+/* 短い成果物のアイコンタイル（仕様書／作った仕組み 等） */
+.deliv-tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.deliv-tile { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 6px 16px; border-radius: 16px; background: var(--bg); text-align: center; }
+.deliv-tile .icon-badge-circle { --badge-size: 56px; }
+.deliv-tile__label { font: 700 13.5px/1.5 'Noto Sans JP', sans-serif; color: var(--heading); }
+@media (max-width: 680px) { .deliv-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* 番号つき2列リスト（お見積り前に決める8点） */
+.num-grid { list-style: none; margin: 16px 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 12px; }
+.num-grid__item { display: flex; align-items: center; gap: 12px; min-width: 0; padding: 12px 14px; border-radius: 14px; background: var(--bg); }
+.num-grid__item .step-badge-solid { --step-size: 30px; box-shadow: 0 0 0 3px #fff; }
+.num-grid__text { flex: 1; min-width: 0; font: 700 14.5px/1.6 'Noto Sans JP', sans-serif; color: var(--heading); text-wrap: pretty; }
+@media (max-width: 680px) { .num-grid { grid-template-columns: 1fr; } }
+
+/* 技術力リスト（チラシ6ページ：大きなアイコン円＋点リスト＋点線区切り） */
+.tech-panel { display: flex; gap: 28px; align-items: center; }
+.tech-panel > .icon-badge-circle { --badge-size: 112px; }
+.tech-list { list-style: none; margin: 0; padding: 0; flex: 1; min-width: 0; }
+.tech-list__item {
+  position: relative; padding: 10px 0 10px 22px;
+  font: 500 14.5px/1.75 'Noto Sans JP', sans-serif; color: var(--heading); text-wrap: pretty;
+  border-bottom: 1px dashed var(--card-line);
+}
+.tech-list__item:last-child { border-bottom: 0; }
+.tech-list__item::before {
+  content: ""; position: absolute; left: 2px; top: 19px; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--teal-strong);
+}
+@media (max-width: 680px) {
+  .tech-panel { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .tech-panel > .icon-badge-circle { --badge-size: 72px; }
+}
+
+/* ── 14. 価格パネルの強調（チラシ2ページの価格：アイコン＋縦罫線＋大きな金額） ── */
+.price-box.price-box--flyer { position: relative; overflow: hidden; padding: 0 0 28px; border: 1px solid var(--card-line); }
+.price-box--flyer::before { content: ""; display: block; height: 6px; background: linear-gradient(90deg, var(--teal-strong), var(--teal)); }
+.price-box__head { display: flex; align-items: center; gap: 16px; padding: 24px 28px 20px; border-bottom: 1px solid var(--card-line); background: linear-gradient(180deg, var(--teal-soft) 0%, #fff 100%); }
+.price-box__head .icon-badge-circle { --badge-size: 64px; }
+.price-box__head-text { flex: 1; min-width: 0; padding-left: 16px; border-left: 2px solid var(--teal); }
+.price-box.price-box--flyer .price-box__label { display: block; font: 700 12px/1 'Roboto', 'Noto Sans JP', sans-serif; letter-spacing: .2em; color: var(--teal-text); }
+.price-box.price-box--flyer .price-box__amount { margin-top: 10px; font: 900 clamp(26px, 3vw, 32px)/1.3 'Roboto', 'Noto Sans JP', sans-serif; color: var(--heading); letter-spacing: .01em; }
+.price-box.price-box--flyer .price-box__amount small { font-size: .55em; font-weight: 700; color: var(--sub-text); }
+.price-box__inner { padding: 0 28px; }
+.price-box.price-box--flyer .price-box__sub { margin-top: 16px; }
+.price-box.price-box--flyer .price-box__note { display: block; border-left: 3px solid var(--orange); border-radius: 0 10px 10px 0; }
+@media (max-width: 680px) {
+  .price-box__head { padding: 22px 20px 18px; }
+  .price-box__inner { padding: 0 20px; }
 }
