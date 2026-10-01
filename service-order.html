@@ -65,6 +65,18 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 .page-hero .b1{top:-150px;right:-90px;width:500px;height:440px;background:rgba(91,189,200,.16);border-radius:60% 40% 55% 45%/55% 50% 50% 45%;filter:blur(3px)}
 .page-hero .b3{bottom:-130px;left:-110px;width:360px;height:360px;background:rgba(248,152,29,.07);border-radius:50%}
 
+/* HERO ILLUSTRATION (code block + check, decorative) */
+.hero-illustration{position:absolute;top:40px;right:56px;width:184px;height:184px;pointer-events:none}
+.hero-illustration svg{width:100%;height:100%}
+.hi-window{fill:#fff;stroke:var(--teal-d);stroke-width:2}
+.hi-divider{stroke:var(--teal-line);stroke-width:2}
+.hi-dot-sm{fill:var(--teal-line)}
+.hi-code{stroke:var(--line);stroke-width:6;stroke-linecap:round}
+.hi-code--indent{opacity:.8}
+.hi-badge{fill:var(--orange);stroke:#fff;stroke-width:3}
+.hi-badge-check{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:960px){.hero-illustration{display:none}}
+
 /* BREADCRUMB */
 .breadcrumb{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font:400 13px 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-bottom:28px}
 .breadcrumb span:last-child{min-width:0;word-break:keep-all;overflow-wrap:anywhere}
@@ -168,6 +180,21 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 <main>
 <section class="page-hero">
   <span class="blob b1"></span><span class="blob b3"></span>
+  <div class="hero-illustration" aria-hidden="true">
+    <svg viewBox="0 0 220 220" focusable="false">
+      <rect class="hi-window" x="20" y="30" width="160" height="120" rx="14"/>
+      <line class="hi-divider" x1="20" y1="58" x2="180" y2="58"/>
+      <circle class="hi-dot-sm" cx="36" cy="44" r="4"/>
+      <circle class="hi-dot-sm" cx="50" cy="44" r="4"/>
+      <circle class="hi-dot-sm" cx="64" cy="44" r="4"/>
+      <line class="hi-code" x1="38" y1="76" x2="98" y2="76"/>
+      <line class="hi-code" x1="38" y1="92" x2="150" y2="92"/>
+      <line class="hi-code hi-code--indent" x1="54" y1="108" x2="120" y2="108"/>
+      <line class="hi-code" x1="38" y1="124" x2="80" y2="124"/>
+      <circle class="hi-badge" cx="166" cy="150" r="26"/>
+      <path class="hi-badge-check" d="M156 150l7 7 13-14"/>
+    </svg>
+  </div>
   <div class="container">
     <nav class="breadcrumb" aria-label="パンくずリスト">
       <a href="./index.html">トップ</a><span class="breadcrumb-sep">›</span>
