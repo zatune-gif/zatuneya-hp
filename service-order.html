@@ -59,9 +59,15 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 .btn-ghost{background:#fff;color:var(--teal-text);box-shadow:var(--sh-1)}
 .btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
 
-/* PAGE HERO（背景・斜めカット写真は style.css の .hero-diagonal / .hero-photo-panel） */
-.page-hero{padding:56px 0 64px}
-@media(max-width:960px){.page-hero{padding-bottom:0}}
+/* PAGE HERO（背景・斜めカット写真は style.css の .hero-diagonal / .hero-photo-panel／山並みシルエットは .skyline-illust）
+   hero-photo-panel は position:absolute;inset で「最も近い position:relative 祖先」いっぱいに伸びる。
+   ヒーロー下部に他ページ共通の skyline-illust を敷くため、写真パネル用の padding-bottom は
+   .page-hero（section）ではなく内側の .page-hero__inner に持たせ、写真の伸びる範囲を
+   skyline の手前までに限定する（works.html 等と同じ「写真の下に山並み帯→白背景」の見え方に揃える） */
+.page-hero{padding:56px 0 0}
+.page-hero__inner{position:relative;padding-bottom:64px}
+@media(max-width:960px){.page-hero__inner{padding-bottom:0}}
+.page-hero .skyline-illust{margin-top:32px}
 /* 進め方（業務の整理 → 要件定義 → 個別実装 → リリース）：営業資料の表紙と同じ4段階 */
 .hero-flow{margin-top:32px;--badge-size:84px;--flow-gap:34px}
 .hero-flow .icon-flow{justify-content:flex-start}
@@ -170,44 +176,47 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 
 <main>
 <section class="page-hero hero-diagonal">
-  <span class="hero-photo-panel__edge" aria-hidden="true"></span>
-  <div class="container">
-    <nav class="breadcrumb" aria-label="パンくずリスト">
-      <a href="./index.html">トップ</a><span class="breadcrumb-sep">›</span>
-      <span>個別実装</span>
-    </nav>
-    <div class="svc-hero-meta">
-      <span class="svc-hero-num">SERVICE 02</span>
-      <span class="svc-hero-target">作るものが決まっている企業向け</span>
+  <div class="page-hero__inner">
+    <span class="hero-photo-panel__edge" aria-hidden="true"></span>
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="./index.html">トップ</a><span class="breadcrumb-sep">›</span>
+        <span>個別実装</span>
+      </nav>
+      <div class="svc-hero-meta">
+        <span class="svc-hero-num">SERVICE 02</span>
+        <span class="svc-hero-target">作るものが決まっている企業向け</span>
+      </div>
+      <span class="rule-accent" aria-hidden="true"></span>
+      <h1 class="svc-hero-h1"><span class="headline-accent">個別</span>実装</h1>
+      <p class="svc-hero-catch">仕様が決まった仕組みを、設計・開発します。</p>
+      <div class="hero-flow">
+        <p class="icon-flow-caption">進め方</p>
+        <ol class="icon-flow">
+          <li class="icon-flow__item">
+            <span class="icon-badge-circle"><span class="step-badge-solid step-badge-solid--sm">1</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21H11"/><path d="M13 3l5 5h-5V3Z"/><path d="M8 9.5h3M8 13h4.5M8 16.5h2"/><circle cx="16" cy="16" r="3.2"/><path d="M18.4 18.4 21 21"/></svg></span>
+            <span class="icon-flow__label">業務の整理</span>
+          </li>
+          <li class="icon-flow__item">
+            <span class="icon-badge-circle"><span class="step-badge-solid step-badge-solid--sm">2</span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4.5" width="14" height="16.5" rx="2"/><path d="M9.5 4.5V3h5v1.5"/><path d="M8 10l1.5 1.5L12 9M8 15.5l1.5 1.5 2.5-2.5M14 10.5h2.5M14 16h2.5"/></svg></span>
+            <span class="icon-flow__label">要件定義</span>
+          </li>
+          <li class="icon-flow__item">
+            <span class="icon-badge-circle"><span class="step-badge-solid step-badge-solid--sm">3</span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2.5 19h19"/><path d="M10 8.5 8 10.5l2 2M14 8.5l2 2-2 2"/></svg></span>
+            <span class="icon-flow__label">個別実装</span>
+          </li>
+          <li class="icon-flow__item">
+            <span class="icon-badge-circle"><span class="step-badge-solid step-badge-solid--sm">4</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg></span>
+            <span class="icon-flow__label">リリース</span>
+          </li>
+        </ol>
+      </div>
     </div>
-    <span class="rule-accent" aria-hidden="true"></span>
-    <h1 class="svc-hero-h1"><span class="headline-accent">個別</span>実装</h1>
-    <p class="svc-hero-catch">仕様が決まった仕組みを、設計・開発します。</p>
-    <div class="hero-flow">
-      <p class="icon-flow-caption">進め方</p>
-      <ol class="icon-flow">
-        <li class="icon-flow__item">
-          <span class="icon-badge-circle"><span class="step-badge-solid step-badge-solid--sm">1</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21H11"/><path d="M13 3l5 5h-5V3Z"/><path d="M8 9.5h3M8 13h4.5M8 16.5h2"/><circle cx="16" cy="16" r="3.2"/><path d="M18.4 18.4 21 21"/></svg></span>
-          <span class="icon-flow__label">業務の整理</span>
-        </li>
-        <li class="icon-flow__item">
-          <span class="icon-badge-circle"><span class="step-badge-solid step-badge-solid--sm">2</span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4.5" width="14" height="16.5" rx="2"/><path d="M9.5 4.5V3h5v1.5"/><path d="M8 10l1.5 1.5L12 9M8 15.5l1.5 1.5 2.5-2.5M14 10.5h2.5M14 16h2.5"/></svg></span>
-          <span class="icon-flow__label">要件定義</span>
-        </li>
-        <li class="icon-flow__item">
-          <span class="icon-badge-circle"><span class="step-badge-solid step-badge-solid--sm">3</span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2.5 19h19"/><path d="M10 8.5 8 10.5l2 2M14 8.5l2 2-2 2"/></svg></span>
-          <span class="icon-flow__label">個別実装</span>
-        </li>
-        <li class="icon-flow__item">
-          <span class="icon-badge-circle"><span class="step-badge-solid step-badge-solid--sm">4</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg></span>
-          <span class="icon-flow__label">リリース</span>
-        </li>
-      </ol>
+    <div class="hero-photo-panel" aria-hidden="true">
+      <img src="./assets/hero-code.jpg" alt="" width="315" height="285" loading="eager">
     </div>
   </div>
-  <div class="hero-photo-panel" aria-hidden="true">
-    <img src="./assets/hero-code.jpg" alt="" width="315" height="285" loading="eager">
-  </div>
+  <img class="skyline-illust" src="./assets/skyline.svg" alt="" width="1440" height="140" aria-hidden="true">
 </section>
 
 <section class="section bg-white">
