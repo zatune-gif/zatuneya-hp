@@ -107,7 +107,7 @@ img,svg{display:block;max-width:100%}
 /* 背景・position・overflow は style.css の .hero-diagonal（全ページ共通） */
 .hero.hero-diagonal{padding:0}/* style.css .hero の左右24px＋上64pxを打ち消し、.container の余白に一本化 */
 /* 構図：左＝見出し・リード／右上の白い余白＝「整理する→やめる→仕組みをつくる」のジグザグフロー／右下＝斜めカット写真（フローと写真は重ねない） */
-.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:16px 48px;align-items:center;padding-top:var(--s16);padding-bottom:0;text-align:left}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 48px;align-items:center;padding-top:var(--s16);padding-bottom:var(--s16);text-align:left}
 .badge{display:inline-flex;align-items:center;gap:8px;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-text);background:#fff;padding:8px 16px;border-radius:999px;box-shadow:var(--sh-1)}
 .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
 .hero-grid .hero-copy h1{font-size:clamp(28px,3.3vw,40px);line-height:1.35;letter-spacing:.005em;margin:24px 0 0}/* style.css の同セレクタ（33px/24px固定）を上書き */
@@ -116,8 +116,8 @@ img,svg{display:block;max-width:100%}
 .cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:32px}
 .hero-note{font:400 13px/1.6 'Noto Sans JP',sans-serif;color:var(--sub-text);margin-top:16px}
 /* 斜めカット写真（チラシ下部の写真＋濃色三角＋細線） */
-.hero-photo{grid-column:1/-1;position:relative;width:100%;height:320px;margin-top:-8px}
-.photo-diagonal{position:absolute;inset:0;clip-path:polygon(30% 0,100% 0,100% 100%,0 100%)}
+.hero-photo{position:relative;width:100%;height:100%;min-height:420px;margin-top:0}
+.photo-diagonal{position:absolute;inset:0;clip-path:polygon(20% 0,100% 0,100% 100%,0 100%)}
 .photo-diagonal img{width:100%;height:100%;object-fit:cover;object-position:center 72%}
 .photo-diagonal::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(91,189,200,.22),rgba(91,189,200,0) 55%)}
 .photo-diagonal__block{position:absolute;inset:0;pointer-events:none;background:var(--teal-deep);clip-path:polygon(0 100%,12.4% 58.7%,40% 100%)}
@@ -279,8 +279,8 @@ img,svg{display:block;max-width:100%}
 
 /* ============ RESPONSIVE ============ */
 @media (max-width:960px){
-  .hero-grid{grid-template-columns:1fr;gap:40px;padding-top:var(--s16)}
-  .hero-photo{width:100%;height:260px}
+  .hero-grid{grid-template-columns:minmax(0,1fr);gap:40px;padding-top:var(--s16);padding-bottom:0}
+  .hero-photo{width:100%;height:260px;min-height:0}
 
   .hero-sub{max-width:none}
   .why-grid{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}
