@@ -112,20 +112,9 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 /* CV SECTION: .cv-section/.cv-card/.cv-topbar/.cv-inner/.glow/.cv-tag/.cv-cta-row/.cv-foot は
    全ページ共通のため style.css 側へ統一済み（このページでの重複定義は削除） */
 
-/* RELATED SERVICES */
-.related-section{padding:64px 0}
-.related-title{font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.18em;color:var(--sub-text);text-transform:uppercase;margin-bottom:24px}
-.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.related-card{display:block;background:#fff;border-radius:18px;padding:24px;box-shadow:var(--sh-1);text-decoration:none;color:inherit;transition:transform .18s var(--ease),box-shadow .18s;border:1px solid transparent}
-.related-card:hover{transform:translateY(-3px);box-shadow:var(--sh-2);border-color:var(--teal-line)}
-.related-card__num{font:900 11px/1 'Roboto',sans-serif;letter-spacing:.1em;color:var(--sub-text)}
-.related-card__title{font:700 16px/1.4 'Noto Sans JP',sans-serif;color:var(--head);margin-top:8px}
-.related-card__desc{font:400 13px/1.7 'Noto Sans JP',sans-serif;color:var(--body);margin-top:8px}
-.related-card__arrow{font:700 13px 'Noto Sans JP',sans-serif;color:var(--teal-text);margin-top:14px;display:block}
-
 /* RESPONSIVE */
-@media(max-width:960px){.svc-hero-grid{grid-template-columns:1fr}.related-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:680px){:root{--s24:64px;--s20:48px;--s16:40px}.container{padding:0 20px}.related-grid{grid-template-columns:1fr}.price-box__cta .btn{width:100%}}
+@media(max-width:960px){.svc-hero-grid{grid-template-columns:1fr}}
+@media(max-width:680px){:root{--s24:64px;--s20:48px;--s16:40px}.container{padding:0 20px}.price-box__cta .btn{width:100%}}
 </style>
 </head>
 <body>
@@ -228,27 +217,6 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- RELATED SERVICES -->
-<section class="related-section bg-tint">
-  <div class="container">
-    <p class="related-title">Other Services</p>
-    <div class="related-grid">
-      <a class="related-card" href="./service-management.html">
-        <div class="related-card__num">SERVICE 01</div>
-        <div class="related-card__title">業務の見直し支援（業務改善）</div>
-        <div class="related-card__desc">一つの業務・一つの現場を、2か月で見直します。</div>
-        <span class="related-card__arrow">詳しく見る →</span>
-      </a>
-      <a class="related-card" href="./service-order.html">
-        <div class="related-card__num">SERVICE 02</div>
-        <div class="related-card__title">個別実装</div>
-        <div class="related-card__desc">仕様が決まった仕組みを、設計・開発します。</div>
-        <span class="related-card__arrow">詳しく見る →</span>
-      </a>
     </div>
   </div>
 </section>
