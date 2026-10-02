@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://zatune-gif.github.io/zatuneya-hp/</loc>
+    <loc>https://zatuneya.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://zatune-gif.github.io/zatuneya-hp/service-management.html</loc>
+    <loc>https://zatuneya.com/service-management.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zatune-gif.github.io/zatuneya-hp/service-order.html</loc>
+    <loc>https://zatuneya.com/service-order.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zatune-gif.github.io/zatuneya-hp/works.html</loc>
+    <loc>https://zatuneya.com/works.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zatune-gif.github.io/zatuneya-hp/faq.html</loc>
+    <loc>https://zatuneya.com/faq.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://zatune-gif.github.io/zatuneya-hp/contact.html</loc>
+    <loc>https://zatuneya.com/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zatune-gif.github.io/zatuneya-hp/profile.html</loc>
+    <loc>https://zatuneya.com/profile.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zatune-gif.github.io/zatuneya-hp/privacy.html</loc>
+    <loc>https://zatuneya.com/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://zatune-gif.github.io/zatuneya-hp/tokusho.html</loc>
+    <loc>https://zatuneya.com/tokusho.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://zatune-gif.github.io/zatuneya-hp/thank-you.html</loc>
+    <loc>https://zatuneya.com/thank-you.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>

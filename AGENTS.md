@@ -8,7 +8,7 @@
 
 ざつね屋のWebサイト。静的HTML/CSS/JavaScriptをGitHub Pagesで公開する。
 
-- 公開URL: https://zatune-gif.github.io/zatuneya-hp/
+- 公開URL: https://zatuneya.com/
 - AI活用診断: Netlify版 https://han-ai-diagnosis.netlify.app/ は統一先候補かつ主要CTA。GitHub Pages版との混在は既知の不整合であり、別タスクで正式な統一方針を決める。
 
 ## 役割
