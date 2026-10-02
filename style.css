@@ -633,10 +633,22 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   .site-header .site-nav {
     display: none;
     position: absolute;
-    top: 64px;
+    /* top: 64px固定だとヘッダー実高さ（72px＋border 1px＝73px）とズレ、
+       パネル上端がヘッダー下端の9px上から始まってしまっていた。
+       top: 100% にして親（.site-header、position: sticky）の実際の下端に
+       常時ぴったり接続させる（2026-10-02 根本原因調査で発見・修正） */
+    top: 100%;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.98);
+    /* パネル背景が rgba(255,255,255,.98) の半透明だった上に、親.site-headerの
+       backdrop-filter: blur(12px) が作るスタッキング・コンテキストの影響で、
+       Safari/WebKit系ブラウザではメニュー項目の隙間から背後のページ本文が
+       透けて見える不具合があった（PR #35はスティッキーCTAバナーの重なりのみ対応し、
+       このパネル自体の不透明度は未対応だった）。背景を完全不透明の#fffに変更し、
+       z-indexを明示してパネル自身の重なり順を親のスタッキング文脈から独立させる
+       （2026-10-02 根本修正） */
+    background: #fff;
+    z-index: 10;
     border-bottom: 1px solid var(--card-line);
     padding: 16px 24px;
     flex-direction: column;
