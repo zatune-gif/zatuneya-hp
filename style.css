@@ -596,6 +596,8 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   display: block;
   width: 24px;
   height: 2px;
+  flex-shrink: 0; /* 3本合計36px > ボタン内側24pxのためflexが高さを0に圧縮してしまい、
+                     アイコンが非表示になるバグを修正（2026-08-05 導入・2026-10-02 発見） */
   background: currentColor;
   color: var(--heading);
   margin: 5px 0;
