@@ -109,6 +109,8 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 
 /* POINTS SECTION */
 .points-section{background:#fff;border-radius:24px;padding:40px;margin-top:40px;box-shadow:var(--sh-1)}
+.points-section--alt{background:var(--bg)}
+.points-section--alt .points-section__title .bar{background:var(--orange)}
 .points-section__title{display:flex;align-items:center;gap:10px;margin-bottom:24px}
 .points-section__title .bar{width:24px;height:3px;border-radius:99px;background:var(--teal)}
 .points-section__title span{font:700 14px 'Noto Sans JP',sans-serif;letter-spacing:.06em;color:var(--head)}
@@ -131,7 +133,7 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 /* RELATED SERVICES */
 .related-section{padding:64px 0}
 .related-title{font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.18em;color:var(--sub-text);text-transform:uppercase;margin-bottom:24px}
-.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,340px));justify-content:center;gap:20px}
 .related-card{display:block;background:#fff;border-radius:18px;padding:24px;box-shadow:var(--sh-1);text-decoration:none;color:inherit;transition:transform .18s var(--ease),box-shadow .18s;border:1px solid transparent}
 .related-card:hover{transform:translateY(-3px);box-shadow:var(--sh-2);border-color:var(--teal-line)}
 .related-card__num{font:900 11px/1 'Roboto',sans-serif;letter-spacing:.1em;color:var(--sub-text)}
@@ -140,8 +142,8 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 .related-card__arrow{font:700 13px 'Noto Sans JP',sans-serif;color:var(--teal-text);margin-top:14px;display:block}
 
 /* RESPONSIVE */
-@media(max-width:960px){.svc-hero-grid{grid-template-columns:1fr}.related-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:680px){:root{--s24:64px;--s20:48px;--s16:40px}.container{padding:0 20px}.related-grid{grid-template-columns:1fr}.price-box__cta .btn{width:100%}}
+@media(max-width:960px){.svc-hero-grid{grid-template-columns:1fr}}
+@media(max-width:680px){:root{--s24:64px;--s20:48px;--s16:40px}.container{padding:0 20px}.price-box__cta .btn,.svc-cta-row .btn{width:100%}}
 </style>
 </head>
 <body>
@@ -172,6 +174,12 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
     </button>
   </div>
 </header>
+
+<div class="sticky-cta" id="sticky-cta">
+  <p class="sticky-cta__text">まず、どこから手をつけるかを一緒に決めませんか</p>
+  <a href="./contact.html" class="sticky-cta__btn">まず30分、話を聞かせてください</a>
+  <button class="sticky-cta__close" id="sticky-cta-close" aria-label="バナーを閉じる">✕</button>
+</div>
 
 <main>
 <section class="page-hero hero-diagonal">
@@ -232,7 +240,7 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
         </div>
         <p class="body-text">業務の見直しがまだの場合は、<a href="./service-management.html">業務改善</a>から始めることをおすすめします。</p>
 
-        <div class="points-section">
+        <div class="points-section points-section--alt">
           <div class="points-section__title"><span class="bar"></span><span>お見積りの出し方</span></div>
           <p class="body-text">個別実装は、作るものが決まってからお見積りします。お見積りの前に、次のことを書面で決めます。</p>
           <ol class="num-grid">
@@ -260,7 +268,7 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
           </ul>
         </div>
 
-        <div class="points-section">
+        <div class="points-section points-section--alt">
           <div class="points-section__title"><span class="bar"></span><span>含まないこと</span></div>
           <ul class="point-list">
             <li class="point-item accent"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">契約ごとに明記します。</span></li>
@@ -285,7 +293,7 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
           </div>
         </div>
 
-        <div class="points-section">
+        <div class="points-section points-section--alt">
           <div class="points-section__title"><span class="bar"></span><span>オプション：運用保守</span></div>
           <ul class="point-list">
             <li class="point-item accent"><span class="point-icon ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span><span class="point-text">作った仕組みの規模（外部サービスとの連携の数・扱うデータ量・利用される方の人数など）に応じて、個別にお見積りします。対応は平日日中です（24時間対応は承っておりません）。</span></li>

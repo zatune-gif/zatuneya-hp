@@ -43,11 +43,15 @@
   --sh-orange:0 10px 24px rgba(248,152,29,.34);
   --sh-orange-h:0 16px 32px rgba(248,152,29,.44);
 }
-.cv-section .btn-primary{background:var(--orange);color:#332211;box-shadow:var(--sh-orange);font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform .2s,box-shadow .2s,background .2s;display:inline-flex;align-items:center;justify-content:center;gap:10px}
-.cv-section .btn-primary:hover{background:#E28511;transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
+.cv-section .btn-primary,.svc-cta-row .btn-primary{background:var(--orange);color:#332211;box-shadow:var(--sh-orange);font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform .2s,box-shadow .2s,background .2s;display:inline-flex;align-items:center;justify-content:center;gap:10px}
+.cv-section .btn-primary:hover,.svc-cta-row .btn-primary:hover{background:#E28511;transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
 .cv-section .btn-ghost{background:#fff;color:var(--teal-text);box-shadow:var(--sh-1);font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;justify-content:center;gap:10px}
 .cv-section .btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
-.cv-section .btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
+.cv-section .btn svg,.svc-cta-row .btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
+
+/* ─── 中間CTA（受託実績の直後・自社開発実績の前） ─── */
+.svc-cta-row{display:flex;flex-wrap:wrap;gap:16px}
+.works-mid-cta{justify-content:center;margin-top:56px;padding-top:40px;border-top:1px solid var(--line,#E1EAEC)}
 </style>
 </head>
 <body>
@@ -273,6 +277,10 @@
           </div>
         </article>
 
+      </div>
+
+      <div class="svc-cta-row works-mid-cta">
+        <a class="btn btn-primary" href="./contact.html"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>まず30分、話を聞かせてください</a>
       </div>
     </div>
   </section>

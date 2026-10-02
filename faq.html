@@ -38,6 +38,16 @@
 .faq-list{text-align:left}
 .faq-answer{text-wrap:pretty}
 
+/* ─── FAQ アコーディオン ─── */
+.faq-question{margin:0}
+.faq-question__btn{all:unset;display:flex;align-items:flex-start;gap:16px;width:100%;box-sizing:border-box;cursor:pointer;font:700 16px/1.7 'Noto Sans JP',sans-serif;color:var(--heading)}
+.faq-question__btn:focus-visible{outline:3px solid var(--teal-text,#31747C);outline-offset:4px;border-radius:12px}
+.faq-question__toggle{flex:none;width:28px;height:28px;border-radius:50%;background:var(--bg,#EFF4F5);display:flex;align-items:center;justify-content:center;margin-top:2px;transition:background .2s}
+.faq-question__toggle svg{width:14px;height:14px;stroke:var(--teal-text,#31747C);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;fill:none;transition:transform .25s ease}
+.faq-question__btn[aria-expanded="true"] .faq-question__toggle{background:var(--teal-pale,#EAF6F8)}
+.faq-question__btn[aria-expanded="true"] .faq-question__toggle svg{transform:rotate(180deg)}
+.faq-answer[hidden]{display:none}
+
 /* ─── CV section (CTA) ─── */
 :root{
   --sh-1:0 1px 3px rgba(40,60,70,.05),0 4px 12px rgba(40,60,70,.05);
@@ -46,8 +56,8 @@
   --sh-orange:0 10px 24px rgba(248,152,29,.34);
   --sh-orange-h:0 16px 32px rgba(248,152,29,.44);
 }
-.cv-section .btn-primary{background:var(--orange);color:#332211;box-shadow:var(--sh-orange);font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform .2s,box-shadow .2s,background .2s;display:inline-flex;align-items:center;justify-content:center;gap:10px}
-.cv-section .btn-primary:hover{background:#E28511;transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
+.cv-section .btn-primary,.section-cta .btn-primary{background:var(--orange);color:#332211;box-shadow:var(--sh-orange);font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform .2s,box-shadow .2s,background .2s;display:inline-flex;align-items:center;justify-content:center;gap:10px}
+.cv-section .btn-primary:hover,.section-cta .btn-primary:hover{background:#E28511;transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
 .cv-section .btn-ghost{background:#fff;color:var(--teal-text);box-shadow:var(--sh-1);font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;justify-content:center;gap:10px}
 .cv-section .btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
 .cv-section .btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
@@ -106,56 +116,56 @@
 
   <section class="section-padded">
     <div class="container">
-      <dl class="faq-list">
+      <div class="faq-list">
         <div class="faq-item faq-card">
-          <dt class="faq-question"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">AIのことがまったく分からなくても大丈夫ですか。</span></dt>
-          <dd class="faq-answer">はい。むしろ「触ったことはあるが続かなかった」という状態からのご相談が多いです。業務の中身をお聞きするところから始めます。</dd>
+          <h3 class="faq-question"><button type="button" class="faq-question__btn" id="faq-q1" aria-expanded="false" aria-controls="faq-a1"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">AIのことがまったく分からなくても大丈夫ですか。</span><span class="faq-question__toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+          <div class="faq-answer" id="faq-a1" aria-labelledby="faq-q1" hidden>はい。むしろ「触ったことはあるが続かなかった」という状態からのご相談が多いです。業務の中身をお聞きするところから始めます。</div>
         </div>
         <div class="faq-item faq-card">
-          <dt class="faq-question"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">どのくらいの規模の会社が対象ですか。</span></dt>
-          <dd class="faq-answer">数十名規模の地域企業を主な対象にしています。管理職・実務責任者の方からのご相談を想定しています。</dd>
+          <h3 class="faq-question"><button type="button" class="faq-question__btn" id="faq-q2" aria-expanded="false" aria-controls="faq-a2"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">どのくらいの規模の会社が対象ですか。</span><span class="faq-question__toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+          <div class="faq-answer" id="faq-a2" aria-labelledby="faq-q2" hidden>数十名規模の地域企業を主な対象にしています。管理職・実務責任者の方からのご相談を想定しています。</div>
         </div>
         <div class="faq-item faq-card">
-          <dt class="faq-question"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">遠方でも対応してもらえますか。</span></dt>
-          <dd class="faq-answer">広島県府中市と近隣が中心です。オンラインを併用しますが、訪問できる範囲を優先しています。</dd>
+          <h3 class="faq-question"><button type="button" class="faq-question__btn" id="faq-q3" aria-expanded="false" aria-controls="faq-a3"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">遠方でも対応してもらえますか。</span><span class="faq-question__toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+          <div class="faq-answer" id="faq-a3" aria-labelledby="faq-q3" hidden>広島県府中市と近隣が中心です。オンラインを併用しますが、訪問できる範囲を優先しています。</div>
         </div>
         <div class="faq-item faq-card">
-          <dt class="faq-question"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">AIを使わない結論になることはありますか。</span></dt>
-          <dd class="faq-answer">あります。運用や手順を変えるだけで解決する場合は、そのようにご提案します。</dd>
+          <h3 class="faq-question"><button type="button" class="faq-question__btn" id="faq-q4" aria-expanded="false" aria-controls="faq-a4"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">AIを使わない結論になることはありますか。</span><span class="faq-question__toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+          <div class="faq-answer" id="faq-a4" aria-labelledby="faq-q4" hidden>あります。運用や手順を変えるだけで解決する場合は、そのようにご提案します。</div>
         </div>
         <div class="faq-item faq-card">
-          <dt class="faq-question"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">16時間で、専用のアプリまで作ってもらえますか。</span></dt>
-          <dd class="faq-answer">含みません。仕組みを作る必要があると分かった場合は、仕様を決めてから個別実装として別途お見積りします。</dd>
+          <h3 class="faq-question"><button type="button" class="faq-question__btn" id="faq-q5" aria-expanded="false" aria-controls="faq-a5"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">16時間で、専用のアプリまで作ってもらえますか。</span><span class="faq-question__toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+          <div class="faq-answer" id="faq-a5" aria-labelledby="faq-q5" hidden>含みません。仕組みを作る必要があると分かった場合は、仕様を決めてから個別実装として別途お見積りします。</div>
         </div>
         <div class="faq-item faq-card">
-          <dt class="faq-question"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">業務改善のあと、そのまま仕組みづくりまで頼めますか。</span></dt>
-          <dd class="faq-answer">はい。同じ担当者がそのまま個別実装まで続けて担当します。あらためて別の依頼先を探す必要はありません。</dd>
+          <h3 class="faq-question"><button type="button" class="faq-question__btn" id="faq-q6" aria-expanded="false" aria-controls="faq-a6"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">業務改善のあと、そのまま仕組みづくりまで頼めますか。</span><span class="faq-question__toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+          <div class="faq-answer" id="faq-a6" aria-labelledby="faq-q6" hidden>はい。同じ担当者がそのまま個別実装まで続けて担当します。あらためて別の依頼先を探す必要はありません。</div>
         </div>
         <div class="faq-item faq-card">
-          <dt class="faq-question"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">個別実装の見積り後に、仕様が変わることはありますか。</span></dt>
-          <dd class="faq-answer">あります。その場合は影響範囲をご説明し、必要であれば追加のお見積りをご案内します。</dd>
+          <h3 class="faq-question"><button type="button" class="faq-question__btn" id="faq-q7" aria-expanded="false" aria-controls="faq-a7"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">個別実装の見積り後に、仕様が変わることはありますか。</span><span class="faq-question__toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+          <div class="faq-answer" id="faq-a7" aria-labelledby="faq-q7" hidden>あります。その場合は影響範囲をご説明し、必要であれば追加のお見積りをご案内します。</div>
         </div>
         <div class="faq-item faq-card">
-          <dt class="faq-question"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">AI活用設計は、最初から申し込む必要がありますか。</span></dt>
-          <dd class="faq-answer">いいえ。業務を見直した結果、AIが役に立つと分かった場合に、追加でお選びいただけます。</dd>
+          <h3 class="faq-question"><button type="button" class="faq-question__btn" id="faq-q8" aria-expanded="false" aria-controls="faq-a8"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">AI活用設計は、最初から申し込む必要がありますか。</span><span class="faq-question__toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+          <div class="faq-answer" id="faq-a8" aria-labelledby="faq-q8" hidden>いいえ。業務を見直した結果、AIが役に立つと分かった場合に、追加でお選びいただけます。</div>
         </div>
         <div class="faq-item faq-card">
-          <dt class="faq-question"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">個別実装で作ったものの、運用や保守もお願いできますか。</span></dt>
-          <dd class="faq-answer">承ります。「運用保守」として、個別実装のオプションでご用意しています。対応は平日日中です（24時間対応は承っておりません）。</dd>
+          <h3 class="faq-question"><button type="button" class="faq-question__btn" id="faq-q9" aria-expanded="false" aria-controls="faq-a9"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">個別実装で作ったものの、運用や保守もお願いできますか。</span><span class="faq-question__toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+          <div class="faq-answer" id="faq-a9" aria-labelledby="faq-q9" hidden>承ります。「運用保守」として、個別実装のオプションでご用意しています。対応は平日日中です（24時間対応は承っておりません）。</div>
         </div>
         <div class="faq-item faq-card">
-          <dt class="faq-question"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">研修だけを個別に依頼できますか。</span></dt>
-          <dd class="faq-answer">承ります。個別にご相談ください。</dd>
+          <h3 class="faq-question"><button type="button" class="faq-question__btn" id="faq-q10" aria-expanded="false" aria-controls="faq-a10"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">研修だけを個別に依頼できますか。</span><span class="faq-question__toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+          <div class="faq-answer" id="faq-a10" aria-labelledby="faq-q10" hidden>承ります。個別にご相談ください。</div>
         </div>
         <div class="faq-item faq-card">
-          <dt class="faq-question"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">何をもって成果とみなしますか。</span></dt>
-          <dd class="faq-answer">着手前に、何をどう測るかを決めます。取得できない数値がある場合は、その限界もお伝えします。</dd>
+          <h3 class="faq-question"><button type="button" class="faq-question__btn" id="faq-q11" aria-expanded="false" aria-controls="faq-a11"><span class="icon-badge-circle icon-badge-circle--ring faq-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.7.5-1.3.9-1.3 1.9v.5"/><path d="M12 17v.01"/></svg></span><span class="faq-question__text">何をもって成果とみなしますか。</span><span class="faq-question__toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+          <div class="faq-answer" id="faq-a11" aria-labelledby="faq-q11" hidden>着手前に、何をどう測るかを決めます。取得できない数値がある場合は、その限界もお伝えします。</div>
         </div>
-      </dl>
+      </div>
 
       <div class="section-cta">
         <p>その他のご質問は、お気軽にお問い合わせください。</p>
-        <a href="./contact.html" class="btn btn--primary">まず30分、話を聞かせてください</a>
+        <a href="./contact.html" class="btn btn-primary">まず30分、話を聞かせてください</a>
       </div>
     </div>
   </section>

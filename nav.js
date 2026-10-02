@@ -80,6 +80,25 @@
   });
 })();
 
+/* ── FAQ アコーディオン ── */
+(function () {
+  'use strict';
+  var faqButtons = document.querySelectorAll('.faq-question__btn');
+  if (!faqButtons.length) return;
+
+  faqButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!isOpen));
+
+      var answer = document.getElementById(btn.getAttribute('aria-controls'));
+      if (answer) {
+        answer.hidden = isOpen; /* 開く場合は hidden を外す（false）、閉じる場合は付与（true） */
+      }
+    });
+  });
+})();
+
 /* ── フェードインアニメーション（Intersection Observer） ── */
 (function () {
   var els = document.querySelectorAll('.fade-in');
