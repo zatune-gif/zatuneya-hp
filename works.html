@@ -24,7 +24,14 @@
 /* ─── Page Hero ─── */
 .page-hero{padding:64px 0 0;text-align:left}
 .page-hero .skyline-illust{margin-top:32px}
-.page-hero .container{text-align:left}
+/* .page-hero は左右paddingを0にして背景を edge-to-edge にしているため、
+   中身を収める .container 側に左右paddingを持たせる（他ページの .container は
+   独自に padding:0 32px / 20px を定義しているが、works.html にはその定義が無く、
+   375px幅でヒーローの文言が画面端にベタ付きになっていたバグを修正。2026-10-02） */
+.page-hero .container{text-align:left;padding:0 32px}
+@media (max-width:680px){
+  .page-hero .container{padding:0 20px}
+}
 .works-section{padding:64px 24px}
 .works-section--own{background:var(--bg);padding-top:72px;padding-bottom:80px}
 .works-section .container{max-width:1040px}
