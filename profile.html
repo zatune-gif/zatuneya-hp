@@ -73,7 +73,7 @@ img,svg{display:block;max-width:100%}
 .story-main .sec-head{text-align:left;margin:0 0 var(--s8);max-width:none}
 .story-main .story-body{margin:0;max-width:600px}
 /* STORY 本文（見出しは .sec-head で中央、本文はここで左寄せ・階層化） */
-.story-body{max-width:620px;margin:0 auto;text-align:left;font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);line-break:strict;word-break:keep-all}
+.story-body{max-width:620px;margin:0 auto;text-align:left;font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);line-break:strict;word-break:keep-all;overflow-wrap:anywhere}
 .story-body p + p{margin-top:var(--s6)}
 .story-body p.story-lead{font-size:16.5px;font-weight:500;color:var(--head)}
 .story-body p.story-pull{font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:clamp(18px,2.4vw,22px);line-height:1.65;letter-spacing:.02em;color:var(--head);border-left:3px solid var(--teal);padding-left:var(--s4)}
@@ -103,20 +103,6 @@ img,svg{display:block;max-width:100%}
 .heroC .txt .lead{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);max-width:620px;margin:16px auto 0}
 .heroC .hero-cta{display:flex;flex-wrap:wrap;gap:16px;margin-top:24px}
 
-/* CAREER TIMELINE（経歴 → 強み。9つがつながって強みになったことを縦の線で見せる） */
-.timeline{position:relative;max-width:660px;margin:0 auto}
-.timeline::before{content:"";position:absolute;left:23px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--teal-line) 0%,var(--teal-line) 78%,var(--orange-line) 100%)}
-.tl-item{position:relative;display:flex;gap:20px;padding-bottom:16px}
-.tl-item:last-child{padding-bottom:0}
-.tl-dot{position:relative;z-index:1;flex:none;width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#fff;display:flex;align-items:center;justify-content:center;font:900 17px 'Roboto',sans-serif;box-shadow:var(--sh-1)}
-.tl-item.accent .tl-dot{background:linear-gradient(135deg,var(--orange),var(--orange-d))}
-.tl-card{flex:1;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 20px;box-shadow:var(--sh-1);margin-top:4px;transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
-.tl-card:hover{transform:translateX(3px);box-shadow:var(--sh-2)}
-.tl-card h3{font-size:16.5px;letter-spacing:.01em}
-.tl-card p{font-family:'Noto Sans JP',sans-serif;font-size:14px;line-height:1.75;color:var(--body);margin-top:6px}
-.tl-card p .arrow{color:var(--teal-text);font-weight:700;margin-right:4px}
-.tl-item.accent .tl-card p .arrow{color:var(--orange-text)}
-
 /* WHY (再掲・簡略) */
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .why-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:32px;box-shadow:var(--sh-1);text-align:center}
@@ -136,7 +122,7 @@ img,svg{display:block;max-width:100%}
 @media (max-width:960px){
   .why-grid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}
   .heroC .ph-inner{padding:48px 0 32px}
-  .story-grid{grid-template-columns:1fr;gap:40px}
+  .story-grid{grid-template-columns:minmax(0,1fr);gap:40px}
   .story-portrait{max-width:320px;width:100%;margin:0 auto}
   .story-main .sec-head{text-align:center}
   .story-main .story-body{margin:0 auto}
@@ -148,12 +134,6 @@ img,svg{display:block;max-width:100%}
 @media (max-width:680px){
   :root{--s24:64px;--s20:48px;--s16:40px;--s12:32px}
   .container{padding:0 20px}
-}
-@media (max-width:420px){
-  .timeline::before{left:19px}
-  .tl-dot{width:40px;height:40px;font-size:15px;border-radius:12px}
-  .tl-item{gap:12px}
-  .tl-card{padding:12px 16px}
 }
 @media (max-width:400px){
   body{font-size:15px}
@@ -191,6 +171,12 @@ img,svg{display:block;max-width:100%}
     </button>
   </div>
 </header>
+
+<div class="sticky-cta" id="sticky-cta">
+  <p class="sticky-cta__text">まず、どこから手をつけるかを一緒に決めませんか</p>
+  <a href="./contact.html" class="sticky-cta__btn">まず30分、話を聞かせてください</a>
+  <button class="sticky-cta__close" id="sticky-cta-close" aria-label="バナーを閉じる">✕</button>
+</div>
 
 <main>
 
