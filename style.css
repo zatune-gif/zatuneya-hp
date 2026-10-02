@@ -623,6 +623,11 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 @media (max-width: 768px) {
   .site-nav__hamburger {
     display: flex;
+    /* .site-nav には margin-left: auto が付いているが、このブレークポイントでは
+       .site-nav が display: none になり flex レイアウトから外れるため、
+       ハンバーガーボタン自身にマージンを持たせてヘッダー右端に固定する
+       （2026-08-05 導入・2026-10-02 発見のロゴ隣接バグを修正） */
+    margin-left: auto;
   }
 
   .site-header .site-nav {
