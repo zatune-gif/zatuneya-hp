@@ -699,6 +699,16 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   }
 }
 
+@media (max-width: 480px) {
+  /* 狭幅ではロゴのサブテキスト（キャッチコピー）がハンバーガーボタンの
+     表示幅を圧迫し、margin-left: auto が実質0になって隣接して見える
+     バグを修正（2026-10-02 発見）。ブランド名「ざつね屋」本体は残し、
+     サブテキストのみ非表示にする。 */
+  .site-logo__pre {
+    display: none;
+  }
+}
+
 /* ===== Footer ===== */
 .site-footer {
   background: #1a3a3e;
