@@ -129,11 +129,12 @@ img,svg{display:block;max-width:100%}
 
 /* ============ 2. WORRIES ============ */
 .worry-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.worry-card{display:flex;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--sh-1);transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
+/* works.html の実績カードと同じ「アイコン円＋吹き出し見出し → 本文」の型（.catch-bubble は style.css 17） */
+.worry-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--sh-1);transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
 .worry-card:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
-.worry-card .ic{flex:none;width:52px;height:52px;border-radius:15px;background:var(--teal-pale)}
-.worry-card .ic svg{width:28px;height:28px;stroke:var(--teal-d)}
-.worry-card p{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:1.75;color:var(--head);font-weight:500}
+.worry-card__head{display:flex;align-items:center;gap:16px}
+.worry-card__head .icon-badge-circle{--badge-size:52px}
+.worry-card__text{margin-top:14px;font:400 14.5px/1.85 'Noto Sans JP',sans-serif;color:var(--body);text-wrap:pretty}
 .answer{position:relative;margin-top:32px;background:linear-gradient(120deg,var(--orange),var(--orange-d));border-radius:24px;padding:40px;color:#fff;overflow:hidden;box-shadow:0 20px 44px rgba(226,133,17,.28)}
 .answer .ring{position:absolute;border:2px solid rgba(255,255,255,.16);border-radius:50%}
 .answer .r1{top:-60px;right:-30px;width:200px;height:200px}
@@ -142,6 +143,9 @@ img,svg{display:block;max-width:100%}
 .answer .abadge{flex:none;width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.2)}
 .answer .abadge svg{width:28px;height:28px;stroke:#fff;stroke-width:2}
 .answer p{font-family:'Noto Sans JP',sans-serif;font-size:16.5px;line-height:1.95;font-weight:500;text-align:left}
+/* 課題（上のお悩み）→ 答え の2段構成を、works.html の「解決した課題」と同じくラベルで明示する（白地のピル：オレンジ文字 5.32:1） */
+.answer__body{flex:1;min-width:0;text-align:left}
+.answer__label{display:inline-block;margin-bottom:10px;padding:5px 14px;border-radius:999px;background:#fff;color:var(--orange-text);font:900 13px/1.5 'Noto Sans JP',sans-serif;letter-spacing:.06em}
 .answer b{font-weight:900}
 
 /* ============ 3. SERVICES ============ */
@@ -150,9 +154,10 @@ img,svg{display:block;max-width:100%}
 .svc-card:hover{transform:translateY(-6px);box-shadow:var(--sh-2)}
 .svc-top{position:relative;background:linear-gradient(135deg,var(--teal-pale),var(--teal-pale2));padding:32px 24px;text-align:center;overflow:hidden}
 .svc-top::after{content:"";position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.35)}
-.svc-ic{position:relative;width:68px;height:68px;border-radius:22px;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto;box-shadow:var(--sh-1)}
-.svc-ic svg{width:34px;height:34px;stroke:var(--teal-d)}
-.svc-tag{position:relative;font:700 11.5px/1 'Roboto',sans-serif;letter-spacing:.1em;color:var(--sub-text);margin-top:16px}
+/* アイコンは works.html・サービス詳細と同じ円形バッジ、番号タグは works.html の .work-tag と同じピル型に揃える */
+.svc-ic{position:relative;width:72px;height:72px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto;box-shadow:0 6px 16px rgba(40,60,70,.08)}
+.svc-ic svg{width:36px;height:36px;stroke:var(--teal-deep);stroke-width:1.5}
+.svc-tag{position:relative;display:inline-block;font:700 11.5px/1.6 'Roboto',sans-serif;letter-spacing:.1em;color:var(--teal-text);background:#fff;border:1px solid var(--teal-line);padding:3px 14px;border-radius:999px;margin-top:16px}
 .svc-body{padding:24px;text-align:center;display:flex;flex-direction:column;flex:1}
 .svc-body h3{font-size:21px;letter-spacing:.01em}
 .svc-catch{font:700 14px 'Noto Sans JP',sans-serif;color:var(--teal-text);margin-top:8px}
@@ -227,8 +232,8 @@ img,svg{display:block;max-width:100%}
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .why-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:32px;box-shadow:var(--sh-1);text-align:center;transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
 .why-card:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
-.why-ic{width:64px;height:64px;border-radius:20px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;margin:0 auto}
-.why-ic svg{width:34px;height:34px;stroke:var(--teal-d)}
+/* 理由1〜3：works.html と同じ「円形アイコン＋塗り番号バッジ（01/02/03）」の型で、3枚を同じ型の繰り返しとして読ませる */
+.why-card .icon-badge-circle{display:flex;margin:0 auto}
 .why-card h3{font-size:19px;margin:20px 0 0;letter-spacing:.01em}
 .why-card p{font:400 13.5px/1.85 'Noto Sans JP',sans-serif;color:var(--body);margin:12px 0 0}
 .profile-teaser{max-width:640px;margin:var(--s12) auto 0;text-align:left}
@@ -287,6 +292,7 @@ img,svg{display:block;max-width:100%}
 
   .hero-sub{max-width:none}
   .why-grid{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}
+  .worry-grid{grid-template-columns:1fr}/* 2列のままだと吹き出し見出しが3行に折れて読みにくいため、タブレット幅から1列に */
   .flow{grid-template-columns:1fr 1fr;gap:40px 0}
   .step:not(:last-child)::after,.step:not(:last-child)::before{display:none}
   .why-band .veil{background:linear-gradient(160deg,rgba(52,90,98,.94),rgba(70,166,177,.7))}
@@ -302,6 +308,9 @@ img,svg{display:block;max-width:100%}
   .price-card__head{padding:20px 20px 16px}
   .price-card__body{padding:20px 20px 24px}
   .answer{padding:32px 24px}
+  .worry-card{padding:20px 18px}
+  .worry-card__head{gap:14px}
+  .worry-card__head .icon-badge-circle{--badge-size:44px}
   .answer-in{flex-direction:column;gap:16px}
   .tool-card{flex-direction:column;gap:16px}
   .tools-grid--single .tool-card{align-items:flex-start;gap:16px;padding:32px 24px}
@@ -417,27 +426,42 @@ img,svg{display:block;max-width:100%}
     </div>
     <div class="worry-grid">
       <div class="worry-card">
-        <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1"/></svg></span>
-        <p>人が足りず、改善に手が回らない。日々の業務で手一杯。「やった方がいい」と分かっていることが、いつまでも後回しになる。</p>
+        <div class="worry-card__head">
+          <span class="icon-badge-circle" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1"/></svg></span>
+          <p class="catch-bubble">人が足りず、改善に手が回らない。</p>
+        </div>
+        <p class="worry-card__text">日々の業務で手一杯。「やった方がいい」と分かっていることが、いつまでも後回しになる。</p>
       </div>
       <div class="worry-card">
-        <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2"/><path d="M9 2h6"/></svg></span>
-        <p>特定の人しか分からない仕事がある。その人が休むと止まる。引き継ぎ資料を作る時間も取れない。</p>
+        <div class="worry-card__head">
+          <span class="icon-badge-circle" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2"/><path d="M9 2h6"/></svg></span>
+          <p class="catch-bubble">特定の人しか分からない仕事がある。</p>
+        </div>
+        <p class="worry-card__text">その人が休むと止まる。引き継ぎ資料を作る時間も取れない。</p>
       </div>
       <div class="worry-card">
-        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3 21 8 12 13 3 8 12 3Z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/></svg></span>
-        <p>同じ説明・同じ入力を繰り返している。毎週・毎月の定型作業に、担当者の時間が静かに削られていく。</p>
+        <div class="worry-card__head">
+          <span class="icon-badge-circle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 21 8 12 13 3 8 12 3Z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/></svg></span>
+          <p class="catch-bubble">同じ説明・同じ入力を繰り返している。</p>
+        </div>
+        <p class="worry-card__text">毎週・毎月の定型作業に、担当者の時間が静かに削られていく。</p>
       </div>
       <div class="worry-card">
-        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/><path d="M9.5 12l1.8 1.8 3.4-3.6"/></svg></span>
-        <p>AIを試してはみたが、続かなかった。ツールは触った。でも「で、うちの仕事のどこに使うのか」が分からないまま止まった。</p>
+        <div class="worry-card__head">
+          <span class="icon-badge-circle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/><path d="M9.5 12l1.8 1.8 3.4-3.6"/></svg></span>
+          <p class="catch-bubble">AIを試してはみたが、続かなかった。</p>
+        </div>
+        <p class="worry-card__text">ツールは触った。でも「で、うちの仕事のどこに使うのか」が分からないまま止まった。</p>
       </div>
     </div>
     <div class="answer">
       <span class="ring r1"></span><span class="ring r2"></span>
       <div class="answer-in">
         <span class="abadge ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span>
-        <p>どれも、<b>ツールを増やせば解決する話ではありません。</b>まず、仕事の中身を見せてください。</p>
+        <div class="answer__body">
+          <span class="answer__label">ざつね屋の考え</span>
+          <p>どれも、<b>ツールを増やせば解決する話ではありません。</b>まず、仕事の中身を見せてください。</p>
+        </div>
       </div>
     </div>
   </div>
@@ -528,17 +552,17 @@ img,svg{display:block;max-width:100%}
     </div>
     <div class="why-grid">
       <div class="why-card">
-        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H12l-4 3v-3H4Z"/><path d="M8.5 10.5l2 2 4-4"/></svg></span>
+        <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><span class="step-badge-solid step-badge-solid--sm">01</span><svg viewBox="0 0 24 24"><path d="M4 5h16v11H12l-4 3v-3H4Z"/><path d="M8.5 10.5l2 2 4-4"/></svg></span>
         <h3>業務課題の理解から始める</h3>
         <p>AI導入ありきではありません。会社の困りごとを起点に、必要なところだけ仕組みを作ります。</p>
       </div>
       <div class="why-card">
-        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M15.5 20v-1.2a3.7 3.7 0 0 0-3.7-3.7H6.2A3.7 3.7 0 0 0 2.5 18.8V20"/><circle cx="9" cy="7" r="3.3"/><path d="M21.5 20v-1.2a3.7 3.7 0 0 0-2.8-3.6"/><path d="M15.5 3.9a3.3 3.3 0 0 1 0 6.4"/></svg></span>
+        <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><span class="step-badge-solid step-badge-solid--sm">02</span><svg viewBox="0 0 24 24"><path d="M15.5 20v-1.2a3.7 3.7 0 0 0-3.7-3.7H6.2A3.7 3.7 0 0 0 2.5 18.8V20"/><circle cx="9" cy="7" r="3.3"/><path d="M21.5 20v-1.2a3.7 3.7 0 0 0-2.8-3.6"/><path d="M15.5 3.9a3.3 3.3 0 0 1 0 6.4"/></svg></span>
         <h3>現場に入り込んで一緒に手を動かす</h3>
         <p>提案書を渡して終わりにはしません。現場に入り、実際の業務を一緒に見ながら組み立てる伴走スタイルです。</p>
       </div>
       <div class="why-card">
-        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M4 6h9M4 12h13M4 18h7"/><path d="M17 6l2.5 2.5L23 4"/></svg></span>
+        <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><span class="step-badge-solid step-badge-solid--sm">03</span><svg viewBox="0 0 24 24"><path d="M4 6h9M4 12h13M4 18h7"/><path d="M17 6l2.5 2.5L23 4"/></svg></span>
         <h3>使い方を教えて自走できるようにする</h3>
         <p>「教えられる実装者」として、担当者が自分で回せるようになるまで伴走します。依存させません。</p>
       </div>

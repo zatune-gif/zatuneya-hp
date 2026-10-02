@@ -106,8 +106,10 @@ img,svg{display:block;max-width:100%}
 /* WHY (再掲・簡略) */
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .why-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:32px;box-shadow:var(--sh-1);text-align:center}
-.why-ic{width:58px;height:58px;border-radius:18px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;margin:0 auto}
-.why-ic svg{width:30px;height:30px;stroke:var(--teal-d)}
+/* アイコンは works.html・トップと同じ円形。Why（理由1〜3）だけトップと同じく塗り番号バッジ（01/02/03）を重ね、Values とは型で区別する */
+.why-ic{width:64px;height:64px;border-radius:50%;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;margin:0 auto}
+.why-ic svg{width:33px;height:33px;stroke:var(--teal-deep);stroke-width:1.5}
+.why-card .icon-badge-circle{display:flex;margin:0 auto}
 .why-card h3{font-size:17px;margin:16px 0 0}
 .why-card p{font:400 13px/1.8 'Noto Sans JP',sans-serif;color:var(--body);margin:12px 0 0;text-align:left}
 .why-src{display:inline-block;font:700 11.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-text);background:var(--teal-pale);padding:8px 16px;border-radius:999px;margin-top:16px;word-break:keep-all;overflow-wrap:anywhere}
@@ -229,19 +231,19 @@ img,svg{display:block;max-width:100%}
     </div>
     <div class="why-grid">
       <div class="why-card">
-        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H12l-4 3v-3H4Z"/><path d="M8.5 10.5l2 2 4-4"/></svg></span>
+        <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><span class="step-badge-solid step-badge-solid--sm">01</span><svg viewBox="0 0 24 24"><path d="M4 5h16v11H12l-4 3v-3H4Z"/><path d="M8.5 10.5l2 2 4-4"/></svg></span>
         <h3>教えられる実装者</h3>
         <p>ざつね屋では、提案にとどまらず、現場に合わせたAI指示書・手順書の作成、操作説明、運用後の改善まで一貫して対応します。教える仕事と、実際に作る仕事の両方を続けてきました。</p>
         <span class="why-src">パソコン講師／専門学校の担任／AIプロダクト開発</span>
       </div>
       <div class="why-card">
-        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M15.5 20v-1.2a3.7 3.7 0 0 0-3.7-3.7H6.2A3.7 3.7 0 0 0 2.5 18.8V20"/><circle cx="9" cy="7" r="3.3"/><path d="M21.5 20v-1.2a3.7 3.7 0 0 0-2.8-3.6"/><path d="M15.5 3.9a3.3 3.3 0 0 1 0 6.4"/></svg></span>
+        <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><span class="step-badge-solid step-badge-solid--sm">02</span><svg viewBox="0 0 24 24"><path d="M15.5 20v-1.2a3.7 3.7 0 0 0-3.7-3.7H6.2A3.7 3.7 0 0 0 2.5 18.8V20"/><circle cx="9" cy="7" r="3.3"/><path d="M21.5 20v-1.2a3.7 3.7 0 0 0-2.8-3.6"/><path d="M15.5 3.9a3.3 3.3 0 0 1 0 6.4"/></svg></span>
         <h3>現場でのデジタル化推進経験</h3>
         <p>ツール導入・業務標準化を、現場で回してきた経験があります。人材育成や業務手順書づくりを通じて「人が動く仕組み」を作ってきました。導入して終わりではなく、結果が出るまで付き合います。</p>
         <span class="why-src">NPO法人代表／企業の課長職／専門学校の担任</span>
       </div>
       <div class="why-card">
-        <span class="why-ic ic"><svg viewBox="0 0 24 24"><path d="M4 6h9M4 12h13M4 18h7"/><path d="M17 6l2.5 2.5L23 4"/></svg></span>
+        <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><span class="step-badge-solid step-badge-solid--sm">03</span><svg viewBox="0 0 24 24"><path d="M4 6h9M4 12h13M4 18h7"/><path d="M17 6l2.5 2.5L23 4"/></svg></span>
         <h3>業務整理から入れる</h3>
         <p>「AIをどう使うか」の前に、「どの業務を変えるか」を一緒に決められます。課題のヒアリング、業務フローの可視化、要件定義から対応できるので、遠回りしません。</p>
         <span class="why-src">Webディレクター／カスタマーエンジニア／DX推進担当</span>
