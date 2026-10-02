@@ -180,8 +180,12 @@ body {
 .btn-teal:hover { background: var(--teal-dk); }
 .btn-row { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 
-/* ── 帯レイアウト・見出し ── */
-.band { padding: 76px 24px; position: relative; overflow: hidden; }
+/* ── 帯レイアウト・見出し ──
+   .band 単体はどのページでも使用されていない死にクラス（band-white/tint/tight も未使用）。
+   index.html / index-v2.html が独自に定義する「写真帯」コンポーネント .band（photo band, bcontent付き）
+   と名前が衝突し、ここの padding:76px 24px が同一セレクタ特異度の後勝ちルールでも非上書きプロパティとして
+   漏れ込み、モバイル幅でTOGETHER帯が異常に縦長になるバグの原因だったため padding を削除した。 */
+.band { position: relative; overflow: hidden; }
 .band-white { background: #fff; }
 .band-tint  { background: var(--bg); }
 .band-tight { padding-top: 40px; }
