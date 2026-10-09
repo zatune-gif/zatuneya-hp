@@ -60,7 +60,7 @@ h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--he
 p{margin:0}
 a{color:inherit}
 img,svg{display:block;max-width:100%}
-:focus-visible{outline:3px solid var(--teal-text);outline-offset:3px;border-radius:6px}
+:focus-visible{outline:3px solid var(--teal-text);outline-offset:3px;border-radius:var(--r-sm)}
 .site-footer :focus-visible,.price-band :focus-visible{outline-color:#fff}/* 暗い面では白リング: #334A52 上 9.37 / 帯上 5.11 */
 
 .container{max-width:1120px;margin:0 auto;padding:0 32px}
@@ -82,24 +82,24 @@ img,svg{display:block;max-width:100%}
 .ic svg{width:100%;height:100%;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
 
 /* BUTTONS --------------------------------------------------- */
-.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;
   font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;
   padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;
-  transition:transform .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease);cursor:pointer;white-space:nowrap}
+  transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);cursor:pointer;white-space:nowrap}
 .btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
-.btn-primary{background:var(--orange);color:#332211;box-shadow:var(--sh-orange)}/* 文字色: 白は 2.21:1 で不合格。ブランドのオレンジを保つため濃色ブラウン #332211 = 6.90:1（hover の --orange-d 上でも 5.51:1）*/
+.btn-primary{background:var(--orange);color:#332211}/* 文字色: 白は 2.21:1 で不合格。ブランドのオレンジを保つため濃色ブラウン #332211 = 6.90:1（hover の --orange-d 上でも 5.51:1）*/
 .btn-primary:hover{background:var(--orange-d);transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
 .btn-primary:active{transform:translateY(0);box-shadow:0 4px 12px rgba(248,152,29,.4)}
-.btn-ghost{background:#fff;color:var(--teal-text);box-shadow:var(--sh-1)}
+.btn-ghost{background:#fff;color:var(--teal-text);border-color:var(--teal-line)}
 .btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
 .btn-ghost:active{transform:translateY(0)}
 .btn-outline{background:transparent;color:var(--teal-text);border-color:var(--teal)}
 .btn-outline:hover{background:var(--teal-pale);transform:translateY(-2px)}
-.btn-white{background:#fff;color:var(--teal-text);box-shadow:var(--sh-2)}
+.btn-white{background:#fff;color:var(--teal-text);border:1px solid var(--card-line)}
 .btn-white:hover{transform:translateY(-2px);box-shadow:var(--sh-3)}
 .btn-block{display:flex;width:100%}
-.arrowlink{display:inline-flex;align-items:center;gap:8px;min-height:24px;font:700 14px 'Noto Sans JP',sans-serif;color:var(--teal-text);text-decoration:none;transition:color .18s}
-.arrowlink svg{width:16px;height:16px;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none;transition:transform .2s var(--ease)}
+.arrowlink{display:inline-flex;align-items:center;gap:8px;min-height:24px;font:700 14px 'Noto Sans JP',sans-serif;color:var(--teal-text);text-decoration:none;transition:color var(--dur) var(--ease)}
+.arrowlink svg{width:16px;height:16px;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none;transition:transform var(--dur) var(--ease)}
 .arrowlink:hover{color:var(--orange-text)}
 .arrowlink:hover svg{transform:translateX(4px)}
 
@@ -108,7 +108,7 @@ img,svg{display:block;max-width:100%}
 .hero.hero-diagonal{padding:0}/* style.css .hero の左右24px＋上64pxを打ち消し、.container の余白に一本化 */
 /* 構図：左＝見出し・リード／右上の白い余白＝「整理する→やめる→仕組みをつくる」のジグザグフロー／右下＝斜めカット写真（フローと写真は重ねない） */
 .hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 48px;align-items:center;padding-top:var(--s16);padding-bottom:var(--s16);text-align:left}
-.badge{display:inline-flex;align-items:center;gap:8px;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-text);background:#fff;padding:8px 16px;border-radius:999px;box-shadow:var(--sh-1)}
+.badge{display:inline-flex;align-items:center;gap:8px;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-text);background:#fff;padding:8px 16px;border-radius:999px;border:1px solid var(--card-line)}
 .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
 .hero-grid .hero-copy h1{font-size:clamp(28px,3.3vw,40px);line-height:1.35;letter-spacing:.005em;margin:24px 0 0}/* style.css の同セレクタ（33px/24px固定）を上書き */
 .hero .rule-split{margin-top:20px}
@@ -130,40 +130,35 @@ img,svg{display:block;max-width:100%}
 /* ============ 2. WORRIES ============ */
 .worry-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 /* works.html の実績カードと同じ「アイコン円＋吹き出し見出し → 本文」の型（.catch-bubble は style.css 17） */
-.worry-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--sh-1);transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
+.worry-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-card);padding:24px;transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease)}
 .worry-card:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
 .worry-card__head{display:flex;align-items:center;gap:16px}
 .worry-card__head .icon-badge-circle{--badge-size:52px}
-.worry-card__text{margin-top:14px;font:400 14.5px/1.85 'Noto Sans JP',sans-serif;color:var(--body);text-wrap:pretty}
-.answer{position:relative;margin-top:32px;background:linear-gradient(120deg,var(--orange),var(--orange-d));border-radius:24px;padding:40px;color:#332211;overflow:hidden;box-shadow:0 20px 44px rgba(226,133,17,.28)}
-.answer .ring{position:absolute;border:2px solid rgba(255,255,255,.16);border-radius:50%}
-.answer .r1{top:-60px;right:-30px;width:200px;height:200px}
-.answer .r2{bottom:-90px;right:14%;width:150px;height:150px;border-color:rgba(255,255,255,.1)}
+.worry-card__text{margin-top:12px;font:400 14.5px/1.85 'Noto Sans JP',sans-serif;color:var(--body);text-wrap:pretty}
+.answer{position:relative;margin-top:32px;background:linear-gradient(120deg,var(--orange),var(--orange-d));border-radius:var(--r-card);padding:40px;color:#332211;overflow:hidden}
 .answer-in{position:relative;display:flex;gap:24px;align-items:flex-start}
 .answer .abadge{flex:none;width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.2)}
 .answer .abadge svg{width:28px;height:28px;stroke:#332211;stroke-width:2}
 .answer p{font-family:'Noto Sans JP',sans-serif;font-size:16.5px;line-height:1.95;font-weight:500;text-align:left}
 /* 課題（上のお悩み）→ 答え の2段構成を、works.html の「解決した課題」と同じくラベルで明示する（白地のピル：オレンジ文字 5.32:1） */
 .answer__body{flex:1;min-width:0;text-align:left}
-.answer__label{display:inline-block;margin-bottom:10px;padding:5px 14px;border-radius:999px;background:#fff;color:var(--orange-text);font:900 14px/1.5 'Noto Sans JP',sans-serif;letter-spacing:.06em}
+.answer__label{display:inline-block;margin-bottom:8px;padding:4px 16px;border-radius:999px;background:#fff;color:var(--orange-text);font:900 14px/1.5 'Noto Sans JP',sans-serif;letter-spacing:.06em}
 .answer b{font-weight:900}
 
 /* ============ 3. SERVICES ============ */
 .svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-.svc-card{background:#fff;border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:var(--sh-1);display:flex;flex-direction:column;transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
+.svc-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-card);overflow:hidden;display:flex;flex-direction:column;transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease)}
 .svc-card:hover{transform:translateY(-6px);box-shadow:var(--sh-2)}
 .svc-top{position:relative;background:linear-gradient(135deg,var(--teal-pale),var(--teal-pale2));padding:32px 24px;text-align:center;overflow:hidden}
-.svc-top::after{content:"";position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.35)}
 /* アイコンは works.html・サービス詳細と同じ円形バッジ、番号タグは works.html の .work-tag と同じピル型に揃える */
-.svc-ic{position:relative;width:72px;height:72px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto;box-shadow:0 6px 16px rgba(40,60,70,.08)}
+.svc-ic{position:relative;width:72px;height:72px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto}
 .svc-ic svg{width:36px;height:36px;stroke:var(--teal-deep);stroke-width:1.5}
-.svc-tag{position:relative;display:inline-block;font:700 12px/1.6 'Roboto',sans-serif;letter-spacing:.1em;color:var(--teal-text);background:#fff;border:1px solid var(--teal-line);padding:3px 14px;border-radius:999px;margin-top:16px}
 .svc-body{padding:24px;text-align:center;display:flex;flex-direction:column;flex:1}
 .svc-body h3{font-size:21px;letter-spacing:.01em}
 .svc-catch{font:700 14px 'Noto Sans JP',sans-serif;color:var(--teal-text);margin-top:8px}
 .svc-desc{font:400 14px/1.85 'Noto Sans JP',sans-serif;color:var(--body);margin-top:16px;text-align:left}
 .price-chip{margin-top:auto;padding-top:24px}
-.price-chip .box{background:var(--bg);border-radius:16px;padding:16px}
+.price-chip .box{background:var(--bg);border-radius:var(--r-sm);padding:16px}
 .price-chip .amt{font:900 22px 'Roboto',sans-serif;color:var(--head)}
 .price-chip .tax{font:400 12px 'Noto Sans JP',sans-serif;color:var(--sub-text)}
 .price-chip .note{font:700 12px 'Noto Sans JP',sans-serif;color:var(--orange-text);margin-top:4px}
@@ -171,31 +166,27 @@ img,svg{display:block;max-width:100%}
 
 /* ============ 4. PRICE / SUBSIDY (teal band) ============ */
 .price-band{position:relative;background:linear-gradient(135deg,var(--band-a),var(--band-b));overflow:hidden;color:#fff}
-.price-band .blob{position:absolute;pointer-events:none}
-.price-band .p1{top:-80px;left:-50px;width:280px;height:280px;background:rgba(255,255,255,.08);border-radius:50%}
-.price-band .p2{bottom:-100px;right:5%;width:320px;height:320px;background:rgba(255,255,255,.06);border-radius:50%}
-.price-band .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.12) 1.1px,transparent 1.1px);background-size:22px 22px}
 .price-inner{position:relative;text-align:center}
 .price-inner .eyebrow{color:rgba(255,255,255,.9)}
 .price-inner h2{color:#fff;font-size:clamp(25px,4vw,34px);line-height:1.42;margin:16px auto 0;max-width:840px}
 .price-inner .desc{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:1.95;color:rgba(255,255,255,.94);max-width:700px;margin:16px auto 0}
-.example{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:22px}
+.example{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:24px}
 .ex-block{text-align:center}
 .ex-label{font:700 12px 'Noto Sans JP',sans-serif;color:var(--sub-text);letter-spacing:.04em}
-.ex-num{font:900 clamp(28px,5vw,34px) 'Roboto',sans-serif;color:var(--head);line-height:1.1;margin-top:6px}
+.ex-num{font:900 clamp(28px,5vw,34px) 'Roboto',sans-serif;color:var(--head);line-height:1.1;margin-top:4px}
 .notes{list-style:none;padding:0;margin:32px auto 0;text-align:left;max-width:760px}
 .notes li{position:relative;padding-left:24px;font:400 14px/1.85 'Noto Sans JP',sans-serif;color:rgba(255,255,255,.92)}
 .notes li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.6)}
 .price-cta{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:32px}
 /* PRICE cards — 濃いティール帯の上に、サービスごとの白い価格カード（チラシの価格パネル準拠：アイコン円＋縦罫線＋大きな金額） */
 .price-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:880px;margin:40px auto 0;text-align:left}
-.price-card{position:relative;display:flex;flex-direction:column;overflow:hidden;background:#fff;color:var(--body);border-radius:24px;box-shadow:var(--sh-3)}
+.price-card{position:relative;display:flex;flex-direction:column;overflow:hidden;background:#fff;color:var(--body);border-radius:var(--r-card)}
 .price-card::before{content:"";display:block;height:6px;background:linear-gradient(90deg,var(--teal-strong),var(--teal))}
-.price-card__head{display:flex;align-items:center;gap:16px;padding:24px 28px 20px;border-bottom:1px solid var(--teal-line);background:linear-gradient(180deg,var(--teal-pale) 0%,#fff 100%)}
+.price-card__head{display:flex;align-items:center;gap:16px;padding:24px 32px 20px;border-bottom:1px solid var(--teal-line);background:linear-gradient(180deg,var(--teal-pale) 0%,#fff 100%)}
 .price-card__head-text{flex:1;min-width:0;padding-left:16px;border-left:2px solid var(--teal)}
 .price-card__tag{display:block;font:700 12px/1 'Roboto',sans-serif;letter-spacing:.18em;color:var(--teal-text)}
 .price-card__name{margin-top:8px;font-size:18px;line-height:1.5;letter-spacing:.01em}
-.price-card__body{flex:1;display:flex;flex-direction:column;padding:24px 28px 28px}
+.price-card__body{flex:1;display:flex;flex-direction:column;padding:24px 32px 32px}
 .price-card__label{font:700 12px/1 'Noto Sans JP',sans-serif;letter-spacing:.06em;color:var(--sub-text)}
 .price-card__amount{display:flex;align-items:baseline;gap:4px;margin-top:12px;color:var(--head);line-height:1}
 .price-card__num{font:900 clamp(40px,5vw,52px)/1 'Roboto',sans-serif;letter-spacing:-.01em}
@@ -211,18 +202,18 @@ img,svg{display:block;max-width:100%}
 
 /* ============ 6. FREE TOOLS ============ */
 .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
-.tool-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:26px;padding:40px 32px;box-shadow:var(--sh-1);display:flex;gap:24px;align-items:flex-start;transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
+.tool-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--r-card);padding:40px 32px;display:flex;gap:24px;align-items:flex-start;transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease)}
 .tool-card:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
-.tool-ic{flex:none;width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,var(--teal-pale),var(--teal-pale2));display:flex;align-items:center;justify-content:center}
+.tool-ic{flex:none;width:64px;height:64px;border-radius:var(--r-card);background:linear-gradient(135deg,var(--teal-pale),var(--teal-pale2));display:flex;align-items:center;justify-content:center}
 .tool-ic svg{width:34px;height:34px;stroke:var(--teal-d)}
 .tool-free{display:inline-block;font:700 12px 'Noto Sans JP',sans-serif;color:var(--teal-text);background:var(--teal-pale);padding:4px 12px;border-radius:999px;letter-spacing:.04em}
 .tool-card h3{font-size:19px;margin:12px 0 0;letter-spacing:.01em}
-.tool-card p{font:400 14px/1.8 'Noto Sans JP',sans-serif;color:var(--body);margin:10px 0 0}
+.tool-card p{font:400 14px/1.8 'Noto Sans JP',sans-serif;color:var(--body);margin:8px 0 0}
 .tool-card .arrowlink{margin-top:16px}
 /* カード1枚のとき：中央寄せのフル幅パネルとして見せる（2列グリッドの片側だけ空く状態を避ける） */
 .tools-grid--single{grid-template-columns:1fr;max-width:820px;margin:0 auto}
-.tools-grid--single .tool-card{align-items:center;gap:32px;padding:44px 48px;text-align:left}
-.tools-grid--single .tool-ic{width:96px;height:96px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 2px var(--teal),0 8px 20px rgba(40,60,70,.10)}
+.tools-grid--single .tool-card{align-items:center;gap:32px;padding:48px 48px;text-align:left}
+.tools-grid--single .tool-ic{width:96px;height:96px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 2px var(--teal)}
 .tools-grid--single .tool-ic svg{width:48px;height:48px;stroke:var(--teal-text)}
 .tools-grid--single .tool-card h3{font-size:clamp(19px,2.4vw,23px)}
 .tools-grid--single .tool-card p{font-size:15px;line-height:1.9}
@@ -230,7 +221,7 @@ img,svg{display:block;max-width:100%}
 
 /* ============ 7. WHY (+ photo band + profile teaser) ============ */
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.why-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:32px;box-shadow:var(--sh-1);text-align:center;transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
+.why-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-card);padding:32px;text-align:center;transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease)}
 .why-card:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
 /* 理由1〜3：works.html と同じ「円形アイコン＋塗り番号バッジ（01/02/03）」の型で、3枚を同じ型の繰り返しとして読ませる */
 .why-card .icon-badge-circle{display:flex;margin:0 auto}
@@ -240,20 +231,19 @@ img,svg{display:block;max-width:100%}
 .profile-teaser p{font:400 14px/1.9 'Noto Sans JP',sans-serif;color:var(--body);margin:0 0 16px}
 .profile-teaser--lead p{font-size:15.5px;line-height:1.95;color:var(--head);margin:0}
 /* 開発実績への導線：テキスト＋抽象ノートPCの2カラムカード（works.html の実績カードと同じ部品） */
-.works-teaser{text-align:left;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:32px 40px;align-items:center;margin-top:var(--s12);padding:40px 44px;border-radius:28px;background:linear-gradient(135deg,#fff 0%,var(--teal-pale) 100%);border:1px solid var(--teal-line);box-shadow:var(--sh-1)}
+.works-teaser{text-align:left;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:32px 40px;align-items:center;margin-top:var(--s12);padding:40px 48px;border-radius:var(--r-card);background:linear-gradient(135deg,#fff 0%,var(--teal-pale) 100%);border:1px solid var(--teal-line)}
 .works-teaser__head{display:flex;align-items:center;gap:16px}
-.works-teaser__body{margin-top:18px;font:500 15.5px/1.95 'Noto Sans JP',sans-serif;color:var(--head);text-wrap:pretty}
+.works-teaser__body{margin-top:16px;font:500 15.5px/1.95 'Noto Sans JP',sans-serif;color:var(--head);text-wrap:pretty}
 .works-teaser .btn{margin-top:24px}
-.btn-deep{background:var(--teal-strong);color:#fff;box-shadow:0 10px 24px rgba(51,127,136,.28)}/* 白文字 4.64:1 */
+.btn-deep{background:var(--teal-strong);color:#fff}/* 白文字 4.64:1 */
 .btn-deep:hover{background:var(--teal-deep);transform:translateY(-2px);box-shadow:0 16px 30px rgba(36,86,92,.32)}
-.btn-deep svg{transition:transform .2s var(--ease)}
+.btn-deep svg{transition:transform var(--dur) var(--ease)}
 .btn-deep:hover svg{transform:translateX(4px)}
 
 /* WHY photo band */
-.why-band{position:relative;margin-top:var(--s12);border-radius:28px;overflow:hidden;box-shadow:var(--sh-2);min-height:280px;display:flex;align-items:center}
+.why-band{position:relative;margin-top:var(--s12);border-radius:var(--r-card);overflow:hidden;min-height:280px;display:flex;align-items:center}
 .why-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .why-band .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(36,86,92,.92) 0%,rgba(36,86,92,.88) 55%,rgba(36,86,92,.25) 100%)}/* 写真の最も明るい箇所でも白文字 4.5:1 以上 */
-.why-band .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.12) 1.1px,transparent 1.1px);background-size:20px 20px}
 .why-band .bcontent{position:relative;color:#fff;padding:40px 48px;max-width:620px}
 .why-band .bcontent .eyebrow{color:#fff}
 .why-band .bcontent h3{color:#fff;font-size:clamp(20px,3vw,26px);line-height:1.5;margin:12px 0 0}
@@ -261,11 +251,10 @@ img,svg{display:block;max-width:100%}
 /* standalone band + flipped variant (rhythm) */
 .section.pt-0{padding-top:0}
 .band-wrap{padding:0}
-.band{position:relative;border-radius:28px;overflow:hidden;box-shadow:var(--sh-2);min-height:300px;display:flex;align-items:center}
+.band{position:relative;border-radius:var(--r-card);overflow:hidden;min-height:300px;display:flex;align-items:center}
 .band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .band .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(36,86,92,.92) 0%,rgba(36,86,92,.88) 55%,rgba(36,86,92,.25) 100%)}
 .band.flip .veil{background:linear-gradient(270deg,rgba(36,86,92,.92) 0%,rgba(36,86,92,.88) 55%,rgba(36,86,92,.25) 100%)}
-.band .dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.12) 1.1px,transparent 1.1px);background-size:20px 20px}
 .band .bcontent{position:relative;color:#fff;padding:48px;max-width:600px}
 .band.flip .bcontent{margin-left:auto;text-align:right}
 .band .bcontent .eyebrow{color:#fff}
@@ -274,7 +263,7 @@ img,svg{display:block;max-width:100%}
 
 /* ============ 7b. FREE TOOLS — featured card ============ */
 .tool-card.tool-featured{border:2px solid var(--teal);background:linear-gradient(135deg,var(--teal-pale) 0%,#fff 70%)}
-.tool-featured-badge{display:inline-block;font:700 12px 'Noto Sans JP',sans-serif;color:#fff;background:var(--teal-strong);padding:5px 14px;border-radius:999px;letter-spacing:.04em;margin-bottom:6px}/* 白文字 4.63:1 */
+.tool-featured-badge{display:inline-block;font:700 12px 'Noto Sans JP',sans-serif;color:#fff;background:var(--teal-strong);padding:4px 16px;border-radius:999px;letter-spacing:.04em;margin-bottom:4px}/* 白文字 4.63:1 */
 
 /* ============ 8. FLOW ============ */
 .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
@@ -308,13 +297,13 @@ img,svg{display:block;max-width:100%}
   .price-card__head{padding:20px 20px 16px}
   .price-card__body{padding:20px 20px 24px}
   .answer{padding:32px 24px}
-  .worry-card{padding:20px 18px}
-  .worry-card__head{gap:14px}
+  .worry-card{padding:20px 20px}
+  .worry-card__head{gap:12px}
   .worry-card__head .icon-badge-circle{--badge-size:44px}
   .answer-in{flex-direction:column;gap:16px}
   .tool-card{flex-direction:column;gap:16px}
   .tools-grid--single .tool-card{align-items:flex-start;gap:16px;padding:32px 24px}
-  .works-teaser{grid-template-columns:1fr;padding:28px 20px}
+  .works-teaser{grid-template-columns:1fr;padding:32px 20px}
   .works-teaser__visual{max-width:420px;width:100%;margin:0 auto}
   .tools-grid--single .tool-ic{width:72px;height:72px}
   .tools-grid--single .tool-ic svg{width:36px;height:36px}
@@ -334,7 +323,7 @@ img,svg{display:block;max-width:100%}
   .btn{padding:16px 24px;font-size:15px}
   .cta-row .btn{width:100%}
 }
-.badge--region{font-size:0.9rem;font-weight:600;padding:6px 14px}
+.badge--region{font-size:0.9rem;font-weight:600;padding:8px 16px}
 .hero-benefits{list-style:none;padding:0;margin:24px 0 0;display:flex;flex-direction:column;gap:12px}
 .hero-benefits li{display:flex;align-items:center;gap:12px;font-size:1.05rem;color:var(--body);font-weight:600;text-wrap:pretty}
 .hb-check{width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0;font-weight:700}
@@ -454,7 +443,6 @@ img,svg{display:block;max-width:100%}
       </div>
     </div>
     <div class="answer">
-      <span class="ring r1"></span><span class="ring r2"></span>
       <div class="answer-in">
         <span class="abadge ic"><svg viewBox="0 0 24 24"><path d="M5 13l4 4 10-11"/></svg></span>
         <div class="answer__body">
@@ -489,7 +477,6 @@ img,svg{display:block;max-width:100%}
       <article class="svc-card">
         <div class="svc-top">
           <span class="svc-ic ic"><svg viewBox="0 0 24 24"><path d="M3 17l4-8 4 4 4-6 4 8"/><path d="M3 20h18"/></svg></span>
-          <div class="svc-tag">SERVICE 01</div>
         </div>
         <div class="svc-body">
           <h3>業務の見直し支援（業務改善）</h3>
@@ -502,7 +489,6 @@ img,svg{display:block;max-width:100%}
       <article class="svc-card">
         <div class="svc-top">
           <span class="svc-ic ic"><svg viewBox="0 0 24 24"><path d="M12 4 22 9 12 14 2 9 12 4Z"/><path d="M6 11v5c0 1 2.7 2.4 6 2.4s6-1.4 6-2.4v-5"/></svg></span>
-          <div class="svc-tag">SERVICE 02</div>
         </div>
         <div class="svc-body">
           <h3>個別実装</h3>
@@ -550,17 +536,17 @@ img,svg{display:block;max-width:100%}
     </div>
     <div class="why-grid">
       <div class="why-card">
-        <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><span class="step-badge-solid step-badge-solid--sm">01</span><svg viewBox="0 0 24 24"><path d="M4 5h16v11H12l-4 3v-3H4Z"/><path d="M8.5 10.5l2 2 4-4"/></svg></span>
+        <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H12l-4 3v-3H4Z"/><path d="M8.5 10.5l2 2 4-4"/></svg></span>
         <h3>業務課題の理解から始める</h3>
         <p>AI導入ありきではありません。会社の困りごとを起点に、必要なところだけ仕組みを作ります。</p>
       </div>
       <div class="why-card">
-        <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><span class="step-badge-solid step-badge-solid--sm">02</span><svg viewBox="0 0 24 24"><path d="M15.5 20v-1.2a3.7 3.7 0 0 0-3.7-3.7H6.2A3.7 3.7 0 0 0 2.5 18.8V20"/><circle cx="9" cy="7" r="3.3"/><path d="M21.5 20v-1.2a3.7 3.7 0 0 0-2.8-3.6"/><path d="M15.5 3.9a3.3 3.3 0 0 1 0 6.4"/></svg></span>
+        <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15.5 20v-1.2a3.7 3.7 0 0 0-3.7-3.7H6.2A3.7 3.7 0 0 0 2.5 18.8V20"/><circle cx="9" cy="7" r="3.3"/><path d="M21.5 20v-1.2a3.7 3.7 0 0 0-2.8-3.6"/><path d="M15.5 3.9a3.3 3.3 0 0 1 0 6.4"/></svg></span>
         <h3>現場に入り込んで一緒に手を動かす</h3>
         <p>提案書を渡して終わりにはしません。現場に入り、実際の業務を一緒に見ながら組み立てる伴走スタイルです。</p>
       </div>
       <div class="why-card">
-        <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><span class="step-badge-solid step-badge-solid--sm">03</span><svg viewBox="0 0 24 24"><path d="M4 6h9M4 12h13M4 18h7"/><path d="M17 6l2.5 2.5L23 4"/></svg></span>
+        <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h9M4 12h13M4 18h7"/><path d="M17 6l2.5 2.5L23 4"/></svg></span>
         <h3>使い方を教えて自走できるようにする</h3>
         <p>「教えられる実装者」として、担当者が自分で回せるようになるまで伴走します。依存させません。</p>
       </div>
@@ -569,7 +555,7 @@ img,svg{display:block;max-width:100%}
     <!-- photo band -->
     <div class="why-band">
       <img src="./assets/band-onsite.jpg" alt="画面を一緒に見ながら業務を組み立てる手元" width="1400" height="934" loading="lazy">
-      <span class="veil"></span><span class="dots"></span>
+      <span class="veil"></span>
       <div class="bcontent">
         <span class="eyebrow">On Site</span>
         <h3>「提案書を渡して終わり」にはしません。</h3>
@@ -651,7 +637,7 @@ img,svg{display:block;max-width:100%}
   <div class="container band-wrap">
     <div class="band flip">
       <img src="./assets/band-together.jpg" alt="画面を一緒に見ながら検討する2人" width="1400" height="934" loading="lazy">
-      <span class="veil"></span><span class="dots"></span>
+      <span class="veil"></span>
       <div class="bcontent">
         <span class="eyebrow">Together</span>
         <h3>「一緒に走る」が、いちばんの強みです。</h3>
@@ -667,7 +653,6 @@ img,svg{display:block;max-width:100%}
     <div class="cv-card">
       <div class="cv-topbar"></div>
       <div class="cv-inner">
-        <span class="glow"></span>
         <span class="cv-tag"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>CONTACT ─ 無料</span>
         <h2>まず30分、話を聞かせてください</h2>
         <p class="lead">「何から手をつけるか」から一緒に考えます。売り込みはしません。</p>

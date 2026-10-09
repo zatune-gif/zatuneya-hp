@@ -40,7 +40,7 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--body);font-family:'Roboto','Noto Sans JP',system-ui,sans-serif;font-size:16px;line-height:1.9;letter-spacing:0.02em;-webkit-font-smoothing:antialiased}
 h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--head);margin:0;text-wrap:balance}
 p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
-:focus-visible{outline:3px solid var(--teal-text);outline-offset:3px;border-radius:6px}
+:focus-visible{outline:3px solid var(--teal-text);outline-offset:3px;border-radius:var(--r-sm)}
 .container{max-width:1120px;margin:0 auto;padding:0 32px;text-align:left}
 .container.narrow{max-width:800px}
 .section{padding:var(--s24) 0}
@@ -50,13 +50,13 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 .ic svg{width:100%;height:100%;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
 
 /* BUTTONS */
-.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease);cursor:pointer;white-space:nowrap}
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);cursor:pointer;white-space:nowrap}
 .btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
-.btn-primary{background:var(--orange);color:#332211;box-shadow:var(--sh-orange)}
+.btn-primary{background:var(--orange);color:#332211}
 .btn-primary:hover{background:var(--orange-d);transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
 .btn-outline{background:transparent;color:var(--teal-text);border-color:var(--teal)}
 .btn-outline:hover{background:var(--teal-pale);transform:translateY(-2px)}
-.btn-ghost{background:#fff;color:var(--teal-text);box-shadow:var(--sh-1)}
+.btn-ghost{background:#fff;color:var(--teal-text);border-color:var(--teal-line)}
 .btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
 
 /* PAGE HERO（背景・右側の斜めカット写真パネルは style.css の .hero-diagonal / .hero-photo-panel／山並みシルエットは .skyline-illust）
@@ -64,7 +64,7 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
    ヒーロー下部に他ページ共通の skyline-illust を敷くため、写真パネル用の padding-bottom は
    .page-hero（section）ではなく内側の .page-hero__inner に持たせ、写真の伸びる範囲を
    skyline の手前までに限定する（works.html 等と同じ「写真の下に山並み帯→白背景」の見え方に揃える） */
-.page-hero{padding:56px 0 0}
+.page-hero{padding:64px 0 0}
 .page-hero__inner{position:relative;padding-bottom:64px}
 @media(max-width:960px){.page-hero__inner{padding-bottom:0}}
 .page-hero .skyline-illust{margin-top:32px}
@@ -73,8 +73,7 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 
 /* SERVICE HERO CONTENT */
 .svc-hero-meta{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
-.svc-hero-num{font:900 14px/1 'Roboto',sans-serif;letter-spacing:.1em;color:var(--teal-text);background:var(--teal-pale);padding:6px 14px;border-radius:99px}
-.svc-hero-target{font:700 14px/1 'Noto Sans JP',sans-serif;color:var(--sub-text);background:#fff;border:1px solid var(--line);padding:6px 14px;border-radius:99px;line-height:1.5}
+.svc-hero-target{font:700 14px/1 'Noto Sans JP',sans-serif;color:var(--sub-text);background:#fff;border:1px solid var(--line);padding:8px 16px;border-radius:999px;line-height:1.5}
 .svc-hero-h1{font-size:clamp(28px,4vw,40px);line-height:1.3;margin:0 0 16px}
 .svc-hero-catch{font:700 18px/1.6 'Noto Sans JP',sans-serif;color:var(--teal-text)}
 .page-hero .container>*{max-width:620px}
@@ -82,11 +81,11 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 .svc-hero-grid>div{min-width:0}
 
 /* PRICE BOX */
-.price-box{background:#fff;border-radius:24px;padding:32px;box-shadow:var(--sh-2);border:1px solid var(--teal-line)}
+.price-box{background:#fff;border-radius:var(--r-card);padding:32px;border:1px solid var(--teal-line)}
 .price-box__label{font:700 12px/1 'Noto Sans JP',sans-serif;letter-spacing:.1em;color:var(--sub-text);text-transform:uppercase}
 .price-box__amount{font:900 clamp(20px,3vw,28px)/1.3 'Roboto','Noto Sans JP',sans-serif;color:var(--head);margin-top:12px;display:block}
-.price-box__sub{font:400 14px/1.8 'Noto Sans JP',sans-serif;color:var(--body);margin-top:10px;display:block}
-.price-box__note{display:inline-block;font:700 12.5px/1.6 'Noto Sans JP',sans-serif;color:var(--orange-text);background:var(--orange-pale);border-radius:10px;padding:10px 16px;margin-top:16px}
+.price-box__sub{font:400 14px/1.8 'Noto Sans JP',sans-serif;color:var(--body);margin-top:8px;display:block}
+.price-box__note{display:inline-block;font:700 12.5px/1.6 'Noto Sans JP',sans-serif;color:var(--orange-text);background:var(--orange-pale);border-radius:var(--r-sm);padding:12px 16px;margin-top:16px}
 .price-box__cta{margin-top:24px;display:flex;flex-direction:column;gap:12px}
 .price-box__cta .btn{justify-content:center}
 
@@ -96,9 +95,9 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 .body-text+.body-text{margin-top:16px}
 
 /* POINTS SECTION */
-.points-section{background:#fff;border-radius:24px;padding:40px;margin-top:40px;box-shadow:var(--sh-1)}
-.points-section__title{display:flex;align-items:center;gap:10px;margin-bottom:24px}
-.points-section__title .bar{width:24px;height:3px;border-radius:99px;background:var(--teal)}
+.points-section{background:#fff;border-radius:var(--r-card);padding:40px;margin-top:40px}
+.points-section__title{display:flex;align-items:center;gap:8px;margin-bottom:24px}
+.points-section__title .bar{width:24px;height:3px;border-radius:999px;background:var(--teal)}
 .points-section__title span{font:700 14px 'Noto Sans JP',sans-serif;letter-spacing:.06em;color:var(--head)}
 
 /* CTA ROW */
@@ -158,7 +157,6 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
         <span>AI活用伴走</span>
       </nav>
       <div class="svc-hero-meta">
-        <span class="svc-hero-num">SERVICE 03</span>
         <span class="svc-hero-target">一つうまくいったので、他の業務にも広げたい企業向け</span>
       </div>
       <span class="rule-accent" aria-hidden="true"></span>
@@ -222,7 +220,6 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
     <div class="cv-card">
       <div class="cv-topbar"></div>
       <div class="cv-inner">
-        <span class="glow"></span>
         <span class="cv-tag"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>CONTACT ─ 無料</span>
         <h2>まずはお気軽にご相談ください</h2>
         <p class="lead">「うちの業務でも使えるか？」の段階で大丈夫です。相談・お見積りはすべて無料です。</p>
