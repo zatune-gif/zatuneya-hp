@@ -481,6 +481,9 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   .site-nav__dropdown-trigger {
     width: 100%;
     padding: 12px 16px;
+    /* button要素はiOS Safariで中身が中央寄せになるため、他のメニュー項目と揃えて左寄せを明示 */
+    justify-content: flex-start;
+    text-align: left;
   }
 
   .site-nav__item--dropdown {
@@ -983,6 +986,10 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   .mobile-cta-bar a {
     flex: 1;
     max-width: 200px;
+    /* 片方が2行に折り返しても、もう片方の文字を上下中央に揃える */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     padding: 12px 8px;
     border-radius: var(--r-sm);
