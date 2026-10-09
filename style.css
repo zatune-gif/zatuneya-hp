@@ -170,6 +170,7 @@ body {
 .cv-foot { position: relative; font-size: 14px; line-height: 1.6; color: var(--sub-text); margin-top: 24px; }
 .cv-foot a { color: var(--teal-text); font-weight: 700; text-decoration: none; }
 .cv-foot a:hover { text-decoration: underline; }
+.cv-foot a, .contact-mail a { display: inline-block; padding: 4px 0; } /* 文中リンクでも押せる高さを24px以上に */
 
 /* ── 無料ツール ── */
 .tool-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; text-align: left; }
@@ -733,7 +734,7 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
     min-height: 0;
     padding: 12px 64px 16px 16px;
   }
-  .sticky-cta__text { width: 100%; font-size: 12px; text-wrap: balance; }
+  .sticky-cta__text { width: 100%; font-size: 14px; text-wrap: balance; }
   .sticky-cta__btn { min-height: 40px; padding: 8px 20px; font-size: 14px; }
   .sticky-cta__close { right: 12px; }
   body:not(:has(.mobile-cta-bar)):has(.sticky-cta:not(.is-closed)) { padding-bottom: 96px; }
