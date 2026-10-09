@@ -24,74 +24,39 @@
 /* ============================================================
    ざつね屋 — contact.html  (design system shared with index.html)
    ============================================================ */
-:root{
-  --bg:#EFF4F5; --card:#fff;
-  --teal:#5BBDC8; --teal-d:#46A6B1; --teal-pale:#EAF6F8; --teal-pale2:#DCF0F2; --teal-line:#D3E7EA;
-  --orange:#F8981D; --orange-d:#E28511; --orange-pale:#FFF8EF; --orange-line:#F6E4C8;
-  --sub:#839CAA; --head:#3C3C3C; --body:#575757;
-  --line:#E1EAEC;
-  /* --- 文字専用トークン (G2: WCAG AA). --teal-d/--sub/--orange-d は背景・アイコン・枠線用のまま残す --- */
-  --teal-text:#31747C;   /* on #fff 5.36 / --bg 4.83 / --teal-pale 4.86 / --teal-pale2 4.54 */
-  --sub-text:#556E7C;    /* on #fff 5.37 / --bg 4.84 / --teal-pale 4.87 / --teal-pale2 4.55 */
-  --orange-text:#9C5C0C; /* on #fff 5.32 / --orange-pale 5.05 / --bg 4.79 */
-  --band-a:#2B7881; --band-b:#24565C;
-  --sh-1:0 1px 3px rgba(40,60,70,.05), 0 4px 12px rgba(40,60,70,.05);
-  --sh-2:0 2px 6px rgba(40,60,70,.06), 0 14px 30px rgba(40,60,70,.10);
-  --sh-3:0 6px 14px rgba(40,60,70,.10), 0 30px 60px rgba(40,60,70,.18);
-  --sh-orange:0 10px 24px rgba(248,152,29,.34);
-  --sh-orange-h:0 16px 32px rgba(248,152,29,.44);
-  --s2:8px; --s3:12px; --s4:16px; --s6:24px; --s8:32px; --s10:40px; --s12:48px; --s16:64px; --s20:80px; --s24:96px;
-  --ease:cubic-bezier(.22,.61,.36,1);
-}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--body);font-family:'Roboto','Noto Sans JP',system-ui,sans-serif;font-size:16px;line-height:1.9;letter-spacing:0.02em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--head);margin:0;text-wrap:balance}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Roboto','Noto Sans JP',system-ui,sans-serif;font-size:16px;line-height:1.9;letter-spacing:0.02em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--heading);margin:0;text-wrap:balance}
 p{margin:0}
 a{color:inherit}
 img,svg{display:block;max-width:100%}
-:focus-visible{outline:3px solid var(--teal-text);outline-offset:3px;border-radius:6px}
+:focus-visible{outline:3px solid var(--teal-text);outline-offset:3px;border-radius:var(--r-sm)}
 .site-footer :focus-visible{outline-color:#fff}
 .container{max-width:1120px;margin:0 auto;padding:0 32px}
 .container.tight{max-width:960px}
-.section{padding:var(--s24) 0}
-.bg-white{background:#fff}
-.bg-tint{background:var(--bg)}
 .eyebrow{display:inline-block;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.22em;color:var(--teal-text);text-transform:uppercase}
-.ic{display:inline-flex;align-items:center;justify-content:center}
-.ic svg{width:100%;height:100%;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
 
 /* BUTTONS */
-.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease);cursor:pointer;white-space:nowrap}
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);cursor:pointer;white-space:nowrap}
 .btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
-.btn-primary{background:var(--orange);color:#332211;box-shadow:var(--sh-orange)}
-.btn-primary:hover{background:var(--orange-d);transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
-.btn-primary:active{transform:translateY(0);box-shadow:0 4px 12px rgba(248,152,29,.4)}
-.btn-outline{background:transparent;color:var(--teal-text);border-color:var(--teal)}
-.btn-outline:hover{background:var(--teal-pale);transform:translateY(-2px)}
-.btn-ghost{background:#fff;color:var(--teal-text);box-shadow:var(--sh-1)}
-.btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
 
 /* ============ CONTACT ============ */
 .contact-hero{padding:64px 0 0;text-align:center}
 .contact-hero .skyline-illust{margin-top:32px}
-.contact-hero .rule-accent{margin:18px auto 0}
+.contact-hero .rule-accent{margin:16px auto 0}
 .contact-form-section{padding-top:40px}
 .contact-hero h1{font-size:clamp(28px,4vw,36px);margin:12px 0 0}
-.contact-hero p{margin:16px auto 0;max-width:560px;color:var(--body);line-height:1.9;font-family:'Noto Sans JP',sans-serif}
+.contact-hero p{margin:16px auto 0;max-width:560px;color:var(--text);line-height:1.9;font-family:'Noto Sans JP',sans-serif}
 .contact-form-section{padding:0 0 96px}
-.contact-form-card{background:#fff;border-radius:24px;padding:32px;box-shadow:0 6px 14px rgba(40,60,70,.10),0 30px 60px rgba(40,60,70,.18)}
-.contact-form-card__intro{display:flex;align-items:center;gap:16px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--line)}
-.contact-form-card__portrait{flex:none;width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid var(--teal-pale)}
-.contact-form-card__intro-text{font-family:'Noto Sans JP',sans-serif;font-size:14.5px;line-height:1.7;color:var(--body);margin:0}
+.contact-form-card{background:#fff;border-radius:var(--r-card);padding:32px;border:1px solid var(--card-line)}
+.contact-form-card__intro{display:flex;align-items:center;gap:16px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--card-line)}
+.contact-form-card__portrait{flex:none;width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid var(--teal-soft)}
+.contact-form-card__intro-text{font-family:'Noto Sans JP',sans-serif;font-size:14.5px;line-height:1.7;color:var(--text);margin:0}
 .contact-mail-note{text-align:center;margin-top:24px;font-size:14px;color:var(--sub-text)}
-.contact-mail-note a{color:var(--teal-text)}
+.contact-mail-note a{display:inline-block;color:var(--teal-text);padding:4px 0}
 
 /* RESPONSIVE */
-@media (max-width:960px){
-  .nav-desktop{display:none}
-  .mnav{display:block}
-}
 @media (max-width:680px){
   :root{--s24:64px;--s20:48px;--s16:40px;--s12:32px}
   .container{padding:0 20px}

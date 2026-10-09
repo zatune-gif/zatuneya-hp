@@ -31,33 +31,21 @@
       color: var(--heading);
       margin: 0 0 16px;
     }
-    .breadcrumb {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 6px;
-      font: 400 13px 'Noto Sans JP', sans-serif;
-      color: var(--sub-text);
-      margin-bottom: 20px;
-    }
-    .breadcrumb a { color: var(--sub-text); text-decoration: none; }
-    .breadcrumb a:hover { text-decoration: underline; }
-    .breadcrumb-sep { color: var(--card-line); }
 
     .pp-wrap {
       max-width: 720px;
       margin: 0 auto;
-      padding: 56px 24px 96px;
+      padding: 64px 24px 96px;
     }
     .pp-section {
       margin-bottom: 40px;
     }
     .pp-section h2 {
-      font: 700 17px/1.4 'Noto Sans JP', sans-serif;
+      font: 700 17px/1.5 'Noto Sans JP', sans-serif;
       color: var(--heading);
       border-left: 4px solid var(--teal);
       padding-left: 12px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .pp-section p,
     .pp-section li {
@@ -79,7 +67,7 @@
     .pp-table th,
     .pp-table td {
       text-align: left;
-      padding: 14px 16px;
+      padding: 16px 16px;
       font: 400 14px/1.75 'Noto Sans JP', sans-serif;
       color: var(--text);
       border-bottom: 1px solid var(--card-line);
@@ -111,20 +99,20 @@
       }
       .pp-table tr {
         border: 1px solid var(--card-line);
-        border-radius: 12px;
+        border-radius: var(--r-sm);
         background: #fff;
-        padding: 14px 16px;
+        padding: 16px 16px;
         margin-top: 12px;
       }
       .pp-table tr:first-child {
         margin-top: 0;
       }
       .pp-table th {
-        padding: 0 0 6px;
+        padding: 0 0 8px;
         border: none;
         background: transparent;
         white-space: normal;
-        font-size: 13px;
+        font-size: 14px;
         color: var(--sub-text);
       }
       .pp-table td {
@@ -133,20 +121,16 @@
         background: transparent;
       }
     }
-    .placeholder {
-      color: var(--sub-text);
-      font-style: italic;
-    }
     .pp-note {
-      font: 400 13px/1.8 'Noto Sans JP', sans-serif;
+      font: 400 14px/1.8 'Noto Sans JP', sans-serif;
       color: var(--sub-text);
       margin-top: 12px;
     }
     .pp-contact-box {
       background: #fff;
       border: 1px solid var(--card-line);
-      border-radius: 16px;
-      padding: 24px 28px;
+      border-radius: var(--r-card);
+      padding: 24px 32px;
       margin-top: 12px;
     }
     .pp-contact-box p {
@@ -166,6 +150,7 @@
       border-top: 1px solid var(--card-line);
       margin: 48px 0;
     }
+    td a { display: inline-block; padding: 4px 0; } /* 表内の単独リンクも高さ24px以上 */
   </style>
 </head>
 <body>

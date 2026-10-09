@@ -24,39 +24,19 @@
 /* ============================================================
    ざつね屋 — profile.html  (design system shared with index.html)
    ============================================================ */
-:root{
-  --bg:#EFF4F5; --card:#fff;
-  --teal:#5BBDC8; --teal-d:#46A6B1; --teal-pale:#EAF6F8; --teal-pale2:#DCF0F2; --teal-line:#D3E7EA;
-  --orange:#F8981D; --orange-d:#E28511; --orange-pale:#FFF8EF; --orange-line:#F6E4C8;
-  --sub:#839CAA; --head:#3C3C3C; --body:#575757;
-  --line:#E1EAEC;
-  /* --- 文字専用トークン (G2: WCAG AA). --teal-d/--sub/--orange-d は背景・アイコン・枠線用のまま残す --- */
-  --teal-text:#31747C;   /* on #fff 5.36 / --bg 4.83 / --teal-pale 4.86 / --teal-pale2 4.54 */
-  --sub-text:#556E7C;    /* on #fff 5.37 / --bg 4.84 / --teal-pale 4.87 / --teal-pale2 4.55 */
-  --orange-text:#9C5C0C; /* on #fff 5.32 / --orange-pale 5.05 / --bg 4.79 */
-  --band-a:#2B7881; --band-b:#24565C; /* 価格帯グラデ: 白文字 5.11 / 8.20 */
-  --sh-1:0 1px 3px rgba(40,60,70,.05), 0 4px 12px rgba(40,60,70,.05);
-  --sh-2:0 2px 6px rgba(40,60,70,.06), 0 14px 30px rgba(40,60,70,.10);
-  --sh-3:0 6px 14px rgba(40,60,70,.10), 0 30px 60px rgba(40,60,70,.18);
-  --sh-orange:0 10px 24px rgba(248,152,29,.34);
-  --sh-orange-h:0 16px 32px rgba(248,152,29,.44);
-  --s2:8px; --s3:12px; --s4:16px; --s6:24px; --s8:32px; --s10:40px; --s12:48px; --s16:64px; --s20:80px; --s24:96px;
-  --ease:cubic-bezier(.22,.61,.36,1);
-}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--body);font-family:'Roboto','Noto Sans JP',system-ui,sans-serif;font-size:16px;line-height:1.9;letter-spacing:0.02em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--head);margin:0;text-wrap:balance}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Roboto','Noto Sans JP',system-ui,sans-serif;font-size:16px;line-height:1.9;letter-spacing:0.02em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--heading);margin:0;text-wrap:balance}
 p{margin:0}
 a{color:inherit}
 img,svg{display:block;max-width:100%}
-:focus-visible{outline:3px solid var(--teal-text);outline-offset:3px;border-radius:6px}
-.site-footer :focus-visible,.price-band :focus-visible{outline-color:#fff}/* 暗い面では白リング: #334A52 上 9.37 / 帯上 5.11 */
+:focus-visible{outline:3px solid var(--teal-text);outline-offset:3px;border-radius:var(--r-sm)}
+.site-footer :focus-visible{outline-color:#fff}/* 暗い面では白リング: #334A52 上 9.37 / 帯上 5.11 */
 .container{max-width:1120px;margin:0 auto;padding:0 32px}
 .section{padding:var(--s24) 0}
 .bg-white{background:#fff}
 .bg-tint{background:var(--bg)}
-.pt-0{padding-top:0}
 .eyebrow{display:inline-block;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.22em;color:var(--teal-text);text-transform:uppercase}
 .ic{display:inline-flex;align-items:center;justify-content:center}
 .ic svg{width:100%;height:100%;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
@@ -66,58 +46,58 @@ img,svg{display:block;max-width:100%}
 /* STORY：代表イラスト＋本文の2カラム。下余白を詰め、続く WHY（淡色背景）へ連続させる */
 .pt-tight{padding-top:var(--s16)}
 .story-section{padding-bottom:var(--s16)}
-.story-grid{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:56px;align-items:center}
+.story-grid{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:48px;align-items:center}
 .story-portrait{margin:0;position:relative}
-.story-portrait::before{content:"";position:absolute;inset:20px -20px -20px 20px;border-radius:28px;background:var(--teal-pale2);z-index:0}
-.story-portrait img{position:relative;z-index:1;width:100%;height:auto;border-radius:24px;box-shadow:var(--sh-3)}
+.story-portrait::before{content:"";position:absolute;inset:20px -20px -20px 20px;border-radius:var(--r-card);background:var(--teal-soft2);z-index:0}
+.story-portrait img{position:relative;z-index:1;width:100%;height:auto;border-radius:var(--r-card)}
 .story-main .sec-head{text-align:left;margin:0 0 var(--s8);max-width:none}
 .story-main .story-body{margin:0;max-width:600px}
 /* STORY 本文（見出しは .sec-head で中央、本文はここで左寄せ・階層化） */
-.story-body{max-width:620px;margin:0 auto;text-align:left;font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);line-break:strict;word-break:keep-all;overflow-wrap:anywhere}
+.story-body{max-width:620px;margin:0 auto;text-align:left;font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--text);line-break:strict;word-break:keep-all;overflow-wrap:anywhere}
 .story-body p + p{margin-top:var(--s6)}
-.story-body p.story-lead{font-size:16.5px;font-weight:500;color:var(--head)}
-.story-body p.story-pull{font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:clamp(18px,2.4vw,22px);line-height:1.65;letter-spacing:.02em;color:var(--head);border-left:3px solid var(--teal);padding-left:var(--s4)}
+.story-body p.story-lead{font-size:16.5px;font-weight:500;color:var(--heading)}
+.story-body p.story-pull{font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:clamp(18px,2.4vw,22px);line-height:1.65;letter-spacing:.02em;color:var(--heading);border-left:3px solid var(--teal);padding-left:var(--s4)}
 .story-body p.story-pull,
 .story-body p.story-pull + p{margin-top:var(--s10)}
 
 /* BUTTONS */
-.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease);cursor:pointer;white-space:nowrap}
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);cursor:pointer;white-space:nowrap}
 .btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
-.btn-primary{background:var(--orange);color:#332211;box-shadow:var(--sh-orange)}/* 文字色: 白は 2.21:1 で不合格。ブランドのオレンジを保つため濃色ブラウン #332211 = 6.90:1（hover の --orange-d 上でも 5.51:1）*/
-.btn-primary:hover{background:var(--orange-d);transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
+.btn-primary{background:var(--orange);color:var(--on-orange)}/* 文字色: 白は 2.21:1 で不合格。ブランドのオレンジを保つため濃色ブラウン #332211 = 6.90:1（hover の --orange-d 上でも 5.51:1）*/
+.btn-primary:hover{background:var(--orange-dk);transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
 .btn-primary:active{transform:translateY(0);box-shadow:0 4px 12px rgba(248,152,29,.4)}
 .btn-outline{background:transparent;color:var(--teal-text);border-color:var(--teal)}
-.btn-outline:hover{background:var(--teal-pale);transform:translateY(-2px)}
+.btn-outline:hover{background:var(--teal-soft);transform:translateY(-2px)}
 .btn-outline:active{transform:translateY(0)}
 
 /* PAGE HERO（背景・右上の斜めカット装飾・山並みシルエットは style.css の .hero-diagonal / .corner-diagonal / .skyline-illust） */
 .page-hero{padding:0}
-.badge{display:inline-flex;align-items:center;gap:8px;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-text);background:#fff;padding:8px 16px;border-radius:999px;box-shadow:var(--sh-1)}
+.badge{display:inline-flex;align-items:center;gap:8px;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-text);background:#fff;padding:8px 16px;border-radius:999px;border:1px solid var(--card-line)}
 .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
 /* ヒーローはテキストのみ（代表イラストは直下の STORY セクションへ移動し、本文と2カラムで組む） */
 .heroC .ph-inner{position:relative;padding:var(--s20) 0 var(--s12)}
 .heroC .txt{max-width:760px;margin:0 auto;text-align:center}
 .heroC .hero-cta{justify-content:center}
 .heroC .txt h1{font-size:clamp(28px,3.6vw,40px);line-height:1.3;margin:24px 0 0;letter-spacing:.01em}
-.heroC .txt .role-tag{display:block;font:700 14px/1.6 'Noto Sans JP',sans-serif;color:var(--teal-text);margin-top:10px}
-.heroC .txt .lead{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--body);max-width:620px;margin:16px auto 0}
+.heroC .txt .role-tag{display:block;font:700 14px/1.6 'Noto Sans JP',sans-serif;color:var(--teal-text);margin-top:8px}
+.heroC .txt .lead{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--text);max-width:620px;margin:16px auto 0}
 .heroC .hero-cta{display:flex;flex-wrap:wrap;gap:16px;margin-top:24px}
 
 /* WHY (再掲・簡略) */
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.why-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:32px;box-shadow:var(--sh-1);text-align:center}
+.why-card{background:#fff;border:1px solid var(--card-line);border-radius:var(--r-card);padding:32px;text-align:center}
 /* アイコンは works.html・トップと同じ円形。Why（理由1〜3）だけトップと同じく塗り番号バッジ（01/02/03）を重ね、Values とは型で区別する */
-.why-ic{width:64px;height:64px;border-radius:50%;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;margin:0 auto}
+.why-ic{width:64px;height:64px;border-radius:50%;background:var(--teal-soft);display:flex;align-items:center;justify-content:center;margin:0 auto}
 .why-ic svg{width:33px;height:33px;stroke:var(--teal-deep);stroke-width:1.5}
 .why-card .icon-badge-circle{display:flex;margin:0 auto}
 .why-card h3{font-size:17px;margin:16px 0 0}
-.why-card p{font:400 13px/1.8 'Noto Sans JP',sans-serif;color:var(--body);margin:12px 0 0;text-align:left}
-.why-src{display:inline-block;font:700 11.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-text);background:var(--teal-pale);padding:8px 16px;border-radius:999px;margin-top:16px;word-break:keep-all;overflow-wrap:anywhere}
+.why-card p{font:400 14px/1.8 'Noto Sans JP',sans-serif;color:var(--text);margin:12px 0 0;text-align:left}
+.why-src{display:inline-block;font:700 12px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-text);background:var(--teal-soft);padding:8px 16px;border-radius:999px;margin-top:16px;word-break:keep-all;overflow-wrap:anywhere}
 
 /* CV: .cv-section/.cv-card/.cv-topbar/.cv-inner/.glow/.cv-tag/.cv-cta-row/.cv-foot は
    全ページ共通のため style.css 側へ統一済み（このページでの重複定義は削除。旧 .cv-cta/.cv-note は
    他ページと揃えて .cv-cta-row/.cv-foot に統一） */
-.btn-ghost{background:#fff;color:var(--teal-text);box-shadow:var(--sh-1)}
+.btn-ghost{background:#fff;color:var(--teal-text);border-color:var(--teal-line)}
 .btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
 
 /* RESPONSIVE */
@@ -141,7 +121,6 @@ img,svg{display:block;max-width:100%}
   body{font-size:15px}
   .btn{padding:16px 24px;font-size:15px}
   .cv-cta-row .btn{width:100%}
-  .brand{font-size:19px}
 }
 </style>
 </head>
@@ -231,19 +210,19 @@ img,svg{display:block;max-width:100%}
     </div>
     <div class="why-grid">
       <div class="why-card">
-        <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><span class="step-badge-solid step-badge-solid--sm">01</span><svg viewBox="0 0 24 24"><path d="M4 5h16v11H12l-4 3v-3H4Z"/><path d="M8.5 10.5l2 2 4-4"/></svg></span>
+        <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H12l-4 3v-3H4Z"/><path d="M8.5 10.5l2 2 4-4"/></svg></span>
         <h3>教えられる実装者</h3>
         <p>ざつね屋では、提案にとどまらず、現場に合わせたAI指示書・手順書の作成、操作説明、運用後の改善まで一貫して対応します。教える仕事と、実際に作る仕事の両方を続けてきました。</p>
         <span class="why-src">パソコン講師／専門学校の担任／AIプロダクト開発</span>
       </div>
       <div class="why-card">
-        <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><span class="step-badge-solid step-badge-solid--sm">02</span><svg viewBox="0 0 24 24"><path d="M15.5 20v-1.2a3.7 3.7 0 0 0-3.7-3.7H6.2A3.7 3.7 0 0 0 2.5 18.8V20"/><circle cx="9" cy="7" r="3.3"/><path d="M21.5 20v-1.2a3.7 3.7 0 0 0-2.8-3.6"/><path d="M15.5 3.9a3.3 3.3 0 0 1 0 6.4"/></svg></span>
+        <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15.5 20v-1.2a3.7 3.7 0 0 0-3.7-3.7H6.2A3.7 3.7 0 0 0 2.5 18.8V20"/><circle cx="9" cy="7" r="3.3"/><path d="M21.5 20v-1.2a3.7 3.7 0 0 0-2.8-3.6"/><path d="M15.5 3.9a3.3 3.3 0 0 1 0 6.4"/></svg></span>
         <h3>現場でのデジタル化推進経験</h3>
         <p>ツール導入・業務標準化を、現場で回してきた経験があります。人材育成や業務手順書づくりを通じて「人が動く仕組み」を作ってきました。導入して終わりではなく、結果が出るまで付き合います。</p>
         <span class="why-src">NPO法人代表／企業の課長職／専門学校の担任</span>
       </div>
       <div class="why-card">
-        <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><span class="step-badge-solid step-badge-solid--sm">03</span><svg viewBox="0 0 24 24"><path d="M4 6h9M4 12h13M4 18h7"/><path d="M17 6l2.5 2.5L23 4"/></svg></span>
+        <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h9M4 12h13M4 18h7"/><path d="M17 6l2.5 2.5L23 4"/></svg></span>
         <h3>業務整理から入れる</h3>
         <p>「AIをどう使うか」の前に、「どの業務を変えるか」を一緒に決められます。課題のヒアリング、業務フローの可視化、要件定義から対応できるので、遠回りしません。</p>
         <span class="why-src">Webディレクター／カスタマーエンジニア／DX推進担当</span>
@@ -285,7 +264,6 @@ img,svg{display:block;max-width:100%}
     <div class="cv-card">
       <div class="cv-topbar"></div>
       <div class="cv-inner">
-        <span class="glow"></span>
         <span class="cv-tag"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>CONTACT ─ 無料</span>
         <h2>まずはお気軽にご相談ください</h2>
         <p class="lead">「うちの業務でも使えるか？」の段階で大丈夫です。相談・お見積りはすべて無料です。</p>
