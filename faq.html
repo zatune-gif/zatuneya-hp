@@ -30,7 +30,7 @@
 .page-hero .container{text-align:left;padding:0 32px}
 .page-hero .eyebrow{display:block;margin-bottom:12px}
 .page-hero h1{font-size:clamp(28px,4vw,38px);line-height:1.3;margin:0 0 16px}
-.page-hero__lead{font-family:'Noto Sans JP',sans-serif;font-size:16px;line-height:1.9;color:var(--body,#575757);max-width:640px;margin:0;word-break:keep-all;overflow-wrap:anywhere}
+.page-hero__lead{font-family:'Noto Sans JP',sans-serif;font-size:16px;line-height:1.9;color:var(--text,var(--text));max-width:640px;margin:0;word-break:keep-all;overflow-wrap:anywhere}
 .page-hero__row{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}
 .page-hero__text{flex:1;min-width:0}
 .page-hero__portrait{flex:none;width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:top center;border:3px solid #fff}
@@ -45,25 +45,16 @@
 /* ─── FAQ アコーディオン ─── */
 .faq-question{margin:0}
 .faq-question__btn{all:unset;display:flex;align-items:flex-start;gap:16px;width:100%;box-sizing:border-box;cursor:pointer;font:700 16px/1.7 'Noto Sans JP',sans-serif;color:var(--heading)}
-.faq-question__btn:focus-visible{outline:3px solid var(--teal-text,#31747C);outline-offset:4px;border-radius:var(--r-sm)}
+.faq-question__btn:focus-visible{outline:3px solid var(--teal-text,var(--teal-text));outline-offset:4px;border-radius:var(--r-sm)}
 .faq-question__toggle{flex:none;width:28px;height:28px;border-radius:50%;background:var(--bg,#EFF4F5);display:flex;align-items:center;justify-content:center;margin-top:4px;transition:background var(--dur) var(--ease)}
-.faq-question__toggle svg{width:14px;height:14px;stroke:var(--teal-text,#31747C);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;fill:none;transition:transform var(--dur) var(--ease)}
-.faq-question__btn[aria-expanded="true"] .faq-question__toggle{background:var(--teal-pale,#EAF6F8)}
+.faq-question__toggle svg{width:14px;height:14px;stroke:var(--teal-text,var(--teal-text));stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;fill:none;transition:transform var(--dur) var(--ease)}
+.faq-question__btn[aria-expanded="true"] .faq-question__toggle{background:var(--teal-soft,#EAF6F8)}
 .faq-question__btn[aria-expanded="true"] .faq-question__toggle svg{transform:rotate(180deg)}
 .faq-answer[hidden]{display:none}
 
 /* ─── CV section (CTA) ─── */
-:root{
-  --sh-1:0 1px 3px rgba(40,60,70,.05),0 4px 12px rgba(40,60,70,.05);
-  --sh-2:0 2px 6px rgba(40,60,70,.06),0 14px 30px rgba(40,60,70,.10);
-  --sh-3:0 6px 14px rgba(40,60,70,.10),0 30px 60px rgba(40,60,70,.18);
-  --sh-orange:0 10px 24px rgba(248,152,29,.34);
-  --sh-orange-h:0 16px 32px rgba(248,152,29,.44);
-}
-.cv-section .btn-primary,.section-cta .btn-primary{background:var(--orange);color:#332211;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);display:inline-flex;align-items:center;justify-content:center;gap:8px}
-.cv-section .btn-primary:hover,.section-cta .btn-primary:hover{background:#E28511;transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
-.cv-section .btn-ghost{background:#fff;color:var(--teal-text);font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid var(--teal-line);transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);display:inline-flex;align-items:center;justify-content:center;gap:8px}
-.cv-section .btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
+.cv-section .btn-primary,.section-cta .btn-primary{background:var(--orange);color:var(--on-orange);font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.cv-section .btn-primary:hover,.section-cta .btn-primary:hover{background:var(--orange-dk);transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
 .cv-section .btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
 </style>
 </head>
