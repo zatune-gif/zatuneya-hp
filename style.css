@@ -737,7 +737,7 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   .sticky-cta__text { width: 100%; font-size: 14px; text-wrap: balance; }
   .sticky-cta__btn { min-height: 40px; padding: 8px 20px; font-size: 14px; }
   .sticky-cta__close { right: 12px; }
-  body:not(:has(.mobile-cta-bar)):has(.sticky-cta:not(.is-closed)) { padding-bottom: 96px; }
+  body:not(:has(.mobile-cta-bar)):has(.sticky-cta:not(.is-closed)) { padding-bottom: calc(96px + 32px); } /* 14px文字で2行に折り返す固定バーの高さ分 */
 }
 
 /* ── パンくず（全ページ共通。リンクは高さ24px以上、区切りは文字色と同じ --sub-text で 5:1 以上） ── */
