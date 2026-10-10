@@ -685,8 +685,9 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   min-height: 44px;
   padding: 12px 32px;
   border-radius: 999px;
-  background: var(--orange);
-  color: var(--on-orange); /* オレンジ上の濃色文字 6.90:1（.btn-primary と同じ） */
+  /* AI診断ボタン。サイト共通の色の役割（オレンジ＝お問い合わせ）に合わせ、濃いティール地の上では白地＋ティール文字にする */
+  background: #fff;
+  color: var(--teal-text); /* 白地のティール文字 5.36:1 */
   font: 900 14px/1.5 'Noto Sans JP', sans-serif;
   letter-spacing: .02em;
   text-decoration: none;
@@ -694,9 +695,9 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   transition: background var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
 .sticky-cta__btn:hover {
-  background: var(--orange-dk);
+  background: var(--teal-soft);
   transform: translateY(-1px);
-  box-shadow: 0 12px 26px rgba(248, 152, 29, .42);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, .18);
 }
 .sticky-cta__btn:focus-visible,
 .sticky-cta__close:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
@@ -1002,14 +1003,14 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
     font-size: 0.9rem;
     text-decoration: none;
   }
-  /* ページ内のボタンと同じ配色にそろえる（お問い合わせ＝ティール、AI診断＝オレンジ） */
+  /* サイト共通の色の役割：お問い合わせ＝オレンジ（主）、AI診断＝ティール（副） */
   .mobile-cta-bar .mobile-cta-primary {
-    background: var(--teal-strong);
-    color: #fff; /* 4.63:1 */
+    background: var(--orange);
+    color: var(--on-orange); /* オレンジ上の濃色文字 6.90:1 */
   }
   .mobile-cta-bar .mobile-cta-sub {
-    background: var(--orange);
-    color: var(--on-orange); /* オレンジ上の濃色文字 6.90:1（他のオレンジボタンと同じ） */
+    background: var(--teal-strong);
+    color: #fff; /* 4.63:1 */
   }
   /* スマホ下部バーがコンテンツと重ならないよう余白 */
   body {
