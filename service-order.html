@@ -157,7 +157,10 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
       </div>
     </div>
     <div class="hero-photo-panel" aria-hidden="true">
-      <img src="./assets/hero-code.jpg" alt="" width="315" height="285" loading="eager">
+      <picture>
+        <source type="image/webp" srcset="./assets/hero-code-630.webp 1x, ./assets/hero-code-1260.webp 2x">
+        <img src="./assets/hero-code-630.jpg" srcset="./assets/hero-code-630.jpg 1x, ./assets/hero-code-1260.jpg 2x" alt="" width="630" height="570" decoding="async" fetchpriority="high">
+      </picture>
     </div>
   </div>
   <img class="skyline-illust" src="./assets/skyline.svg" alt="" width="1440" height="140" aria-hidden="true">
