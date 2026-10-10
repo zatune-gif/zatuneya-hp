@@ -1002,13 +1002,14 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
     font-size: 0.9rem;
     text-decoration: none;
   }
+  /* ページ内のボタンと同じ配色にそろえる（お問い合わせ＝ティール、AI診断＝オレンジ） */
   .mobile-cta-bar .mobile-cta-primary {
-    background: var(--orange);
-    color: var(--on-orange); /* オレンジ上の濃色文字 6.90:1（他のオレンジボタンと同じ） */
-  }
-  .mobile-cta-bar .mobile-cta-sub {
     background: var(--teal-strong);
     color: #fff; /* 4.63:1 */
+  }
+  .mobile-cta-bar .mobile-cta-sub {
+    background: var(--orange);
+    color: var(--on-orange); /* オレンジ上の濃色文字 6.90:1（他のオレンジボタンと同じ） */
   }
   /* スマホ下部バーがコンテンツと重ならないよう余白 */
   body {
