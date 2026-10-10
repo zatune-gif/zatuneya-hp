@@ -31,15 +31,11 @@ h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--he
 p{margin:0}
 a{color:inherit}
 img,svg{display:block;max-width:100%}
-:focus-visible{outline:3px solid var(--teal-text);outline-offset:3px;border-radius:var(--r-sm)}
-.site-footer :focus-visible{outline-color:#fff}
 .container{max-width:1120px;margin:0 auto;padding:0 32px}
 .container.tight{max-width:960px}
 .eyebrow{display:inline-block;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.22em;color:var(--teal-text);text-transform:uppercase}
 
 /* BUTTONS */
-.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);cursor:pointer;white-space:nowrap}
-.btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
 
 /* ============ CONTACT ============ */
 .contact-form-section{padding-top:40px}
@@ -59,7 +55,6 @@ img,svg{display:block;max-width:100%}
 }
 @media (max-width:400px){
   body{font-size:15px}
-  .btn{padding:16px 24px;font-size:15px}
   .contact-form-card__intro{gap:12px}
   .contact-form-card__portrait{width:52px;height:52px}
 }
@@ -94,11 +89,11 @@ img,svg{display:block;max-width:100%}
   </div>
 </header>
 
-<div class="sticky-cta" id="sticky-cta">
-  <p class="sticky-cta__text">AIが自社に使えるか、まず無料で確かめてみませんか？</p>
-  <a href="https://ai-shindan-zatuneya.netlify.app/" class="sticky-cta__btn">無料診断を受ける</a>
+<aside class="sticky-cta" id="sticky-cta" aria-label="AI診断のご案内">
+  <p class="sticky-cta__text"><span class="nw">AIが自社に使えるか、</span><span class="nw">まず無料で確かめてみませんか？</span></p>
+  <a href="https://ai-shindan-zatuneya.netlify.app/" class="sticky-cta__btn">AI診断してみる</a>
   <button class="sticky-cta__close" id="sticky-cta-close" aria-label="バナーを閉じる">✕</button>
-</div>
+</aside>
 
 <main>
   <section class="sub-hero hero-diagonal">
@@ -109,7 +104,7 @@ img,svg{display:block;max-width:100%}
         <span>お問い合わせ</span>
       </nav>
       <span class="eyebrow">CONTACT</span>
-      <h1 class="sub-hero__title">お問い合わせ・<span class="headline-accent">無料相談</span></h1>
+      <h1 class="sub-hero__title">お問い合わせ・<span class="headline-accent"><wbr>無料相談</span></h1>
       <p class="sub-hero__lead">「うちの業務でも使えるか？」の段階で大丈夫です。相談・お見積りはすべて無料です。返信は2営業日以内です。</p>
       <span class="rule-accent" aria-hidden="true"></span>
     </div>

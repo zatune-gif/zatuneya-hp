@@ -36,8 +36,6 @@ h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--he
 p{margin:0}
 a{color:inherit}
 img,svg{display:block;max-width:100%}
-:focus-visible{outline:3px solid var(--teal-text);outline-offset:3px;border-radius:var(--r-sm)}
-.site-footer :focus-visible{outline-color:#fff}/* 暗い面では白リング: #334A52 上 9.37 / 帯上 5.11 */
 
 .container{max-width:1120px;margin:0 auto;padding:0 32px}
 .section{padding:var(--s24) 0}
@@ -49,7 +47,6 @@ img,svg{display:block;max-width:100%}
 /* TYPE SCALE ------------------------------------------------- */
 .eyebrow{display:inline-block;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.22em;color:var(--teal-text);text-transform:uppercase}
 .sec-head{text-align:center;max-width:760px;margin:0 auto var(--s12)}
-.sec-head h2{font-size:clamp(28px,4.4vw,38px);line-height:1.3;letter-spacing:.01em;margin:16px 0 0}
 .sec-head p{font-family:'Noto Sans JP',sans-serif;font-size:16px;line-height:1.95;color:var(--text);margin:16px auto 0;max-width:640px}
 
 /* ICON RULE: monoline, stroke 1.6, round caps, 24 grid ------- */
@@ -57,17 +54,6 @@ img,svg{display:block;max-width:100%}
 .ic svg{width:100%;height:100%;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
 
 /* BUTTONS --------------------------------------------------- */
-.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;
-  padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;
-  transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);cursor:pointer;white-space:nowrap}
-.btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
-.btn-primary{background:var(--orange);color:var(--on-orange)}/* 文字色: 白は 2.21:1 で不合格。ブランドのオレンジを保つため濃色ブラウン #332211 = 6.90:1（hover の --orange-d 上でも 5.51:1）*/
-.btn-primary:hover{background:var(--orange-dk);transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
-.btn-primary:active{transform:translateY(0);box-shadow:0 4px 12px rgba(248,152,29,.4)}
-.btn-ghost{background:#fff;color:var(--teal-text);border-color:var(--teal-line)}
-.btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
-.btn-ghost:active{transform:translateY(0)}
 .arrowlink{display:inline-flex;align-items:center;gap:8px;min-height:24px;font:700 14px 'Noto Sans JP',sans-serif;color:var(--teal-text);text-decoration:none;transition:color var(--dur) var(--ease)}
 .arrowlink svg{width:16px;height:16px;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none;transition:transform var(--dur) var(--ease)}
 .arrowlink:hover{color:var(--orange-text)}
@@ -165,7 +151,7 @@ img,svg{display:block;max-width:100%}
 .why-card:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
 /* 理由1〜3：works.html と同じ「円形アイコン＋塗り番号バッジ（01/02/03）」の型で、3枚を同じ型の繰り返しとして読ませる */
 .why-card .icon-badge-circle{display:flex;margin:0 auto}
-.why-card h3{font-size:19px;margin:20px 0 0;letter-spacing:.01em}
+.why-card h3{font-size:19px;margin:24px 0 0;letter-spacing:.01em}
 .why-card p{font:400 14px/1.85 'Noto Sans JP',sans-serif;color:var(--text);margin:12px 0 0}
 .profile-teaser{max-width:640px;margin:var(--s12) auto 0;text-align:left}
 .profile-teaser p{font:400 14px/1.9 'Noto Sans JP',sans-serif;color:var(--text);margin:0 0 16px}
@@ -211,7 +197,7 @@ img,svg{display:block;max-width:100%}
 .step:not(:last-child)::after{content:"";position:absolute;top:33px;left:calc(50% + 44px);right:calc(-50% + 44px);height:2px;background:repeating-linear-gradient(90deg,var(--teal) 0 6px,transparent 6px 13px)}
 .step:not(:last-child)::before{content:"";position:absolute;top:28px;right:calc(-50% + 40px);width:8px;height:8px;border-top:2px solid var(--teal);border-right:2px solid var(--teal);transform:rotate(45deg)}
 .step .step-badge-solid{position:relative;z-index:1}
-.step h4{font-size:16px;margin:20px 0 0;letter-spacing:.01em}
+.step h3{font-size:16px;margin:20px 0 0;letter-spacing:.01em}
 .step p{font:400 14px/1.8 'Noto Sans JP',sans-serif;color:var(--text);margin:12px 0 0}
 
 /* ============ RESPONSIVE ============ */
@@ -256,7 +242,6 @@ img,svg{display:block;max-width:100%}
   .hero-grid .hero-copy h1{font-size:27px;line-height:1.4}
   .hero-photo{height:180px}
 
-  .btn{padding:16px 24px;font-size:15px}
   .cta-row .btn{width:100%}
 }
 .badge--region{font-size:0.9rem;font-weight:600;padding:8px 16px}
@@ -304,11 +289,11 @@ img,svg{display:block;max-width:100%}
 </header>
 
 <!-- ================= STICKY CTA ================= -->
-<div class="sticky-cta" id="sticky-cta">
-  <p class="sticky-cta__text">AIが自社に使えるか、まず無料で確かめてみませんか？</p>
-  <a href="https://ai-shindan-zatuneya.netlify.app/" class="sticky-cta__btn">無料診断を受ける</a>
+<aside class="sticky-cta" id="sticky-cta" aria-label="AI診断のご案内">
+  <p class="sticky-cta__text"><span class="nw">AIが自社に使えるか、</span><span class="nw">まず無料で確かめてみませんか？</span></p>
+  <a href="https://ai-shindan-zatuneya.netlify.app/" class="sticky-cta__btn">AI診断してみる</a>
   <button class="sticky-cta__close" id="sticky-cta-close" aria-label="バナーを閉じる">✕</button>
-</div>
+</aside>
 
 <main id="top">
 
@@ -317,12 +302,12 @@ img,svg{display:block;max-width:100%}
   <div class="container hero-grid">
     <div class="hero-copy">
       <span class="badge badge--region"><span class="dot"></span>地域企業の小さな業務変革屋 ／ ざつね屋</span>
-      <h1><span class="headline-accent">業務を見直し、</span><br>現場で使える仕組みまで。</h1>
+      <h1><span class="headline-accent">業務を<wbr>見<span class="nwe">直し、</span></span><br><wbr>現場で<wbr>使える<wbr>仕組み<span class="nwe">まで。</span></h1>
       <span class="rule-split" aria-hidden="true"></span>
       <p class="hero-sub">作業の流れを一緒に整理し、やめられる作業を見つけ、必要なところだけ仕組みを作ります。AIを入れることが目的ではありません。手順を変えるだけで済むなら、そうお伝えします。</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="./contact.html"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>まず30分、話を聞かせてください</a>
-        <a class="btn btn-teal" href="https://ai-shindan-zatuneya.netlify.app/"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>自分で現在地を確かめる</a>
+        <a class="btn btn-primary" href="./contact.html"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg><span class="btn__label">まず<wbr><span class="nwe">30分、</span><wbr>話を<wbr>聞かせてください</span></a>
+        <a class="btn btn-teal" href="https://ai-shindan-zatuneya.netlify.app/"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>AI診断してみる</a>
       </div>
       <p class="hero-note">広島県府中市を拠点に、近隣の地域企業を訪問して支援しています。</p>
     </div>
@@ -343,34 +328,34 @@ img,svg{display:block;max-width:100%}
   <div class="container">
     <div class="sec-head">
       <span class="eyebrow">Check</span>
-      <h2>こんな詰まり方をしていませんか</h2>
+      <h2>こんな<wbr>詰まり方を<wbr>していませんか</h2>
     </div>
     <div class="worry-grid">
       <div class="worry-card">
         <div class="worry-card__head">
           <span class="icon-badge-circle" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1"/></svg></span>
-          <p class="catch-bubble">人が足りず、改善に手が回らない。</p>
+          <p class="catch-bubble">人が<wbr>足<span class="nwe">りず、</span><wbr>改善に<wbr>手が<wbr>回ら<span class="nwe">ない。</span></p>
         </div>
         <p class="worry-card__text">日々の業務で手一杯。「やった方がいい」と分かっていることが、いつまでも後回しになる。</p>
       </div>
       <div class="worry-card">
         <div class="worry-card__head">
           <span class="icon-badge-circle" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2"/><path d="M9 2h6"/></svg></span>
-          <p class="catch-bubble">特定の人しか分からない仕事がある。</p>
+          <p class="catch-bubble">特定の<wbr>人しか<wbr>分からない<wbr>仕事が<wbr>ある。</p>
         </div>
         <p class="worry-card__text">その人が休むと止まる。引き継ぎ資料を作る時間も取れない。</p>
       </div>
       <div class="worry-card">
         <div class="worry-card__head">
           <span class="icon-badge-circle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 21 8 12 13 3 8 12 3Z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/></svg></span>
-          <p class="catch-bubble">同じ説明・同じ入力を繰り返している。</p>
+          <p class="catch-bubble">同じ<wbr>説明・<wbr>同じ<wbr>入力を<wbr>繰り返して<span class="nwe">いる。</span></p>
         </div>
         <p class="worry-card__text">毎週・毎月の定型作業に、担当者の時間が静かに削られていく。</p>
       </div>
       <div class="worry-card">
         <div class="worry-card__head">
           <span class="icon-badge-circle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/><path d="M9.5 12l1.8 1.8 3.4-3.6"/></svg></span>
-          <p class="catch-bubble">AIを試してはみたが、続かなかった。</p>
+          <p class="catch-bubble">AIを<wbr>試しては<wbr>み<span class="nwe">たが、</span><wbr>続かなか<span class="nwe">った。</span></p>
         </div>
         <p class="worry-card__text">ツールは触った。でも「で、うちの仕事のどこに使うのか」が分からないまま止まった。</p>
       </div>
@@ -392,7 +377,7 @@ img,svg{display:block;max-width:100%}
   <div class="container">
     <div class="sec-head">
       <span class="eyebrow">Idea</span>
-      <h2>AIを入れることが目的ではありません</h2>
+      <h2>AIを<wbr>入れる<wbr>ことが<wbr>目的ではありません</h2>
       <p>運用や手順を少し変えるだけで解決するなら、そうご提案します。AIやシステムの出番は、業務を見直したあとに考えるものです。</p>
     </div>
   </div>
@@ -403,7 +388,7 @@ img,svg{display:block;max-width:100%}
   <div class="container">
     <div class="sec-head">
       <span class="eyebrow">Services</span>
-      <h2>必要なところから始められます</h2>
+      <h2>必要な<wbr>ところから<wbr>始められます</h2>
       <p>数十名規模の地域企業で、AI・DXの専任担当者がいない会社を主な対象としています。会社の困りごとを起点に、必要なところから始められます。</p>
     </div>
     <div class="svc-grid">
@@ -412,8 +397,8 @@ img,svg{display:block;max-width:100%}
           <span class="svc-ic ic"><svg viewBox="0 0 24 24"><path d="M3 17l4-8 4 4 4-6 4 8"/><path d="M3 20h18"/></svg></span>
         </div>
         <div class="svc-body">
-          <h3>業務の見直し支援（業務改善）</h3>
-          <div class="svc-catch">まず業務を見直し、必要なら仕組みを作る</div>
+          <h3>業務の<wbr>見直し支援<wbr><span class="nw">（業務改善）</span></h3>
+          <div class="svc-catch">まず<wbr>業務を<wbr>見<span class="nwe">直し、</span><wbr>必要なら<wbr>仕組みを<wbr>作る</div>
           <p class="svc-desc">この作業だけ、やたら手間がかかる／何を変えればいいかまだ決めきれていない——そんな状態から、一つの業務・一つの現場を2か月で見直します。</p>
           <div class="price-chip"><div class="box"><span class="amt">320,000円</span><span class="tax">（税別・2か月）</span></div></div>
           <a class="arrowlink" href="./service-management.html">詳しく見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -425,7 +410,7 @@ img,svg{display:block;max-width:100%}
         </div>
         <div class="svc-body">
           <h3>個別実装</h3>
-          <div class="svc-catch">決まった仕組みを、形にする</div>
+          <div class="svc-catch">決まった<wbr>仕組<span class="nwe">みを、</span><wbr>形に<wbr>する</div>
           <p class="svc-desc">作るものは決まった。あとは形にするだけ——という段階から、仕様確定後にお見積りし、設計・開発します。</p>
           <div class="price-chip"><div class="box"><span class="amt">個別お見積り</span></div></div>
           <a class="arrowlink" href="./service-order.html">詳しく見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -443,7 +428,7 @@ img,svg{display:block;max-width:100%}
   <div class="container">
     <div class="sec-head">
       <span class="eyebrow">Free Tools</span>
-      <h2>まずは無料で「現在地」を知ることから</h2>
+      <h2>まずは<wbr>無料で<wbr><span class="nw">「現在地」を</span><wbr>知る<wbr>ことから</h2>
     </div>
     <div class="tools-grid tools-grid--single">
       <div class="tool-card tool-featured">
@@ -451,7 +436,7 @@ img,svg{display:block;max-width:100%}
         <div>
           <span class="tool-featured-badge">まずはここから</span>
           <span class="tool-free">無料・登録不要</span>
-          <h3>業務の現在地チェック（無料・12問・約7分）</h3>
+          <h3>業務の<wbr>現在地チェック<wbr><span class="nw">（無料</span>・<wbr>12問・<wbr>約7分）</h3>
           <p>自社が今どの段階にいるかが分かります。強み・優先課題・次のアクションまで表示します。</p>
           <a class="arrowlink" href="https://ai-shindan-zatuneya.netlify.app/">無料でチェックする <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
@@ -465,22 +450,22 @@ img,svg{display:block;max-width:100%}
   <div class="container">
     <div class="sec-head">
       <span class="eyebrow">Why</span>
-      <h2>「教えられる実装者」が、業務整理から伴走します</h2>
+      <h2><span class="nw">「教えられる<wbr>実装者」が、</span><wbr>業務整理から<wbr>伴走します</h2>
     </div>
     <div class="why-grid">
       <div class="why-card">
         <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H12l-4 3v-3H4Z"/><path d="M8.5 10.5l2 2 4-4"/></svg></span>
-        <h3>業務課題の理解から始める</h3>
+        <h3>業務課題の<wbr>理解から<wbr>始める</h3>
         <p>AI導入ありきではありません。会社の困りごとを起点に、必要なところだけ仕組みを作ります。</p>
       </div>
       <div class="why-card">
         <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15.5 20v-1.2a3.7 3.7 0 0 0-3.7-3.7H6.2A3.7 3.7 0 0 0 2.5 18.8V20"/><circle cx="9" cy="7" r="3.3"/><path d="M21.5 20v-1.2a3.7 3.7 0 0 0-2.8-3.6"/><path d="M15.5 3.9a3.3 3.3 0 0 1 0 6.4"/></svg></span>
-        <h3>現場に入り込んで一緒に手を動かす</h3>
+        <h3>現場に<wbr>入り込んで<wbr>一緒に<wbr>手を<wbr>動かす</h3>
         <p>提案書を渡して終わりにはしません。現場に入り、実際の業務を一緒に見ながら組み立てる伴走スタイルです。</p>
       </div>
       <div class="why-card">
         <span class="icon-badge-circle icon-badge-circle--md" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h9M4 12h13M4 18h7"/><path d="M17 6l2.5 2.5L23 4"/></svg></span>
-        <h3>使い方を教えて自走できるようにする</h3>
+        <h3>使い方を<wbr>教えて<wbr>自走できるように<wbr>する</h3>
         <p>「教えられる実装者」として、担当者が自分で回せるようになるまで伴走します。依存させません。</p>
       </div>
     </div>
@@ -491,7 +476,7 @@ img,svg{display:block;max-width:100%}
       <span class="veil"></span>
       <div class="bcontent">
         <span class="eyebrow">On Site</span>
-        <h3>「提案書を渡して終わり」にはしません。</h3>
+        <h3><span class="nw">「提案書を</span><wbr>渡して<wbr>終わ<span class="nw">り」には</span>しま<span class="nwe">せん。</span></h3>
         <p>現場に入り、実際の業務を一緒に見ながら、貴社の言葉で仕組みの使い方を組み立てます。担当者が自分で回せるようになるまで伴走するのが、ざつね屋の仕事です。</p>
       </div>
     </div>
@@ -503,7 +488,7 @@ img,svg{display:block;max-width:100%}
           <span class="eyebrow">Works</span>
         </div>
         <p class="works-teaser__body">見積・請求管理システム、資金繰り管理ツールなど、現場の業務に合わせた仕組みを開発してきました。守秘義務のため企業名は伏せていますが、実際に動いている仕組みの内容をご覧いただけます。</p>
-        <a class="btn btn-deep" href="./works.html">開発実績を見る <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-deep" href="./works.html"><span class="btn__label">開発実績を<wbr>見る</span> <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
       <div class="works-teaser__visual mock-stage" aria-hidden="true">
         <div class="mock-laptop">
@@ -538,27 +523,27 @@ img,svg{display:block;max-width:100%}
   <div class="container">
     <div class="sec-head">
       <span class="eyebrow">Flow</span>
-      <h2>ご相談から最短1〜2週間で開始できます</h2>
+      <h2>ご相談から<wbr><span class="nw">最短1〜2週間で</span><wbr>開始できます</h2>
     </div>
     <div class="flow">
       <div class="step">
         <span class="step-badge-solid step-badge-solid--lg">1</span>
-        <h4>無料相談・お見積り・お問い合わせ</h4>
+        <h3>無料相談・<wbr>お見積り・<wbr>お問い合わせ</h3>
         <p>お問い合わせフォーム、またはメールでご連絡ください。返信は2営業日以内です。</p>
       </div>
       <div class="step">
         <span class="step-badge-solid step-badge-solid--lg">2</span>
-        <h4>ヒアリング（無料）</h4>
+        <h3>ヒアリング<wbr><span class="nw">（無料）</span></h3>
         <p>現在の業務・困りごとをお聞きします。オンラインまたは広島県府中市と近隣は訪問も可能です。</p>
       </div>
       <div class="step">
         <span class="step-badge-solid step-badge-solid--lg">3</span>
-        <h4>ご提案・正式お見積り</h4>
+        <h3>ご提案・<wbr>正式お見積り</h3>
         <p>最適なサービスとプランをご提案します。この時点まで費用はかかりません。</p>
       </div>
       <div class="step">
         <span class="step-badge-solid step-badge-solid--lg">4</span>
-        <h4>実施開始</h4>
+        <h3>実施開始</h3>
         <p>業務の見直し、または個別実装を開始します。</p>
       </div>
     </div>
@@ -573,7 +558,7 @@ img,svg{display:block;max-width:100%}
       <span class="veil"></span>
       <div class="bcontent">
         <span class="eyebrow">Together</span>
-        <h3>「一緒に走る」が、いちばんの強みです。</h3>
+        <h3><span class="nw">「一緒に<wbr>走る」が、</span><wbr>いちばんの<wbr>強み<span class="nwe">です。</span></h3>
         <p>導入して終わりではなく、現場で使いこなせるようになるまで並走します。小さな困りごとも、気軽に相談できる相手でいます。</p>
       </div>
     </div>
@@ -587,16 +572,16 @@ img,svg{display:block;max-width:100%}
       <div class="cv-topbar"></div>
       <div class="cv-inner">
         <span class="cv-tag"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>CONTACT ─ 無料</span>
-        <h2>まず30分、話を聞かせてください</h2>
+        <h2>まず<wbr><span class="nwe">30分、</span><wbr>話を<wbr>聞かせてください</h2>
         <p class="lead">「何から手をつけるか」から一緒に考えます。売り込みはしません。</p>
         <div class="cv-cta-row">
           <a class="btn btn-primary" href="./contact.html">
             <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
-            まず30分、話を聞かせてください
+            <span class="btn__label">まず<wbr><span class="nwe">30分、</span><wbr>話を<wbr>聞かせてください</span>
           </a>
           <a class="btn btn-teal" href="https://ai-shindan-zatuneya.netlify.app/">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-            自分で現在地を確かめる
+            AI診断してみる
           </a>
         </div>
         <p class="cv-foot">返信は2営業日以内です。しつこい営業連絡はいたしません。フォームが読み込めない場合は <a href="mailto:zatuneya@gmail.com?subject=お問い合わせ">zatuneya@gmail.com</a> までご連絡ください。</p>
@@ -652,9 +637,9 @@ img,svg{display:block;max-width:100%}
 <script src="./nav.js" defer></script>
 
 <!-- スマホ固定CTAバー -->
-<div class="mobile-cta-bar" aria-label="お問い合わせ・AI活用診断へのショートカット">
-  <a href="./contact.html" class="mobile-cta-primary">お問い合わせはこちら</a>
+<nav class="mobile-cta-bar" aria-label="お問い合わせ・AI診断へのショートカット">
+  <a href="./contact.html" class="mobile-cta-primary"><span class="btn__label">お問い合わせは<wbr>こちら</span></a>
   <a href="https://ai-shindan-zatuneya.netlify.app/" class="mobile-cta-sub">AI診断してみる</a>
-</div>
+</nav>
 </body>
 </html>

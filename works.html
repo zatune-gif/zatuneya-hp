@@ -28,9 +28,7 @@
 .works-section--own + .cv-section{padding-top:24px}
 
 /* ─── CV section (CTA) ─── */
-.cv-section .btn-primary,.svc-cta-row .btn-primary{background:var(--orange);color:var(--on-orange);font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);display:inline-flex;align-items:center;justify-content:center;gap:8px}
 .cv-section .btn-primary:hover,.svc-cta-row .btn-primary:hover{background:var(--orange-dk);transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
-.cv-section .btn svg,.svc-cta-row .btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
 
 /* ─── 中間CTA（受託実績の直後・自社開発実績の前） ─── */
 .svc-cta-row{display:flex;flex-wrap:wrap;gap:16px}
@@ -66,11 +64,11 @@
   </div>
 </header>
 
-<div class="sticky-cta" id="sticky-cta">
-  <p class="sticky-cta__text">AIが自社に使えるか、まず無料で確かめてみませんか？</p>
-  <a href="https://ai-shindan-zatuneya.netlify.app/" class="sticky-cta__btn">無料診断を受ける</a>
+<aside class="sticky-cta" id="sticky-cta" aria-label="AI診断のご案内">
+  <p class="sticky-cta__text"><span class="nw">AIが自社に使えるか、</span><span class="nw">まず無料で確かめてみませんか？</span></p>
+  <a href="https://ai-shindan-zatuneya.netlify.app/" class="sticky-cta__btn">AI診断してみる</a>
   <button class="sticky-cta__close" id="sticky-cta-close" aria-label="バナーを閉じる">✕</button>
-</div>
+</aside>
 
 <main>
   <section class="sub-hero hero-diagonal">
@@ -95,7 +93,7 @@
         <article class="work-feature" id="work-01">
           <div class="work-feature__head">
             <span class="step-badge-solid">01</span>
-            <h2 class="work-feature__catch">見積づくりが、<span class="headline-accent--orange">毎回一苦労。</span></h2>
+            <h2 class="work-feature__catch">見積づく<span class="nwe">りが、</span><span class="headline-accent--orange"><wbr>毎回<wbr>一<span class="nwe">苦労。</span></span></h2>
           </div>
           <div class="work-feature__tag-row"><span class="work-tag work-tag--client">クライアントの依頼で開発</span></div>
           <p class="work-feature__name">アパレル資材卸・OEM業者向け 見積・請求管理システム</p>
@@ -148,7 +146,7 @@
           <div class="work-solved">
             <span class="icon-badge-circle icon-badge-circle--md icon-badge-circle--orange" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.5 18h5M10.5 21h3"/><path d="M12 4.5a5 5 0 0 0-3 9c.5.4.8 1 .8 1.6V16h4.4v-.9c0-.6.3-1.2.8-1.6a5 5 0 0 0-3-9Z"/><path d="M12 1v1.2M4.6 4.2l.9.9M19.4 4.2l-.9.9M2 11h1.3M20.7 11H22"/></svg></span>
             <div class="work-solved__text">
-              <span class="work-solved__label">解決した課題</span>
+              <span class="work-solved__label">解決した<wbr>課題</span>
               <p class="work-solved__body">見積を作るたびに、6社分の仕入れ先ごとに紙の指示書とExcelを見比べながら、883品番・24,923件にのぼる色・サイズごとの単価を一つずつ手作業で拾っていた状態から脱却。</p>
             </div>
           </div>
@@ -157,7 +155,7 @@
         <article class="work-feature" id="work-02">
           <div class="work-feature__head">
             <span class="step-badge-solid">02</span>
-            <h2 class="work-feature__catch">資金繰りが、いつも<span class="headline-accent--orange">「なんとなく」頼み。</span></h2>
+            <h2 class="work-feature__catch">資金繰<span class="nwe">りが、</span><wbr>いつも<span class="headline-accent--orange"><wbr><span class="nw">「なん</span>とな<span class="nw">く」頼み。</span></span></h2>
           </div>
           <div class="work-feature__tag-row"><span class="work-tag work-tag--client">クライアントの依頼で開発</span></div>
           <p class="work-feature__name">卸売業向け 資金繰り管理ツール</p>
@@ -206,7 +204,7 @@
           <div class="work-solved">
             <span class="icon-badge-circle icon-badge-circle--md icon-badge-circle--orange" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.5 18h5M10.5 21h3"/><path d="M12 4.5a5 5 0 0 0-3 9c.5.4.8 1 .8 1.6V16h4.4v-.9c0-.6.3-1.2.8-1.6a5 5 0 0 0-3-9Z"/><path d="M12 1v1.2M4.6 4.2l.9.9M19.4 4.2l-.9.9M2 11h1.3M20.7 11H22"/></svg></span>
             <div class="work-solved__text">
-              <span class="work-solved__label">解決した課題</span>
+              <span class="work-solved__label">解決した<wbr>課題</span>
               <p class="work-solved__body">資金繰りの状況は「なんとなく大丈夫だろう」という感覚頼り。会計ソフトと別の表計算シートに数字が分かれていて、同じ内容を何度も入力し直す二重管理が常態化し、月々の数字を計画と照らし合わせる習慣もなかった状態を解消。</p>
             </div>
           </div>
@@ -215,7 +213,7 @@
         <article class="work-feature work-feature--product" id="work-03">
           <div class="work-feature__head">
             <span class="step-badge-solid">03</span>
-            <h2 class="work-feature__catch">一人で回すWeb制作、<span class="headline-accent--orange">抜け漏れの不安は尽きない。</span></h2>
+            <h2 class="work-feature__catch">一人で<wbr>回すWeb<span class="nwe">制作、</span><span class="headline-accent--orange"><wbr>抜け漏れの<wbr>不安は<wbr>尽き<span class="nwe">ない。</span></span></h2>
           </div>
           <div class="work-feature__tag-row"><span class="work-tag work-tag--product">ざつね屋発案の自社プロダクト（提供準備中）</span></div>
           <p class="work-feature__name">Web制作事業者向け 業務管理プロダクト</p>
@@ -267,7 +265,7 @@
       </div>
 
       <div class="svc-cta-row works-mid-cta">
-        <a class="btn btn-primary" href="./contact.html"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>まず30分、話を聞かせてください</a>
+        <a class="btn btn-primary" href="./contact.html"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg><span class="btn__label">まず<wbr><span class="nwe">30分、</span><wbr>話を<wbr>聞かせてください</span></a>
       </div>
     </div>
   </section>
@@ -373,7 +371,7 @@
           <div class="own-card__head">
             <span class="icon-badge-circle icon-badge-circle--md icon-badge-circle--white" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M10 9.5v5l4.5-2.5-4.5-2.5Z"/></svg></span>
             <div class="own-card__text">
-              <h3 class="own-card__title">動画自動生成ツール</h3>
+              <h3 class="own-card__title">動画<wbr>自動生成ツール</h3>
               <span class="own-card__status">自社運用中</span>
               <p class="own-card__desc">AIによる音声・画像生成を組み合わせ、ショート動画を自動で作るデスクトップツール。</p>
             </div>
@@ -417,7 +415,7 @@
           <div class="own-card__head">
             <span class="icon-badge-circle icon-badge-circle--md icon-badge-circle--white" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h16"/><rect x="6" y="12" width="3" height="8"/><rect x="11" y="8" width="3" height="12"/><rect x="16" y="4" width="3" height="16"/></svg></span>
             <div class="own-card__text">
-              <h3 class="own-card__title">工数・予算管理ツール</h3>
+              <h3 class="own-card__title">工数・<wbr>予算管理<wbr>ツール</h3>
               <span class="own-card__status">自社運用中</span>
               <p class="own-card__desc">Googleスプレッドシート＋Google Apps Script製。工数と単価を入力するだけで予算を自動計算し、営業日ベースのスケジュールとガントチャートも自動で作成。遅れが出たときは再スケジュールを提案します。</p>
             </div>
@@ -458,7 +456,7 @@
           <div class="own-card__head">
             <span class="icon-badge-circle icon-badge-circle--md icon-badge-circle--white" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="7.5" r="3"/><path d="M6.5 19.5c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5"/><circle cx="5" cy="10" r="2.2"/><path d="M1.8 18c0-2.2 1.4-4 3.4-4.4"/><circle cx="19" cy="10" r="2.2"/><path d="M22.2 18c0-2.2-1.4-4-3.4-4.4"/></svg></span>
             <div class="own-card__text">
-              <h3 class="own-card__title">人員管理リマインダーBot</h3>
+              <h3 class="own-card__title">人員管理<wbr>リマインダーBot</h3>
               <span class="own-card__status">自社運用中</span>
               <p class="own-card__desc">チャットツール（Slack）と連携し、定期的なチェックインでチームメンバーの状態を把握。AIが分析し、アラートの度合いに応じて管理者へ通知するBot。</p>
             </div>
@@ -509,7 +507,7 @@
           <div class="own-card__head">
             <span class="icon-badge-circle icon-badge-circle--md icon-badge-circle--white" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 8.5h18"/><path d="M6 6.3h.01M8.5 6.3h.01"/></svg></span>
             <div class="own-card__text">
-              <h3 class="own-card__title">Web制作事業運営管理プロダクト</h3>
+              <h3 class="own-card__title">Web制作事業運営管理<wbr>プロダクト</h3>
               <span class="own-card__status own-card__status--prep">提供準備中</span>
               <p class="own-card__desc">コードが書けなくても、受注前のヒアリングから見積・請求書作成、デザイン案・テストサイト案のAI自動生成、公開前チェック、月次レポートまでを一つのアプリで完結できる業務管理ツールを開発。</p>
               <a class="own-card__link" href="#work-03">開発の詳細は「03」をご覧ください</a>
@@ -561,12 +559,12 @@
         <div class="cv-topbar"></div>
         <div class="cv-inner">
           <span class="cv-tag"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>CONTACT ─ 無料</span>
-          <h2>まず30分、話を聞かせてください</h2>
+          <h2>まず<wbr><span class="nwe">30分、</span><wbr>話を<wbr>聞かせてください</h2>
           <p class="lead">「うちの業務でも使えるか？」の段階で大丈夫です。相談・お見積りはすべて無料です。</p>
           <div class="cv-cta-row">
             <a class="btn btn-primary" href="./contact.html">
               <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
-              まず30分、話を聞かせてください
+              <span class="btn__label">まず<wbr><span class="nwe">30分、</span><wbr>話を<wbr>聞かせてください</span>
             </a>
           </div>
           <p class="cv-foot">返信は2営業日以内です。しつこい営業連絡はいたしません。</p>
