@@ -21,24 +21,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./style.css">
 <style>
-/* ─── Page Hero ─── */
-.page-hero{padding:64px 0 0;text-align:left}
-.page-hero .skyline-illust{margin-top:32px}
-/* .page-hero は左右paddingを0にして背景を edge-to-edge にしているため、
-   中身を収める .container 側に左右paddingを持たせる（works.html と同じ原因で
-   375px幅でヒーローの文言が画面端にベタ付きになっていたバグを修正。2026-10-02） */
-.page-hero .container{text-align:left;padding:0 32px}
-.page-hero .eyebrow{display:block;margin-bottom:12px}
-.page-hero h1{font-size:clamp(28px,4vw,38px);line-height:1.3;margin:0 0 16px}
-.page-hero__lead{font-family:'Noto Sans JP',sans-serif;font-size:16px;line-height:1.9;color:var(--text,var(--text));max-width:640px;margin:0;word-break:keep-all;overflow-wrap:anywhere}
-.page-hero__row{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}
-.page-hero__text{flex:1;min-width:0}
-.page-hero__portrait{flex:none;width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:top center;border:3px solid #fff}
-@media (max-width:680px){
-  .page-hero__row{flex-direction:column}
-  .page-hero__portrait{width:72px;height:72px}
-  .page-hero .container{padding:0 20px}
-}
+/* 下層ページ共通ヒーローは style.css の .sub-hero */
 .faq-list{text-align:left}
 .faq-answer{text-wrap:pretty}
 
@@ -94,16 +77,21 @@
 </div>
 
 <main>
-  <section class="page-hero hero-diagonal">
+  <section class="sub-hero hero-diagonal">
     <img class="corner-diagonal" src="./assets/corner-diagonal.svg" alt="" width="400" height="260" aria-hidden="true">
-    <div class="container">
-      <div class="page-hero__row">
-        <div class="page-hero__text">
+    <div class="sub-hero__inner">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="./index.html">トップ</a><span class="breadcrumb-sep">›</span>
+        <span>よくある質問</span>
+      </nav>
+      <div class="sub-hero__row">
+        <div class="sub-hero__text">
           <span class="eyebrow">FAQ</span>
-          <h1>よくある<span class="headline-accent">質問</span></h1>
-          <p class="page-hero__lead">サービスや料金・進め方についてよくいただくご質問をまとめました。解決しない場合はお気軽にお問い合わせください。</p>
+          <h1 class="sub-hero__title">よくある<span class="headline-accent">質問</span></h1>
+          <p class="sub-hero__lead">サービスや料金・進め方についてよくいただくご質問をまとめました。解決しない場合はお気軽にお問い合わせください。</p>
+          <span class="rule-accent" aria-hidden="true"></span>
         </div>
-        <img class="page-hero__portrait" src="./assets/portrait-illustration.jpg" alt="代表 大音のイラスト" width="96" height="96" loading="lazy">
+        <img class="sub-hero__portrait" src="./assets/portrait-illustration.jpg" alt="代表 大音のイラスト" width="96" height="96" loading="lazy">
       </div>
     </div>
     <img class="skyline-illust" src="./assets/skyline.svg" alt="" width="1440" height="140" aria-hidden="true">

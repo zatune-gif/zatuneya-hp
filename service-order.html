@@ -39,30 +39,11 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 .btn-primary{background:var(--orange);color:var(--on-orange)}
 .btn-primary:hover{background:var(--orange-dk);transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
 
-/* PAGE HERO（背景・斜めカット写真は style.css の .hero-diagonal / .hero-photo-panel／山並みシルエットは .skyline-illust）
-   hero-photo-panel は position:absolute;inset で「最も近い position:relative 祖先」いっぱいに伸びる。
-   ヒーロー下部に他ページ共通の skyline-illust を敷くため、写真パネル用の padding-bottom は
-   .page-hero（section）ではなく内側の .page-hero__inner に持たせ、写真の伸びる範囲を
-   skyline の手前までに限定する（works.html 等と同じ「写真の下に山並み帯→白背景」の見え方に揃える） */
-.page-hero{padding:64px 0 0}
-.page-hero__inner{position:relative;padding-bottom:64px}
-@media(max-width:960px){.page-hero__inner{padding-bottom:0}}
-.page-hero .skyline-illust{margin-top:32px}
+/* PAGE HERO は style.css の .sub-hero（下層ページ共通ヒーロー）／.svc-hero-meta・.svc-hero-target も style.css */
 /* 進め方（業務の整理 → 要件定義 → 個別実装 → リリース）：営業資料の表紙と同じ4段階 */
 .hero-flow{margin-top:32px;--badge-size:84px;--flow-gap:34px}
 .hero-flow .icon-flow{justify-content:flex-start}
 @media(max-width:680px){.hero-flow{--badge-size:60px}.hero-flow .icon-flow{justify-content:center}}
-
-/* BREADCRUMB */
-
-/* SERVICE HERO CONTENT */
-.svc-hero-meta{display:flex;align-items:center;gap:12px;margin-bottom:20px}
-.svc-hero-target{font:700 14px/1 'Noto Sans JP',sans-serif;color:var(--sub-text);background:#fff;border:1px solid var(--card-line);padding:8px 16px;border-radius:999px}
-.svc-hero-meta{flex-wrap:wrap}
-.svc-hero-target{line-height:1.5}
-.svc-hero-h1{font-size:clamp(28px,4vw,40px);line-height:1.3;margin:0 0 16px}
-.svc-hero-catch{font:700 18px/1.6 'Noto Sans JP',sans-serif;color:var(--teal-text)}
-.page-hero .container>*{max-width:620px}
 .svc-hero-grid{display:grid;grid-template-columns:1fr 360px;gap:48px;align-items:start}
 .svc-hero-grid>div{min-width:0}
 
@@ -143,20 +124,21 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 </div>
 
 <main>
-<section class="page-hero hero-diagonal">
-  <div class="page-hero__inner">
+<section class="sub-hero sub-hero--photo hero-diagonal">
+  <div class="sub-hero__frame">
     <span class="hero-photo-panel__edge" aria-hidden="true"></span>
-    <div class="container">
+    <div class="sub-hero__inner">
       <nav class="breadcrumb" aria-label="パンくずリスト">
         <a href="./index.html">トップ</a><span class="breadcrumb-sep">›</span>
         <span>個別実装</span>
       </nav>
+      <span class="eyebrow">SERVICE</span>
+      <h1 class="sub-hero__title"><span class="headline-accent">個別</span>実装</h1>
+      <p class="sub-hero__lead">仕様が決まった仕組みを、設計・開発します。</p>
+      <span class="rule-accent" aria-hidden="true"></span>
       <div class="svc-hero-meta">
         <span class="svc-hero-target">作るものが決まっている企業向け</span>
       </div>
-      <span class="rule-accent" aria-hidden="true"></span>
-      <h1 class="svc-hero-h1"><span class="headline-accent">個別</span>実装</h1>
-      <p class="svc-hero-catch">仕様が決まった仕組みを、設計・開発します。</p>
       <div class="hero-flow">
         <p class="icon-flow-caption">進め方</p>
         <ol class="icon-flow">

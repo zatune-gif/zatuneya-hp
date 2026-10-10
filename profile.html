@@ -70,18 +70,9 @@ img,svg{display:block;max-width:100%}
 .btn-outline:hover{background:var(--teal-soft);transform:translateY(-2px)}
 .btn-outline:active{transform:translateY(0)}
 
-/* PAGE HERO（背景・右上の斜めカット装飾・山並みシルエットは style.css の .hero-diagonal / .corner-diagonal / .skyline-illust） */
-.page-hero{padding:0}
-.badge{display:inline-flex;align-items:center;gap:8px;font:700 12.5px/1 'Roboto','Noto Sans JP',sans-serif;letter-spacing:.03em;color:var(--teal-text);background:#fff;padding:8px 16px;border-radius:999px;border:1px solid var(--card-line)}
-.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
-/* ヒーローはテキストのみ（代表イラストは直下の STORY セクションへ移動し、本文と2カラムで組む） */
-.heroC .ph-inner{position:relative;padding:var(--s20) 0 var(--s12)}
-.heroC .txt{max-width:760px;margin:0 auto;text-align:center}
-.heroC .hero-cta{justify-content:center}
-.heroC .txt h1{font-size:clamp(28px,3.6vw,40px);line-height:1.3;margin:24px 0 0;letter-spacing:.01em}
-.heroC .txt .role-tag{display:block;font:700 14px/1.6 'Noto Sans JP',sans-serif;color:var(--teal-text);margin-top:8px}
-.heroC .txt .lead{font-family:'Noto Sans JP',sans-serif;font-size:15.5px;line-height:2;color:var(--text);max-width:620px;margin:16px auto 0}
-.heroC .hero-cta{display:flex;flex-wrap:wrap;gap:16px;margin-top:24px}
+/* PAGE HERO は style.css の .sub-hero（下層ページ共通ヒーロー）。役職タグだけこのページ固有 */
+.sub-hero__title--tagged{margin-bottom:8px}
+.role-tag{display:block;font:700 14px/1.6 'Noto Sans JP',sans-serif;color:var(--teal-text);margin:0 0 16px}
 
 /* WHY (再掲・簡略) */
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -103,7 +94,6 @@ img,svg{display:block;max-width:100%}
 /* RESPONSIVE */
 @media (max-width:960px){
   .why-grid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}
-  .heroC .ph-inner{padding:48px 0 32px}
   .story-grid{grid-template-columns:minmax(0,1fr);gap:40px}
   .story-portrait{max-width:320px;width:100%;margin:0 auto}
   .story-main .sec-head{text-align:center}
@@ -162,19 +152,22 @@ img,svg{display:block;max-width:100%}
 <main>
 
 <!-- ================= PAGE HERO ================= -->
-<section class="page-hero heroC hero-diagonal">
+<section class="sub-hero hero-diagonal">
   <img class="corner-diagonal" src="./assets/corner-diagonal.svg" alt="" width="400" height="260" aria-hidden="true">
-  <div class="container ph-inner">
-    <div class="txt">
-      <span class="badge"><span class="dot"></span>PROFILE ─ 代表について</span>
-      <h1>「難しそう」を、<br><span class="headline-accent">いっしょに</span>越えていく。</h1>
+  <div class="sub-hero__inner">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="./index.html">トップ</a><span class="breadcrumb-sep">›</span>
+        <span>代表について</span>
+      </nav>
+      <span class="eyebrow">PROFILE</span>
+      <h1 class="sub-hero__title sub-hero__title--tagged">「難しそう」を、<br><span class="headline-accent">いっしょに</span>越えていく。</h1>
       <span class="role-tag">ざつね屋 代表 ／ 地域企業の小さな業務変革屋</span>
-      <p class="lead">多様な現場での経験を経て、地域企業が「AIを知っている」から「実際に使える」へ変わっていく場面を一緒に作りたいと、ざつね屋を立ち上げました。広島県府中市を拠点に、近隣の地域企業の業務変革に伴走しています。</p>
+      <p class="sub-hero__lead">多様な現場での経験を経て、地域企業が「AIを知っている」から「実際に使える」へ変わっていく場面を一緒に作りたいと、ざつね屋を立ち上げました。広島県府中市を拠点に、近隣の地域企業の業務変革に伴走しています。</p>
+      <span class="rule-accent" aria-hidden="true"></span>
       <div class="hero-cta">
         <a class="btn btn-primary" href="https://ai-shindan-zatuneya.netlify.app/"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>AI活用診断（無料）</a>
         <a class="btn btn-outline" href="#about">経歴を見る</a>
       </div>
-    </div>
   </div>
   <img class="skyline-illust" src="./assets/skyline.svg" alt="" width="1440" height="140" aria-hidden="true">
 </section>

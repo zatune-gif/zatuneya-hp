@@ -1162,6 +1162,55 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   background: linear-gradient(90deg, var(--teal) 0 42%, var(--card-line) 42% 100%);
 }
 
+/* ── 7. 下層ページ共通ヒーロー（左揃えの型）
+   対象：service-management / service-order / service-banso / works / faq / profile / contact / privacy / tokusho
+   並び：パンくず → 英大文字の小見出し → h1 → リード文 → 区切り線 →（ページ固有の要素）
+   ※ 404.html・thank-you.html は状態表示ページのため中央揃えのまま（.page-hero を使う。ここでは触らない） ── */
+:root { --hero-pt: 64px; --hero-pb: 32px; --hero-gutter: 32px; --hero-measure: 640px; }
+@media (max-width: 680px) { :root { --hero-pt: 40px; --hero-pb: 24px; --hero-gutter: 20px; } }
+.sub-hero { padding: var(--hero-pt) 0 0; text-align: left; }
+.sub-hero .skyline-illust { margin-top: var(--hero-pb); }
+.sub-hero__frame { position: relative; }
+.sub-hero--photo .sub-hero__frame { padding-bottom: 64px; }
+@media (max-width: 960px) { .sub-hero--photo .sub-hero__frame { padding-bottom: 0; } }
+.sub-hero__inner {
+  position: relative; z-index: 1; max-width: 1120px; margin: 0 auto;
+  padding: 0 var(--hero-gutter); text-align: left;
+}
+.sub-hero__inner > * { max-width: var(--hero-measure); }
+.sub-hero .breadcrumb { margin-bottom: 24px; }
+.sub-hero .eyebrow {
+  display: block; margin: 0 0 12px;
+  font: 700 12.5px/1.6 'Roboto', 'Noto Sans JP', sans-serif;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--teal-text);
+  overflow-wrap: anywhere; text-wrap: balance;
+}
+.sub-hero__title {
+  font: 900 clamp(28px, 4vw, 40px)/1.3 'Noto Sans JP', sans-serif;
+  letter-spacing: .01em; color: var(--heading); margin: 0 0 16px;
+  text-wrap: balance; overflow-wrap: anywhere;
+}
+.sub-hero__lead {
+  font: 400 16px/1.9 'Noto Sans JP', sans-serif; letter-spacing: .02em; color: var(--text);
+  margin: 0; line-break: strict; word-break: auto-phrase; overflow-wrap: anywhere; text-wrap: pretty;
+}
+.sub-hero .rule-accent { margin: 24px 0 0; }
+.sub-hero .hero-cta { justify-content: flex-start; margin-top: 24px; }
+/* ページ固有：サービスページの対象者ピル（リード文・区切り線の下） */
+.svc-hero-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 24px; }
+.svc-hero-target {
+  font: 700 14px/1.5 'Noto Sans JP', sans-serif; color: var(--sub-text);
+  background: #fff; border: 1px solid var(--card-line); padding: 8px 16px; border-radius: 999px;
+}
+/* ページ固有：faq の代表イラスト（PCはテキスト列の右、スマホはテキストの下） */
+.sub-hero__inner > .sub-hero__row { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; max-width: none; }
+.sub-hero__text { flex: 1; min-width: 0; max-width: var(--hero-measure); }
+.sub-hero__portrait { flex: none; width: 96px; height: 96px; border-radius: 50%; object-fit: cover; object-position: top center; border: 3px solid #fff; }
+@media (max-width: 680px) {
+  .sub-hero__inner > .sub-hero__row { flex-direction: column; }
+  .sub-hero__portrait { width: 72px; height: 72px; }
+}
+
 /* ============================================================
    チラシ準拠デザイン言語 第2弾（個別実装サービス紹介資料 2・4〜6ページ準拠）
    - 抽象ノートPCモックアップ／実績カード（2カラム＋解決した課題ボックス）／
