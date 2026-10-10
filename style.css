@@ -166,7 +166,7 @@ body {
 }
 .cv-tag svg { width: 15px; height: 15px; stroke: var(--orange-dk); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
 .cv-inner h2 {
-  position: relative; font-size: clamp(25px, 3.6vw, 34px); margin: 24px 0 0; letter-spacing: 0.01em;
+  position: relative; font-size: clamp(24px, 3.6vw, 34px); margin: 24px 0 0; letter-spacing: 0.01em;
   color: var(--heading); font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
 }
 .cv-inner .lead {
@@ -1347,7 +1347,7 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 
 /* ── 11. 自社開発グリッド（チラシ5ページ：アイコン円＋タイトル＋説明＋モックアップ） ── */
 .own-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; text-align: left; }
-@media (max-width: 760px) { .own-grid { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .own-grid { grid-template-columns: minmax(0, 1fr); } } /* 1fr だと keep-all の長い文節で列が画面幅を超える */
 .own-card {
   display: flex; flex-direction: column; gap: 24px;
   padding: 24px 24px 24px; border-radius: var(--r-card);
@@ -1572,7 +1572,7 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 :focus-visible { outline: 3px solid var(--teal-text); outline-offset: 3px; }
 .site-footer :focus-visible { outline-color: #fff; } /* 濃色面では白リング */
 /* セクション見出し（index・profile 共通。以前はページごとに 38px／30px とばらついていた） */
-.sec-head h2 { font-size: clamp(25px, 3.6vw, 34px); line-height: 1.3; letter-spacing: .01em; margin: 24px 0 0; }
+.sec-head h2 { font-size: clamp(24px, 3.6vw, 34px); line-height: 1.3; letter-spacing: .01em; margin: 24px 0 0; }
 /* 文字の折り返し：1文字だけの行・句読点だけの行を作らない。
    見出し・短い見出し語・ボタン・リストは balance（Chromium・Safari・Firefox 対応）、本文は pretty（Chromium・Safari） */
 body { text-wrap: pretty; }
@@ -1585,3 +1585,18 @@ li, .btn, .eyebrow, .breadcrumb, .need-card__text, .deliv-card__title, .deliv-ca
 @media (max-width: 680px) { .cv-section .container { padding: 0 20px; } }
 /* 追従バナーの文言：「まず無料で確かめてみませんか？」を途中で折らない（極端に狭い画面だけ折り返しを許可してはみ出しを防ぐ） */
 @media (max-width: 340px) { .sticky-cta__text .nw { white-space: normal; } }
+
+/* 日本語の見出し・ボタン・キャッチ文は文節の途中で改行しない。
+   改行位置は HTML 側の <wbr>（BudouX で文節ごとに挿入）。word-break:keep-all で単語内の改行を止め、
+   overflow-wrap は文節が1行に収まらないときの保険（anywhere だと flex/grid 内の最小幅が1文字分に縮んで余計に折れるため break-word を使う）。iOS Safari でも効く。本文の段落には適用しない */
+h1, h2, h3, h4, .sub-hero__title, .btn, .sticky-cta__btn, .mobile-cta-bar a, .catch-bubble, .case-card__head .catch-bubble, .svc-catch, .work-feature__catch,
+.own-card__title, .deliv-card__title, .need-card__text, .num-grid__text, .step-flow-vertical__text, .work-solved__label, .faq-question__text {
+  word-break: keep-all; overflow-wrap: break-word; line-break: strict;
+}
+@media (max-width: 340px) { .sub-hero__title { letter-spacing: 0; } } /* 「プライバシーポリシー」が320pxで1行に収まらず途中で折れるため */
+/* 320px前後の狭い画面では、折り返し禁止（.nw）の文節が列幅を超えて横にはみ出さないよう折り返しを許可する */
+@media (max-width: 340px) {
+  h1 .nw, h2 .nw, h3 .nw, .need-card__text .nw, .step-flow-vertical__text .nw, .num-grid__text .nw, .deliv-card__title .nw, .catch-bubble .nw, .own-card__title .nw { white-space: normal; }
+}
+.nwe { white-space: nowrap; } /* 文末の「。」「、」を直前の2文字から離さない（句読点だけの行を作らない） */
+.btn__label { text-align: center; } /* flex の .btn 内でも <wbr> を効かせるため、ボタン文言を1つの span にまとめる */

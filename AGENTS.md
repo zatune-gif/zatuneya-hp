@@ -42,6 +42,7 @@
 - 下層ページのファーストビューは共通部品`.sub-hero`（左揃え：パンくず→英字eyebrow→h1→リード→区切り線）を使う。404・thank-youのみ中央揃え（2026-10-10 ユーザー決定）。
 - 共通部品（`.btn`・`.btn-primary`・`.btn-outline`・フォーカスリング・`.sec-head`・`.cv-*`・ヘッダー／フッター／追従バナーの文字設定）の正本は`style.css`。各ページの`<style>`に同じ定義を再び書かない。ボタンは`white-space:nowrap`にしない（長い文言が枠からはみ出す）（2026-10-10 総チェック）。
 - 日本語の折り返し：`overflow-wrap:anywhere`と`word-break:keep-all`の併用は「。」「？」だけが次行に落ちるため使わない。`line-break:strict`＋`word-break:normal`＋`text-wrap:pretty`／`balance`を使う（`style.css`末尾に全体設定あり）。
+- 見出し・ボタン・キャッチ・カード見出しは文節単位で改行する。HTML側に`<wbr>`（BudouXで生成）を入れ、`style.css`末尾の`word-break:keep-all`が効く。新しい見出し・ボタン文言を足したら同様に`<wbr>`を入れる。`.btn`内はラベルを`<span class="btn__label">`で1つにまとめる（flex内では`<wbr>`が別アイテムになるため）。途中で折れやすい括弧・「〜」・文末の「。」は`.nw`／`.nwe`で囲む。`overflow-wrap:anywhere`は使わず`break-word`にする（flex／gridの最小幅が1文字に縮むため）。
 - フォントはRoboto + Noto Sans JP。
 - 絵文字アイコンは禁止し、SVGモノラインを使う。
 - 一般的なイメージ写真は顔を判別できない構図とする。代表者プロフィール写真は例外。
