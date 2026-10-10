@@ -52,7 +52,8 @@
 - 見出し・ボタン・キャッチ・カード見出しは文節単位で改行する。HTML側に`<wbr>`（BudouXで生成）を入れ、`style.css`末尾の`word-break:keep-all`が効く。新しい見出し・ボタン文言を足したら同様に`<wbr>`を入れる。`.btn`内はラベルを`<span class="btn__label">`で1つにまとめる（flex内では`<wbr>`が別アイテムになるため）。途中で折れやすい括弧・「〜」・文末の「。」は`.nw`／`.nwe`で囲む。`overflow-wrap:anywhere`は使わず`break-word`にする（flex／gridの最小幅が1文字に縮むため）。
 - 本文の基準文字サイズは16px（`style.css`の`body`が正本。ページの`<style>`に`body`の文字設定を書かない）（2026-10-10 ユーザー決定）。
 - 写真は表示幅の2倍以上の実ピクセルを用意し、`<picture>`でWebP＋JPEGを1x/2xの`srcset`で配信する。ファーストビューの画像は`fetchpriority="high"`、それ以外は`loading="lazy"`、いずれも`decoding="async"`。低解像度の写真はReal-ESRGAN（realesrgan-x4plus）で4倍にしてから使う。コードから参照のない画像は残さない（OGP・favicon・`index-v2`／`v2/`が参照するものを除く）。
-- Google FontsのCSSは`media="print" onload="this.media='all'"`で描画をブロックしない読み込みにしている（`display=swap`・ウェイト400/500/700/900）。新しいページでも同じ書き方にする。
+- Webフォントは自サイト配信（`assets/fonts/NotoSansJP-VF.woff2`・`Roboto-VF.woff2`、可変フォント・太さ400〜900、サイトで使う文字だけに絞ったサブセット）。`@font-face`は`style.css`冒頭に集約し、Google Fontsの`<link>`・preconnectは使わない（2026-10-10）。新しいページでも`<head>`に同じ2本の`<link rel="preload" as="font" type="font/woff2" crossorigin>`（相対パス）を入れ、Google Fontsは足さない。使うウェイトは400/500/700/900。600・800は可変フォントでそのまま描画され、従来（700・900に寄っていた）と見た目が変わるので使わない。
+- **文言を追加・変更したら、`python tools/build-fonts.py`（要 `pip install fonttools brotli`）でフォントを再生成し、`node tools/check-fonts.mjs --browsers=chromium,webkit`で欠字0件を確認する。** 再生成したフォント・`assets/fonts/charset.txt`も一緒にコミットする。欠字があると、その文字だけ端末の代替フォントで表示される。原本フォントは`tools/.font-cache/`（git管理外）に固定コミットから取得しSHA-256を検証する。常用漢字2136字まで入れたいときは`--jouyou`（約+400KBになるため既定では入れない）。フォントのライセンス（SIL OFL）は`assets/fonts/OFL-*.txt`。
 - `service-banso.html`は孤立ページのため`noindex`（sitemap・内部リンクに入れない）。
 - フォントはRoboto + Noto Sans JP。
 - 絵文字アイコンは禁止し、SVGモノラインを使う。
