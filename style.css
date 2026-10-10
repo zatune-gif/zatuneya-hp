@@ -48,9 +48,11 @@
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+/* 本文の基準（全ページ共通・2026-10-10 ユーザー決定：16px に統一）。各ページの <style> には body の文字設定を書かない */
 body {
-  font-family: 'Noto Sans JP', 'Roboto', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
-  background: #fff; color: var(--text); line-height: 1.9; font-size: 15px;
+  font-family: 'Roboto', 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', system-ui, sans-serif;
+  background: #fff; color: var(--text); font-size: 16px; line-height: 1.9; letter-spacing: .02em;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
 
@@ -1560,12 +1562,11 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
    全ページ統一（2026-10-10 総チェック）
    共通部品の文字設定・フォーカスリング・文字の折り返しを、ここ1か所に集約する
    ============================================================ */
-/* 共通部品の文字設定：ページ側の body（16px／15px）に左右されないよう明示する */
+/* 共通部品の文字設定：body と同じ基準（16px）を明示する */
 .site-header, .site-footer, .sticky-cta, .mobile-cta-bar, .breadcrumb, .sub-hero, .cv-section {
   font-family: 'Roboto', 'Noto Sans JP', system-ui, sans-serif; font-size: 16px; line-height: 1.9; letter-spacing: .02em;
 }
 @media (max-width: 400px) {
-  .site-header, .site-footer, .sticky-cta, .mobile-cta-bar, .breadcrumb, .sub-hero, .cv-section { font-size: 15px; }
   .btn { padding: 16px 24px; font-size: 15px; }
 }
 /* フォーカスリング：キーボード操作で必ず見えるようにする（ページ側に定義が無いページでもブラウザ標準のリングに頼らない） */
