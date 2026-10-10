@@ -112,6 +112,11 @@ body {
 .btn-white:hover { background: #f4fafb; }
 .btn-teal { background: var(--teal-strong); color: #fff; } /* 白文字 4.63:1 */
 .btn-teal:hover { background: var(--teal-deep); } /* 白文字 8.2:1 */
+/* スマホ幅では文言が長いボタン（「まず30分、話を聞かせてください」等）がボタンの外へはみ出していた。
+   各ページの<style>にある .btn{white-space:nowrap} より優先させるため !important で折り返しを許可する */
+@media (max-width: 680px) {
+  .btn { white-space: normal !important; text-wrap: balance; text-align: center; padding-left: 24px !important; padding-right: 24px !important; }
+}
 
 /* ── 帯レイアウト・見出し ──
    .band 単体はどのページでも使用されていない死にクラス（band-white/tint/tight も未使用）。
