@@ -1192,7 +1192,7 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 }
 .sub-hero__lead {
   font: 400 16px/1.9 'Noto Sans JP', sans-serif; letter-spacing: .02em; color: var(--text);
-  margin: 0; line-break: strict; word-break: auto-phrase; overflow-wrap: anywhere; text-wrap: pretty;
+  margin: 0; line-break: strict; word-break: normal; overflow-wrap: normal; text-wrap: pretty; /* anywhere だと禁則より優先され「。」だけが次行に落ちるため normal */
 }
 .sub-hero .rule-accent { margin: 24px 0 0; }
 .sub-hero .hero-cta { justify-content: flex-start; margin-top: 24px; }
