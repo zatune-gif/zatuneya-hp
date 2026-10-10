@@ -1460,6 +1460,8 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 /* ── 14. 価格パネルの強調（チラシ2ページの価格：アイコン＋縦罫線＋大きな金額） ── */
 .price-box.price-box--flyer { position: sticky; top: 96px; overflow: hidden; padding: 0 0 32px; border: 1px solid var(--card-line); }
 /* 料金ボックスが本文の下に縦積みになる幅では、直後のCVセクションと「お問い合わせ」が連続するため、料金ボックス内のボタンを出さない（PCでは横で追従するので残す） */
+/* 追従表示のとき、ノートPC（高さ720〜768px）でも画面下の追従バナーに隠れないよう、ボタンは金額のすぐ下に置く */
+.price-box--flyer .price-box__inner > .price-box__cta:first-child { margin: 0 0 16px; }
 @media (max-width: 960px) { .price-box--flyer .price-box__cta { display: none; } }
 .price-box--flyer::before { content: ""; display: block; height: 6px; background: linear-gradient(90deg, var(--teal-strong), var(--teal)); }
 .price-box__head { display: flex; align-items: center; gap: 16px; padding: 24px 32px 20px; border-bottom: 1px solid var(--card-line); background: linear-gradient(180deg, var(--teal-soft) 0%, #fff 100%); }
