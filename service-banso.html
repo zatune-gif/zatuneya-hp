@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI活用伴走｜ざつね屋</title>
+<meta name="robots" content="noindex">
 <meta name="description" content="月次ミーティングで知見を統合しながらAI活用を継続的に改善する伴走型契約。広げる・定着させるフェーズを並走します。価格は内容に応じてお見積もり。広島県府中市を拠点に、地域企業向け。">
 <link rel="icon" href="./favicon.ico" sizes="any">
 <link rel="icon" href="./assets/favicon-32.png" type="image/png">
 <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
-<link rel="canonical" href="https://zatuneya.com/service-banso.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ざつね屋">
 <meta property="og:title" content="AI活用伴走｜ざつね屋">
@@ -18,12 +18,13 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="./style.css">
 <style>
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'Roboto','Noto Sans JP',system-ui,sans-serif;font-size:16px;line-height:1.9;letter-spacing:0.02em;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--text)}
 h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--heading);margin:0;text-wrap:balance}
 p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
 .container{max-width:1120px;margin:0 auto;padding:0 32px;text-align:left}
@@ -120,7 +121,10 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
       </div>
     </div>
     <div class="hero-photo-panel" aria-hidden="true">
-      <img src="./assets/hero-desk.jpg" alt="" width="585" height="490" loading="eager">
+      <picture>
+        <source type="image/webp" srcset="./assets/hero-desk-768.webp 1x, ./assets/hero-desk-1536.webp 2x">
+        <img src="./assets/hero-desk-768.jpg" srcset="./assets/hero-desk-768.jpg 1x, ./assets/hero-desk-1536.jpg 2x" alt="" width="768" height="643" decoding="async" fetchpriority="high">
+      </picture>
     </div>
   </div>
   <img class="skyline-illust" src="./assets/skyline.svg" alt="" width="1440" height="140" aria-hidden="true">
@@ -180,7 +184,7 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
         <h2>まずは<wbr>お気軽に<wbr>ご相談ください</h2>
         <p class="lead">「うちの業務でも使えるか？」の段階で大丈夫です。相談・お見積りはすべて無料です。</p>
         <div class="cv-cta-row">
-          <a class="btn btn-primary" href="./contact.html"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg><span class="btn__label">お問い合わせ・<wbr>無料相談を<wbr>する</span></a>
+          <a class="btn btn-primary" href="./contact.html"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg><span class="btn__label">まず<wbr><span class="nwe">30分、</span><wbr>話を<wbr>聞かせてください</span></a>
           <a class="btn btn-teal" href="https://ai-shindan-zatuneya.netlify.app/"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>AI診断してみる</a>
         </div>
         <p class="cv-foot">返信は2営業日以内です。しつこい営業連絡はいたしません。</p>

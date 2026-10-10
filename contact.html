@@ -18,7 +18,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="./style.css">
 <style>
 /* ============================================================
@@ -26,7 +27,7 @@
    ============================================================ */
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'Roboto','Noto Sans JP',system-ui,sans-serif;font-size:16px;line-height:1.9;letter-spacing:0.02em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{margin:0;background:var(--bg);color:var(--text)}
 h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--heading);margin:0;text-wrap:balance}
 p{margin:0}
 a{color:inherit}
@@ -54,7 +55,6 @@ img,svg{display:block;max-width:100%}
   .contact-form-card{padding:16px}
 }
 @media (max-width:400px){
-  body{font-size:15px}
   .contact-form-card__intro{gap:12px}
   .contact-form-card__portrait{width:52px;height:52px}
 }
@@ -114,7 +114,7 @@ img,svg{display:block;max-width:100%}
     <div class="container tight">
       <div class="contact-form-card">
         <div class="contact-form-card__intro">
-          <img class="contact-form-card__portrait" src="./assets/portrait-illustration.jpg" alt="代表 大音のイラスト" width="64" height="64" loading="lazy">
+          <img class="contact-form-card__portrait" src="./assets/portrait-illustration.jpg" alt="代表 大音のイラスト" width="64" height="64" loading="lazy" decoding="async">
           <p class="contact-form-card__intro-text">ざつね屋 代表の大音が、直接ご相談をお受けします。まずは下記フォームからお気軽にどうぞ。</p>
         </div>
         <iframe

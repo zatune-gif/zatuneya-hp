@@ -18,7 +18,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="./style.css">
 <style>
 /* ============================================================
@@ -26,12 +27,7 @@
    ============================================================ */
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0; background:var(--bg); color:var(--text);
-  font-family:'Roboto','Noto Sans JP',system-ui,sans-serif;
-  font-size:16px; line-height:1.9; letter-spacing:0.02em; -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
-}
+body{margin:0; background:var(--bg); color:var(--text)}
 h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--heading);margin:0;text-wrap:balance}
 p{margin:0}
 a{color:inherit}
@@ -237,7 +233,6 @@ img,svg{display:block;max-width:100%}
   .hero-photo{height:210px}
 }
 @media (max-width:400px){
-  body{font-size:15px}
   .hero .badge{font-size:12px;padding:8px 12px}
   .hero-grid .hero-copy h1{font-size:27px;line-height:1.4}
   .hero-photo{height:180px}
@@ -313,7 +308,10 @@ img,svg{display:block;max-width:100%}
     </div>
     <div class="hero-photo">
       <div class="photo-diagonal">
-        <img src="./assets/hero-desk.jpg" alt="窓辺の机に置かれたノートパソコンと資料" width="585" height="490" loading="eager">
+        <picture>
+          <source type="image/webp" srcset="./assets/hero-desk-768.webp 1x, ./assets/hero-desk-1536.webp 2x">
+          <img src="./assets/hero-desk-768.jpg" srcset="./assets/hero-desk-768.jpg 1x, ./assets/hero-desk-1536.jpg 2x" alt="窓辺の机に置かれたノートパソコンと資料" width="768" height="643" decoding="async" fetchpriority="high">
+        </picture>
       </div>
       <span class="photo-diagonal__block" aria-hidden="true"></span>
       <span class="photo-diagonal__stripe" aria-hidden="true"></span>
@@ -436,9 +434,9 @@ img,svg{display:block;max-width:100%}
         <div>
           <span class="tool-featured-badge">まずはここから</span>
           <span class="tool-free">無料・登録不要</span>
-          <h3>業務の<wbr>現在地チェック<wbr><span class="nw">（無料</span>・<wbr>12問・<wbr>約7分）</h3>
+          <h3>AI活用準備度診断<wbr><span class="nwe">（無料</span>・<wbr>12問・<wbr>約7分）</h3>
           <p>自社が今どの段階にいるかが分かります。強み・優先課題・次のアクションまで表示します。</p>
-          <a class="arrowlink" href="https://ai-shindan-zatuneya.netlify.app/">無料でチェックする <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="arrowlink" href="https://ai-shindan-zatuneya.netlify.app/">AI診断してみる <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
     </div>
@@ -472,7 +470,10 @@ img,svg{display:block;max-width:100%}
 
     <!-- photo band -->
     <div class="why-band">
-      <img src="./assets/band-onsite.jpg" alt="画面を一緒に見ながら業務を組み立てる手元" width="1400" height="934" loading="lazy">
+      <picture>
+        <source type="image/webp" srcset="./assets/band-onsite-1120.webp 1x, ./assets/band-onsite-2240.webp 2x">
+        <img src="./assets/band-onsite-1120.jpg" srcset="./assets/band-onsite-1120.jpg 1x, ./assets/band-onsite-2240.jpg 2x" alt="画面を一緒に見ながら業務を組み立てる手元" width="1120" height="747" loading="lazy" decoding="async">
+      </picture>
       <span class="veil"></span>
       <div class="bcontent">
         <span class="eyebrow">On Site</span>
@@ -554,7 +555,10 @@ img,svg{display:block;max-width:100%}
 <section class="section sm bg-white pt-0">
   <div class="container band-wrap">
     <div class="band flip">
-      <img src="./assets/band-together.jpg" alt="画面を一緒に見ながら検討する2人" width="1400" height="934" loading="lazy">
+      <picture>
+        <source type="image/webp" srcset="./assets/band-together-1120.webp 1x, ./assets/band-together-2240.webp 2x">
+        <img src="./assets/band-together-1120.jpg" srcset="./assets/band-together-1120.jpg 1x, ./assets/band-together-2240.jpg 2x" alt="画面を一緒に見ながら検討する2人" width="1120" height="747" loading="lazy" decoding="async">
+      </picture>
       <span class="veil"></span>
       <div class="bcontent">
         <span class="eyebrow">Together</span>
