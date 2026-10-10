@@ -1,4 +1,24 @@
 /* ============================================================
+   Webフォント（自サイト配信）。Noto Sans JP・Roboto とも可変フォント1ファイル、太さは 400〜900。
+   サイトで使う文字だけに絞ってあり、tools/build-fonts.py で生成する（文言を変えたら再実行し、
+   node tools/check-fonts.mjs で欠字なしを確認する）。使うウェイトは 400 / 500 / 700 / 900。
+   ============================================================ */
+@font-face {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url(assets/fonts/NotoSansJP-VF.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url(assets/fonts/Roboto-VF.woff2) format('woff2');
+}
+
+/* ============================================================
    ざつね屋 事業HP — 定数（全ページ共通。ここだけを正本にする）
    色：ブランド4色＋文字用の濃色派生。書体：Noto Sans JP ＋ Roboto
    角丸：カード系 / 小物の2種（ボタン・バッジは 999px、円形は 50%）
@@ -130,7 +150,7 @@ body {
    漏れ込み、モバイル幅でTOGETHER帯が異常に縦長になるバグの原因だったため padding を削除した。 */
 .band { position: relative; overflow: hidden; }
 .container { max-width: 920px; margin: 0 auto; text-align: center; position: relative; }
-.section-title { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; color: var(--heading); line-height: 1.25; letter-spacing: -0.01em; margin: 12px 0 0; }
+.section-title { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900; color: var(--heading); line-height: 1.25; letter-spacing: -0.01em; margin: 12px 0 0; }
 @media (max-width: 640px) { .section-title { font-size: clamp(1.4rem, 5vw, 1.8rem); } }
 .section-lead { font-size: 15px; color: var(--text); line-height: 1.9; max-width: 680px; margin: 16px auto 0; }
 
@@ -575,7 +595,7 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 .site-footer__col-title {
   display: block;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--teal-on-dark);
@@ -832,7 +852,7 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 /* dt/dd スタイル（現在の実装） */
 .faq-question {
   padding: 20px 0;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1rem;
   color: var(--heading);
   letter-spacing: 0.02em;
@@ -852,7 +872,7 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 .faq-answer a {
   color: var(--teal-text);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .faq-answer a:hover {
