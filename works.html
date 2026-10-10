@@ -28,9 +28,7 @@
 .works-section--own + .cv-section{padding-top:24px}
 
 /* ─── CV section (CTA) ─── */
-.cv-section .btn-primary,.svc-cta-row .btn-primary{background:var(--orange);color:var(--on-orange);font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);display:inline-flex;align-items:center;justify-content:center;gap:8px}
 .cv-section .btn-primary:hover,.svc-cta-row .btn-primary:hover{background:var(--orange-dk);transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
-.cv-section .btn svg,.svc-cta-row .btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
 
 /* ─── 中間CTA（受託実績の直後・自社開発実績の前） ─── */
 .svc-cta-row{display:flex;flex-wrap:wrap;gap:16px}
@@ -66,11 +64,11 @@
   </div>
 </header>
 
-<div class="sticky-cta" id="sticky-cta">
-  <p class="sticky-cta__text">AIが自社に使えるか、まず無料で確かめてみませんか？</p>
+<aside class="sticky-cta" id="sticky-cta" aria-label="AI診断のご案内">
+  <p class="sticky-cta__text"><span class="nw">AIが自社に使えるか、</span><span class="nw">まず無料で確かめてみませんか？</span></p>
   <a href="https://ai-shindan-zatuneya.netlify.app/" class="sticky-cta__btn">AI診断してみる</a>
   <button class="sticky-cta__close" id="sticky-cta-close" aria-label="バナーを閉じる">✕</button>
-</div>
+</aside>
 
 <main>
   <section class="sub-hero hero-diagonal">

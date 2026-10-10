@@ -26,20 +26,11 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--text);font-family:'Roboto','Noto Sans JP',system-ui,sans-serif;font-size:16px;line-height:1.9;letter-spacing:0.02em;-webkit-font-smoothing:antialiased}
 h1,h2,h3,h4{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--heading);margin:0;text-wrap:balance}
 p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
-:focus-visible{outline:3px solid var(--teal-text);outline-offset:3px;border-radius:var(--r-sm)}
 .container{max-width:1120px;margin:0 auto;padding:0 32px;text-align:left}
 .section{padding:var(--s24) 0}
 .bg-white{background:#fff}
 
 /* BUTTONS */
-.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);cursor:pointer;white-space:nowrap}
-.btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;flex:none}
-.btn-primary{background:var(--orange);color:var(--on-orange)}
-.btn-primary:hover{background:var(--orange-dk);transform:translateY(-2px);box-shadow:var(--sh-orange-h)}
-.btn-outline{background:transparent;color:var(--teal-text);border-color:var(--teal)}
-.btn-outline:hover{background:var(--teal-soft);transform:translateY(-2px)}
-.btn-ghost{background:#fff;color:var(--teal-text);border-color:var(--teal-line)}
-.btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
 
 /* PAGE HERO は style.css の .sub-hero（下層ページ共通ヒーロー）／.svc-hero-meta・.svc-hero-target も style.css */
 .svc-hero-grid{display:grid;grid-template-columns:1fr 360px;gap:48px;align-items:start}
@@ -104,11 +95,11 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
   </div>
 </header>
 
-<div class="sticky-cta" id="sticky-cta">
-  <p class="sticky-cta__text">AIが自社に使えるか、まず無料で確かめてみませんか？</p>
+<aside class="sticky-cta" id="sticky-cta" aria-label="AI診断のご案内">
+  <p class="sticky-cta__text"><span class="nw">AIが自社に使えるか、</span><span class="nw">まず無料で確かめてみませんか？</span></p>
   <a href="https://ai-shindan-zatuneya.netlify.app/" class="sticky-cta__btn">AI診断してみる</a>
   <button class="sticky-cta__close" id="sticky-cta-close" aria-label="バナーを閉じる">✕</button>
-</div>
+</aside>
 
 <main>
 <section class="sub-hero sub-hero--photo hero-diagonal">

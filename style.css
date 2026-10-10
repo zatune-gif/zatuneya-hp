@@ -100,11 +100,14 @@ body {
 
 /* ── ボタン ── */
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  font-size: 15px; font-weight: 700; text-decoration: none;
-  padding: 16px 32px; border-radius: 999px; transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: 'Noto Sans JP', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.9; letter-spacing: .02em;
+  text-decoration: none; text-align: center; cursor: pointer;
+  padding: 16px 32px; border-radius: 999px; border: 1.5px solid transparent;
+  white-space: normal; text-wrap: balance; /* 長い文言は幅に応じて折り返す（はみ出し防止。ページ側で nowrap にしない） */
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);
 }
-.btn svg { width: 19px; height: 19px; stroke: currentColor; fill: none; flex-shrink: 0; }
+.btn svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; fill: none; flex: none; }
 .btn:hover { transform: translateY(-2px); }
 .btn-fill { background: var(--orange); color: var(--on-orange); }
 .btn-fill:hover { background: var(--orange-dk); }
@@ -163,12 +166,13 @@ body {
 }
 .cv-tag svg { width: 15px; height: 15px; stroke: var(--orange-dk); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
 .cv-inner h2 {
-  position: relative; font-size: clamp(25px, 3.6vw, 34px); margin: 16px 0 0; letter-spacing: 0.01em;
+  position: relative; font-size: clamp(25px, 3.6vw, 34px); margin: 24px 0 0; letter-spacing: 0.01em;
   color: var(--heading); font-family: 'Noto Sans JP', sans-serif; font-weight: 900;
 }
 .cv-inner .lead {
   position: relative; font-family: 'Noto Sans JP', sans-serif; font-size: 15px; line-height: 1.9;
-  color: var(--text); max-width: 560px; margin: 16px auto 0; word-break: keep-all; overflow-wrap: anywhere;
+  color: var(--text); max-width: 560px; margin: 16px auto 0;
+  line-break: strict; word-break: normal; overflow-wrap: normal; text-wrap: pretty; /* keep-all＋anywhere だと禁則より優先され「。」「？」だけが次行に落ちる */
 }
 .cv-cta-row { position: relative; display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 32px; }
 @media (max-width: 680px) { .cv-cta-row .btn { width: 100%; } }
@@ -909,27 +913,18 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 
 /* ── 1. ボタン階層整理（新規追加クラス：既存を壊さない） ── */
 
-/* 主CTA（塗りつぶし） */
-.btn-primary {
-  background: var(--orange);
-  color: var(--on-orange);
-  border: none;
-  border-radius: 999px;
-  padding: 16px 32px;
-  font-weight: 700;
-  font-size: 1rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
-}
-.btn-primary:hover {
-  background: var(--orange-dk);
-  transform: translateY(-2px);
-}
+/* 主CTA（お問い合わせ＝オレンジ。全ページ共通の正本） */
+.btn-primary { background: var(--orange); color: var(--on-orange); } /* オレンジ上の濃色文字 6.90:1 */
+.btn-primary:hover { background: var(--orange-dk); transform: translateY(-2px); box-shadow: var(--sh-orange-h); }
+.btn-primary:active { transform: translateY(0); box-shadow: 0 4px 12px rgba(248, 152, 29, .4); }
 
 /* 副CTA（枠線スタイル） */
+.btn-outline { background: transparent; color: var(--teal-text); border-color: var(--teal); }
+.btn-outline:hover { background: var(--teal-soft); transform: translateY(-2px); }
+.btn-outline:active { transform: translateY(0); }
+.btn-ghost { background: #fff; color: var(--teal-text); border-color: var(--teal-line); }
+.btn-ghost:hover { transform: translateY(-2px); box-shadow: var(--sh-2); }
+.btn-ghost:active { transform: translateY(0); }
 
 /* 3次リンク（テキストリンク） */
 
@@ -1114,7 +1109,11 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 }
 @media (max-width: 680px) {
   .icon-flow { --flow-gap: 22px; }
-  .icon-flow__label { font-size: 12px; }
+  .icon-flow__label { font-size: 12px; white-space: normal; text-wrap: balance; }
+}
+@media (max-width: 380px) {
+  .icon-flow { --flow-gap: 16px; }
+  .hero-flow .icon-flow { --badge-size: 52px; } /* 各ページの .hero-flow{--badge-size:60px} より強くする */
 }
 
 /* ジグザグ版（サービス紹介資料の表紙：円形アイコンを曲線の点線で上から下へつなぐ）
@@ -1422,7 +1421,7 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 .tech-list { list-style: none; margin: 0; padding: 0; flex: 1; min-width: 0; }
 .tech-list__item {
   position: relative; padding: 12px 0 12px 24px;
-  font: 500 14.5px/1.75 'Noto Sans JP', sans-serif; color: var(--heading); text-wrap: pretty;
+  font: 500 14.5px/1.75 'Noto Sans JP', sans-serif; color: var(--heading); text-wrap: balance; overflow-wrap: break-word;
   border-bottom: 1px dashed var(--card-line);
 }
 .tech-list__item:last-child { border-bottom: 0; }
@@ -1432,6 +1431,7 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
 }
 @media (max-width: 680px) {
   .tech-panel { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .tech-panel > .tech-list { width: 100%; }
   .tech-panel > .icon-badge-circle { --badge-size: 72px; }
 }
 
@@ -1524,7 +1524,7 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   margin: 0; padding: 12px 20px; border-radius: 999px;
   background: var(--teal-soft); color: var(--heading);
   font: 900 15.5px/1.6 'Noto Sans JP', sans-serif; letter-spacing: .02em;
-  text-wrap: balance; word-break: keep-all; overflow-wrap: anywhere;
+  text-wrap: balance; line-break: strict; word-break: normal; overflow-wrap: normal; /* anywhere だと「。」だけが次行に落ちる */
 }
 .catch-bubble::before {
   content: ""; position: absolute; left: -8px; top: 50%; width: 12px; height: 14px;
@@ -1555,3 +1555,33 @@ td:first-child { font-weight: 700; color: var(--heading); white-space: nowrap; }
   .case-card .work-solved { padding: 16px 16px; }
   .case-card .work-solved .icon-badge-circle { display: none; } /* 狭幅では本文の幅を優先（ラベルの色で結果ボックスと分かる） */
 }
+
+/* ============================================================
+   全ページ統一（2026-10-10 総チェック）
+   共通部品の文字設定・フォーカスリング・文字の折り返しを、ここ1か所に集約する
+   ============================================================ */
+/* 共通部品の文字設定：ページ側の body（16px／15px）に左右されないよう明示する */
+.site-header, .site-footer, .sticky-cta, .mobile-cta-bar, .breadcrumb, .sub-hero, .cv-section {
+  font-family: 'Roboto', 'Noto Sans JP', system-ui, sans-serif; font-size: 16px; line-height: 1.9; letter-spacing: .02em;
+}
+@media (max-width: 400px) {
+  .site-header, .site-footer, .sticky-cta, .mobile-cta-bar, .breadcrumb, .sub-hero, .cv-section { font-size: 15px; }
+  .btn { padding: 16px 24px; font-size: 15px; }
+}
+/* フォーカスリング：キーボード操作で必ず見えるようにする（ページ側に定義が無いページでもブラウザ標準のリングに頼らない） */
+:focus-visible { outline: 3px solid var(--teal-text); outline-offset: 3px; }
+.site-footer :focus-visible { outline-color: #fff; } /* 濃色面では白リング */
+/* セクション見出し（index・profile 共通。以前はページごとに 38px／30px とばらついていた） */
+.sec-head h2 { font-size: clamp(25px, 3.6vw, 34px); line-height: 1.3; letter-spacing: .01em; margin: 24px 0 0; }
+/* 文字の折り返し：1文字だけの行・句読点だけの行を作らない。
+   見出し・短い見出し語・ボタン・リストは balance（Chromium・Safari・Firefox 対応）、本文は pretty（Chromium・Safari） */
+body { text-wrap: pretty; }
+h1, h2, h3, h4 { text-wrap: balance; line-height: 1.3; } /* 見出しの行間（body 継承の 1.9 だと2行になったとき間延びする。各クラスで指定済みのものはそちらを優先） */
+li, .btn, .eyebrow, .breadcrumb, .need-card__text, .deliv-card__title, .deliv-card__desc, .num-grid__text, .point-text, .step-flow-vertical__text,
+.own-card__title, .own-card__link, .why-src, .role-tag, .price-box__amount, .price-box__sub, .svc-catch, .svc-hero-target, .work-solved__label,
+.points-section__title span, .mobile-cta-bar a, .contact-mail-note { text-wrap: balance; }
+/* CVセクションの幅（works・faq のように .container の標準幅が違うページでもCVカードを同じ幅にそろえる） */
+.cv-section .container { max-width: 1120px; padding: 0 32px; text-align: left; }
+@media (max-width: 680px) { .cv-section .container { padding: 0 20px; } }
+/* 追従バナーの文言：「まず無料で確かめてみませんか？」を途中で折らない（極端に狭い画面だけ折り返しを許可してはみ出しを防ぐ） */
+@media (max-width: 340px) { .sticky-cta__text .nw { white-space: normal; } }
