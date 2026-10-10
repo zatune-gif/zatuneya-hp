@@ -120,7 +120,10 @@ p{margin:0}a{color:inherit}img,svg{display:block;max-width:100%}
       </div>
     </div>
     <div class="hero-photo-panel" aria-hidden="true">
-      <img src="./assets/hero-desk.jpg" alt="" width="585" height="490" loading="eager">
+      <picture>
+        <source type="image/webp" srcset="./assets/hero-desk-768.webp 1x, ./assets/hero-desk-1536.webp 2x">
+        <img src="./assets/hero-desk-768.jpg" srcset="./assets/hero-desk-768.jpg 1x, ./assets/hero-desk-1536.jpg 2x" alt="" width="768" height="643" decoding="async" fetchpriority="high">
+      </picture>
     </div>
   </div>
   <img class="skyline-illust" src="./assets/skyline.svg" alt="" width="1440" height="140" aria-hidden="true">

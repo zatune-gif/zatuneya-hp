@@ -307,7 +307,10 @@ img,svg{display:block;max-width:100%}
     </div>
     <div class="hero-photo">
       <div class="photo-diagonal">
-        <img src="./assets/hero-desk.jpg" alt="窓辺の机に置かれたノートパソコンと資料" width="585" height="490" loading="eager">
+        <picture>
+          <source type="image/webp" srcset="./assets/hero-desk-768.webp 1x, ./assets/hero-desk-1536.webp 2x">
+          <img src="./assets/hero-desk-768.jpg" srcset="./assets/hero-desk-768.jpg 1x, ./assets/hero-desk-1536.jpg 2x" alt="窓辺の机に置かれたノートパソコンと資料" width="768" height="643" decoding="async" fetchpriority="high">
+        </picture>
       </div>
       <span class="photo-diagonal__block" aria-hidden="true"></span>
       <span class="photo-diagonal__stripe" aria-hidden="true"></span>
@@ -466,7 +469,7 @@ img,svg{display:block;max-width:100%}
 
     <!-- photo band -->
     <div class="why-band">
-      <img src="./assets/band-onsite.jpg" alt="画面を一緒に見ながら業務を組み立てる手元" width="1400" height="934" loading="lazy">
+      <img src="./assets/band-onsite.jpg" alt="画面を一緒に見ながら業務を組み立てる手元" width="1400" height="934" loading="lazy" decoding="async">
       <span class="veil"></span>
       <div class="bcontent">
         <span class="eyebrow">On Site</span>
@@ -548,7 +551,7 @@ img,svg{display:block;max-width:100%}
 <section class="section sm bg-white pt-0">
   <div class="container band-wrap">
     <div class="band flip">
-      <img src="./assets/band-together.jpg" alt="画面を一緒に見ながら検討する2人" width="1400" height="934" loading="lazy">
+      <img src="./assets/band-together.jpg" alt="画面を一緒に見ながら検討する2人" width="1400" height="934" loading="lazy" decoding="async">
       <span class="veil"></span>
       <div class="bcontent">
         <span class="eyebrow">Together</span>

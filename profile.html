@@ -161,7 +161,10 @@ img,svg{display:block;max-width:100%}
 <section class="section bg-white story-section" id="story">
   <div class="container story-grid">
     <figure class="story-portrait">
-      <img src="./assets/profile-portrait-2.jpg" alt="ざつね屋 代表者のイラスト" width="900" height="1349" loading="eager">
+      <picture>
+        <source type="image/webp" srcset="./assets/profile-portrait-2-340.webp 1x, ./assets/profile-portrait-2-680.webp 2x">
+        <img src="./assets/profile-portrait-2-340.jpg" srcset="./assets/profile-portrait-2-340.jpg 1x, ./assets/profile-portrait-2-680.jpg 2x" alt="ざつね屋 代表者のイラスト" width="340" height="510" decoding="async" fetchpriority="high">
+      </picture>
     </figure>
     <div class="story-main">
     <div class="sec-head">
