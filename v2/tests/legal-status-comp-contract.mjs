@@ -18,7 +18,7 @@ check(css.includes('.status-band'), 'legal-status-comp.css defines the dark stat
 const pages = {
   'privacy.html': {
     headings: ['プライバシーポリシー', 'LEGAL / 安心してご利用いただくために'],
-    bodyTokens: ['個人情報の取扱い', '事業者について', '第三者提供', 'zatuneya@gmail.com'],
+    bodyTokens: ['個人情報の取扱い', '事業者について', '第三者提供', 'info@zatuneya.com'],
   },
   'tokusho.html': {
     headings: ['特定商取引法に基づく表記', 'LEGAL / 安心してご利用いただくために'],
